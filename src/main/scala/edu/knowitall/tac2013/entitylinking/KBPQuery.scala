@@ -1,15 +1,20 @@
 package edu.knowitall.tac2013.entitylinking
 
 import scala.xml.XML
+import edu.knowitall.tac2013.solr.query.SolrHelper
 
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
   
-  private def getSourceSentence(): String = {
-    this.name
+  private def getSourceContext(): String = {
+    SolrHelper.getContextFromDocument(doc, begOffset, name)
   }
   
-  val sourceSentence = getSourceSentence()
+  val sourceContext = getSourceContext()
+  
+  
+  //debug output on construction
+  //System.err.println("KBPQuery for entity: " + name +" has context sentence of: " + sourceContext)
 }
 
 object KBPQuery{
@@ -30,13 +35,13 @@ object KBPQuery{
 	    val endText = queryXML.\\("end").text
 	    val endInt = endText.toInt
 	    
-	    Some(new KBPQuery(idText,nameText,docIDText,begInt,endInt))
+	    val x = new KBPQuery(idText,nameText,docIDText,begInt,endInt)
+	    Some(x)
     }
     catch {
       case e: Exception => {
-        println(e.getMessage())
-        return None
-        
+        println("returned NONE!")
+    	 None
       }
     }
   }

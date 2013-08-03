@@ -8,6 +8,7 @@ libraryDependencies ++= Seq(
   "com.github.scopt" %% "scopt" % "2.1.0",
   "edu.washington.cs.knowitall.openie" %% "openie-models" % "1.0",
   "edu.washington.cs.knowitall.openie" %% "openie-linker" % "1.0",
+  "edu.washington.cs.knowitall.nlptools" %% "nlptools-sentence-opennlp" % "2.4.2",
   "jp.sf.amateras.solr.scala" %% "solr-scala-client" % "0.0.8"
 )
 
