@@ -13,6 +13,17 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   val sourceContext = getSourceContext()
   
   
+  def trimSourceContext():String = {
+    val stringOffsetOfEntity = sourceContext.indexOf(name)
+    
+    stringOffsetOfEntity match{
+      case -1 => sourceContext.slice((sourceContext.length()/2)-40, ((sourceContext.length()/2)+40))
+      case _ => sourceContext.slice(stringOffsetOfEntity-40, stringOffsetOfEntity + 40 + name.length())
+    }
+    
+  }
+  
+  
   //debug output on construction
   //System.err.println("KBPQuery for entity: " + name +" has context sentence of: " + sourceContext)
 }
@@ -46,9 +57,9 @@ object KBPQuery{
     }
   }
   
-  def parseKBPQueries(): List[KBPQuery] = {
+  def parseKBPQueries(path: String): List[KBPQuery] = {
     
-    val xml = XML.loadFile(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
+    val xml = XML.loadFile(path)
     val queryXMLSeq = xml.\("query")
      
      val kbpQueryList = for( qXML <- queryXMLSeq) yield parseSingleKBPQueryFromXML(qXML)
