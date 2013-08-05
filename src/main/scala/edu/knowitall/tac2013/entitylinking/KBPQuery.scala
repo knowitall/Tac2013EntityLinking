@@ -35,6 +35,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
 object KBPQuery{
   
   var wikiMap :Option[Map[String,String]] = None
+  var kbIdToTitleMap :Option[Map[String,String]] = None
   var kbIdTextMap :Option[Map[String,String]] = None
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
@@ -83,5 +84,8 @@ object KBPQuery{
 	  kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
 	      Some(WikiMappingHelper.loadIdToIntroTextMap(source.getLines))
 	    }
+	  val kbToTitleMapFile = baseDir + "/wikimap.txt"
+	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
+	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))}
   }
 }

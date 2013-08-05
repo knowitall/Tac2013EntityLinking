@@ -88,6 +88,18 @@ object WikiMappingHelper {
     
   }
   
+  def loadIdToTitleMap(lines: Iterator[String]): Map[String, String] = {
+    System.err.println("Loading wikipedia name to node id map...")
+    val tabSplit = "\t".r
+    lines.map { line =>
+      tabSplit.split(line) match {
+        case Array(id, name, typ, _*) => (id, name)
+        case _ => throw new RuntimeException(s"Error parsing entity info: $line")
+      }  
+    } toMap
+    
+  }
+  
   def getKBIntro(text: String) :String = {
     try{
       sentencer.segmentTexts(text)(0).replaceAll("\\s+", " ")

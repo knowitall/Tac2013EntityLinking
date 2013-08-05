@@ -15,10 +15,12 @@ class FormattedOutputToHumanReadableOutputConverter(formattedOutput: FormattedOu
   val confidence = formattedOutput.confidence
   val entityString = kbpQuery.name
   val sourceContext = kbpQuery.sourceContext
-  val kbSentence = KBPQuery.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId)
+  val kbSentence = KBPQuery.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId).getOrElse({"None"})
+  val docId = kbpQuery.doc
+  val kbTitle = KBPQuery.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
   
   override def toString(): String = {
-    Iterator(queryId,entityString,sourceContext,linkId,kbSentence.getOrElse({"None"})).mkString("", "\t", "\n")
+    Iterator(queryId,entityString,docId,sourceContext,linkId,kbTitle,kbSentence).mkString("", "\t", "\n")
   }
 
 }
