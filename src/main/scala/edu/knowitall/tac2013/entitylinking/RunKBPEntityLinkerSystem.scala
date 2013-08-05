@@ -57,7 +57,7 @@ object RunKBPEntityLinkerSystem {
 
     if(!argParser.parse(args)) return
     
-    val queries = parseKBPQueries()
+    val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     linkQueries(queries)
     
     
