@@ -14,11 +14,11 @@ class FormattedOutputToHumanReadableOutputConverter(formattedOutput: FormattedOu
   val linkId = formattedOutput.kbLink
   val confidence = formattedOutput.confidence
   val entityString = kbpQuery.name
-  val sourceContext = kbpQuery.trimSourceContext()
-  // val kbSentence =
+  val sourceContext = kbpQuery.sourceContext
+  val kbSentence = KBPQuery.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId)
   
   override def toString(): String = {
-    Iterator(queryId,entityString,sourceContext,linkId).mkString("", "\t", "\n")
+    Iterator(queryId,entityString,sourceContext,linkId,kbSentence.getOrElse({"None"})).mkString("", "\t", "\n")
   }
 
 }
@@ -29,6 +29,7 @@ object FormattedOutputToHumanReadableOutputConverter{
   var queryFile = ""
   var outputFile = ""
   var newOutputFile = ""
+  var baseDir = ""
   
   /**
    * Used to read an output file and a set of queries
@@ -40,9 +41,13 @@ object FormattedOutputToHumanReadableOutputConverter{
       arg("queryFile", "Path to KBP Query File .", { s => queryFile = s })
       arg("outputFile", "Path to the KBP formatted outputfile", {s => outputFile = s})
       arg("newOutputFile", "Path to the new human readable output file", {s => newOutputFile = s})
+      arg("baseDir", "Path to the base directory with large files", {s => baseDir= s})
     }
 
     if(!argParser.parse(args)) return
+    
+    //activate maps in KBPQuery
+    KBPQuery.activate(baseDir)
     
     val queries = KBPQuery.parseKBPQueries(queryFile)
     val formattedOutputLines = Source.fromFile(outputFile)(scala.io.Codec.UTF8).getLines.toList

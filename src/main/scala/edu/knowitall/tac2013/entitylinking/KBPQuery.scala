@@ -2,6 +2,10 @@ package edu.knowitall.tac2013.entitylinking
 
 import scala.xml.XML
 import edu.knowitall.tac2013.solr.query.SolrHelper
+import edu.knowitall.common.Resource.using
+import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
+import edu.knowitall.tac2013.entitylinking.utils.FileUtils
+import java.io.File
 
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
@@ -29,6 +33,9 @@ class KBPQuery (val id: String, val name: String, val doc: String,
 }
 
 object KBPQuery{
+  
+  var wikiMap :Option[Map[String,String]] = None
+  var kbIdTextMap :Option[Map[String,String]] = None
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
     
@@ -65,5 +72,16 @@ object KBPQuery{
      val kbpQueryList = for( qXML <- queryXMLSeq) yield parseSingleKBPQueryFromXML(qXML)
     
      kbpQueryList.toList.flatten
+  }
+  
+  def activate (baseDir: String) {
+	  val mapFile = baseDir + "/wikimap.txt"
+	  wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
+	      Some(WikiMappingHelper.loadNameToNodeIdMap(source.getLines))
+	    }
+	  val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
+	  kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
+	      Some(WikiMappingHelper.loadIdToIntroTextMap(source.getLines))
+	    }
   }
 }
