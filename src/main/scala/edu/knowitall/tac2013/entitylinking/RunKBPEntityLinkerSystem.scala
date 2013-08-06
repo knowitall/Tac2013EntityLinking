@@ -12,10 +12,6 @@ import scopt.OptionParser
 object RunKBPEntityLinkerSystem {
   
   var baseDir = "/scratch/resources/entitylinkingResources"
-  val mapFile = baseDir + "/wikimap.txt"
-  val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
-      WikiMappingHelper.loadNameToNodeIdMap(source.getLines)
-    }
   
   private def linkQueries(queries: List[KBPQuery]): Unit = {
     
@@ -33,7 +29,7 @@ object RunKBPEntityLinkerSystem {
         System.out.println("null")
       }
       else{
-        val nodeId = wikiMap.get(link.entity.name)
+        val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
         if(nodeId.isDefined){
           println(nodeId.get)
         }
@@ -56,6 +52,8 @@ object RunKBPEntityLinkerSystem {
     }
 
     if(!argParser.parse(args)) return
+    
+    KBPQuery.activate(baseDir)
     
     val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     linkQueries(queries)
