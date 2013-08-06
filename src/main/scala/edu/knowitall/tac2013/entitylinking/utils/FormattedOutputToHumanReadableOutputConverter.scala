@@ -75,8 +75,5 @@ object FormattedOutputToHumanReadableOutputConverter{
     
     pw.close()
     
-  }
-  
-  
-  
+  }  
 }
