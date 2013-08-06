@@ -14,7 +14,12 @@ class KBPQuery (val id: String, val name: String, val doc: String,
     SolrHelper.getContextFromDocument(doc, begOffset, name)
   }
   
+  private def getWideContext(): String = {
+    SolrHelper.getWideContextFromDocument(doc,begOffset,name)
+  }
+  
   val sourceContext = getSourceContext()
+  val sourceWideContext = getWideContext()
   
   
   def trimSourceContext():String = {
