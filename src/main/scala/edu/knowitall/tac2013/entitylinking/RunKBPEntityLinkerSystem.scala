@@ -15,12 +15,17 @@ object RunKBPEntityLinkerSystem {
   
   var baseDir = "/scratch/"
   
-  def linkQueries(queries: Seq[KBPQuery], baseDir: String = "/scratch/"): Seq[FormattedOutput] = {
+  val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
+  val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
+  def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
+  def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
+    
+  def linkQueries(queries: Seq[KBPQuery], baseDir :String = "/scratch/"): Seq[FormattedOutput] = {
     
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
     		new batch_match(linkerSupportPath),
-    		new CrosswikisCandidateFinder(linkerSupportPath, 0.01, 10),
+    		new CrosswikisCandidateFinder(linkerSupportPath, 0.4, 400),
     		new EntityTyper(linkerSupportPath)
     		)
     
@@ -28,11 +33,11 @@ object RunKBPEntityLinkerSystem {
       println(q.id)
       val link = linker.getBestEntity(q.name,q.corefSourceContext)
       if(link == null){
-        new FormattedOutput(q.id,"NIL0000",0.0)
+        new FormattedOutput(q.id,nextCluster,0.0)
       }
       else{
         val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-        new FormattedOutput(q.id,nodeId.getOrElse({"NIL0001"}),link.score)
+        new FormattedOutput(q.id,nodeId.getOrElse(fbidCluster(link.entity.fbid)),link.score)
       }
     }
   }
