@@ -8,26 +8,54 @@ import scopt.OptionParser
 class Benchmarker(val queries: Seq[KBPQuery], val systemResults: Seq[FormattedOutput], val goldSet: Seq[FormattedOutput]) {
 
   val queryIds   = queries.map(q => q.id).sorted
-  def queryIdPairs = queryIds.flatMap(qid => queryIds.map(qid2 => (qid, qid2))).filter(p => p._1 != p._2)
+  def queryIdPairs = queryIds.flatMap(qid => queryIds.map(qid2 => (qid, qid2))) //.filter(p => p._1 != p._2)
   val queryMap   = queries.map(q => (q.id, q)).toMap
-  val resultsMap = systemResults.map(f => (f.queryId, f)).toMap
-  val goldMap    = goldSet.map(f => (f.queryId, f)).toMap
+  val resultsQueryMap = systemResults.map(f => (f.queryId, f)).toMap
+  val goldQueryMap    = goldSet.map(f => (f.queryId, f)).toMap
+  val resultsClusterMap = systemResults.groupBy(f => f.kbLink)
+  val goldClusterMap = goldSet.groupBy(_.kbLink)
   
   def makePretty(f: FormattedOutput) = new FormattedOutputToHumanReadableOutputConverter(f, queryMap(f.queryId))
   
   // implements the definition of correctness defined in the EL task desc.
   def b3Correct(e1: String, e2: String): Boolean = {
     // in same set in system output?
-    val sysE1 = resultsMap(e1)
-    val sysE2 = resultsMap(e2)
-    val goldE1 = goldMap(e1)
-    val goldE2 = goldMap(e2)
+    val sysE1 = resultsQueryMap(e1)
+    val sysE2 = resultsQueryMap(e2)
+    val goldE1 = goldQueryMap(e1)
+    val goldE2 = goldQueryMap(e2)
     val sysSameSet = sysE1.kbLink == sysE2.kbLink
     val goldSameSet= goldE1.kbLink == goldE2.kbLink
     val sysKb  = sysE1.kbLink.startsWith("E")
     val goldKb = goldE1.kbLink.startsWith("E")
     val sameLinkTypes = if (sysKb && goldKb) sysE1.kbLink == goldE1.kbLink else sysKb == goldKb
     sysSameSet && goldSameSet && sameLinkTypes
+  }
+  
+  def b3Precision = {
+    
+    val entitySums = queryIds.map { qid =>
+      // get set of entities in the same cluster
+      val e1 = resultsQueryMap(qid)
+      val cluster = resultsClusterMap(e1.kbLink)
+      val parSum = cluster.map({ e2 => b3Correct(e1.queryId, e2.queryId) }).count(identity)
+      parSum.toDouble / cluster.size.toDouble
+    }
+    
+    "%.03f" format entitySums.sum.toDouble / entitySums.size.toDouble
+  }
+  
+  def b3Recall = {
+    
+    val entitySums = queryIds.map { qid =>
+      // get set of entities in the same cluster
+      val e1 = goldQueryMap(qid)
+      val cluster = goldClusterMap(e1.kbLink)
+      val parSum = cluster.map({ e2 => b3Correct(e1.queryId, e2.queryId) }).count(identity)
+      parSum.toDouble / cluster.size.toDouble
+    }
+    
+    "%.03f" format entitySums.sum.toDouble / entitySums.size.toDouble
   }
   
   def benchmarkOutput: Seq[String] = {
@@ -37,11 +65,11 @@ class Benchmarker(val queries: Seq[KBPQuery], val systemResults: Seq[FormattedOu
     var numMismatch = 0
     
     val comparisons = for (qid <- queryIds) yield {
-      val goldAnswer = goldMap(qid)
-      val sysAnswer = resultsMap(qid)
+      val goldAnswer = goldQueryMap(qid)
+      val sysAnswer = resultsQueryMap(qid)
       val goldAnswerFromKb = goldAnswer.kbLink.startsWith("E")
       val sysAnswerFromKb = sysAnswer.kbLink.startsWith("E")
-      if (goldAnswerFromKb && sysAnswerFromKb && goldAnswer.kbLink != sysAnswer.kbLink) {
+      if (goldAnswerFromKb && sysAnswerFromKb && goldAnswer.kbLink == sysAnswer.kbLink) {
         numCorrect += 1
         "CORRECT  " + sysAnswer.kbLink + ":\t" + makePretty(sysAnswer)
       }
@@ -60,7 +88,12 @@ class Benchmarker(val queries: Seq[KBPQuery], val systemResults: Seq[FormattedOu
       }
     }
     
-    comparisons ++ Seq("", s"Num CORRECT: $numCorrect", s"Num NIL OK: $numNilOk", s"num Mismatch: $numMismatch")
+    comparisons ++ Seq("", 
+        s"Num CORRECT: $numCorrect", 
+        s"Num NIL OK: $numNilOk", 
+        s"num Mismatch: $numMismatch", 
+        s"B^3 Prec: $b3Precision",
+        s"B^3 Recall: $b3Recall")
   }
   
   def kbLinkMismatch(system: FormattedOutput, expected: FormattedOutput): String = {
