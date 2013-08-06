@@ -8,12 +8,13 @@ import edu.knowitall.browser.entity.EntityTyper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
+import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
 
 object RunKBPEntityLinkerSystem {
   
   var baseDir = "/scratch/resources/entitylinkingResources"
   
-  private def linkQueries(queries: List[KBPQuery]): Unit = {
+  private def linkQueries(queries: List[KBPQuery]): List[FormattedOutput] = {
     
     val linkerSupportPath = new java.io.File("baseDir")
     val linker = new EntityLinker(
@@ -22,25 +23,18 @@ object RunKBPEntityLinkerSystem {
     		new EntityTyper(linkerSupportPath)
     		)
     
-    
+    var answers = List[FormattedOutput]()
     for(q <- queries){
       val link = linker.getBestEntity(q.name, List(q.sourceContext))
       if(link == null){
-        System.out.println("null")
+        answers = answers :+ new FormattedOutput(q.id,"NIL",0.0)
       }
       else{
         val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-        if(nodeId.isDefined){
-          println(nodeId.get)
-        }
-        else{
-          println("null")
-        }
-        
+        answers = answers :+ new FormattedOutput(q.id,nodeId.getOrElse({"NIL"}),link.score)
       }
     }
-    
-    
+    answers.toList
   }
   
   
@@ -56,8 +50,16 @@ object RunKBPEntityLinkerSystem {
     KBPQuery.activate(baseDir)
     
     val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
-    linkQueries(queries)
+    val answers = linkQueries(queries)
+    val queryAnswerList = queries zip answers
+    var humanReadableOutput = List[FormattedOutputToHumanReadableOutputConverter]()
+    for(qa <- queryAnswerList){
+      humanReadableOutput = humanReadableOutput :+ new FormattedOutputToHumanReadableOutputConverter(qa._2,qa._1)
+    }
     
+    for(a <- answers){
+      println(a)
+    }
     
   }
   

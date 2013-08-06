@@ -109,7 +109,5 @@ object WikiMappingHelper {
         text.take(100).replaceAll("\\s+", " ")
       }
     }
-  }
-  
-  
+  }  
 }

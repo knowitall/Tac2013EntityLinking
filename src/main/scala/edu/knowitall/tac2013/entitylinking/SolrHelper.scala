@@ -167,5 +167,19 @@ object SolrHelper {
     //make context a single line
     context.replaceAll("\\s+", " ")
   }
+  
+  def getWideContextFromDocument(docId: String, offset: Integer, name:String): String = {
+    val rawDoc = getRawDoc(docId)
+    var nameOffset = offset
+    if(offset == -1){
+      nameOffset = rawDoc.indexOf(name)
+    }
+    val leftcharSeq = rawDoc.slice(0, nameOffset)
+    val rightcharSeq = rawDoc.slice(nameOffset,rawDoc.size)
+    val afterXML = leftcharSeq.reverse.takeWhile(p => {p != '>'}).reverse
+    val beforeXML = rightcharSeq.takeWhile(p => {p != '<'})
+    val text = afterXML + beforeXML
+    text
+  }
 
 }
