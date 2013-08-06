@@ -18,3 +18,5 @@ resolvers ++= Seq(
   "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
 )
 
+EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource
+
