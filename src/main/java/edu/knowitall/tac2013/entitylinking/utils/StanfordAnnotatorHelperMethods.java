@@ -58,35 +58,19 @@ public class StanfordAnnotatorHelperMethods {
 	}
 
 	
-	public List<CorefMention> getCorefMentions(String xmlString, Interval interval) {
+	public List<CorefMention> getCorefMentions(String xmlString, Integer begOffset) {
 		Annotation document = new Annotation(xmlString);
 		corefPipeline.annotate(document);
 		
 		
 		
 		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		for(Integer i : graph.keySet()){
-			System.out.println("GROUP " + i);
-			CorefChain x = graph.get(i);
-			for( CorefMention m : x.getMentionsInTextualOrder()){
-				System.out.println(m.mentionSpan);
-			}
-		}
-
 		Integer corefClusterID = null;
-		
 		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-		for(CoreMap sentence : sentences){
-			for(CoreLabel token : sentence.get(TokensAnnotation.class)){
-				
-			}
-		}
-		List<Pair<IntTuple,IntTuple>> x  = document.get(CorefGraphAnnotation.class);
-
 		
 	    for(CoreMap sentence: sentences){
 	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == interval.start()){
+	    		if(token.beginPosition() == begOffset){
 	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
 	    		}
 	    	}
@@ -100,19 +84,6 @@ public class StanfordAnnotatorHelperMethods {
 	    	return new ArrayList<CorefMention>();
 	    }
 		
-	}
-	
-	
-	/**
-	 * Provides a lookup method for taking corefMentions and finding their NER tagged
-	 * substrings.
-	 * @param annotatedDocument
-	 * @param position
-	 * @return
-	 */
-	private Interval getNamedEntityAtPosition(Annotation annotatedDocument, IntTuple position, KBPQueryEntityType entityType){
-		
-		return Interval.open(0, 1);
 	}
 	
 	

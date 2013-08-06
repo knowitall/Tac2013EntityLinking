@@ -1,11 +1,11 @@
 package edu.knowitall.tac2013.entitylinking
 
 import scala.xml.XML
-import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import edu.knowitall.tac2013.entitylinking.utils.FileUtils
 import java.io.File
+import edu.knowitall.tac2013.entitylinking.utils.StanfordAnnotatorHelperMethods
 
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
@@ -18,8 +18,19 @@ class KBPQuery (val id: String, val name: String, val doc: String,
     SolrHelper.getWideContextFromDocument(doc,begOffset,name)
   }
   
+  private def getContextOfAllMentions(): List[String] = {
+    var contextualSentences = List[String]()
+    val corefMentions = KBPQuery.corefHelper.getCorefMentions(SolrHelper.getRawDoc(doc),begOffset)
+    for(cm <- scala.collection.JavaConversions.asScalaIterable(corefMentions)){
+      val contextSentence = SolrHelper.getContextFromDocument(doc,cm.startIndex,name)
+      contextualSentences = contextualSentences :+ contextSentence
+    }
+    contextualSentences.toList ::: List(getSourceContext())
+  }
+  
   val sourceContext = getSourceContext()
   val sourceWideContext = getWideContext()
+  lazy val corefSourceContext = getContextOfAllMentions()
   
   
   def trimSourceContext():String = {
@@ -42,6 +53,8 @@ object KBPQuery{
   var wikiMap :Option[Map[String,String]] = None
   var kbIdToTitleMap :Option[Map[String,String]] = None
   var kbIdTextMap :Option[Map[String,String]] = None
+  
+  val corefHelper = new StanfordAnnotatorHelperMethods()
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
     

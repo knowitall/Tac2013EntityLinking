@@ -15,7 +15,7 @@ object RunKBPEntityLinkerSystem {
   
   var baseDir = "/scratch/"
   
-  def linkQueries(queries: Seq[KBPQuery]): Seq[FormattedOutput] = {
+  def linkQueries(queries: Seq[KBPQuery], baseDir: String = "/scratch/"): Seq[FormattedOutput] = {
     
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
@@ -25,7 +25,8 @@ object RunKBPEntityLinkerSystem {
     		)
     
     for(q <- queries) yield {
-      val link = linker.getBestEntity(q.name, List(q.sourceWideContext))
+      println(q.id)
+      val link = linker.getBestEntity(q.name,q.corefSourceContext)
       if(link == null){
         new FormattedOutput(q.id,"NIL0000",0.0)
       }
