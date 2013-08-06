@@ -38,7 +38,11 @@ object SolrHelper {
   def getSentenceFromDocWithParagraphFormat(docId:String, offset:Integer, name:String) :Option[String] = {
     
       try{
+          var nameOffset = offset
 		  val rawDoc = getRawDoc(docId)
+		  if(offset == -1){
+		    nameOffset = rawDoc.indexOf(name)
+		  }
 		  val lines = rawDoc.split("\n")
 		  
 		  var charsRead = 0
@@ -53,7 +57,7 @@ object SolrHelper {
 		      lastP = charsRead
 		    }
 		    
-		    if(line == "</P>" && charsRead > offset){
+		    if(line == "</P>" && charsRead > nameOffset){
 		      paragraphInterval = Some(Interval.closed(lastP,charsRead))
 		    }
 		    
@@ -96,8 +100,12 @@ object SolrHelper {
    * Take up to 100 characters, take off first and last char sequences and 
    * turn the chars into a single line string
    */
-  def getCharacterContext(docId:String, offset:Integer): String = {
-    val charContext = getRawDoc(docId).slice(offset-50, offset+50)
+  def getCharacterContext(docId:String, offset:Integer, name: String): String = {
+    var nameOffset = offset
+    if(offset == -1){
+      nameOffset = getRawDoc(docId).indexOf(name)
+    }
+    val charContext = getRawDoc(docId).slice(nameOffset-50, nameOffset+50)
     
     val charContextArray = charContext.split("\\s")
     val tokenizedContext = charContextArray.slice(1, charContextArray.length-1).mkString(" ")
@@ -111,8 +119,12 @@ object SolrHelper {
    */
   def getUnformattedSentenceFromDoc(docId:String, offset:Integer, name:String) : Option[String] = {
     val rawDoc = getRawDoc(docId)
-    val leftcharSeq = rawDoc.slice(0, offset)
-    val rightcharSeq = rawDoc.slice(offset,rawDoc.size)
+    var nameOffset = offset
+    if(offset == -1){
+      nameOffset = rawDoc.indexOf(name)
+    }
+    val leftcharSeq = rawDoc.slice(0, nameOffset)
+    val rightcharSeq = rawDoc.slice(nameOffset,rawDoc.size)
     val afterXML = leftcharSeq.reverse.takeWhile(p => {p != '>'}).reverse
     val beforeXML = rightcharSeq.takeWhile(p => {p != '<'})
     val text = afterXML + beforeXML
@@ -124,12 +136,15 @@ object SolrHelper {
     None
   }
   
+
+  
   /***
    * Return the a string from the document giving the context based on the KBP 
    * Query offsets. If a sentence can reasonably be found return it, else return
    * a section of characters
    */
   def getContextFromDocument(docId: String, offset: Integer, name: String): String = {
+
     //initlaize context variable
     var context = ""
       
@@ -142,7 +157,7 @@ object SolrHelper {
       val unformattedSentence = getUnformattedSentenceFromDoc(docId,offset,name)
       if(unformattedSentence.isEmpty)
         //if no sentence was found just get the character context
-        context = getCharacterContext(docId:String, offset:Integer)
+        context = getCharacterContext(docId, offset, name)
       else
         context = unformattedSentence.get
     }

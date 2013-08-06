@@ -59,6 +59,27 @@ object KBPQuery{
     }
     catch {
       case e: Exception => {
+        parseSingle2011KBPQueryFromXML(queryXML)
+      }
+    }
+  }
+  
+  private def parseSingle2011KBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
+    //val pathToXML = Source.fromFile(pathToFile)
+    try{
+	    val idText = queryXML.attribute("id") match 
+	    		{case Some(id) if id.length ==1 => id(0).text
+	    		 case None => throw new IllegalArgumentException("no id value for query in xml doc")
+	    		}
+	    val nameText = queryXML.\\("name").text
+	    val docIDText = queryXML.\\("docid").text
+
+	    
+	    val x = new KBPQuery(idText,nameText,docIDText,-1,-1)
+	    Some(x)
+    }
+    catch {
+      case e: Exception => {
         println("returned NONE!")
     	 None
       }
@@ -69,8 +90,7 @@ object KBPQuery{
     
     val xml = XML.loadFile(path)
     val queryXMLSeq = xml.\("query")
-     
-     val kbpQueryList = for( qXML <- queryXMLSeq) yield parseSingleKBPQueryFromXML(qXML)
+    val kbpQueryList = for( qXML <- queryXMLSeq) yield parseSingleKBPQueryFromXML(qXML)
     
      kbpQueryList.toList.flatten
   }
