@@ -20,7 +20,7 @@ class FormattedOutputToHumanReadableOutputConverter(formattedOutput: FormattedOu
   val kbTitle = KBPQuery.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
   
   override def toString(): String = {
-    Iterator(queryId,entityString,docId,sourceContext,linkId,kbTitle,kbSentence).mkString("", "\t", "\n")
+    Iterator(queryId,entityString,docId,sourceContext,linkId,kbTitle,kbSentence).mkString("\t")
   }
 
 }

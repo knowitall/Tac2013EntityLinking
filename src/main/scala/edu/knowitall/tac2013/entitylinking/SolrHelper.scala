@@ -181,5 +181,4 @@ object SolrHelper {
     val text = afterXML + beforeXML
     text
   }
-
 }
