@@ -1,4 +1,4 @@
-package edu.knowitall.tac2013.solr.query
+package edu.knowitall.tac2013.entitylinking
 
 import jp.sf.amateras.solr.scala.SolrClient
 import edu.knowitall.collection.immutable.Interval

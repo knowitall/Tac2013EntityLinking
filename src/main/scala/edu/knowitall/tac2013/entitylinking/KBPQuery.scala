@@ -1,7 +1,7 @@
 package edu.knowitall.tac2013.entitylinking
 
 import scala.xml.XML
-import edu.knowitall.tac2013.solr.query.SolrHelper
+import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import edu.knowitall.tac2013.entitylinking.utils.FileUtils

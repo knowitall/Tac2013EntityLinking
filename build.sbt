@@ -9,6 +9,7 @@ libraryDependencies ++= Seq(
   "edu.washington.cs.knowitall.openie" %% "openie-models" % "1.0",
   "edu.washington.cs.knowitall.openie" %% "openie-linker" % "1.0",
   "edu.washington.cs.knowitall.nlptools" %% "nlptools-sentence-opennlp" % "2.4.2",
+  "edu.stanford.nlp" % "stanford-corenlp" % "1.3.5",
   "jp.sf.amateras.solr.scala" %% "solr-scala-client" % "0.0.8"
 )
 
