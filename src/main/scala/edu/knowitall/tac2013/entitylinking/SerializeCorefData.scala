@@ -11,15 +11,17 @@ object SerializeCorefData {
     def main(args: Array[String]) {
 	    val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
 	    val pw = new PrintWriter(new File("corefmentions.txt"))
+	    pw.close()
 	    for(q <- queries){
-	    	  pw.write(q.id)
+	       val fw = new FileWriter("corefmentions.txt",true)
+	    	  fw.write(q.id)
 	          val corefIntervals = KBPQuery.corefHelper.getCorefMentions(SolrHelper.getRawDoc(q.doc),q.begOffset)
 	          for(cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)){
-	             pw.write("\t" +cmi)
+	             fw.write("\t" +cmi)
 	          }
-	    	   pw.write("\n")
+	    	   fw.write("\n")
+	    	fw.close()
 	    }
-	    pw.close()
     }
 
 }
