@@ -63,14 +63,14 @@ public class StanfordAnnotatorHelperMethods {
 	}
 
 	
-	public List<CorefMention> getCorefMentions(String xmlString, Integer begOffset) {
+	public List<Interval> getCorefMentions(String xmlString, Integer begOffset) {
 		Annotation document = new Annotation(xmlString);
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
 		  executor.submit(new AnnotationRunnable(document)).get(10, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
-			return new ArrayList<CorefMention>();
+			return new ArrayList<Interval>();
 		}
 		finally{
 			executor.shutdown();
@@ -93,10 +93,14 @@ public class StanfordAnnotatorHelperMethods {
 	    
 		
 	    if(corefClusterID != null){
-	    	return graph.get(corefClusterID).getMentionsInTextualOrder();
+	    	List<Interval> offsets = new ArrayList<Interval>();
+	    	for(CorefMention m : graph.get(corefClusterID).getMentionsInTextualOrder()){
+	    		offsets.add(getCharIntervalFromCorefMention(document,m.sentNum,m.startIndex,m.endIndex));
+	    	}
+	    	return offsets;
 	    }
 	    else{
-	    	return new ArrayList<CorefMention>();
+	    	return new ArrayList<Interval>();
 	    }
 		
 	}
@@ -124,7 +128,7 @@ public class StanfordAnnotatorHelperMethods {
 	 * @param endIndex
 	 * @return
 	 */
-	private Interval getCharIntervalFromCorefMention(Annotation document, Integer sentNum, Integer startIndex, Integer endIndex){
+	public Interval getCharIntervalFromCorefMention(Annotation document, Integer sentNum, Integer startIndex, Integer endIndex){
 		
 		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
 		CoreMap sentence = sentences.get(sentNum-1);

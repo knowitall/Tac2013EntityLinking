@@ -21,8 +21,8 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
     val corefMentions = KBPQuery.corefHelper.getCorefMentions(SolrHelper.getRawDoc(doc),begOffset)
-    for(cm <- scala.collection.JavaConversions.asScalaIterable(corefMentions)){
-      val contextSentence = SolrHelper.getContextFromDocument(doc,cm.startIndex,name)
+    for(cmi <- scala.collection.JavaConversions.asScalaIterable(corefMentions)){
+      val contextSentence = SolrHelper.getContextFromDocument(doc,cmi.start,name)
       contextualSentences = contextualSentences :+ contextSentence
     }
     contextualSentences.toList ::: List(getSourceContext())
@@ -124,6 +124,7 @@ object KBPQuery{
 	    }
 	  val kbToTitleMapFile = baseDir + "/wikimap.txt"
 	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))}
+	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
+	    }
   }
 }
