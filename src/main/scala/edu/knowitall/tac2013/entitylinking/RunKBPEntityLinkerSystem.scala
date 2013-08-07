@@ -45,8 +45,13 @@ object RunKBPEntityLinkerSystem {
   
   def main(args: Array[String]) {
  
+    var outputStream = System.out
+    var humanReadable = false
+    
     val argParser = new OptionParser() {
       arg("baseDir", "Path to base directory with entitylinking files.", { s => baseDir = s })
+      opt("outputFile", "Path to output file, default stdout", { s => outputStream = new java.io.PrintStream(s, "UTF8") })
+      opt("humanReadable", "Produce detailed human readable output (instead of submission format)", { humanReadable =  true})
     }
 
     if(!argParser.parse(args)) return
@@ -55,13 +60,17 @@ object RunKBPEntityLinkerSystem {
     
     val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     val answers = linkQueries(queries)
-    val queryAnswerList = queries zip answers
-    val humanReadableOutput = for(qa <- queryAnswerList) yield {
-      new FormattedOutputToHumanReadableOutputConverter(qa._2,qa._1)
+    val answerStrings = if (humanReadable) {
+      val queryAnswerList = queries zip answers
+      for (qa <- queryAnswerList) yield {
+        new FormattedOutputToHumanReadableOutputConverter(qa._2, qa._1).toString
+      }
+    } else { 
+      answers.map(_.toString)
     }
-    val out = new java.io.PrintStream("./sysoutput.txt")
-    for(a <- answers){
-      out.println(a)
+
+    for (a <- answerStrings) {
+      outputStream.println(a)
     }
   }
 }
