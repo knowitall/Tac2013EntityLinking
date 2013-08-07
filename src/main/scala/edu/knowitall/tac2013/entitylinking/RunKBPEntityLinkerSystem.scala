@@ -29,7 +29,7 @@ object RunKBPEntityLinkerSystem {
     		new EntityTyper(linkerSupportPath)
     		)
     
-    for(q <- queries) yield {
+    for(q <- queries.take(50)) yield {
       println(q.id)
       val link = linker.getBestEntity(q.name,q.corefSourceContext)
       if(link == null){
@@ -55,7 +55,7 @@ object RunKBPEntityLinkerSystem {
     KBPQuery.activate(baseDir)
     
     val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    val answers = linkQueries(queries)
+    val answers = linkQueries(queries,baseDir)
     val queryAnswerList = queries zip answers
     val humanReadableOutput = for(qa <- queryAnswerList) yield {
       new FormattedOutputToHumanReadableOutputConverter(qa._2,qa._1)

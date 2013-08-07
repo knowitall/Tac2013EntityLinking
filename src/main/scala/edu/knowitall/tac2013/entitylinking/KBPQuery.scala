@@ -6,6 +6,7 @@ import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import edu.knowitall.tac2013.entitylinking.utils.FileUtils
 import java.io.File
 import edu.knowitall.tac2013.entitylinking.utils.StanfordAnnotatorHelperMethods
+import edu.knowitall.collection.immutable.Interval
 
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
@@ -20,12 +21,12 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
-    val corefMentions = KBPQuery.corefHelper.getCorefMentions(SolrHelper.getRawDoc(doc),begOffset)
-    for(cmi <- scala.collection.JavaConversions.asScalaIterable(corefMentions)){
+    val corefMentions = KBPQuery.queryToCorefMentionsMap.get(id)
+    for(cmi <- corefMentions){
       val contextSentence = SolrHelper.getContextFromDocument(doc,cmi.start,name)
       contextualSentences = contextualSentences :+ contextSentence
     }
-    contextualSentences.toList ::: List(getSourceContext())
+    ((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
   }
   
   val sourceContext = getSourceContext()
@@ -53,6 +54,7 @@ object KBPQuery{
   var wikiMap :Option[Map[String,String]] = None
   var kbIdToTitleMap :Option[Map[String,String]] = None
   var kbIdTextMap :Option[Map[String,String]] = None
+  var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods()
   
@@ -126,5 +128,8 @@ object KBPQuery{
 	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
 	    }
+	  val corefMentionsFile = getClass.getResource("corefmentions.txt").getPath()
+	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
+	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
   }
 }

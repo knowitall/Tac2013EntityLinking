@@ -6,6 +6,7 @@ import java.io.PrintStream
 import java.util.concurrent.atomic.AtomicInteger
 import edu.knowitall.tool.sentence.OpenNlpSentencer
 import edu.knowitall.common.Timing
+import edu.knowitall.collection.immutable.Interval
 
 /**
  * A tool for extracting from the TAC initial knowledge base, for each entity:
@@ -98,6 +99,19 @@ object WikiMappingHelper {
       }  
     } toMap
     
+  }
+  
+  def loadQueryToCorefMentionsMap(lines: Iterator[String]): Map[String,Seq[Interval]] = {
+    System.err.println("Loading query to Coref Mentions map...")
+    val tabSplit = "\t".r
+    lines.map {line =>
+      tabSplit.split(line) match{
+        case Array(qId, e  @ _*) => {(qId,for(i <- e) yield{
+          Interval.closed(i.split(",")(0).drop(1).toInt,i.split(",")(1).dropRight(1).trim().toInt)
+        })}
+        case _ => throw new RuntimeException(s"Error parsing query info: $line")
+        }
+      } toMap
   }
   
   def getKBIntro(text: String) :String = {

@@ -17,8 +17,10 @@ import java.util.regex.Pattern;
 import org.apache.commons.io.IOUtils;
 
 import scala.actors.threadpool.Arrays;
+import scala.actors.threadpool.ExecutionException;
 import scala.actors.threadpool.Executors;
 import scala.actors.threadpool.TimeUnit;
+import scala.actors.threadpool.TimeoutException;
 
 import edu.knowitall.collection.immutable.Interval;
 import edu.stanford.nlp.dcoref.CorefChain;
