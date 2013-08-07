@@ -11,9 +11,14 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Stack;
 import java.util.WeakHashMap;
+import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+
+import scala.actors.threadpool.Arrays;
+import scala.actors.threadpool.Executors;
+import scala.actors.threadpool.TimeUnit;
 
 import edu.knowitall.collection.immutable.Interval;
 import edu.stanford.nlp.dcoref.CorefChain;
@@ -60,7 +65,17 @@ public class StanfordAnnotatorHelperMethods {
 	
 	public List<CorefMention> getCorefMentions(String xmlString, Integer begOffset) {
 		Annotation document = new Annotation(xmlString);
-		corefPipeline.annotate(document);
+		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
+		try{
+		  executor.submit(new AnnotationRunnable(document)).get(10, TimeUnit.SECONDS);
+		}
+		catch(Exception e){
+			return new ArrayList<CorefMention>();
+		}
+		finally{
+			executor.shutdown();
+		}
+
 		
 		
 		
@@ -170,5 +185,16 @@ public class StanfordAnnotatorHelperMethods {
 			}
 		}
 		return null;
+	}
+	
+	private class AnnotationRunnable implements Runnable {
+		
+		Annotation doc;
+		public AnnotationRunnable(Annotation document){
+			doc = document;
+		}
+		public void run(){
+			corefPipeline.annotate(doc);
+		}
 	}
 }
