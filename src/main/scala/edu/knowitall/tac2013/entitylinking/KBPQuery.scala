@@ -11,6 +11,8 @@ import edu.knowitall.collection.immutable.Interval
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
   
+  var entityString = name
+  
   private def getSourceContext(): String = {
     SolrHelper.getContextFromDocument(doc, begOffset, name)
   }

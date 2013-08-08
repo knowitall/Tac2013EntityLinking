@@ -4,6 +4,7 @@ import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableO
 import edu.knowitall.tac2013.entitylinking.FormattedOutput
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import scopt.OptionParser
+import java.io.PrintWriter
 
 sealed trait SortType
 case object SystemClusterSort extends SortType
@@ -145,12 +146,14 @@ object Benchmarker {
     var systemSort = true
     var benchmarkSort = false
     var querySort = false
+    var outputFile = ""
       
     val parser = new OptionParser("Benchmarker") {
       opt("basedir", "basedir", { s => baseDir = s })
       opt("systemSort", "Sort queries by system cluster id. (default)", { systemSort = true})
       opt("benchmarkSort", "Sort queries by benchmark set cluster id.", { benchmarkSort = true})
       opt("querySort", "Sort queries by id.", { querySort = true})
+      opt("outputFile", "output to file", {s => outputFile =s})
     }
     
     if (!parser.parse(args)) return
@@ -164,7 +167,14 @@ object Benchmarker {
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
-    new Benchmarker(sortType, queries, results, answers).benchmarkOutput foreach println
+    if(outputFile == ""){
+      new Benchmarker(sortType, queries, results, answers).benchmarkOutput foreach println
+    }
+    else{
+      val pw = new PrintWriter(new File(outputFile))
+      new Benchmarker(sortType, queries, results, answers).benchmarkOutput.foreach{p => {pw.write(p+"\n")}}
+      pw.close()
+    }
     
   }
 }
