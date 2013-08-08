@@ -24,6 +24,7 @@ import scala.actors.threadpool.TimeoutException;
 
 import edu.knowitall.collection.immutable.Interval;
 import edu.stanford.nlp.dcoref.CorefChain;
+import edu.stanford.nlp.dcoref.CoNLL2011DocumentReader.NamedEntityAnnotation;
 import edu.stanford.nlp.dcoref.CorefChain.CorefMention;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefClusterIdAnnotation;
@@ -45,6 +46,7 @@ import edu.knowitall.tac2013.entitylinking.SolrHelper;
 public class StanfordAnnotatorHelperMethods {
 	
 	private final StanfordCoreNLP corefPipeline;
+	private final StanfordCoreNLP regularPipeline;
 	private String filePath = "/homes/gws/jgilme1/docs/";
 	private Map<String,Annotation> corefAnnotationMap;
 	
@@ -58,6 +60,14 @@ public class StanfordAnnotatorHelperMethods {
 		this.corefPipeline = new StanfordCoreNLP(corefProps);
 		
 		corefAnnotationMap = new HashMap<String,Annotation>();
+		
+		
+		Properties regularProps = new Properties();
+		regularProps.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner");
+		regularProps.put("clean.allowflawedxml","true");
+		regularProps.put("ner.useSUTime", "false");
+		this.regularPipeline = new StanfordCoreNLP(regularProps);
+		
 	}
 	
 	public void clearHashMaps(){
@@ -69,7 +79,7 @@ public class StanfordAnnotatorHelperMethods {
 		Annotation document = new Annotation(xmlString);
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
+		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
 			return new ArrayList<Interval>();
@@ -111,7 +121,7 @@ public class StanfordAnnotatorHelperMethods {
 		Annotation document = new Annotation(xmlString);
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
+		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
 			return null;
@@ -149,7 +159,7 @@ public class StanfordAnnotatorHelperMethods {
 		Annotation document = new Annotation(xmlString);
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
+		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
 			return new ArrayList<String>();
@@ -185,6 +195,100 @@ public class StanfordAnnotatorHelperMethods {
 	    	return new ArrayList<String>();
 	    }
 		
+	}
+	
+	
+	public List<String> getCorefTypes(String xmlString, Integer begOffset) {
+		Annotation document = new Annotation(xmlString);
+		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
+		try{
+		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(60, TimeUnit.SECONDS);
+		}
+		catch(Exception e){
+			return new ArrayList<String>();
+		}
+		finally{
+			executor.shutdown();
+		}
+
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+		String ne = "";
+	    for(CoreMap sentence: sentences){
+	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
+	    		if(token.beginPosition() == begOffset){
+	    			ne = token.get(NamedEntityTagAnnotation.class);
+	    		}
+	    	}
+	    }
+	    if((!ne.equals("ORGANIZATION")) && (!ne.equals("PERSON")) && (!ne.equals("LOCATION"))){
+	    	return new ArrayList<String>();
+	    }
+	    else{
+	    	List<List<CoreLabel>> allTokens = new ArrayList<List<CoreLabel>>();
+	    	List<CoreLabel> relevantTokens = new ArrayList<CoreLabel>();
+	    	int sentIndex =0;
+		    for(CoreMap sentence: sentences){
+		    	List<CoreLabel> sentenceTokenList = new ArrayList<CoreLabel>();
+		    	int tokenIndex =0;
+		    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
+		    			String net = token.get(NamedEntityTagAnnotation.class);
+	    				token.setIndex(tokenIndex);
+	    				token.setSentIndex(sentIndex);		    			
+		    			if(net.equals(ne)){
+		    				relevantTokens.add(token);
+		    			}
+		    			sentenceTokenList.add(token);
+		    		tokenIndex +=1 ;
+		    	}
+		    	allTokens.add(sentenceTokenList);
+		    	sentIndex += 1;
+		    }
+	    	if(!relevantTokens.isEmpty()){
+	    		
+		    	List<List<CoreLabel>> matchingTypes = new ArrayList<List<CoreLabel>>();
+		    	List<CoreLabel> firstTokenList = new ArrayList<CoreLabel>();
+		    	firstTokenList.add(relevantTokens.get(0));
+		    	matchingTypes.add(firstTokenList);
+		    	relevantTokens.remove(0);
+		    	for(CoreLabel t : relevantTokens){
+		    		int currIndex = matchingTypes.size()-1;
+		    		List<CoreLabel> lastTokenList = matchingTypes.get(currIndex);
+		    		CoreLabel lastToken = lastTokenList.get(lastTokenList.size()-1);
+		    		
+		    		if((t.sentIndex() == lastToken.sentIndex()) &&  (t.index() == (1 + lastToken.index()))){
+		    			matchingTypes.get(currIndex).add(t);
+		    		}
+		    		else if((t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
+		    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(","))){
+		    			matchingTypes.get(currIndex).add(allTokens.get(t.sentIndex()).get(t.index()-1));
+		    			matchingTypes.get(currIndex).add(t);
+		    		}
+		    		else{
+		    			List<CoreLabel> newTokenList = new ArrayList<CoreLabel>();
+		    			newTokenList.add(t);
+		    			matchingTypes.add(newTokenList);
+		    		}
+		    	}
+		    	
+		    	//convert lists of tokens into strings
+		    	List<String> namedEntityList = new ArrayList<String>();
+		    	for(List<CoreLabel> namedEntity : matchingTypes){
+		    		StringBuilder sb = new StringBuilder();
+		    		for(CoreLabel t : namedEntity){
+		    			sb.append(" ");
+		    			sb.append(t.originalText());
+		    		}
+		    		namedEntityList.add(sb.toString().trim());
+		    	}
+		    	List<String> typeAndNamedEntityList = new ArrayList<String>();
+		    	typeAndNamedEntityList.add(ne);
+		    	typeAndNamedEntityList.addAll(namedEntityList);
+		    	return typeAndNamedEntityList;
+	    	}
+	    	else{
+	    		return new ArrayList<String>();
+	    	}
+	    }
 	}
 	
 	
@@ -276,11 +380,13 @@ public class StanfordAnnotatorHelperMethods {
 	private class AnnotationRunnable implements Runnable {
 		
 		Annotation doc;
-		public AnnotationRunnable(Annotation document){
+		StanfordCoreNLP pipeline;
+		public AnnotationRunnable(Annotation document, StanfordCoreNLP pipeline){
 			doc = document;
+			this.pipeline = pipeline;
 		}
 		public void run(){
-			corefPipeline.annotate(doc);
+			pipeline.annotate(doc);
 		}
 	}
 }
