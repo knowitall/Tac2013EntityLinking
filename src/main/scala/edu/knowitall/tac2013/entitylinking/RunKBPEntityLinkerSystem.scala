@@ -29,7 +29,7 @@ object RunKBPEntityLinkerSystem {
     		new EntityTyper(linkerSupportPath)
     		)
     
-    for(q <- queries.take(50)) yield {
+    for(q <- queries) yield {
       println(q.id)
       val link = linker.getBestEntity(q.name,q.corefSourceContext)
       if(link == null){

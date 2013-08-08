@@ -1,12 +1,12 @@
-package edu.knowitall.tac2013.entitylinking
-
-import scopt.OptionParser
-import KBPQuery.parseKBPQueries
+package edu.knowitall.tac2013.entitylinking.coref
+import edu.knowitall.tac2013.entitylinking.KBPQuery.parseKBPQueries
 import java.io.PrintWriter
 import java.io.FileWriter
 import java.io.File
+import edu.knowitall.tac2013.entitylinking.KBPQuery
+import edu.knowitall.tac2013.entitylinking.SolrHelper
 
-object SerializeCorefData {
+object SerializeCorefOffsetsData {
  
     def main(args: Array[String]) {
 	    val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq

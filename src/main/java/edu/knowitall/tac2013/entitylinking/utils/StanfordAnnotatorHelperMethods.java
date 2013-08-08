@@ -69,7 +69,7 @@ public class StanfordAnnotatorHelperMethods {
 		Annotation document = new Annotation(xmlString);
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document)).get(10, TimeUnit.SECONDS);
+		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
 			return new ArrayList<Interval>();
@@ -103,6 +103,86 @@ public class StanfordAnnotatorHelperMethods {
 	    }
 	    else{
 	    	return new ArrayList<Interval>();
+	    }
+		
+	}
+	
+	public String getCorefRepresentativeString(String xmlString, Integer begOffset) {
+		Annotation document = new Annotation(xmlString);
+		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
+		try{
+		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
+		}
+		catch(Exception e){
+			return null;
+		}
+		finally{
+			executor.shutdown();
+		}
+
+		
+		
+		
+		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
+		Integer corefClusterID = null;
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+		
+	    for(CoreMap sentence: sentences){
+	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
+	    		if(token.beginPosition() == begOffset){
+	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
+	    		}
+	    	}
+	    }
+	    
+		
+	    if(corefClusterID != null){
+	    	return graph.get(corefClusterID).getRepresentativeMention().mentionSpan;
+	    }
+	    else{
+	    	return null;
+	    }
+		
+	}
+	
+	public List<String> getCorefStringMentions(String xmlString, Integer begOffset) {
+		Annotation document = new Annotation(xmlString);
+		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
+		try{
+		  executor.submit(new AnnotationRunnable(document)).get(60, TimeUnit.SECONDS);
+		}
+		catch(Exception e){
+			return new ArrayList<String>();
+		}
+		finally{
+			executor.shutdown();
+		}
+
+		
+		
+		
+		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
+		Integer corefClusterID = null;
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+		
+	    for(CoreMap sentence: sentences){
+	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
+	    		if(token.beginPosition() == begOffset){
+	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
+	    		}
+	    	}
+	    }
+	    
+		
+	    if(corefClusterID != null){
+	    	List<String> mentions = new ArrayList<String>();
+	    	for(CorefMention m : graph.get(corefClusterID).getMentionsInTextualOrder()){
+	    		mentions.add(m.mentionSpan);
+	    	}
+	    	return mentions;
+	    }
+	    else{
+	    	return new ArrayList<String>();
 	    }
 		
 	}
