@@ -258,7 +258,8 @@ public class StanfordAnnotatorHelperMethods {
 		    		if((t.sentIndex() == lastToken.sentIndex()) &&  (t.index() == (1 + lastToken.index()))){
 		    			matchingTypes.get(currIndex).add(t);
 		    		}
-		    		else if((t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
+		    		else if((ne.equals("LOCATION")) &&
+		    				(t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
 		    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(","))){
 		    			matchingTypes.get(currIndex).add(allTokens.get(t.sentIndex()).get(t.index()-1));
 		    			matchingTypes.get(currIndex).add(t);

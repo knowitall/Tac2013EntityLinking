@@ -61,17 +61,19 @@ object CorefHelperMethods {
     if(originalString.forall(p => p.isUpper)){
       
       for(cs <- candidateStrings){
-        val words = cs.split(" ").takeRight(originalString.length())
+        val words = cs.split(" ").filter(p => {p(0).isUpper}).takeRight(originalString.length())
         var goodCandidate = true
         var index = 0
-        for(word <- words){
-          if(word(0) != originalString(index)){
-            goodCandidate = false
-          }
-          index += 1
-        }
-        if(goodCandidate){
-          return words mkString " "
+        if(words.length >= originalString.length()){
+	        for(word <- words){
+	          if(word(0) != originalString(index)){
+	            goodCandidate = false
+	          }
+	          index += 1
+	        }
+	        if(goodCandidate){
+	          return words mkString " "
+	        }
         }
       }
     }
