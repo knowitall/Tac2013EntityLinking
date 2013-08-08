@@ -10,6 +10,8 @@ import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
+import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityString
+
 
 object RunKBPEntityLinkerSystem {
   
@@ -20,7 +22,7 @@ object RunKBPEntityLinkerSystem {
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
     
-  def linkQueries(queries: Seq[KBPQuery]): Seq[FormattedOutput] = {
+  def linkQueries(queries: Seq[KBPQuery], baseDir :String = "/scratch/"): Seq[FormattedOutput] = {
     
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
@@ -30,7 +32,9 @@ object RunKBPEntityLinkerSystem {
     		)
     
     for(q <- queries) yield {
-      val link = linker.getBestEntity(q.name, List(q.sourceWideContext))
+      val entityString = identifyBestEntityString(q,linker)
+      val link = linker.getBestEntity(entityString,q.corefSourceContext)
+      println(q.id + "\t" + q.name +"\t" + entityString)
       if(link == null){
         new FormattedOutput(q.id,nextCluster,0.0)
       }
