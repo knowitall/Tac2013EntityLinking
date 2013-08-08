@@ -4,6 +4,10 @@ version := "1.0"
 
 scalaVersion := "2.10.1"
 
+javaOptions += "-Xmx12G"
+
+fork in run := true
+
 libraryDependencies ++= Seq(
   "com.github.scopt" %% "scopt" % "2.1.0",
   "edu.washington.cs.knowitall.openie" %% "openie-models" % "1.0",
