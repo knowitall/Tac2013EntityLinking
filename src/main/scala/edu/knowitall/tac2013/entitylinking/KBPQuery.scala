@@ -1,11 +1,12 @@
 package edu.knowitall.tac2013.entitylinking
 
 import scala.xml.XML
-import edu.knowitall.tac2013.solr.query.SolrHelper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import edu.knowitall.tac2013.entitylinking.utils.FileUtils
 import java.io.File
+import edu.knowitall.tac2013.entitylinking.utils.StanfordAnnotatorHelperMethods
+import edu.knowitall.collection.immutable.Interval
 
 class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
@@ -18,8 +19,19 @@ class KBPQuery (val id: String, val name: String, val doc: String,
     SolrHelper.getWideContextFromDocument(doc,begOffset,name)
   }
   
+  private def getContextOfAllMentions(): List[String] = {
+    var contextualSentences = List[String]()
+    val corefMentions = KBPQuery.queryToCorefMentionsMap.get(id)
+    for(cmi <- corefMentions){
+      val contextSentence = SolrHelper.getContextFromDocument(doc,cmi.start,name)
+      contextualSentences = contextualSentences :+ contextSentence
+    }
+    ((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
+  }
+  
   val sourceContext = getSourceContext()
   val sourceWideContext = getWideContext()
+  lazy val corefSourceContext = getContextOfAllMentions()
   
   
   def trimSourceContext():String = {
@@ -42,6 +54,9 @@ object KBPQuery{
   var wikiMap :Option[Map[String,String]] = None
   var kbIdToTitleMap :Option[Map[String,String]] = None
   var kbIdTextMap :Option[Map[String,String]] = None
+  var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
+  
+  val corefHelper = new StanfordAnnotatorHelperMethods()
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
     
@@ -111,6 +126,10 @@ object KBPQuery{
 	    }
 	  val kbToTitleMapFile = baseDir + "/wikimap.txt"
 	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))}
+	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
+	    }
+	  val corefMentionsFile = getClass.getResource("corefmentions.txt").getPath()
+	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
+	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
   }
 }

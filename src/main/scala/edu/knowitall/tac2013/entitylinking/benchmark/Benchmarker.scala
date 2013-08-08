@@ -140,8 +140,6 @@ object Benchmarker {
   import edu.knowitall.tac2013.entitylinking.RunKBPEntityLinkerSystem
   
   def main(args: Array[String]): Unit = {
-
-    KBPQuery.activate("/scratch")
     
     var baseDir = "/scratch/"
     var systemSort = true
@@ -162,7 +160,7 @@ object Benchmarker {
     val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.linkQueries(queries)
+    val results = RunKBPEntityLinkerSystem.linkQueries(queries,baseDir)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
