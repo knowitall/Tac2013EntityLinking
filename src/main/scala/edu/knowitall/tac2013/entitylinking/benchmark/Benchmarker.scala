@@ -127,7 +127,8 @@ object Benchmarker {
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val results = RunKBPEntityLinkerSystem.linkQueries(queries,baseDir)
     
-    new Benchmarker(queries, results, answers).benchmarkOutput foreach println
     
+    new Benchmarker(queries, results, answers).benchmarkOutput foreach println
+
   }
 }

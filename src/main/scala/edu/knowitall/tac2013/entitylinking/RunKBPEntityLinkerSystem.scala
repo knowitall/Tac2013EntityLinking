@@ -10,6 +10,8 @@ import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
+import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityString
+
 
 object RunKBPEntityLinkerSystem {
   
@@ -30,8 +32,9 @@ object RunKBPEntityLinkerSystem {
     		)
     
     for(q <- queries) yield {
-      println(q.id)
-      val link = linker.getBestEntity(q.name,q.corefSourceContext)
+      val entityString = identifyBestEntityString(q,linker)
+      val link = linker.getBestEntity(entityString,q.corefSourceContext)
+      println(q.id + "\t" + q.name +"\t" + entityString)
       if(link == null){
         new FormattedOutput(q.id,nextCluster,0.0)
       }
