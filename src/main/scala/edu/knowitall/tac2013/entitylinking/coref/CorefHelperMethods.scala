@@ -6,6 +6,7 @@ import edu.knowitall.tac2013.entitylinking.SolrHelper
 
 object CorefHelperMethods {
   val queryMentionMap = {
+    System.err.println("Loading query to Coref String Mentions map...")
     val corefFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/corefStringMentions.txt").getPath()
     using{scala.io.Source.fromFile(corefFile)}{ source =>
       source.getLines.map{ line =>
@@ -15,6 +16,41 @@ object CorefHelperMethods {
         }
       } toMap
     }
+  }
+  
+  private val queryNamedEntityCollectionMap = {
+    System.err.println("Loading query to Named Entities map...")
+    val namedEntityFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/namedEntities.txt").getPath()
+    using{scala.io.Source.fromFile(namedEntityFile)}{ 
+      source => {
+        val lines = source.getLines.toList
+        
+        val queryNamedEntityCollections = lines.sliding(4)
+        
+        queryNamedEntityCollections.map{ necLines => {
+          val firstLine = necLines(0)
+          val firstLineValues = firstLine.split("\t")
+          val qId = firstLineValues(0)
+          var qType = ""
+          if(firstLineValues.length > 1){
+            qType = firstLineValues(1)
+          }
+          val matchingNamedEntities = firstLineValues.drop(2)
+          val organizations = necLines(1).split("\t").drop(2)
+          val locations = necLines(2).split("\t").drop(2)
+          val people = necLines(3).split("\t").drop(2)
+          (qId,new NamedEntityCollection(qId,qType,matchingNamedEntities.toList,organizations.toList,locations.toList,people.toList))
+        }
+      } toMap
+    } 
+    }
+  }
+  
+  private class NamedEntityCollection(val qId:String, val qType:String,
+      val matchingNamedEntities: List[String],
+      val organizations: List[String],
+      val locations: List[String],
+      val people: List[String]){
   }
   
   
@@ -41,18 +77,30 @@ object CorefHelperMethods {
   }
   
   def identifyBestEntityStringByRules(q: KBPQuery): String = {
-    val queryTypeData = scala.collection.JavaConversions.asScalaIterable(KBPQuery.corefHelper.getCorefTypes(SolrHelper.getRawDoc(q.doc), q.begOffset)).toList
-    if(queryTypeData.isEmpty){
-      q.name
-    }
-    else{
-      val entityType = queryTypeData(0)
+    var alternateName = q.name
+    val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id).get
+    val entityType = namedEntityCollection.qType
+    if(entityType != ""){
+      alternateName =
       entityType match{
-        case "ORGANIZATION" => { findBestOrganizationString(q.name.trim(),queryTypeData.drop(1))}
-        case "LOCATION" => {findBestLocationString(q.name.trim(),queryTypeData.drop(1))}
-        case "PERSON" => {findBestPersonString(q.name.trim(),queryTypeData.drop(1))}
+        case "ORGANIZATION" => { findBestOrganizationString(q.name.trim(),namedEntityCollection.organizations)}
+        case "LOCATION" => {findBestLocationString(q.name.trim(),namedEntityCollection.locations)}
+        case "PERSON" => {findBestPersonString(q.name.trim(),namedEntityCollection.people)}
       }
     }
+    alternateName match{
+      case q.name => {
+        alternateName = findBestOrganizationString(q.name,namedEntityCollection.organizations)
+        if(alternateName == q.name){
+          alternateName = findBestLocationString(q.name,namedEntityCollection.locations)
+        }
+        if(alternateName == q.name){
+          alternateName = findBestPersonString(q.name,namedEntityCollection.people)
+        }
+      }
+      case _ => {}
+    }
+    alternateName
   }
   
   private def findBestOrganizationString(originalString: String, candidateStrings: List[String]) :String = {
@@ -61,17 +109,19 @@ object CorefHelperMethods {
     if(originalString.forall(p => p.isUpper)){
       
       for(cs <- candidateStrings){
-        val words = cs.split(" ").takeRight(originalString.length())
+        val words = cs.split(" ").filter(p => {p(0).isUpper}).takeRight(originalString.length())
         var goodCandidate = true
         var index = 0
-        for(word <- words){
-          if(word(0) != originalString(index)){
-            goodCandidate = false
-          }
-          index += 1
-        }
-        if(goodCandidate){
-          return words mkString " "
+        if(words.length >= originalString.length()){
+	        for(word <- words){
+	          if(word(0) != originalString(index)){
+	            goodCandidate = false
+	          }
+	          index += 1
+	        }
+	        if(goodCandidate){
+	          return words mkString " "
+	        }
         }
       }
     }
@@ -83,7 +133,8 @@ object CorefHelperMethods {
         val words = cs.split(" ")
         val originalWords = originalString.split(" ")
         if( (words.length > originalWords.length) &&
-            (words.takeRight(originalWords.length).mkString(" ") == originalString)){
+            ( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
+              (words.take(originalWords.length).mkString(" ") == originalString)  )){
           return words mkString " "
         }
       }
@@ -97,7 +148,7 @@ object CorefHelperMethods {
     for(cs <- candidateStrings){
       val words = cs.split(" ")
       if( (words.length > (originalWords.length +1)) &&
-          (words.take(originalWords.length).mkString(" ") == originalString) &&
+          (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
           (words(originalWords.length) == ",")){
         return words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ")
       }

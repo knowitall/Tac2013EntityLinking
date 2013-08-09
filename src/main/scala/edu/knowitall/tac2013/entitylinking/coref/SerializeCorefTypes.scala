@@ -14,7 +14,7 @@ object SerializeCorefTypes {
 	    for(q <- queries){
 	       val fw = new FileWriter("corefTypes.txt",true)
 	    	  fw.write(q.id)
-	    	  val entityTypeList  = KBPQuery.corefHelper.getCorefTypes(SolrHelper.getRawDoc(q.doc),q.begOffset)
+	    	  val entityTypeList  = KBPQuery.corefHelper.getMatchingNamedEntities(SolrHelper.getRawDoc(q.doc),q.begOffset)
 	    	  for(entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)){
 	    	    fw.write("\t" +entityType)
 	    	  }
