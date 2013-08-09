@@ -37,7 +37,21 @@ object RunKBPEntityLinkerSystem {
       val link = linker.getBestEntity(entityString,q.corefSourceContext)
       println(q.id + "\t" + q.name +"\t" + entityString)
       if(link == null){
-        new FormattedOutput(q.id,nextCluster,0.0)
+        //if link is null and there is a better entity string
+        //than the one given in KBP check KB for
+        var answer : Option[FormattedOutput] = None
+        if(q.entityString != q.name){
+          val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
+          if(kbIdOption.isDefined){
+            answer = Some(new FormattedOutput(q.id,kbIdOption.get,.9))
+          }
+        }
+        if(answer.isDefined){
+          answer.get
+        }
+        else{
+         new FormattedOutput(q.id,nextCluster,0.0)
+        }
       }
       else{
         val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)

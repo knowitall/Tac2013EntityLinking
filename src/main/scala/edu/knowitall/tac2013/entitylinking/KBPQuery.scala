@@ -57,6 +57,7 @@ object KBPQuery{
   var kbIdToTitleMap :Option[Map[String,String]] = None
   var kbIdTextMap :Option[Map[String,String]] = None
   var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
+  var kbTitleToIdMap :Option[Map[String,String]] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
@@ -133,5 +134,9 @@ object KBPQuery{
 	  val corefMentionsFile = getClass.getResource("corefmentions.txt").getPath()
 	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
+	  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
+	  kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile,"UTF8")) { source =>
+	    Some(WikiMappingHelper.loadKbTitleToIdMap(source.getLines))}
+
   }
 }

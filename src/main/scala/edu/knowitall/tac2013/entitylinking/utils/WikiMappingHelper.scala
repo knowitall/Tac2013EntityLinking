@@ -21,6 +21,9 @@ object WikiMappingHelper {
   
   val entityTextRegex = """id="([^"]+)"[\w\W]+?<wiki_text><!\[CDATA\[([\w\W]+?)\]\]></wiki_text>""".r
   
+  val entityTitleRegex = """id="([^"]+)" name="([^"]+)">""".r
+
+  
   val sentencer = new OpenNlpSentencer()
   
   def main(args: Array[String]) {
@@ -36,7 +39,7 @@ object WikiMappingHelper {
     else {
       val inputs = FileUtils.getFilesRecursive(new File(inputFile))
       val nsTime = Timing.time {
-        run(inputs, output) 
+        getTitles(inputs, output) 
       }
       System.err.println(s"Processed ${entityCounter.get} entities in ${Timing.Seconds.format(nsTime)}.")
     }
@@ -49,6 +52,15 @@ object WikiMappingHelper {
       val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
       val idTextTuples = for( entityTextRegex(id,text) <- entityTextRegex.findAllIn(lines)) yield  (id, getKBIntro(text) )
       for(t <- idTextTuples) output.println(t._1 + "\t" + t._2)
+    }
+    output.close()
+  }
+  
+  def getTitles(files: Iterator[File], output: PrintStream){
+    for(file <- files){
+     val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
+     val idTitleTuples = for( entityTitleRegex(id,title) <- entityTitleRegex.findAllIn(lines)) yield  (id,title)
+     for(t <- idTitleTuples) output.println(t._1 +"\t" + t._2)
     }
     output.close()
   }
@@ -98,7 +110,6 @@ object WikiMappingHelper {
         case _ => throw new RuntimeException(s"Error parsing entity info: $line")
       }  
     } toMap
-    
   }
   
   def loadQueryToCorefMentionsMap(lines: Iterator[String]): Map[String,Seq[Interval]] = {
@@ -112,6 +123,17 @@ object WikiMappingHelper {
         case _ => throw new RuntimeException(s"Error parsing query info: $line")
         }
       } toMap
+  }
+  
+  def loadKbTitleToIdMap(lines: Iterator[String]): Map[String,String]= {
+    System.err.println("Loading kb title to id map..")
+    val tabSplit = "\t".r
+    lines.map { line =>
+      tabSplit.split(line) match {
+        case Array(id, title) => (title, id)
+        case _ => throw new RuntimeException(s"Error parsing entity info: $line")
+      }  
+    } toMap
   }
   
   def getKBIntro(text: String) :String = {

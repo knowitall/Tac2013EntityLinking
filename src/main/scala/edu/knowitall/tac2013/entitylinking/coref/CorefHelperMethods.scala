@@ -143,17 +143,37 @@ object CorefHelperMethods {
     originalString
     
   }
+  
+  private def locationCasing(str: String) :String ={
+    var words = List[String]()
+    for(s <- str.split(" ")){
+      if(s.forall(p => p.isLetter)){
+         words = words :+ ( s(0).toUpper + s.tail.toLowerCase())
+      }else{
+        words = words :+ s
+      }
+    }
+    words mkString " "
+    
+  }
   private def findBestLocationString(originalString: String, candidateStrings: List[String]) :String = {
+    var candidates = List[String]()
     val originalWords = originalString.split(" ")
     for(cs <- candidateStrings){
       val words = cs.split(" ")
       if( (words.length > (originalWords.length +1)) &&
           (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
           (words(originalWords.length) == ",")){
-        return words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ")
+        candidates  = candidates :+ words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ") 
       }
     }
-    originalString
+    candidates = candidates.filter(p => (p.split(" ").length < 7))
+    if(candidates.isEmpty)
+      originalString
+    else{
+       val candidate = candidates.head
+       locationCasing(candidate)
+      }
   }
   private def findBestPersonString(originalString: String, candidateStrings: List[String]) :String = {
       for(cs <- candidateStrings){
