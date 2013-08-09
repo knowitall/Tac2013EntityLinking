@@ -16,7 +16,7 @@ object EntityStringFinder {
 	    for(q <- queries){
 	       val fw = new FileWriter("alternateEntityStrings.txt",true)
 	       val alternateEntity = identifyBestEntityStringByRules(q)
-	       fw.write(q.id+"\t"+q.doc+"\t"+q.name+"\t"+alternateEntity)
+	       fw.write(q.id+"\t"+q.doc+"\t"+q.name+"\t"+alternateEntity+"\n")
 	       fw.close()
 	    }
   }
