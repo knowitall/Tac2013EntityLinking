@@ -99,7 +99,7 @@ object CorefHelperMethods {
     for(cs <- candidateStrings){
       val words = cs.split(" ")
       if( (words.length > (originalWords.length +1)) &&
-          (words.take(originalWords.length).mkString(" ") == originalString) &&
+          (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
           (words(originalWords.length) == ",")){
         return words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ")
       }
