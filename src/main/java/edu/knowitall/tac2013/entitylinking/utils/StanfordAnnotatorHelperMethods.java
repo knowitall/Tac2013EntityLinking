@@ -1,124 +1,54 @@
 package edu.knowitall.tac2013.entitylinking.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Stack;
-import java.util.WeakHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.regex.Pattern;
 
-import org.apache.commons.io.IOUtils;
-
-import scala.actors.threadpool.Arrays;
-import scala.actors.threadpool.ExecutionException;
 import scala.actors.threadpool.Executors;
 import scala.actors.threadpool.TimeUnit;
-import scala.actors.threadpool.TimeoutException;
 
 import edu.knowitall.collection.immutable.Interval;
 import edu.stanford.nlp.dcoref.CorefChain;
-import edu.stanford.nlp.dcoref.CoNLL2011DocumentReader.NamedEntityAnnotation;
 import edu.stanford.nlp.dcoref.CorefChain.CorefMention;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefClusterIdAnnotation;
-import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefGraphAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.*;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.time.TimeAnnotations.TimexAnnotation;
-import edu.stanford.nlp.time.Timex;
 import edu.stanford.nlp.util.CoreMap;
-import edu.stanford.nlp.util.IntTuple;
-import edu.stanford.nlp.util.Pair;
-import edu.knowitall.tac2013.entitylinking.SolrHelper;
+
 
 
 
 
 public class StanfordAnnotatorHelperMethods {
 	
-	private final StanfordCoreNLP corefPipeline;
-	private final StanfordCoreNLP regularPipeline;
+	private StanfordCoreNLP corefPipeline = null;
+	private StanfordCoreNLP regularPipeline = null;
 	private String filePath = "/homes/gws/jgilme1/docs/";
-	private Map<String,Annotation> corefAnnotationMap;
 	
 	
-	public StanfordAnnotatorHelperMethods(){
-		Properties corefProps = new Properties();
-	    corefProps.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner, parse, dcoref");
-	    corefProps.put("clean.allowflawedxml", "true");
-	    corefProps.put("ner.useSUTime", "false");
-	    //clean all xml tags
-		this.corefPipeline = new StanfordCoreNLP(corefProps);
-		
-		corefAnnotationMap = new HashMap<String,Annotation>();
-		
-		
-		Properties regularProps = new Properties();
-		regularProps.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner");
-		regularProps.put("clean.allowflawedxml","true");
-		regularProps.put("ner.useSUTime", "false");
-		this.regularPipeline = new StanfordCoreNLP(regularProps);
-		
+	public StanfordAnnotatorHelperMethods(Boolean usePipeline){
+		if(usePipeline){
+			Properties corefProps = new Properties();
+		    corefProps.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner, parse, dcoref");
+		    corefProps.put("clean.allowflawedxml", "true");
+		    corefProps.put("ner.useSUTime", "false");
+		    //clean all xml tags
+			this.corefPipeline = new StanfordCoreNLP(corefProps);
+					
+			
+			Properties regularProps = new Properties();
+			regularProps.put("annotators", "tokenize, cleanxml, ssplit, pos, lemma, ner");
+			regularProps.put("clean.allowflawedxml","true");
+			regularProps.put("ner.useSUTime", "false");
+			this.regularPipeline = new StanfordCoreNLP(regularProps);
+		}
 	}
 	
-	public void clearHashMaps(){
-		corefAnnotationMap.clear();
-	}
-
-	
-	public List<Interval> getCorefMentions(String xmlString, Integer begOffset) {
-		Annotation document = new Annotation(xmlString);
-		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
-		try{
-		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
-		}
-		catch(Exception e){
-			return new ArrayList<Interval>();
-		}
-		finally{
-			executor.shutdown();
-		}
-
-		
-		
-		
-		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		Integer corefClusterID = null;
-		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-		
-	    for(CoreMap sentence: sentences){
-	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == begOffset){
-	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
-	    		}
-	    	}
-	    }
-	    
-		
-	    if(corefClusterID != null){
-	    	List<Interval> offsets = new ArrayList<Interval>();
-	    	for(CorefMention m : graph.get(corefClusterID).getMentionsInTextualOrder()){
-	    		offsets.add(getCharIntervalFromCorefMention(document,m.sentNum,m.startIndex,m.endIndex));
-	    	}
-	    	return offsets;
-	    }
-	    else{
-	    	return new ArrayList<Interval>();
-	    }
-		
-	}
-	
-	public String getCorefRepresentativeString(String xmlString, Integer begOffset) {
-		Annotation document = new Annotation(xmlString);
+	private List<CorefMention> getCorefMentions(Annotation document, Integer begOffset){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
 		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
@@ -128,10 +58,7 @@ public class StanfordAnnotatorHelperMethods {
 		}
 		finally{
 			executor.shutdown();
-		}
-
-		
-		
+		}	
 		
 		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
 		Integer corefClusterID = null;
@@ -144,71 +71,149 @@ public class StanfordAnnotatorHelperMethods {
 	    		}
 	    	}
 	    }
-	    
-		
 	    if(corefClusterID != null){
-	    	return graph.get(corefClusterID).getRepresentativeMention().mentionSpan;
+	    	return graph.get(corefClusterID).getMentionsInTextualOrder();
 	    }
 	    else{
-	    	return null;
+	        return null;	
 	    }
-		
+	}
+
+	public List<Interval> getCorefIntervals(String xmlString, Integer begOffset) {
+		    Annotation document = new Annotation(xmlString);
+			List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+			if(listOfCorefMentions == null){
+			  return new ArrayList<Interval>();	
+			}
+			else{
+	    	List<Interval> offsets = new ArrayList<Interval>();
+	    	for(CorefMention m : listOfCorefMentions){
+	    		offsets.add(getCharIntervalFromCorefMention(document,m.sentNum,m.startIndex,m.endIndex));
+	    	}
+	    	return offsets;
+			}
+	}
+	
+	public String getCorefRepresentativeString(String xmlString, Integer begOffset) {
+	    Annotation document = new Annotation(xmlString);
+		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+		if(listOfCorefMentions == null){
+		  return null;
+		}
+		else{
+			Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
+			Integer corefClusterID = listOfCorefMentions.get(0).corefClusterID;
+			return graph.get(corefClusterID).getRepresentativeMention().mentionSpan;
+		}
 	}
 	
 	public List<String> getCorefStringMentions(String xmlString, Integer begOffset) {
-		Annotation document = new Annotation(xmlString);
-		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
-		try{
-		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(60, TimeUnit.SECONDS);
+	    Annotation document = new Annotation(xmlString);
+		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+		if(listOfCorefMentions == null){
+		  return new ArrayList<String>();	
 		}
-		catch(Exception e){
-			return new ArrayList<String>();
+		else{
+    	List<String> stringMentions = new ArrayList<String>();
+    	for(CorefMention m : listOfCorefMentions){
+    		stringMentions.add(m.mentionSpan);
+    	}
+    	return stringMentions;
 		}
-		finally{
-			executor.shutdown();
-		}
-
-		
-		
-		
-		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		Integer corefClusterID = null;
-		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-		
-	    for(CoreMap sentence: sentences){
-	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == begOffset){
-	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
-	    		}
-	    	}
-	    }
-	    
-		
-	    if(corefClusterID != null){
-	    	List<String> mentions = new ArrayList<String>();
-	    	for(CorefMention m : graph.get(corefClusterID).getMentionsInTextualOrder()){
-	    		mentions.add(m.mentionSpan);
-	    	}
-	    	return mentions;
-	    }
-	    else{
-	    	return new ArrayList<String>();
-	    }
-		
 	}
 	
-	
-	public List<String> getCorefTypes(String xmlString, Integer begOffset) {
-		Annotation document = new Annotation(xmlString);
+	private List<List<CoreLabel>> getNamedEntityTokens(Annotation document){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
 		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(60, TimeUnit.SECONDS);
 		}
 		catch(Exception e){
-			return new ArrayList<String>();
+			return null;
 		}
 		finally{
 			executor.shutdown();
+		}
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+    	List<List<CoreLabel>> allTokens = new ArrayList<List<CoreLabel>>();
+    	List<CoreLabel> relevantTokens = new ArrayList<CoreLabel>();
+    	int sentIndex =0;
+	    for(CoreMap sentence: sentences){
+	    	List<CoreLabel> sentenceTokenList = new ArrayList<CoreLabel>();
+	    	int tokenIndex =0;
+	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
+	    			String net = token.get(NamedEntityTagAnnotation.class);
+    				token.setIndex(tokenIndex);
+    				token.setSentIndex(sentIndex);		    			
+	    			if( (net.equals("ORGANIZATION"))||
+	    				(net.equals("LOCATION")) ||
+	    				(net.equals("PERSON"))
+	    				){
+	    				relevantTokens.add(token);
+	    			}
+	    			sentenceTokenList.add(token);
+	    		tokenIndex +=1 ;
+	    	}
+	    	allTokens.add(sentenceTokenList);
+	    	sentIndex += 1;
+	    }
+	    
+    	if(!relevantTokens.isEmpty()){
+    		
+	    	List<List<CoreLabel>> matchingTypes = new ArrayList<List<CoreLabel>>();
+	    	List<CoreLabel> firstTokenList = new ArrayList<CoreLabel>();
+	    	firstTokenList.add(relevantTokens.get(0));
+	    	matchingTypes.add(firstTokenList);
+	    	relevantTokens.remove(0);
+	    	for(CoreLabel t : relevantTokens){
+	    		int currIndex = matchingTypes.size()-1;
+	    		List<CoreLabel> lastTokenList = matchingTypes.get(currIndex);
+	    		CoreLabel lastToken = lastTokenList.get(lastTokenList.size()-1);
+	    		
+	    		if((t.sentIndex() == lastToken.sentIndex()) 
+	    				&&  (t.index() == (1 + lastToken.index())) &&
+	    				(t.ner().equals(lastToken.ner()))){
+	    			matchingTypes.get(currIndex).add(t);
+	    		}
+	    		else if((t.ner().equals("LOCATION") && lastToken.ner().equals("LOCATION")) &&
+	    				(t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
+	    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(","))){
+	    			matchingTypes.get(currIndex).add(allTokens.get(t.sentIndex()).get(t.index()-1));
+	    			matchingTypes.get(currIndex).add(t);
+	    		}
+	    		else{
+	    			List<CoreLabel> newTokenList = new ArrayList<CoreLabel>();
+	    			newTokenList.add(t);
+	    			matchingTypes.add(newTokenList);
+	    		}
+	    	}
+	    	return matchingTypes;
+    	}
+    	else{
+    		return null;
+    	}
+	}
+	
+	private List<String> getNamedEntityStringsByType(String type, List<List<CoreLabel>> namedEntityTokens){
+    	//convert lists of tokens into strings
+    	List<String> namedEntityList = new ArrayList<String>();
+    	for(List<CoreLabel> namedEntity : namedEntityTokens){
+    		if(namedEntity.get(0).ner().equals(type)){
+	    		StringBuilder sb = new StringBuilder();
+	    		for(CoreLabel t : namedEntity){
+	    			sb.append(" ");
+	    			sb.append(t.originalText());
+	    		}
+	    		namedEntityList.add(sb.toString().trim());
+    		}
+    	}
+    	return namedEntityList;
+	}
+	
+	public List<String> getMatchingNamedEntities(String xmlString, Integer begOffset) {
+		Annotation document = new Annotation(xmlString);
+		List<List<CoreLabel>> namedEntityTokens = getNamedEntityTokens(document);
+		if(namedEntityTokens == null){
+			return new ArrayList<String>();
 		}
 
 		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
@@ -224,86 +229,22 @@ public class StanfordAnnotatorHelperMethods {
 	    	return new ArrayList<String>();
 	    }
 	    else{
-	    	List<List<CoreLabel>> allTokens = new ArrayList<List<CoreLabel>>();
-	    	List<CoreLabel> relevantTokens = new ArrayList<CoreLabel>();
-	    	int sentIndex =0;
-		    for(CoreMap sentence: sentences){
-		    	List<CoreLabel> sentenceTokenList = new ArrayList<CoreLabel>();
-		    	int tokenIndex =0;
-		    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-		    			String net = token.get(NamedEntityTagAnnotation.class);
-	    				token.setIndex(tokenIndex);
-	    				token.setSentIndex(sentIndex);		    			
-		    			if(net.equals(ne)){
-		    				relevantTokens.add(token);
-		    			}
-		    			sentenceTokenList.add(token);
-		    		tokenIndex +=1 ;
-		    	}
-		    	allTokens.add(sentenceTokenList);
-		    	sentIndex += 1;
-		    }
-	    	if(!relevantTokens.isEmpty()){
-	    		
-		    	List<List<CoreLabel>> matchingTypes = new ArrayList<List<CoreLabel>>();
-		    	List<CoreLabel> firstTokenList = new ArrayList<CoreLabel>();
-		    	firstTokenList.add(relevantTokens.get(0));
-		    	matchingTypes.add(firstTokenList);
-		    	relevantTokens.remove(0);
-		    	for(CoreLabel t : relevantTokens){
-		    		int currIndex = matchingTypes.size()-1;
-		    		List<CoreLabel> lastTokenList = matchingTypes.get(currIndex);
-		    		CoreLabel lastToken = lastTokenList.get(lastTokenList.size()-1);
-		    		
-		    		if((t.sentIndex() == lastToken.sentIndex()) &&  (t.index() == (1 + lastToken.index()))){
-		    			matchingTypes.get(currIndex).add(t);
-		    		}
-		    		else if((ne.equals("LOCATION")) &&
-		    				(t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
-		    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(","))){
-		    			matchingTypes.get(currIndex).add(allTokens.get(t.sentIndex()).get(t.index()-1));
-		    			matchingTypes.get(currIndex).add(t);
-		    		}
-		    		else{
-		    			List<CoreLabel> newTokenList = new ArrayList<CoreLabel>();
-		    			newTokenList.add(t);
-		    			matchingTypes.add(newTokenList);
-		    		}
-		    	}
-		    	
-		    	//convert lists of tokens into strings
-		    	List<String> namedEntityList = new ArrayList<String>();
-		    	for(List<CoreLabel> namedEntity : matchingTypes){
-		    		StringBuilder sb = new StringBuilder();
-		    		for(CoreLabel t : namedEntity){
-		    			sb.append(" ");
-		    			sb.append(t.originalText());
-		    		}
-		    		namedEntityList.add(sb.toString().trim());
-		    	}
-		    	List<String> typeAndNamedEntityList = new ArrayList<String>();
-		    	typeAndNamedEntityList.add(ne);
-		    	typeAndNamedEntityList.addAll(namedEntityList);
-		    	return typeAndNamedEntityList;
-	    	}
-	    	else{
-	    		return new ArrayList<String>();
-	    	}
+	    	List<String> matchingNamedEntities = getNamedEntityStringsByType(ne,namedEntityTokens);
+	    	List<String> typeAndMatchingNamedEntities = new ArrayList<String>();
+	    	typeAndMatchingNamedEntities.add(ne);
+	    	typeAndMatchingNamedEntities.addAll(matchingNamedEntities);
+	    	return typeAndMatchingNamedEntities;
 	    }
 	}
 	
-	
-	private CoreLabel getTokenBeginningAtByteOffset(Annotation annotatedDocument, Integer beg){
-		
-		List<CoreMap> sentences = annotatedDocument.get(SentencesAnnotation.class);
-		for(CoreMap sentence : sentences){
-			for(CoreLabel token : sentence.get(TokensAnnotation.class)){
-				if(token.beginPosition() == beg ){
-					return token;
-				}
-			}
+	public List<String> getNamedEntitiesByType(String namedEntityType, String xmlString){
+		Annotation document = new Annotation(xmlString);
+		List<List<CoreLabel>> namedEntityTokens = getNamedEntityTokens(document);
+		if(namedEntityTokens == null){
+			return new ArrayList<String>();
 		}
-		return null;
+    	List<String> matchingNamedEntities = getNamedEntityStringsByType(namedEntityType,namedEntityTokens);
+    	return matchingNamedEntities;
 	}
 	
 	/**
@@ -327,55 +268,6 @@ public class StanfordAnnotatorHelperMethods {
 		
 		return Interval.closed(spanningTokens.get(0).beginPosition(),spanningTokens.get(spanningTokens.size()-1).endPosition());
 		
-	}
-	
-	public Interval getIntervalOfKBPEntityMention(String kbpEntityString, Interval originalInterval, String docID){
-		Annotation document;
-		if(corefAnnotationMap.containsKey(docID)){
-			document = corefAnnotationMap.get(docID);
-		}
-		else{
-			String xmlDoc = SolrHelper.getRawDoc(docID);
-			if(xmlDoc.trim().isEmpty()){
-				return null;
-			}
-			document = new Annotation(xmlDoc);
-			try{
-		     System.out.println("Annotating document "+ docID);
-			 corefPipeline.annotate(document);
-		     System.out.println("Done Annotating document "+ docID);
-			 corefAnnotationMap.put(docID, document);
-			}
-			catch (Exception e){
-				if(corefAnnotationMap.containsKey(docID)){
-					corefAnnotationMap.remove(docID);
-				}
-				return null;
-			}
-		}
-
-		
-		//get token of possible coref mention
-		CoreLabel token = getTokenBeginningAtByteOffset(document, originalInterval.start());
-		if(token == null){
-			return null;
-		}
-		Integer corefID = token.get(CorefClusterIdAnnotation.class);
-		if(corefID == null){
-			return null;
-		}
-		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		List<CorefMention> mentionsInOrder = graph.get(corefID).getMentionsInTextualOrder();
-
-		
-		for(CorefMention corefMention : mentionsInOrder){
-			if (corefMention.mentionSpan.trim().toLowerCase().equals(kbpEntityString.trim().toLowerCase())){
-				// this is a match and the originalInterval corefers to the kbpEntityString
-				// return the proper interval of this mention of the kbpEntityString
-				return getCharIntervalFromCorefMention(document,corefMention.sentNum,corefMention.startIndex,corefMention.endIndex);
-			}
-		}
-		return null;
 	}
 	
 	private class AnnotationRunnable implements Runnable {

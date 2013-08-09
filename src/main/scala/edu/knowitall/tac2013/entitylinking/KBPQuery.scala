@@ -58,7 +58,7 @@ object KBPQuery{
   var kbIdTextMap :Option[Map[String,String]] = None
   var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
   
-  val corefHelper = new StanfordAnnotatorHelperMethods()
+  val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
     
