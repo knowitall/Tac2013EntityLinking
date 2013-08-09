@@ -15,7 +15,7 @@ object SerializeCorefOffsetsData {
 	    for(q <- queries){
 	       val fw = new FileWriter("corefmentions.txt",true)
 	    	  fw.write(q.id)
-	          val corefIntervals = KBPQuery.corefHelper.getCorefMentions(SolrHelper.getRawDoc(q.doc),q.begOffset)
+	          val corefIntervals = KBPQuery.corefHelper.getCorefIntervals(SolrHelper.getRawDoc(q.doc),q.begOffset)
 	          for(cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)){
 	             fw.write("\t" +cmi)
 	          }
