@@ -73,6 +73,7 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
     
     var numCorrect = 0
     var numNilOk = 0
+    var numWrongNil = 0
     var numKbExp = 0
     var numNilExp = 0
     var numWrongKb = 0
@@ -88,35 +89,46 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
       val sysAnswer = resultsQueryMap(qid)
       val goldAnswerFromKb = goldAnswer.kbLink.startsWith("E")
       val sysAnswerFromKb = sysAnswer.kbLink.startsWith("E")
+      
+      val sysKbid = sysAnswer.kbLink
+      val sysCluster = resultsClusterMap.getOrElse(sysKbid, Nil).map(_.queryId).toSet
+      val goldKbid = goldAnswer.kbLink
+      val theirCluster = goldClusterMap.getOrElse(goldKbid,Nil).map(_.queryId).toSet
+      
       if (goldAnswerFromKb && sysAnswerFromKb && goldAnswer.kbLink == sysAnswer.kbLink) {
         numCorrect += 1
-        kbLinkReport("CORRECT    ", sysAnswer, goldAnswer)
+        kbLinkReport("CORRECT     ", sysAnswer, goldAnswer)
       }
       // if we linked to a different kbId...
       else if (goldAnswerFromKb && sysAnswerFromKb && goldAnswer.kbLink != sysAnswer.kbLink) {
         numWrongKb += 1
-        kbLinkReport("WRONG KBID ", sysAnswer, goldAnswer)
+        kbLinkReport("WRONG KB ID ", sysAnswer, goldAnswer)
       // if we linked to kb, they linked to nil, or vice versa...
       } else if (goldAnswerFromKb && !sysAnswerFromKb) {
         numKbExp += 1
-        kbLinkReport("EXP KBID   ", sysAnswer, goldAnswer)
+        kbLinkReport("EXP KB ID   ", sysAnswer, goldAnswer)
       } else if (!goldAnswerFromKb && sysAnswerFromKb) {
         numNilExp += 1
-        kbLinkReport("EXP NIL    ", sysAnswer, goldAnswer)
+        kbLinkReport("EXP NIL     ", sysAnswer, goldAnswer)
       // we both linked to nil
+      } else if (!sysCluster.equals(theirCluster)) {
+        numWrongNil += 1
+        kbLinkReport("WRONG NIL ID", sysAnswer, goldAnswer)
       } else {
         numNilOk += 1
-        kbLinkReport("NIL OK   ", sysAnswer, goldAnswer)
+        kbLinkReport("NIL OK      ", sysAnswer, goldAnswer)
       }
     }
     
     comparisons ++ Seq("", "SUMMARY",
-        s"Number of exact KBID matches:    $numCorrect", 
-        s"Number of NILXXX-NILYYY matches: $numNilOk", 
-        s"Number of NIL-KB mismatches:     $numKbExp",
-        s"Number of KB-NIL mismatches:     $numNilExp",
-        s"B^3 Prec:                        $b3Precision",
-        s"B^3 Recall:                      $b3Recall")
+        s"Number of exact KB ID matches:    \t$numCorrect", 
+        s"Number of NILXXX-NILYYY matches:  \t$numNilOk", 
+        s"Number of Wrong KB ID mismatches: \t$numWrongKb",
+        s"Number of Unmerged NILs:          \t$numWrongNil",
+        s"Number of NIL-KB mismatches:      \t$numKbExp",
+        s"Number of KB-NIL mismatches:      \t$numNilExp",
+        s"B^3 Prec:                         \t$b3Precision",
+        s"B^3 Recall:                       \t$b3Recall")
   }
   
   def kbLinkReport(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
