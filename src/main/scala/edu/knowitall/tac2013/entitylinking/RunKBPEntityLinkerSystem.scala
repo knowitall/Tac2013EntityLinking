@@ -10,6 +10,8 @@ import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
+import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
+
 
 object RunKBPEntityLinkerSystem {
   
@@ -20,7 +22,7 @@ object RunKBPEntityLinkerSystem {
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
     
-  def linkQueries(queries: Seq[KBPQuery]): Seq[FormattedOutput] = {
+  def linkQueries(queries: Seq[KBPQuery], baseDir :String = "/scratch/"): Seq[FormattedOutput] = {
     
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
@@ -30,9 +32,26 @@ object RunKBPEntityLinkerSystem {
     		)
     
     for(q <- queries) yield {
-      val link = linker.getBestEntity(q.name, List(q.sourceWideContext))
+      val entityString = identifyBestEntityStringByRules(q)
+      q.entityString = entityString
+      val link = linker.getBestEntity(entityString,q.corefSourceContext)
+      println(q.id + "\t" + q.name +"\t" + entityString)
       if(link == null){
-        new FormattedOutput(q.id,nextCluster,0.0)
+        //if link is null and there is a better entity string
+        //than the one given in KBP check KB for
+        var answer : Option[FormattedOutput] = None
+        if(q.entityString != q.name){
+          val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
+          if(kbIdOption.isDefined){
+            answer = Some(new FormattedOutput(q.id,kbIdOption.get,.9))
+          }
+        }
+        if(answer.isDefined){
+          answer.get
+        }
+        else{
+         new FormattedOutput(q.id,nextCluster,0.0)
+        }
       }
       else{
         val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)

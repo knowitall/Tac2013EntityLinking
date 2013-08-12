@@ -4,6 +4,7 @@ import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableO
 import edu.knowitall.tac2013.entitylinking.FormattedOutput
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import scopt.OptionParser
+import java.io.PrintWriter
 
 sealed trait SortType
 case object SystemClusterSort extends SortType
@@ -140,19 +141,19 @@ object Benchmarker {
   import edu.knowitall.tac2013.entitylinking.RunKBPEntityLinkerSystem
   
   def main(args: Array[String]): Unit = {
-
-    KBPQuery.activate("/scratch")
     
     var baseDir = "/scratch/"
     var systemSort = true
     var benchmarkSort = false
     var querySort = false
+    var outputFile = ""
       
     val parser = new OptionParser("Benchmarker") {
       opt("basedir", "basedir", { s => baseDir = s })
       opt("systemSort", "Sort queries by system cluster id. (default)", { systemSort = true})
       opt("benchmarkSort", "Sort queries by benchmark set cluster id.", { benchmarkSort = true})
       opt("querySort", "Sort queries by id.", { querySort = true})
+      opt("outputFile", "output to file", {s => outputFile =s})
     }
     
     if (!parser.parse(args)) return
@@ -162,11 +163,18 @@ object Benchmarker {
     val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.linkQueries(queries)
+    val results = RunKBPEntityLinkerSystem.linkQueries(queries,baseDir)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
-    new Benchmarker(sortType, queries, results, answers).benchmarkOutput foreach println
+    if(outputFile == ""){
+      new Benchmarker(sortType, queries, results, answers).benchmarkOutput foreach println
+    }
+    else{
+      val pw = new PrintWriter(new File(outputFile))
+      new Benchmarker(sortType, queries, results, answers).benchmarkOutput.foreach{p => {pw.write(p+"\n")}}
+      pw.close()
+    }
     
   }
 }
