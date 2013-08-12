@@ -55,7 +55,7 @@ object RunKBPEntityLinkerSystem {
       }
       else{
         val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-        new FormattedOutput(q.id,nodeId.getOrElse(fbidCluster(link.entity.fbid)),link.score)
+        new FormattedOutput(q.id,nodeId.getOrElse(fbidCluster(link.entity.fbid)),link.combinedScore)
       }
     }
   }
