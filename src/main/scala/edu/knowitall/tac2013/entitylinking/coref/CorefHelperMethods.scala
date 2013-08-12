@@ -145,16 +145,20 @@ object CorefHelperMethods {
   }
   
   private def locationCasing(str: String) :String ={
+    println("Doing Location Casing On :" + str)
     var words = List[String]()
     for(s <- str.split(" ")){
-      if(s.forall(p => p.isLetter)){
-         words = words :+ ( s(0).toUpper + s.tail.toLowerCase())
-      }else{
-        words = words :+ s
+      var newS = s
+      if(!s.endsWith(".")){
+        newS = for(c <- s) yield {
+          c.toLower
+        }
+        newS = newS(0).toUpper + newS.tail
       }
-    }
+
+        words = words :+ newS
+      }
     words mkString " "
-    
   }
   private def findBestLocationString(originalString: String, candidateStrings: List[String]) :String = {
     var candidates = List[String]()
