@@ -62,11 +62,11 @@ object CorefHelperMethods {
      for(uc <- uniqueCandidates){
           print(uc + "\t")
           val link = linker.getBestEntity(uc,q.corefSourceContext)
-          if(link != null){
-          println(link.score)
-	          if(link.score > bestScore){
+          if(link.nonEmpty){
+          println(link.get.combinedScore)
+	          if(link.get.combinedScore > bestScore){
 	            bestCandidate =uc
-	            bestScore = link.score
+	            bestScore = link.get.combinedScore
 	          }
           }
           else{
