@@ -15,7 +15,7 @@ class FormattedOutputToHumanReadableOutputConverter(formattedOutput: FormattedOu
   val confidence = formattedOutput.confidence
   val entityString = kbpQuery.name
   val entityStringUsed = kbpQuery.entityString
-  val sourceContext = kbpQuery.corefSourceContext
+  val sourceContext = kbpQuery.corefSourceContext.mkString(" ")
   val kbSentence = KBPQuery.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId).getOrElse({"None"})
   val docId = kbpQuery.doc
   val kbTitle = KBPQuery.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
