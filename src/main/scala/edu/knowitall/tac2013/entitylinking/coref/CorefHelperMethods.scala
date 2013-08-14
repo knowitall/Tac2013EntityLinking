@@ -124,7 +124,14 @@ object CorefHelperMethods {
 	          index += 1
 	        }
 	        if(goodCandidate){
-	          return words mkString " "
+	          val candidateWords = cs.split(" ")
+	          var index = 0
+	          for(cw <- candidateWords){
+	            if(cw == words.head){
+	              return candidateWords.slice(index,candidateWords.length) mkString " "
+	            }
+	            index +=1
+	          }
 	        }
         }
       }
