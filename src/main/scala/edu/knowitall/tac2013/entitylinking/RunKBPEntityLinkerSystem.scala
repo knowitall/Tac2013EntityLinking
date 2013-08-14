@@ -11,7 +11,7 @@ import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
 import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
-
+import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
 
 object RunKBPEntityLinkerSystem {
   
@@ -24,6 +24,8 @@ object RunKBPEntityLinkerSystem {
     
   def linkQueries(queries: Seq[KBPQuery], baseDir :String = "/scratch/"): Seq[FormattedOutput] = {
     
+    val linkClassifier = new LinkClassifier()
+
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
     		new batch_match(linkerSupportPath),
@@ -35,7 +37,8 @@ object RunKBPEntityLinkerSystem {
       val entityString = identifyBestEntityStringByRules(q)
       q.entityString = entityString
       println(q.id + "\t" + q.name + "\t" + entityString)
-      linker.getBestEntity(entityString, q.corefSourceContext) match {
+      val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext) 
+      linkOpt.filter(l => linkClassifier.score(l) > 0.85) match {
 
         case None => {
           //if link is null and there is a better entity string
