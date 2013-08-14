@@ -5,8 +5,6 @@ import edu.knowitall.tool.conf.ConfidenceTrainer
 import edu.knowitall.tool.conf.ConfidenceFunction
 import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
-import weka.classifiers.Classifier
-import weka.core.Instances
 import edu.knowitall.browser.entity.EntityLink
 
 class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]] = new LinkTrainingData()) {
