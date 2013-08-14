@@ -3,8 +3,12 @@ import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.tac2013.entitylinking.SolrHelper
+import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbreviation
 
 object CorefHelperMethods {
+  
+  private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?""".r
+  
   val queryMentionMap = {
     System.err.println("Loading query to Coref String Mentions map...")
     val corefFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/corefStringMentions.txt").getPath()
@@ -149,16 +153,34 @@ object CorefHelperMethods {
     var words = List[String]()
     for(s <- str.split(" ")){
       var newS = s
-      if(!s.endsWith(".")){
+      if(!s.contains(".")){
         newS = for(c <- s) yield {
           c.toLower
         }
         newS = newS(0).toUpper + newS.tail
       }
-
         words = words :+ newS
       }
     words mkString " "
+  }
+  
+  private def expandAbbreviation(str:String) :String = {
+    val stateAbbreviationMatch = stateAbbreviationPattern.findPrefixMatchOf(str)
+    if(stateAbbreviationMatch.isDefined){
+      val abbreviation = stateAbbreviationMatch.get.group(2).toUpperCase() + 
+    		  stateAbbreviationMatch.get.group(3).toUpperCase()
+      val city = stateAbbreviationMatch.get.group(1)
+      val expandedStateAbbreviation = expandStateAbbreviation(abbreviation,city)
+      if(expandedStateAbbreviation.isDefined){
+        expandedStateAbbreviation.get
+      }
+      else{
+       str 
+      }
+    }
+    else{
+      str
+    }
   }
   private def findBestLocationString(originalString: String, candidateStrings: List[String]) :String = {
     var candidates = List[String]()
@@ -176,7 +198,7 @@ object CorefHelperMethods {
       originalString
     else{
        val candidate = candidates.head
-       locationCasing(candidate)
+       expandAbbreviation(locationCasing(candidate))
       }
   }
   private def findBestPersonString(originalString: String, candidateStrings: List[String]) :String = {
