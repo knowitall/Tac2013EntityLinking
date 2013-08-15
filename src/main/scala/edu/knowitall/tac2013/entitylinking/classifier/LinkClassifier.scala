@@ -7,7 +7,7 @@ import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
 
-class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]] = new LinkTrainingData()) {
+class LinkClassifier(val baseDir: String = "/scratch",val trainingData: Iterable[Labelled[EntityLink]] = new LinkTrainingData()) {
  
   val trainer = new BreezeLogisticRegressionTrainer(LinkFeatures.featureSet)
   
@@ -50,7 +50,7 @@ object LinkClassifierTest {
     println(allTrainingDataSet.size)
 
     val scoredTestUnflattened = for ((train, test) <- trainTestSets) yield {
-      val classifier = new LinkClassifier(train)
+      val classifier = new LinkClassifier(trainingData = train)
       val scores = test.map(l => (l, classifier.score(l.item)))
       scores
     }

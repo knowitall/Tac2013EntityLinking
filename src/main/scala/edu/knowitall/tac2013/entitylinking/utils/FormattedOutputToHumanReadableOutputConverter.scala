@@ -33,6 +33,7 @@ object FormattedOutputToHumanReadableOutputConverter{
   var outputFile = ""
   var newOutputFile = ""
   var baseDir = ""
+  var year = ""
   
   /**
    * Used to read an output file and a set of queries
@@ -45,13 +46,23 @@ object FormattedOutputToHumanReadableOutputConverter{
       arg("outputFile", "Path to the KBP formatted outputfile", {s => outputFile = s})
       arg("newOutputFile", "Path to the new human readable output file", {s => newOutputFile = s})
       arg("baseDir", "Path to the base directory with large files", {s => baseDir= s})
+      arg("year", "Year of queries to run on", {s => year =s })
     }
 
     if(!argParser.parse(args)) return
     
-    //activate maps in KBPQuery
-    KBPQuery.activate(baseDir)
     
+    if(year != "2010" &&
+        year != "2011" &&
+        year != "2012" &&
+        year != "2013"){
+      throw new Exception("Year must be 2010,2011,2012,or 2013")
+    }
+    
+    ResourceHelper.initialize(year)
+    //activate maps in KBPQuery
+    KBPQuery.activate(baseDir,year)
+    println(queryFile)
     val queries = KBPQuery.parseKBPQueries(queryFile)
     val formattedOutputLines = Source.fromFile(outputFile)(scala.io.Codec.UTF8).getLines.toList
     

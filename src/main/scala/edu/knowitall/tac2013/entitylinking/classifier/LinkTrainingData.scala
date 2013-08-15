@@ -3,7 +3,7 @@ package edu.knowitall.tac2013.entitylinking.classifier
 import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.browser.entity._
 
-class LinkTrainingData(val baseDir: String = "/scratch/") extends Iterable[Labelled[EntityLink]] {
+class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labelled[EntityLink]] {
   
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
