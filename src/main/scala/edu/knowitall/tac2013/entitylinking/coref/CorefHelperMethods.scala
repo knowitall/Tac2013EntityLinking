@@ -4,6 +4,7 @@ import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbreviation
+import edu.knowitall.tac2013.entitylinking.utils.TipsterData
 
 object CorefHelperMethods {
   
@@ -151,6 +152,13 @@ object CorefHelperMethods {
       }
     }
     
+    //finally check if the original string if prefix of an organization
+    for(cs <- candidateStrings){
+      if(cs.toLowerCase().startsWith(originalString.toLowerCase())){
+        return cs
+      }
+    }
+    
     originalString
     
   }
@@ -193,16 +201,71 @@ object CorefHelperMethods {
     var candidates = List[String]()
     val originalWords = originalString.split(" ")
     for(cs <- candidateStrings){
-      val words = cs.split(" ")
-      if( (words.length > (originalWords.length +1)) &&
-          (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
-          (words(originalWords.length) == ",")){
-        candidates  = candidates :+ words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ") 
+      val size = cs.split(" ").length
+      var index = 0
+      while(index < (size-1)){
+	      val words = cs.split(" ").drop(index)
+	      if( (words.length > (originalWords.length +1)) &&
+	          (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
+	          (words(originalWords.length) == ",")){
+	        candidates  = candidates :+ words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ") 
+	      }
+	      index += 1
       }
     }
     candidates = candidates.filter(p => (p.split(" ").length < 7))
-    if(candidates.isEmpty)
-      originalString
+    if(candidates.isEmpty){
+      if(originalString == "Richmond"){
+        
+      }
+      //check to see if state is mentioned somewhere, then build a new String with
+      //that state or country
+      val containerMap = scala.collection.mutable.Map[String,Int]()
+      for(cs <- candidateStrings){
+        if(TipsterData.stateOrProvinceSet.contains(cs.toLowerCase()) || 
+            TipsterData.countrySet.contains(cs.toLowerCase())){
+          if(TipsterData.provinceCityMap.contains(cs)){
+            val cities = TipsterData.provinceCityMap.get(cs).get
+            if(cities.contains(originalString)){
+              if(containerMap.contains(cs)){
+                containerMap += ((cs,containerMap.get(cs).get+1))
+              }
+              else{
+                containerMap += ((cs,1))
+              }
+            }
+          }
+          if(TipsterData.countryCityMap.contains(cs)){
+            val cities = TipsterData.countryCityMap.get(cs).get
+            if(cities.contains(originalString)){
+              if(containerMap.contains(cs)){
+                containerMap += ((cs,containerMap.get(cs).get+1))
+              }
+              else{
+                containerMap += ((cs,1))
+              }
+            }
+          }
+        }
+      }
+
+      if(containerMap.isEmpty){
+        originalString
+      }
+      else{
+        var largestCount =0
+        var largestContainer = ""
+        for(containerCandidate <- containerMap){
+          val container = containerCandidate._1
+          val count = containerCandidate._2
+          if(count > largestCount){
+            largestCount = count
+            largestContainer = container
+          }
+        }
+        locationCasing(originalString +", " + largestContainer)
+      }
+    }
     else{
        val candidate = candidates.head
        expandAbbreviation(locationCasing(candidate))
@@ -214,7 +277,8 @@ object CorefHelperMethods {
         val originalWords = originalString.split(" ")
         if( (words.length > originalWords.length) &&
         		( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
-        		   (words.take(originalWords.length).mkString(" ") == originalString) )){
+        		   (words.take(originalWords.length).mkString(" ") == originalString)) &&
+        		   (words.length < 4)){
           return words mkString " "
         }
       }
