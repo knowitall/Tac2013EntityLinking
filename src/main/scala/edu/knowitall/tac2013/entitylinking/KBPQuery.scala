@@ -133,7 +133,7 @@ object KBPQuery{
 	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
 	    }
-	  val corefMentionsFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/year"+"corefmentions.txt").getPath()
+	  val corefMentionsFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt").getPath()
 	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
 	  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
