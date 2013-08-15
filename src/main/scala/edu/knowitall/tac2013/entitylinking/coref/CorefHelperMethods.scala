@@ -12,42 +12,56 @@ object CorefHelperMethods {
   
   val queryMentionMap = {
     System.err.println("Loading query to Coref String Mentions map...")
-    val corefFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/corefStringMentions.txt").getPath()
-    using{scala.io.Source.fromFile(corefFile)}{ source =>
+    try{
+     val corefFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"corefStringMentions.txt").getPath()
+     Some(using{scala.io.Source.fromFile(corefFile)}{ source =>
       source.getLines.map{ line =>
         line.split("\t") match{
         	case Array(qId, e  @ _*) => {(qId,for(mention <- e) yield mention)}
         	case _ => throw new RuntimeException("Error parsing coref mentions")
         }
       } toMap
+     })
+    }
+    catch{
+      case e: Exception => {
+        None
+      }
     }
   }
   
   private val queryNamedEntityCollectionMap = {
     System.err.println("Loading query to Named Entities map...")
-    val namedEntityFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/namedEntities.txt").getPath()
-    using{scala.io.Source.fromFile(namedEntityFile)}{ 
-      source => {
-        val lines = source.getLines.toList
-        
-        val queryNamedEntityCollections = lines.sliding(4)
-        
-        queryNamedEntityCollections.map{ necLines => {
-          val firstLine = necLines(0)
-          val firstLineValues = firstLine.split("\t")
-          val qId = firstLineValues(0)
-          var qType = ""
-          if(firstLineValues.length > 1){
-            qType = firstLineValues(1)
-          }
-          val matchingNamedEntities = firstLineValues.drop(2)
-          val organizations = necLines(1).split("\t").drop(2)
-          val locations = necLines(2).split("\t").drop(2)
-          val people = necLines(3).split("\t").drop(2)
-          (qId,new NamedEntityCollection(qId,qType,matchingNamedEntities.toList,organizations.toList,locations.toList,people.toList))
-        }
-      } toMap
-    } 
+    try{
+	    val namedEntityFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+	    Some(using{scala.io.Source.fromFile(namedEntityFile)}{ 
+	      source => {
+	        val lines = source.getLines.toList
+	        
+	        val queryNamedEntityCollections = lines.sliding(4)
+	        
+	        queryNamedEntityCollections.map{ necLines => {
+	          val firstLine = necLines(0)
+	          val firstLineValues = firstLine.split("\t")
+	          val qId = firstLineValues(0)
+	          var qType = ""
+	          if(firstLineValues.length > 1){
+	            qType = firstLineValues(1)
+	          }
+	          val matchingNamedEntities = firstLineValues.drop(2)
+	          val organizations = necLines(1).split("\t").drop(2)
+	          val locations = necLines(2).split("\t").drop(2)
+	          val people = necLines(3).split("\t").drop(2)
+	          (qId,new NamedEntityCollection(qId,qType,matchingNamedEntities.toList,organizations.toList,locations.toList,people.toList))
+	        }
+	      } toMap
+	    } 
+	    })
+    }
+    catch{
+      case e: Exception => {
+        None
+      }
     }
   }
   
@@ -62,28 +76,34 @@ object CorefHelperMethods {
   def identifyBestEntityStringByLinkerScore(q: KBPQuery, linker: EntityLinker): String = {
      var bestCandidate = q.name
      var bestScore = 0.0
-     val candidates = q.name :: queryMentionMap(q.id).toList
-     val uniqueCandidates = candidates.toSet.toList
-     for(uc <- uniqueCandidates){
-          print(uc + "\t")
-          val link = linker.getBestEntity(uc,q.corefSourceContext)
-          if(link.nonEmpty){
-          println(link.get.combinedScore)
-	          if(link.get.combinedScore > bestScore){
-	            bestCandidate =uc
-	            bestScore = link.get.combinedScore
+     if(queryMentionMap.isDefined){
+         val map = queryMentionMap.get
+	     val candidates = q.name :: map.get(q.id).get.toList
+	     val uniqueCandidates = candidates.toSet.toList
+	     for(uc <- uniqueCandidates){
+	          print(uc + "\t")
+	          val link = linker.getBestEntity(uc,q.corefSourceContext)
+	          if(link.nonEmpty){
+	          println(link.get.combinedScore)
+		          if(link.get.combinedScore > bestScore){
+		            bestCandidate =uc
+		            bestScore = link.get.combinedScore
+		          }
 	          }
-          }
-          else{
-            println("null")
-          }
+	          else{
+	            println("null")
+	          }
+	     }
+	     bestCandidate
      }
-     bestCandidate
+     else{
+       bestCandidate
+     }
   }
   
   def identifyBestEntityStringByRules(q: KBPQuery): String = {
     var alternateName = q.name
-    val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id).get
+    val namedEntityCollection = queryNamedEntityCollectionMap.get.get(q.id).get
     val entityType = namedEntityCollection.qType
     if(entityType != ""){
       alternateName =

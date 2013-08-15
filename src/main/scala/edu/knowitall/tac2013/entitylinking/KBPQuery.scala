@@ -58,6 +58,7 @@ object KBPQuery{
   var kbIdTextMap :Option[Map[String,String]] = None
   var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
   var kbTitleToIdMap :Option[Map[String,String]] = None
+  var year :Option[String] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
@@ -118,7 +119,8 @@ object KBPQuery{
      kbpQueryList.toList.flatten
   }
   
-  def activate (baseDir: String) {
+  def activate (baseDir: String, year:String) {
+      this.year = Some(year)
 	  val mapFile = baseDir + "/wikimap.txt"
 	  wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
 	      Some(WikiMappingHelper.loadNameToNodeIdMap(source.getLines))
@@ -131,12 +133,11 @@ object KBPQuery{
 	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
 	    }
-	  val corefMentionsFile = getClass.getResource("corefmentions.txt").getPath()
+	  val corefMentionsFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/year"+"corefmentions.txt").getPath()
 	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
 	  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
 	  kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadKbTitleToIdMap(source.getLines))}
-
   }
 }
