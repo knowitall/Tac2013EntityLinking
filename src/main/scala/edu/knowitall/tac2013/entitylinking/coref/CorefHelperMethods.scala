@@ -7,7 +7,7 @@ import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbrevia
 
 object CorefHelperMethods {
   
-  private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?""".r
+  private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?$""".r
   
   val queryMentionMap = {
     System.err.println("Loading query to Coref String Mentions map...")
@@ -124,7 +124,14 @@ object CorefHelperMethods {
 	          index += 1
 	        }
 	        if(goodCandidate){
-	          return words mkString " "
+	          val candidateWords = cs.split(" ")
+	          var index = 0
+	          for(cw <- candidateWords){
+	            if(cw == words.head){
+	              return candidateWords.slice(index,candidateWords.length) mkString " "
+	            }
+	            index +=1
+	          }
 	        }
         }
       }
@@ -165,7 +172,7 @@ object CorefHelperMethods {
   }
   
   private def expandAbbreviation(str:String) :String = {
-    val stateAbbreviationMatch = stateAbbreviationPattern.findPrefixMatchOf(str)
+    val stateAbbreviationMatch = stateAbbreviationPattern.findFirstMatchIn(str)
     if(stateAbbreviationMatch.isDefined){
       val abbreviation = stateAbbreviationMatch.get.group(2).toUpperCase() + 
     		  stateAbbreviationMatch.get.group(3).toUpperCase()
