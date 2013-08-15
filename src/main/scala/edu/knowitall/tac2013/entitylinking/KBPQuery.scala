@@ -60,7 +60,7 @@ object KBPQuery{
   var kbTitleToIdMap :Option[Map[String,String]] = None
   var year :Option[String] = None
   
-  val corefHelper = new StanfordAnnotatorHelperMethods(false)
+  val corefHelper = new StanfordAnnotatorHelperMethods(true)
   
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
     
