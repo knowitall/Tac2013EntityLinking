@@ -29,7 +29,7 @@ object RunKBPEntityLinkerSystem {
     val linkerSupportPath = new java.io.File(baseDir)
     val linker = new EntityLinker(
     		new batch_match(linkerSupportPath),
-    		new CrosswikisCandidateFinder(linkerSupportPath, 0.01, 10),
+    		new CrosswikisCandidateFinder(linkerSupportPath, 0.00, 1),
     		new EntityTyper(linkerSupportPath)
     		)
     
@@ -38,7 +38,7 @@ object RunKBPEntityLinkerSystem {
       q.entityString = entityString
       println(q.id + "\t" + q.name + "\t" + entityString)
       val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext) 
-      linkOpt.filter(l => linkClassifier.score(l) > 0.75) match { // 0.85) match {
+      linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
 
         case None => {
           //if link is null and there is a better entity string
