@@ -45,11 +45,11 @@ object SerializeNamedEntities {
     
     def serializeNamedEntities(year: String) {
 	    val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-	    val pw = new PrintWriter(new File(".src/main/resources/edu/knowitall/tac2013/enitylinking/coref/"+year+"namedEntities.txt"))
+	    val pw = new PrintWriter(new File("./src/main/resources/edu/knowitall/tac2013/enitylinking/coref/"+year+"namedEntities.txt"))
 	    pw.close()
 	    for(q <- queries){
 	       val rawDoc = SolrHelper.getRawDoc(q.doc)
-	       val fw = new FileWriter(".src/main/resources/edu/knowitall/tac2013/enitylinking/coref/"+year+"namedEntities.txt",true)
+	       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/enitylinking/coref/"+year+"namedEntities.txt",true)
 	    	  fw.write(q.id)
 	    	  val entityTypeList  = KBPQuery.corefHelper.getMatchingNamedEntities(rawDoc,q.begOffset)
 	    	  for(entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)){
