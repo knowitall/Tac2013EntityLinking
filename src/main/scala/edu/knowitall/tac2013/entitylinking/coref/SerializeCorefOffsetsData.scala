@@ -31,7 +31,12 @@ object SerializeCorefOffsetsData {
 	    for(q <- queries){
 	       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt",true)
 	    	  fw.write(q.id)
-	          val corefIntervals = KBPQuery.corefHelper.getCorefIntervals(SolrHelper.getRawDoc(q.doc),q.begOffset)
+	    	  var offset = q.begOffset
+	    	  val rawDoc = SolrHelper.getRawDoc(q.doc)
+	    	  if(q.begOffset == -1){
+	    	    offset = rawDoc.indexOf(q.name)
+	    	  }
+	          val corefIntervals = KBPQuery.corefHelper.getCorefIntervals(rawDoc,offset)
 	          for(cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)){
 	             fw.write("\t" +cmi)
 	          }
