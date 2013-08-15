@@ -53,7 +53,7 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
       parSum.toDouble / cluster.size.toDouble
     }
     
-    "%.03f" format entitySums.sum.toDouble / entitySums.size.toDouble
+    entitySums.sum.toDouble / entitySums.size.toDouble
   }
   
   def b3Recall = {
@@ -66,7 +66,7 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
       parSum.toDouble / cluster.size.toDouble
     }
     
-    "%.03f" format entitySums.sum.toDouble / entitySums.size.toDouble
+    entitySums.sum.toDouble / entitySums.size.toDouble
   }
   
   def benchmarkOutput: Seq[String] = {
@@ -120,6 +120,13 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
       }
     }
     
+    val prec = b3Precision
+    val rec  = b3Recall
+    val f1 = (2*prec*rec)/(prec + rec)
+    val precStr = "%.03f" format prec
+    val recStr  = "%.03f" format rec
+    val f1Str   = "%.03f" format f1
+    
     comparisons ++ Seq("", "SUMMARY",
         s"Number of exact KB ID matches:    \t$numCorrect", 
         s"Number of NILXXX-NILYYY matches:  \t$numNilOk", 
@@ -127,8 +134,9 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
         s"Number of Unmerged NILs:          \t$numWrongNil",
         s"Number of NIL-KB mismatches:      \t$numKbExp",
         s"Number of KB-NIL mismatches:      \t$numNilExp",
-        s"B^3 Prec:                         \t$b3Precision",
-        s"B^3 Recall:                       \t$b3Recall")
+        s"B^3 Prec:                         \t$precStr",
+        s"B^3 Recall:                       \t$recStr",
+        s"B^3 F1:                           \t$f1Str")
   }
   
   def kbLinkReport(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
