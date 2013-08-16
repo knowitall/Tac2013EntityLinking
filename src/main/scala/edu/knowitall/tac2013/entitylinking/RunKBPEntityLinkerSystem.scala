@@ -23,7 +23,7 @@ object RunKBPEntityLinkerSystem {
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
 
-  val linkClassifier = new LinkClassifier()
+  val linkClassifier = new LinkClassifier(baseDir)
 
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
