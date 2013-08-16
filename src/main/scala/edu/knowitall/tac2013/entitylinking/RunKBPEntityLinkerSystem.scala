@@ -22,45 +22,47 @@ object RunKBPEntityLinkerSystem {
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
     
-  def linkQueries(queries: Seq[KBPQuery], baseDir :String = "/scratch/"): Seq[FormattedOutput] = {
-    
-    val linkClassifier = new LinkClassifier()
+  val linkClassifier = new LinkClassifier()
 
-    val linkerSupportPath = new java.io.File(baseDir)
-    val linker = new EntityLinker(
+  val linkerSupportPath = new java.io.File(baseDir)
+  val linker = new EntityLinker(
     		new batch_match(linkerSupportPath),
     		new CrosswikisCandidateFinder(linkerSupportPath, 0.00, 1),
     		new EntityTyper(linkerSupportPath)
-    		)
-    
-    for(q <- queries) yield {
-      val entityString = identifyBestEntityStringByRules(q)
-      q.entityString = entityString
-      println(q.id + "\t" + q.name + "\t" + entityString)
-      val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext) 
-      linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
+  		)
+  
+  def linkQueries(queries: Seq[KBPQuery]): Seq[FormattedOutput] = {
 
-        case None => {
-          //if link is null and there is a better entity string
-          //than the one given in KBP check KB for
-          var answer: Option[FormattedOutput] = None
-          if (q.entityString != q.name) {
-            val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
-            if (kbIdOption.isDefined) {
-              answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
-            }
-          }
-          if (answer.isDefined) {
-            answer.get
-          } else {
-            new FormattedOutput(q.id, nextCluster, 0.0)
+    for(q <- queries) yield linkQuery(q, linker, linkClassifier)
+  }
+
+  def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
+    val entityString = identifyBestEntityStringByRules(q)
+    q.entityString = entityString
+    println(q.id + "\t" + q.name + "\t" + entityString)
+    val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
+    linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
+
+      case None => {
+        //if link is null and there is a better entity string
+        //than the one given in KBP check KB for
+        var answer: Option[FormattedOutput] = None
+        if (q.entityString != q.name) {
+          val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
+          if (kbIdOption.isDefined) {
+            answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
           }
         }
-        case Some(link) => {
-          val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-          //new FormattedOutput(q.id, nodeId.getOrElse(fbidCluster(link.entity.fbid)), link.combinedScore)
-          new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
+        if (answer.isDefined) {
+          answer.get
+        } else {
+          new FormattedOutput(q.id, nextCluster, 0.0)
         }
+      }
+      case Some(link) => {
+        val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
+        //new FormattedOutput(q.id, nodeId.getOrElse(fbidCluster(link.entity.fbid)), link.combinedScore)
+        new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
     }
   }
