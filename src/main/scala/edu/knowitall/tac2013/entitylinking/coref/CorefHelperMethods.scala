@@ -5,6 +5,7 @@ import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbreviation
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData
+import java.io.File
 
 object CorefHelperMethods {
   
@@ -32,8 +33,23 @@ object CorefHelperMethods {
   
   private val queryNamedEntityCollectionMap = {
     System.err.println("Loading query to Named Entities map...")
+    var namedEntityFile = ""
     try{
-	    val namedEntityFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+      namedEntityFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+    }
+    catch{
+      case e: Exception => {
+        try{
+          namedEntityFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+        }
+        catch{
+          case e: Exception => {
+            None
+          }
+        }
+      }
+    }
+    try{
 	    Some(using{scala.io.Source.fromFile(namedEntityFile)}{ 
 	      source => {
 	        val lines = source.getLines.toList
