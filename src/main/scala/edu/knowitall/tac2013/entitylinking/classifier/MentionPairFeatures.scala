@@ -14,7 +14,16 @@ import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
 
 class Mention(val query: KBPQuery, val output: FormattedOutputToHumanReadableOutputConverter)
 
-class MentionPair(val m1: Mention, val m2: Mention)
+class MentionPair(val m1: Mention, val m2: Mention) {
+  
+  import MentionPairFeatures.cosineSimilarity
+  
+  lazy val standardContextSim = cosineSimilarity(m1.query.sourceContext, m2.query.sourceContext)
+  lazy val wideContextSim = cosineSimilarity(m1.query.sourceWideContext, m2.query.sourceWideContext)
+  lazy val corefContextSim = cosineSimilarity(m1.query.sourceWideContext, m2.query.sourceWideContext)
+  lazy val alternateStringSim = JaroWinklerMetric.compare(m1.output.entityStringUsed, m2.output.entityStringUsed).getOrElse(0.0)
+  lazy val entityStringSim = JaroWinklerMetric.compare(m1.query.name, m2.query.name).getOrElse(0.0)
+}
 
 object MentionPairFeatures {
 
@@ -22,35 +31,35 @@ object MentionPairFeatures {
   
   object StandardContextSim extends MentionPairFeature("Std Context Similarity") {
     def apply(pair: MentionPair): Double = {
-      cosineSimilarity(pair.m1.query.sourceContext, pair.m2.query.sourceContext)
+      pair.standardContextSim
     }
   }
   
   object WideContextSim extends MentionPairFeature("Wide Context Similarity") {
     def apply(pair: MentionPair): Double = {
-      cosineSimilarity(pair.m1.query.sourceWideContext, pair.m2.query.sourceWideContext)
+      pair.wideContextSim
     }
   }
   
   object CorefContextSim extends MentionPairFeature("Coref Context Similarity") {
     def apply(pair: MentionPair): Double = {
-      cosineSimilarity(pair.m1.query.sourceWideContext, pair.m2.query.sourceWideContext)
+      pair.corefContextSim
     }
   }
   
   object AlternateStringSim extends MentionPairFeature("String Similarity of Alternates") {
     def apply(pair: MentionPair): Double = {
-      JaroWinklerMetric.compare(pair.m1.output.entityStringUsed, pair.m2.output.entityStringUsed).getOrElse(0.0)
+      pair.alternateStringSim
     }
   }
   
   object EntityStringSim extends MentionPairFeature("String Similarity of Given Entity String") {
     def apply(pair: MentionPair): Double = {
-      JaroWinklerMetric.compare(pair.m1.query.name, pair.m2.query.name).getOrElse(0.0)
+      pair.entityStringSim
     }
   }
   
-  private def features = Seq(StandardContextSim, WideContextSim, CorefContextSim)
+  private def features = Seq(StandardContextSim, WideContextSim, CorefContextSim, AlternateStringSim, EntityStringSim)
   
   private def sortedFeatureMap = SortedMap.empty[String, MentionPairFeature] ++ features.map(f => (f.name, f)).toMap
   
