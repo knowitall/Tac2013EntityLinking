@@ -22,6 +22,8 @@ object WikiMappingHelper {
   val entityTextRegex = """id="([^"]+)"[\w\W]+?<wiki_text><!\[CDATA\[([\w\W]+?)\]\]></wiki_text>""".r
   
   val entityTitleRegex = """id="([^"]+)" name="([^"]+)">""".r
+  
+  val entityTypeRegex = """id="([^"]+)" name=[^>]+>\n<facts class="([^>]+?)">""".r
 
   
   val sentencer = new OpenNlpSentencer()
@@ -39,7 +41,7 @@ object WikiMappingHelper {
     else {
       val inputs = FileUtils.getFilesRecursive(new File(inputFile))
       val nsTime = Timing.time {
-        getTitles(inputs, output) 
+        getTypes(inputs, output) 
       }
       System.err.println(s"Processed ${entityCounter.get} entities in ${Timing.Seconds.format(nsTime)}.")
     }
@@ -61,6 +63,15 @@ object WikiMappingHelper {
      val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
      val idTitleTuples = for( entityTitleRegex(id,title) <- entityTitleRegex.findAllIn(lines)) yield  (id,title)
      for(t <- idTitleTuples) output.println(t._1 +"\t" + t._2)
+    }
+    output.close()
+  }
+  
+  def getTypes(files: Iterator[File], output: PrintStream){
+    for(file <- files){
+     val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
+     val idWikiTypeTuples = for( entityTypeRegex(id,wikiType) <- entityTypeRegex.findAllIn(lines)) yield  (id,wikiType)
+     for(t <- idWikiTypeTuples) output.println(t._1 +"\t" + t._2)
     }
     output.close()
   }
@@ -131,6 +142,17 @@ object WikiMappingHelper {
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, title) => (title, id)
+        case _ => throw new RuntimeException(s"Error parsing entity info: $line")
+      }  
+    } toMap
+  }
+  
+  def loadKbIdToWikiTypeMap(lines: Iterator[String]): Map[String, String] = {
+    System.err.println("Loading KB ID to wikiTypeMap map...")
+    val tabSplit = "\t".r
+    lines.map { line =>
+      tabSplit.split(line) match {
+        case Array(id, wikiType) => (id, wikiType)
         case _ => throw new RuntimeException(s"Error parsing entity info: $line")
       }  
     } toMap

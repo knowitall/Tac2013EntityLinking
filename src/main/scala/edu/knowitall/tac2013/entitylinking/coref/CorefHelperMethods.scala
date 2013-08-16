@@ -60,7 +60,7 @@ object CorefHelperMethods {
 	          val firstLine = necLines(0)
 	          val firstLineValues = firstLine.split("\t")
 	          val qId = firstLineValues(0)
-	          var qType = ""
+	          var qType = "None"
 	          if(firstLineValues.length > 1){
 	            qType = firstLineValues(1)
 	          }
@@ -86,6 +86,15 @@ object CorefHelperMethods {
       val organizations: List[String],
       val locations: List[String],
       val people: List[String]){
+  }
+  
+  def getStanfordNERType(queryId: String) = {
+    if(queryNamedEntityCollectionMap.get.get(queryId).isDefined){
+      queryNamedEntityCollectionMap.get.get(queryId).get.qType
+    }
+    else{
+      "None"
+    }
   }
   
   
