@@ -10,6 +10,7 @@ fork in run := true
 
 libraryDependencies ++= Seq(
   "com.github.scopt" %% "scopt" % "2.1.0",
+  "edu.washington.cs.knowitall.taggers" %% "taggers" % "0.2",
   "edu.washington.cs.knowitall.openie" %% "openie-linker" % "1.1-SNAPSHOT",
   "edu.washington.cs.knowitall.nlptools" %% "nlptools-sentence-opennlp" % "2.4.2",
   "edu.stanford.nlp" % "stanford-corenlp" % "1.3.5",
