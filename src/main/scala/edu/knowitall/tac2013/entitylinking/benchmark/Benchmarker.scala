@@ -5,6 +5,7 @@ import edu.knowitall.tac2013.entitylinking.FormattedOutput
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import scopt.OptionParser
 import java.io.PrintWriter
+import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 
 sealed trait SortType
 case object SystemClusterSort extends SortType
@@ -167,8 +168,10 @@ object Benchmarker {
     var benchmarkSort = false
     var querySort = false
     var outputFile = ""
+    var year = ""
       
     val parser = new OptionParser("Benchmarker") {
+      arg("year", "Year of queries to run on", {s => year =s })
       opt("basedir", "basedir", { s => baseDir = s })
       opt("systemSort", "Sort queries by system cluster id. (default)", { systemSort = true})
       opt("benchmarkSort", "Sort queries by benchmark set cluster id.", { benchmarkSort = true})
@@ -178,10 +181,18 @@ object Benchmarker {
     
     if (!parser.parse(args)) return
     
-    KBPQuery.activate(baseDir)
+    if(year != "2010" &&
+        year != "2011" &&
+        year != "2012" &&
+        year != "2013"){
+      throw new Exception("Year must be 2010,2011,2012,or 2013")
+    }
     
-    val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath())
-    val answerUrl = getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_query_types.tab")
+    ResourceHelper.initialize(year)
+    KBPQuery.activate(baseDir,year)
+    
+    val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
+    val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries),queries)
     

@@ -18,7 +18,7 @@ import edu.knowitall.tool.conf.Labelled
 
 object MentionPairTrainingData extends Iterable[Labelled[MentionPair]] {
 
-  KBPQuery.activate("/scratch/")
+  KBPQuery.activate("/scratch/", "2012")
     
   private val linker = RunKBPEntityLinkerSystem.linker
   

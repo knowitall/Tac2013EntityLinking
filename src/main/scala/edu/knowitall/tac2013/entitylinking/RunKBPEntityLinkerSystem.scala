@@ -12,6 +12,7 @@ import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
 import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
+import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 
 object RunKBPEntityLinkerSystem {
   
@@ -21,7 +22,7 @@ object RunKBPEntityLinkerSystem {
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
-    
+
   val linkClassifier = new LinkClassifier()
 
   val linkerSupportPath = new java.io.File(baseDir)
@@ -106,18 +107,29 @@ object RunKBPEntityLinkerSystem {
  
     var outputStream = System.out
     var humanReadable = false
-    
+    var year = ""
+      
     val argParser = new OptionParser() {
       arg("baseDir", "Path to base directory with entitylinking files.", { s => baseDir = s })
+      arg("year", "Year of queries to run on", {s => year =s })
       opt("outputFile", "Path to output file, default stdout", { s => outputStream = new java.io.PrintStream(s, "UTF8") })
       opt("humanReadable", "Produce detailed human readable output (instead of submission format)", { humanReadable =  true})
     }
 
     if(!argParser.parse(args)) return
     
-    KBPQuery.activate(baseDir)
+    if(year != "2010" &&
+        year != "2011" &&
+        year != "2012" &&
+        year != "2013"){
+      throw new Exception("Year must be 2010,2011,2012,or 2013")
+    }
     
-    val queries = parseKBPQueries(getClass.getResource("tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    
+    ResourceHelper.initialize(year)
+    KBPQuery.activate(baseDir,year)
+    
+    val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     val answers = clusterNils(linkQueries(queries),queries)
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers

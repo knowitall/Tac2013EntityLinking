@@ -24,7 +24,7 @@ object MentionPairClassifierTest {
       val shuffled = scala.util.Random.shuffle(MentionPairTrainingData)
       val negative = shuffled.filter(_.label == false)
       val positive = shuffled.filter(_.label == true)
-      positive ++ negative.take(1000)
+      positive ++ negative.take(2000)
     } toSet
 
     val splits = 10
