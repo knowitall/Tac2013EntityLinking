@@ -18,7 +18,9 @@ libraryDependencies ++= Seq(
   "edu.washington.cs.knowitall.stanford-corenlp" % "stanford-dcoref-models" % "1.3.5",
   "edu.washington.cs.knowitall.stanford-corenlp" % "stanford-parse-models" % "1.3.5",
   "jp.sf.amateras.solr.scala" %% "solr-scala-client" % "0.0.8",
-  "edu.washington.cs.knowitall.nlptools" %% "nlptools-conf-breeze" % "2.4.2"
+  "edu.washington.cs.knowitall.nlptools" %% "nlptools-conf-breeze" % "2.4.2",
+  "edu.washington.cs.knowitall.nlptools" %% "nlptools-postag-clear" % "2.4.2",
+  "com.rockymadden.stringmetric" % "stringmetric-core" % "0.25.3"
 )
 
 resolvers ++= Seq(
