@@ -143,7 +143,7 @@ object KBPQuery{
 	  }
 	  catch{
 	    case e: Exception => {
-	      corefMentionsFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref"+year+"corefmentions.txt").getPath()
+	      corefMentionsFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt").getPath()
 	    }
 	  }
 	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
