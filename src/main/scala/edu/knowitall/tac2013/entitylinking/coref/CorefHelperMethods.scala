@@ -31,14 +31,19 @@ object CorefHelperMethods {
     }
   }
   
-  private val queryNamedEntityCollectionMap = {
+  val queryNamedEntityCollectionMap2011 = loadQueryNamedEntityCollectionMap("2011")
+  val queryNamedEntityCollectionMap2012 = loadQueryNamedEntityCollectionMap("2012")
+  private val queryNamedEntityCollectionMap = loadQueryNamedEntityCollectionMap(KBPQuery.year.get)
+  
+  private def loadQueryNamedEntityCollectionMap(year: String): Option[Map[String,NamedEntityCollection]] = {
     System.err.println("Loading query to Named Entities map...")
     var namedEntityFile = ""
     try{
-      namedEntityFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+      namedEntityFile = getClass.getResource(year+"namedEntities.txt").getPath()
     }
     catch{
       case e: Exception => {
+        System.err.println("Error loading "+KBPQuery.year.getOrElse({"noyear"})+"namedEntities.txt")
         try{
           namedEntityFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
         }
@@ -81,16 +86,22 @@ object CorefHelperMethods {
     }
   }
   
-  private class NamedEntityCollection(val qId:String, val qType:String,
+  class NamedEntityCollection(val qId:String, val qType:String,
       val matchingNamedEntities: List[String],
       val organizations: List[String],
       val locations: List[String],
       val people: List[String]){
   }
   
-  def getStanfordNERType(queryId: String) = {
-    if(queryNamedEntityCollectionMap.get.get(queryId).isDefined){
-      queryNamedEntityCollectionMap.get.get(queryId).get.qType
+  def getStanfordNERType(queryId: String, year: String) = {
+    val queryNamedEntityCollectionMap = year match{
+      case "2011" => { Some(queryNamedEntityCollectionMap2011)}
+      case "2012" => { Some(queryNamedEntityCollectionMap2012)}
+      case _ => None
+    }
+
+    if(queryNamedEntityCollectionMap.get.get.get(queryId).isDefined){
+      queryNamedEntityCollectionMap.get.get.get(queryId).get.qType
     }
     else{
       "None"
@@ -127,14 +138,29 @@ object CorefHelperMethods {
   }
   
   def identifyBestEntityStringByRules(q: KBPQuery): String = {
+    //check sports classifier to override location possibilities..
+    val sportsSenseOption = q.sportsSense
+    val couldBeLocation = sportsSenseOption match{
+      case Some(true) => {false}
+      case Some(false) => {true}
+      case None => {true}
+    }
+    println(q.name + "could be location:" + couldBeLocation)
     var alternateName = q.name
     val namedEntityCollection = queryNamedEntityCollectionMap.get.get(q.id).get
     val entityType = namedEntityCollection.qType
-    if(entityType != ""){
+    if(entityType != "None"){
       alternateName =
       entityType match{
         case "ORGANIZATION" => { findBestOrganizationString(q.name.trim(),namedEntityCollection.organizations)}
-        case "LOCATION" => {findBestLocationString(q.name.trim(),namedEntityCollection.locations)}
+        case "LOCATION" => {
+        	if(couldBeLocation){
+        	  findBestLocationString(q.name.trim(),namedEntityCollection.locations)
+        	}
+        	else{
+        	  q.name
+        	}
+        	}
         case "PERSON" => {findBestPersonString(q.name.trim(),namedEntityCollection.people)}
       }
     }
@@ -142,7 +168,9 @@ object CorefHelperMethods {
       case q.name => {
         alternateName = findBestOrganizationString(q.name,namedEntityCollection.organizations)
         if(alternateName == q.name){
-          alternateName = findBestLocationString(q.name,namedEntityCollection.locations)
+          if(couldBeLocation){
+            alternateName = findBestLocationString(q.name,namedEntityCollection.locations)
+          }
         }
         if(alternateName == q.name){
           alternateName = findBestPersonString(q.name,namedEntityCollection.people)
@@ -208,7 +236,7 @@ object CorefHelperMethods {
     
   }
   
-  private def locationCasing(str: String) :String ={
+  def locationCasing(str: String) :String ={
     println("Doing Location Casing On :" + str)
     var words = List[String]()
     for(s <- str.split(" ")){

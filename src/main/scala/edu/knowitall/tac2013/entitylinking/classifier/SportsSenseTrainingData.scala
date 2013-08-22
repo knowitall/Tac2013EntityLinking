@@ -10,6 +10,7 @@ import breeze.classify.NaiveBayes
 import breeze.data.Example
 import breeze.linalg.Counter
 import edu.knowitall.tool.conf.Labelled
+import edu.knowitall.tac2013.entitylinking.SolrHelper
 
 object SportsSenseTrainingData {
   
@@ -21,7 +22,6 @@ object SportsSenseTrainingData {
   }
   
   private def getData(baseDir: String, year: String, training: Boolean) : List[SportsSenseInstance] = {
-    KBPQuery.activate(baseDir, year)
     val queries = KBPQuery.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     var dataList = List[SportsSenseInstance]()
     
@@ -53,11 +53,13 @@ object SportsSenseTrainingData {
     	  	}
       }
     }
-    KBPQuery.deactivate()
     dataList.toList
   }
   
   def getTrainingData(baseDir : String, year: String) : Iterable[Labelled[SportsSenseInstance]] = {
+    KBPQuery.deactivate()
+    KBPQuery.activate(baseDir, year)
+
     
     val trainingList = getData(baseDir,year,true)
     
@@ -66,7 +68,7 @@ object SportsSenseTrainingData {
     for(trainingInstance <- trainingList){
       val label = trainingInstance.hasSportsSense.get
       val id = trainingInstance.kbpQuery.id
-      val context = trainingInstance.kbpQuery.sourceWideContext
+      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc)
       val counter = getContextCounter(context)
       val ex = Example(label,counter)
       exList = ex :: exList
@@ -75,6 +77,7 @@ object SportsSenseTrainingData {
     for( ssi <- trainingList) yield {
       Labelled(ssi.hasSportsSense.get,ssi)
     }
+
   }
   
   def getNBModel(trainingList: List[SportsSenseInstance]): breeze.classify.NaiveBayes[Boolean,String] ={
@@ -83,7 +86,7 @@ object SportsSenseTrainingData {
     for(trainingInstance <- trainingList){
       val label = trainingInstance.hasSportsSense.get
       val id = trainingInstance.kbpQuery.id
-      val context = trainingInstance.kbpQuery.sourceWideContext
+      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc)
       val counter = getContextCounter(context)
       val ex = Example(label,counter)
       exList = ex :: exList
@@ -121,7 +124,7 @@ object SportsSenseTrainingData {
     var predictions = 0.0
     for(testInstance <- testData){
       val query = testInstance.kbpQuery
-      val features = getContextCounter(query.sourceWideContext)
+      val features = getContextCounter(query.sourceContext)
       val trueLabel = testInstance.hasSportsSense.get
       
       if(trueLabel == nbClassifier.classify(features)){
@@ -154,7 +157,7 @@ object SportsSenseTrainingData {
   
   
   def getContextCounter(context: String): Counter[String,Double] = {
-    val words = breeze.text.tokenize.PTBTokenizer.apply(context)
+    val words = breeze.text.tokenize.PTBTokenizer.apply(context).filter(p => p.forall(p => p.isLetter && p.isLower))
     val noStopWords = words.filter(p => !stopWords.contains(p))
     val p = breeze.text.analyze.PorterStemmer
     val c = Counter[String,Double]()	
@@ -163,6 +166,5 @@ object SportsSenseTrainingData {
       c += Counter(stemmed -> (1.0/noStopWords.size))
     }
     c
-    
   }
 }

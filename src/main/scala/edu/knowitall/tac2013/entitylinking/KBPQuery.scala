@@ -13,6 +13,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
   
   var entityString = name
+  var sportsSense : Option[Boolean] = None
   
   
   private def getSourceContext(): String = {
@@ -35,8 +36,8 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   val sourceContext = getSourceContext()
   val sourceWideContext = getWideContext()
-  lazy val corefSourceContext = getContextOfAllMentions()
-  lazy val stanfordNERType = CorefHelperMethods.getStanfordNERType(id)
+  val corefSourceContext = getContextOfAllMentions()
+  val stanfordNERType = CorefHelperMethods.getStanfordNERType(id,KBPQuery.year.get)
   
   
   def trimSourceContext():String = {

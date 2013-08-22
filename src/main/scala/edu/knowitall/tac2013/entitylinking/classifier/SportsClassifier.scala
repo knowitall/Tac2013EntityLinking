@@ -8,13 +8,22 @@ import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
 import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseTrainingData.SportsSenseInstance
 import scala.util.Random
+import edu.knowitall.tac2013.entitylinking.SolrHelper
+import java.io.PrintWriter
+import java.io.File
+import java.io.Writer
+import java.io.FileOutputStream
+import breeze.classify.NaiveBayes
+import java.io.FileInputStream
+import org.apache.commons.io.IOUtils
+import org.apache.commons.io.FileUtils
 
 class SportsClassifier(val trainingData: Iterable[Labelled[SportsSenseInstance]]) {
   
     val trainer = new BreezeLogisticRegressionTrainer(SportsSenseFeatures.featureSet)
   
     val classifier = trainer.train(trainingData)
-  
+    
     def score(ssi: SportsSenseInstance): Double = classifier(ssi) 
 }
 
@@ -23,39 +32,107 @@ object SportsClassifier{
   
   def main(args: Array[String]){
     val baseDir = args(0)
-    val allData = Random.shuffle(SportsSenseTrainingData.getTrainingData(baseDir, "2011").toList ::: (SportsSenseTrainingData.getTrainingData(baseDir, "2012").toList))
-    val allDataSize = allData.size
-    val testDataSize = math.ceil(allDataSize * .2).toInt
-    val trainingData = allData.drop(testDataSize).toIterable
-    val testData = allData.take(testDataSize).toIterable
-    val naiveBayesModelData = allData.take(math.ceil(allDataSize * .5).toInt).toIterable
+//    val allData = Random.shuffle(SportsSenseTrainingData.getTrainingData(baseDir, "2011").toList ::: (SportsSenseTrainingData.getTrainingData(baseDir, "2012").toList))
+//    val allDataSize = allData.size
+//    val testDataSize = math.ceil(allDataSize * .1).toInt
+//    val trainingData = allData.drop(testDataSize).toIterable
+//    val testData = allData.take(testDataSize).toIterable
+//    val naiveBayesModelData = allData.drop(math.ceil(allDataSize * .5).toInt).toIterable
+//    
+//    println("Training Data SIze = " + allData.drop(testDataSize).size)
+//    println("Test Data Size = " + testDataSize)
+//    println("NB Model Data Size = " + (math.ceil(allDataSize * .5)))
     
+    var nbModelOption : Option[NaiveBayes[Boolean,String]] = None
+//    val sportsNaiveBayesModelFile = new File("sportsNaiveBayes.model")
+//    if(!sportsNaiveBayesModelFile.exists()){
+//	    nbModelOption = Some(SportsSenseTrainingData.getNBModel(naiveBayesModelData))
+//	    val modelWriter = new FileOutputStream(sportsNaiveBayesModelFile);
+//	    modelWriter.write(scala.util.Marshal.dump(nbModelOption.get));
+//    }
+//    else{
+      nbModelOption = Some(scala.util.Marshal.load[breeze.classify.NaiveBayes[Boolean,String]](FileUtils.readFileToByteArray(new File("sportsNaiveBayes.model"))))
+//    }
     
-    val nbModel = SportsSenseTrainingData.getNBModel(naiveBayesModelData)
-    for(trainingInstance <- trainingData ){
-      trainingInstance.item.naiveBayesScore = Some(nbModel.scores(
-          SportsSenseTrainingData.getContextCounter(trainingInstance.item.kbpQuery.sourceWideContext))
-          (true))
-    }
-    for(testInstance <- testData ){
-      testInstance.item.naiveBayesScore = Some(nbModel.scores(
-          SportsSenseTrainingData.getContextCounter(testInstance.item.kbpQuery.sourceWideContext))
-          (true))
-    }
+    val nbModel = nbModelOption.get
     
-    val classifier = new SportsClassifier(trainingData)
+
+//    
+//    for(trainingInstance <- trainingData ){
+//      trainingInstance.item.naiveBayesScore = Some(nbModel.scores(
+//          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc)))
+//          (true))
+//    }
+//    for(testInstance <- testData ){
+//      testInstance.item.naiveBayesScore = Some(nbModel.scores(
+//          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(testInstance.item.kbpQuery.doc)))
+//          (true))
+//    }
+//    
+//    val classifier = new SportsClassifier(trainingData)
     
-    var classifyOutput = List[(String,Boolean,Double,Double)]()
-    for(testInstance <- testData){
-      val trueLabel = testInstance.label
-      val score = classifier.score(testInstance.item)
-      val confidence =  classifier.classifier.getConf(testInstance.item)
-      classifyOutput = (testInstance.item.kbpQuery.name,trueLabel,score,confidence) :: classifyOutput
-      //println(testInstance.item.kbpQuery.name +"\t" + trueLabel +"\t" + score + "\t" + confidence)
+    val sportsClassifier2012file = new File("sportsClassifier2012.model")
+    if(!sportsClassifier2012file.exists()){
+      println("Trying to save model")
+      val trainingData2012 =SportsSenseTrainingData.getTrainingData(baseDir, "2012")
+        //add naiveBayes scores as a feature to training set
+	  for(trainingInstance <- trainingData2012 ){
+	    trainingInstance.item.naiveBayesScore = Some(nbModel.scores(
+	        SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc)))
+	        (true))
+	  }
+      val classifier2012 = new SportsClassifier(trainingData2012)
+      val pw = new PrintWriter(sportsClassifier2012file)
+      classifier2012.classifier.save(pw)
+      pw.close()
     }
-    for( inst <- classifyOutput.toList.toSeq.sortBy(f => f._3)){
-      println(inst._1 +"\t" + inst._2 +"\t" + inst._3 + "\t" + inst._4)
+    else{
+      
     }
+
+    
+//    var classifyOutput = List[(String,Boolean,Double,String,String,String)]()
+//    for(testInstance <- testData){
+//      val trueLabel = testInstance.label
+//      val score = classifier.score(testInstance.item)
+//      val confidence =  classifier.classifier.getConf(testInstance.item)
+//      val kbpQuery = testInstance.item.kbpQuery
+//      classifyOutput = (kbpQuery.name,trueLabel,score,kbpQuery.sourceContext,kbpQuery.stanfordNERType,kbpQuery.id) :: classifyOutput
+//      //println(testInstance.item.kbpQuery.name +"\t" + trueLabel +"\t" + score + "\t" + confidence)
+//    }
+//    for( inst <- classifyOutput.toList.toSeq.sortBy(f => f._3)){
+//      println(inst._1 +"\t" + inst._2 +"\t" + inst._3 + "\t" + inst._4 +"\t" + inst._5 +"\t" + inst._6)
+//    }
+//    
+//    
+//    def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
+//
+//      var result: List[Double] = Nil
+//
+//      var total = 0
+//      var correct = 0
+//
+//      for (label <- sorted) {
+//        total += 1
+//        if (label) {
+//          correct += 1
+//        }
+//        result ::= (correct.toDouble / total.toDouble)
+//      }
+//      result.reverse.tails.filter(_.nonEmpty).toSeq.map { tail => tail.max }
+//    }
+//    
+//    val sortedClassifyOutput = classifyOutput.toList.toSeq.sortBy(f => f._3).toList
+//    val sortedBooleans = sortedClassifyOutput.map(f => f._2)
+//
+//    val precsItems = precRecall(sortedBooleans).zip(classifyOutput)
+//
+//    precsItems.zipWithIndex foreach { case ((prec, (name,label,score,sourcecontext,nerType,id)), index) => 
+//      val recall = index.toDouble / precsItems.size.toDouble
+//      val recString = "%.02f".format(recall)
+//      val precString = "%.02f".format(prec)
+//      println(precString + "\t" + recString + "\t" + score)
+//    }
     
   }
   

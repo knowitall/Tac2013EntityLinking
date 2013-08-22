@@ -1,0 +1,11 @@
+If the context includes a fully specified location string	4.569278031055005
+Intercept	4.569278031055005
+NER location	-0.39482087269853183
+NER none	0.0867035262139721
+NER organization	0.6060026207941104
+NER person	0.0
+Ratio of Organizations With Locations to Other Organizations	0.4525317085260739
+docsim score	1.7701132116950955
+location variance	-0.7755710916707931
+proximity of preposition in	-0.5251850058877456
+score pattern matches	0.0

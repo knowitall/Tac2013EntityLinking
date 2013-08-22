@@ -194,7 +194,7 @@ object Benchmarker {
     val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries),queries)
+    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year),queries)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
