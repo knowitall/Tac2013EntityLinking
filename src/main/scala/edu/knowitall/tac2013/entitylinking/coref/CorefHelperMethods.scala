@@ -287,41 +287,23 @@ object CorefHelperMethods {
       }
     }
     candidates = candidates.filter(p => (p.split(" ").length < 7))
+    candidates = candidates.filter(p => (isValidLocation(p)))
     if(candidates.isEmpty){
-      if(originalString == "Richmond"){
-        
-      }
       //check to see if state is mentioned somewhere, then build a new String with
       //that state or country
       val containerMap = scala.collection.mutable.Map[String,Int]()
       for(cs <- candidateStrings){
-        if(TipsterData.stateOrProvinceSet.contains(cs.toLowerCase()) || 
-            TipsterData.countrySet.contains(cs.toLowerCase())){
-          if(TipsterData.provinceCityMap.contains(cs)){
-            val cities = TipsterData.provinceCityMap.get(cs).get
-            if(cities.contains(originalString)){
-              if(containerMap.contains(cs)){
-                containerMap += ((cs,containerMap.get(cs).get+1))
-              }
-              else{
-                containerMap += ((cs,1))
-              }
-            }
-          }
-          if(TipsterData.countryCityMap.contains(cs)){
-            val cities = TipsterData.countryCityMap.get(cs).get
-            if(cities.contains(originalString)){
-              if(containerMap.contains(cs)){
-                containerMap += ((cs,containerMap.get(cs).get+1))
-              }
-              else{
-                containerMap += ((cs,1))
-              }
-            }
+        if(locationContainsLocation(cs,originalString)){
+          if(cs != originalString){
+	          if(containerMap.contains(cs)){
+	              containerMap += ((cs,containerMap.get(cs).get+1))
+	          }
+	          else{
+	              containerMap += ((cs,1))           
+	          }
           }
         }
       }
-
       if(containerMap.isEmpty){
         originalString
       }
@@ -356,6 +338,61 @@ object CorefHelperMethods {
         }
       }
       originalString
+  }
+  
+  private def isValidLocation(locationStr: String): Boolean = {
+    val placeNames = locationStr.split(",").map(f => f.trim())
+    if(placeNames.length == 2){
+      return ((locationContainsLocation(placeNames(1),placeNames(0))) || (!sameLocationType(placeNames(1),placeNames(0))))
+    }
+    else{
+      return false
+    }
+  }
+  
+  private def sameLocationType(location1: String, location2: String): Boolean = {
+    val cities = TipsterData.cities
+    val stateOrProvinces = TipsterData.stateOrProvinces
+    val countries = TipsterData.countries
+    
+    if(cities.contains(location1.toLowerCase()) && cities.contains(location2.toLowerCase())){
+      return true
+    }
+    if(stateOrProvinces.contains(location1.toLowerCase()) && stateOrProvinces.contains(location2.toLowerCase())){
+      return true
+    }
+    if(countries.contains(location1.toLowerCase()) && countries.contains(location2.toLowerCase())){
+      return true
+    }
+    return false
+  }
+  
+  private def locationContainsLocation(container: String, contained: String): Boolean = {
+    val cities = TipsterData.cities
+    val stateOrProvinces = TipsterData.stateOrProvinces
+    val countries = TipsterData.countries
+    val stateCityMap = TipsterData.provinceCityMap
+    val countryCityMap = TipsterData.countryCityMap
+    
+    if(cities.contains(contained.toLowerCase())){
+      if(stateOrProvinces.contains(container.toLowerCase())){
+        val citySet = stateCityMap.get(locationCasing(container))
+        if(citySet.isDefined){
+          if(citySet.get.contains(locationCasing(contained))){
+        	  return true
+          }
+        }
+      }
+      if(countries.contains(container.toLowerCase())){
+        val citySet = countryCityMap.get(locationCasing(container))
+        if(citySet.isDefined){
+          if(citySet.get.contains(locationCasing(contained))){
+            return true
+          }
+        }
+      }
+    }
+    return false
   }
 
 
