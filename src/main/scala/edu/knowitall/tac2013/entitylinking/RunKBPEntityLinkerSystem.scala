@@ -42,7 +42,7 @@ object RunKBPEntityLinkerSystem {
   }
 
   def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
-    q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
+    //q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
     val entityString = identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)

@@ -141,7 +141,7 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
   }
   
   def kbLinkReport(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
-    val expString = if (msg.contains("KBID")) {
+    val expString = if (msg.contains("KB ID")) {
       val pretty = makePretty(expected)
       "\tEXPECTED:\t" + pretty.kbTitle + "\t" + pretty.kbSentence
     } else { "" }
