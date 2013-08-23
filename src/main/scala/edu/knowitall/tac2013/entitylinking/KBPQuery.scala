@@ -14,6 +14,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   var entityString = name
   var sportsSense : Option[Boolean] = None
+  var highestLinkClassifierScore = 0.0
   
   
   private def getSourceContext(): String = {

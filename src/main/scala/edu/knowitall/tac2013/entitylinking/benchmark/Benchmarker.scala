@@ -145,7 +145,16 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
       val pretty = makePretty(expected)
       "\tEXPECTED:\t" + pretty.kbTitle + "\t" + pretty.kbSentence
     } else { "" }
-    msg + "\t" + system.kbLink + "\t" + expected.kbLink + "\t" + makePretty(system) + expString
+    val query = queryMap.get(system.queryId).get
+    val sportsClassificationString = query.sportsSense match{
+      case None => "Did not run classifier"
+      case Some(x) => x match{
+        case true => {"Has Sports Sense"}
+        case false => {"Does not Have Sports Sense"}
+      }
+    }
+    (msg + "\t" + system.kbLink + "\t" + expected.kbLink + "\t" + makePretty(system) + expString
+    + "\t" + "Highest Link Classifier Score:" + "\t" + query.highestLinkClassifierScore + "\t" + "Sports Classification: " + "\t" + sportsClassificationString)
   }
   
   def kbLinkIncorrect(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
