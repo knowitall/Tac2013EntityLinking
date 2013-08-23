@@ -14,7 +14,7 @@ object SportsSenseLabeller {
   
   val sportsNaiveBayesModel2012 = scala.util.Marshal.load[NaiveBayes[Boolean,String]](FileUtils.readFileToByteArray(new File(getClass.getResource("sportsNaiveBayes.model").getPath())))
   val sportsLogisticRegressionClassifier2012 = LogisticRegression.fromUrl[SportsSenseInstance](SportsSenseFeatures.featureSet,new File(getClass.getResource("sportsClassifier2012.model").getPath()).toURI().toURL())
-  val threshold = .35
+  val threshold = .1
   
   def labelSportsSense(kbpQuery: KBPQuery): Option[Boolean] = {
     if(isCandidateForSportsClassifier(kbpQuery)){
@@ -23,7 +23,7 @@ object SportsSenseLabeller {
       sportsSenseInstance.naiveBayesScore = nbScore
       val sportsScore = sportsLogisticRegressionClassifier2012.apply(sportsSenseInstance)
       println(kbpQuery.name + "score: " + sportsScore)
-      if(sportsScore > .35){
+      if(sportsScore > threshold){
         Some(true)
       }
       else{
