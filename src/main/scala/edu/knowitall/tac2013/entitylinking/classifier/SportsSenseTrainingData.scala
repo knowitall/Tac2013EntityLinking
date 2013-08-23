@@ -73,11 +73,9 @@ object SportsSenseTrainingData {
       val ex = Example(label,counter)
       exList = ex :: exList
     }
-    val nbClassifier = new NaiveBayes(exList.toIterable,.05,.01)
     for( ssi <- trainingList) yield {
       Labelled(ssi.hasSportsSense.get,ssi)
     }
-
   }
   
   def getNBModel(trainingList: List[SportsSenseInstance]): breeze.classify.NaiveBayes[Boolean,String] ={
@@ -139,7 +137,7 @@ object SportsSenseTrainingData {
     println(correctPredictions/predictions)
   }
   
-  class SportsSenseInstance(val kbpQuery : KBPQuery, val hasSportsSense: Option[Boolean]){
+  class SportsSenseInstance(val kbpQuery : KBPQuery, val hasSportsSense: Option[Boolean]) extends Serializable{
     var naiveBayesScore : Option[Double] = None
   }
   
