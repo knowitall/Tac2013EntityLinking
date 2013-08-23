@@ -65,6 +65,7 @@ object KBPQuery{
   var kbTitleToIdMap :Option[Map[String,String]] = None
   var kbIdToWikiTypeMap :Option[Map[String,String]] = None
   var year :Option[String] = None
+  var kbIdToWikiStructuredTypeMap :Option[Map[String,String]] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
@@ -156,6 +157,9 @@ object KBPQuery{
 	  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
 	  kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines))}
+	  val kbIdToWikiStructuredTypeFile = getClass.getResource("kbIdToWikiStructuredTypeMap.txt").getPath()
+	  kbIdToWikiStructuredTypeMap = using(io.Source.fromFile(kbIdToWikiStructuredTypeFile,"UTF8")) { source =>
+	    Some(WikiMappingHelper.loadKbIdTowikiStructuredTypeMap(source.getLines))}
   }
   
   def deactivate(){
