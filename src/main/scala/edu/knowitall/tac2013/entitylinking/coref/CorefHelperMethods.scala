@@ -252,6 +252,27 @@ object CorefHelperMethods {
     words mkString " "
   }
   
+  private def expandLocation(containerLocation: String): List[String] = {
+    
+    val containerLocationPrefix = if(!containerLocation.last.isLetter){
+      containerLocation.dropRight(1)
+    }
+    else{
+      containerLocation
+    }
+    var possibleExpansions = List[String]()
+    
+    if(containerLocationPrefix.length() > 2){
+      val stateOrProvinces = TipsterData.stateOrProvinces
+      for(state <- stateOrProvinces){
+        if(state.startsWith(containerLocationPrefix.toLowerCase())){
+          possibleExpansions = locationCasing(state) :: possibleExpansions
+        }
+      }
+    }
+    possibleExpansions.toList    
+  }
+  
   private def expandAbbreviation(str:String) :String = {
     val stateAbbreviationMatch = stateAbbreviationPattern.findFirstMatchIn(str)
     if(stateAbbreviationMatch.isDefined){
@@ -267,6 +288,15 @@ object CorefHelperMethods {
       }
     }
     else{
+      //check for Mass. pattern and expand if valid
+      val containedLocation = str.split(",")(0).trim()
+      val containerLocation = str.split(",")(1).trim()
+      val expandedLocations = expandLocation(containerLocation)
+      for(expandedLocation <- expandedLocations){
+        if(locationContainsLocation(expandedLocation,containedLocation)){
+          return (containedLocation + ", " + expandedLocation) 
+        }
+      }
       str
     }
   }
