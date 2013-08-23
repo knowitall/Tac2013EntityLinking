@@ -26,7 +26,7 @@ object MentionPairTrainingData extends Iterable[Labelled[MentionPair]] {
   
   
   private val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-  private val queryAnswers = queries.map(q => (q, RunKBPEntityLinkerSystem.linkQuery(q, linker, linkClassifier)))
+  private val queryAnswers = queries.map(q => (q, RunKBPEntityLinkerSystem.linkQuery(q, linker, linkClassifier, false)))
   private val mentions = queryAnswers.map { case (query, answer) =>
     val humanReadable = new FormattedOutputToHumanReadableOutputConverter(answer, query)
     new Mention(query, humanReadable)

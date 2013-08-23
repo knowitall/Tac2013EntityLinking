@@ -14,6 +14,7 @@ import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBest
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseLabeller
+import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
 
 object RunKBPEntityLinkerSystem {
   
@@ -33,16 +34,18 @@ object RunKBPEntityLinkerSystem {
     		new EntityTyper(linkerSupportPath)
   		)
   
-  def linkQueries(queries: Seq[KBPQuery], year: String): Seq[FormattedOutput] = {
+  def linkQueries(queries: Seq[KBPQuery], year: String, sportsClassifyOn:Boolean): Seq[FormattedOutput] = {
     if(KBPQuery.year.getOrElse("") != year){
 	  KBPQuery.deactivate()
 	  KBPQuery.activate(baseDir, year)
     }
-    for(q <- queries) yield linkQuery(q, linker, linkClassifier)
+    for(q <- queries) yield linkQuery(q, linker, linkClassifier, sportsClassifyOn)
   }
 
-  def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
-    q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
+  def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier, sportsClassifyOn: Boolean): FormattedOutput = {
+    if(sportsClassifyOn){
+      q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
+    }
     val entityString = identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
@@ -51,8 +54,7 @@ object RunKBPEntityLinkerSystem {
       case None => 0.0
       case Some(x) => linkClassifier.score(x)
     }
-    linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
-
+    val answer = linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
       case None => {
         //if link is null and there is a better entity string
         //than the one given in KBP check KB for
@@ -72,20 +74,18 @@ object RunKBPEntityLinkerSystem {
       case Some(link) => {
         var nodeId :Option[String] = None
         nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-
-        //check if link is a location and sportsSense is on, then throw away link
- 
-        if(q.sportsSense.isDefined){
-          if(q.sportsSense.get == true){
-             val wikiTypeMap = KBPQuery.kbIdToWikiTypeMap.get
-             if(wikiTypeMap.get(link.entity.fbid).getOrElse("").toLowerCase().contains("settlement")){
-            	 nodeId = None
-             }
-          }
-        }
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
     }
+    
+    if(q.sportsSense.isDefined){
+      if(q.sportsSense.get == true){
+        if(SportsHelperMethods.isLocation(answer.kbLink)){
+          return new FormattedOutput(q.id,nextCluster,.5)
+        }
+      }
+    }
+    answer
   }
 
   def clusterNils(answers: Seq[FormattedOutput], queries: Seq[KBPQuery]) :Seq[FormattedOutput] = {
@@ -128,12 +128,14 @@ object RunKBPEntityLinkerSystem {
     var outputStream = System.out
     var humanReadable = false
     var year = ""
+    var sportsClassifyOn = false
       
     val argParser = new OptionParser() {
       arg("baseDir", "Path to base directory with entitylinking files.", { s => baseDir = s })
       arg("year", "Year of queries to run on", {s => year =s })
       opt("outputFile", "Path to output file, default stdout", { s => outputStream = new java.io.PrintStream(s, "UTF8") })
       opt("humanReadable", "Produce detailed human readable output (instead of submission format)", { humanReadable =  true})
+      opt("sportsClassify","Turn on sports classification", {sportsClassifyOn = true})
     }
 
     if(!argParser.parse(args)) return
@@ -150,7 +152,7 @@ object RunKBPEntityLinkerSystem {
     KBPQuery.activate(baseDir,year)
     
     val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    val answers = clusterNils(linkQueries(queries,year),queries)
+    val answers = clusterNils(linkQueries(queries,year,sportsClassifyOn),queries)
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers
       for (qa <- queryAnswerList) yield {

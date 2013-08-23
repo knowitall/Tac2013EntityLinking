@@ -24,6 +24,8 @@ object WikiMappingHelper {
   val entityTitleRegex = """id="([^"]+)" name="([^"]+)">""".r
   
   val entityTypeRegex = """id="([^"]+)" name=[^>]+>\n<facts class="([^>]+?)">""".r
+  
+  val entityStructuredTypeRegex =   """type="([^"]+)" id="([^"]+)" """.r
 
   
   val sentencer = new OpenNlpSentencer()
@@ -41,7 +43,7 @@ object WikiMappingHelper {
     else {
       val inputs = FileUtils.getFilesRecursive(new File(inputFile))
       val nsTime = Timing.time {
-        getTypes(inputs, output) 
+        getStructuredTypes(inputs, output) 
       }
       System.err.println(s"Processed ${entityCounter.get} entities in ${Timing.Seconds.format(nsTime)}.")
     }
@@ -76,6 +78,15 @@ object WikiMappingHelper {
     output.close()
   }
   
+  def getStructuredTypes(files: Iterator[File], output: PrintStream){
+    for(file <- files){
+     val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
+     val idWikiTypeTuples = for( entityStructuredTypeRegex(id,wikiType) <- entityStructuredTypeRegex.findAllIn(lines)) yield  (id,wikiType)
+     for(t <- idWikiTypeTuples) output.println(t._1 +"\t" + t._2)
+    }
+    output.close()  
+  }
+  
   
   def loadIdToIntroTextMap(lines: Iterator[String]): Map[String,String] = {
     System.err.println("Loading freebase id to text map...")
@@ -87,6 +98,7 @@ object WikiMappingHelper {
       }  
     } toMap
   }
+  
   
   
   case class EntityInfo(val id: String, val name: String, val typ: String) {
@@ -157,6 +169,18 @@ object WikiMappingHelper {
       }  
     } toMap
   }
+  
+  def loadKbIdTowikiStructuredTypeMap(lines: Iterator[String]): Map[String,String] = {
+    System.err.println("Loading KB ID to wikiStructuredTypeMap map...")
+    val tabSplit = "\t".r
+    lines.map { line =>
+      tabSplit.split(line) match {
+        case Array(wikiStructuredType, id) => (id, wikiStructuredType)
+        case _ => throw new RuntimeException(s"Error parsing entity info: $line")
+      }  
+    } toMap
+  }
+  
   
   def getKBIntro(text: String) :String = {
     try{

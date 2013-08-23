@@ -178,6 +178,7 @@ object Benchmarker {
     var querySort = false
     var outputFile = ""
     var year = ""
+    var sportsClassifyOn = false
       
     val parser = new OptionParser("Benchmarker") {
       arg("year", "Year of queries to run on", {s => year =s })
@@ -186,6 +187,8 @@ object Benchmarker {
       opt("benchmarkSort", "Sort queries by benchmark set cluster id.", { benchmarkSort = true})
       opt("querySort", "Sort queries by id.", { querySort = true})
       opt("outputFile", "output to file", {s => outputFile =s})
+      opt("sportsClassify","Turn on sports classification", {sportsClassifyOn = true})
+
     }
     
     if (!parser.parse(args)) return
@@ -203,7 +206,7 @@ object Benchmarker {
     val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year),queries)
+    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year,sportsClassifyOn),queries)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
