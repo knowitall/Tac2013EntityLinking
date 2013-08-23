@@ -42,7 +42,7 @@ object RunKBPEntityLinkerSystem {
   }
 
   def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
-    //q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
+    q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
     val entityString = identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
@@ -78,7 +78,7 @@ object RunKBPEntityLinkerSystem {
         if(q.sportsSense.isDefined){
           if(q.sportsSense.get == true){
              val wikiTypeMap = KBPQuery.kbIdToWikiTypeMap.get
-             if(wikiTypeMap.get(link.entity.fbid).getOrElse("").contains("Settlement")){
+             if(wikiTypeMap.get(link.entity.fbid).getOrElse("").toLowerCase().contains("settlement")){
             	 nodeId = None
              }
           }
