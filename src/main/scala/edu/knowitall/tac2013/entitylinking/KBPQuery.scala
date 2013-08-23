@@ -13,6 +13,8 @@ class KBPQuery (val id: String, val name: String, val doc: String,
     val begOffset: Int, val endOffset: Int){
   
   var entityString = name
+  var sportsSense : Option[Boolean] = None
+  var highestLinkClassifierScore = 0.0
   
   
   private def getSourceContext(): String = {
@@ -35,8 +37,8 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   val sourceContext = getSourceContext()
   val sourceWideContext = getWideContext()
-  lazy val corefSourceContext = getContextOfAllMentions()
-  lazy val stanfordNERType = CorefHelperMethods.getStanfordNERType(id)
+  val corefSourceContext = getContextOfAllMentions()
+  val stanfordNERType = CorefHelperMethods.getStanfordNERType(id,KBPQuery.year.get)
   
   
   def trimSourceContext():String = {
@@ -143,7 +145,7 @@ object KBPQuery{
 	  }
 	  catch{
 	    case e: Exception => {
-	      corefMentionsFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref"+year+"corefmentions.txt").getPath()
+	      corefMentionsFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt").getPath()
 	    }
 	  }
 	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>

@@ -13,10 +13,11 @@ import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableO
 import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
+import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseLabeller
 
 object RunKBPEntityLinkerSystem {
   
-  var baseDir = "/scratch/"
+  var baseDir = "/scratch/resources/entitylinkingResources"
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -32,16 +33,24 @@ object RunKBPEntityLinkerSystem {
     		new EntityTyper(linkerSupportPath)
   		)
   
-  def linkQueries(queries: Seq[KBPQuery]): Seq[FormattedOutput] = {
-
+  def linkQueries(queries: Seq[KBPQuery], year: String): Seq[FormattedOutput] = {
+    if(KBPQuery.year.getOrElse("") != year){
+	  KBPQuery.deactivate()
+	  KBPQuery.activate(baseDir, year)
+    }
     for(q <- queries) yield linkQuery(q, linker, linkClassifier)
   }
 
   def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
+    q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
     val entityString = identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
     val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
+    q.highestLinkClassifierScore = linkOpt match{
+      case None => 0.0
+      case Some(x) => linkClassifier.score(x)
+    }
     linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
 
       case None => {
@@ -61,8 +70,19 @@ object RunKBPEntityLinkerSystem {
         }
       }
       case Some(link) => {
-        val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
-        //new FormattedOutput(q.id, nodeId.getOrElse(fbidCluster(link.entity.fbid)), link.combinedScore)
+        var nodeId :Option[String] = None
+        nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
+
+        //check if link is a location and sportsSense is on, then throw away link
+ 
+        if(q.sportsSense.isDefined){
+          if(q.sportsSense.get == true){
+             val wikiTypeMap = KBPQuery.kbIdToWikiTypeMap.get
+             if(wikiTypeMap.get(link.entity.fbid).getOrElse("").toLowerCase().contains("settlement")){
+            	 nodeId = None
+             }
+          }
+        }
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
     }
@@ -130,7 +150,7 @@ object RunKBPEntityLinkerSystem {
     KBPQuery.activate(baseDir,year)
     
     val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    val answers = clusterNils(linkQueries(queries),queries)
+    val answers = clusterNils(linkQueries(queries,year),queries)
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers
       for (qa <- queryAnswerList) yield {
