@@ -8,7 +8,7 @@ import scala.io.Source
 
 //Constructor takes formatted output and turns it into human readable output
 //Output should be QueryId \t entityString \t sourceSentence \t linkId \t FirstSentenceFromKB
-class FormattedOutputToHumanReadableOutputConverter(formattedOutput: FormattedOutput, kbpQuery: KBPQuery) {
+class FormattedOutputToHumanReadableOutputConverter(val formattedOutput: FormattedOutput, val kbpQuery: KBPQuery) {
   
   val queryId = formattedOutput.queryId
   val linkId = formattedOutput.kbLink

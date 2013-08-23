@@ -12,6 +12,9 @@ import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
 import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
+import edu.knowitall.tac2013.entitylinking.classifier.MentionPairClassifier
+import edu.knowitall.tac2013.entitylinking.classifier.Mention
+import edu.knowitall.tac2013.entitylinking.classifier.MentionPair
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 
 object RunKBPEntityLinkerSystem {
@@ -100,9 +103,9 @@ object RunKBPEntityLinkerSystem {
     }
     
     newAnswerSeq.toList
-    
   }
   
+
   def main(args: Array[String]) {
  
     var outputStream = System.out
@@ -130,7 +133,7 @@ object RunKBPEntityLinkerSystem {
     KBPQuery.activate(baseDir,year)
     
     val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    val answers = clusterNils(linkQueries(queries),queries)
+    val answers = Clusterer.pairwiseClusterNils(linkQueries(queries),queries)
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers
       for (qa <- queryAnswerList) yield {

@@ -6,6 +6,7 @@ import edu.knowitall.tac2013.entitylinking.KBPQuery
 import scopt.OptionParser
 import java.io.PrintWriter
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
+import edu.knowitall.tac2013.entitylinking.Clusterer
 
 sealed trait SortType
 case object SystemClusterSort extends SortType
@@ -194,7 +195,7 @@ object Benchmarker {
     val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries),queries)
+    val results = Clusterer.pairwiseClusterNils(RunKBPEntityLinkerSystem.linkQueries(queries),queries)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     

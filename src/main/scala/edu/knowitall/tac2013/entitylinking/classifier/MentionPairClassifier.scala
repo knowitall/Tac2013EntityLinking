@@ -7,7 +7,7 @@ import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
 
-class MentionPairClassifier(val trainingData: Iterable[Labelled[MentionPair]] = MentionPairTrainingData) {
+class MentionPairClassifier(val trainingData: Iterable[Labelled[MentionPair]]) {
  
   val trainer = new BreezeLogisticRegressionTrainer(MentionPairFeatures.featureSet)
   
@@ -16,24 +16,23 @@ class MentionPairClassifier(val trainingData: Iterable[Labelled[MentionPair]] = 
   def score(pair: MentionPair): Double = classifier(pair) 
 }
 
+object MentionPairClassifier {
+  lazy val default = new MentionPairClassifier(new MentionPairTrainingData("/scratch/", "2012"))
+}
+
 object MentionPairClassifierTest {
 
   def main(args: Array[String]): Unit = {
 
-    val allTrainingDataSet = {
-      val shuffled = scala.util.Random.shuffle(MentionPairTrainingData)
-      val negative = shuffled.filter(_.label == false)
-      val positive = shuffled.filter(_.label == true)
-      positive ++ negative.take(2000)
-    } toSet
+    val allTrainingDataSet = new MentionPairTrainingData("/scratch/", "2012").toSet
 
     val splits = 10
 
     val testSize = math.ceil(allTrainingDataSet.size.toDouble / splits.toDouble).toInt
 
-    val testSets = allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
+    lazy val testSets = allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
 
-    val trainTestSets = testSets.map(tset => (allTrainingDataSet &~ tset, tset))
+    lazy val trainTestSets = testSets.map(tset => (allTrainingDataSet &~ tset, tset))
 
     def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
 
@@ -53,6 +52,8 @@ object MentionPairClassifierTest {
     }
 
     println(allTrainingDataSet.size)
+    println(allTrainingDataSet.filter(_.label == true).size)
+    println(allTrainingDataSet.filter(_.label == false).size)
 
     val scoredTestUnflattened = for ((train, test) <- trainTestSets) yield {
       val classifier = new MentionPairClassifier(train)

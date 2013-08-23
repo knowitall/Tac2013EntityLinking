@@ -1,6 +1,7 @@
 package edu.knowitall.tac2013.entitylinking.classifier
 
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
+import edu.knowitall.tac2013.entitylinking.FormattedOutput
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.tool.postag.ClearPostagger
 import edu.knowitall.tool.stem.MorphaStemmer
@@ -12,7 +13,10 @@ import org.apache.lucene.document.Field
 import scala.collection.immutable.SortedMap
 import com.rockymadden.stringmetric.similarity.JaroWinklerMetric
 
-class Mention(val query: KBPQuery, val output: FormattedOutputToHumanReadableOutputConverter)
+class Mention(val query: KBPQuery, val output: FormattedOutputToHumanReadableOutputConverter) {
+  def this(answerQuery: (FormattedOutput, KBPQuery)) = 
+    this(answerQuery._2, new FormattedOutputToHumanReadableOutputConverter(answerQuery._1, answerQuery._2))
+}
 
 class MentionPair(val m1: Mention, val m2: Mention) {
   
@@ -23,6 +27,14 @@ class MentionPair(val m1: Mention, val m2: Mention) {
   lazy val corefContextSim = cosineSimilarity(m1.query.sourceWideContext, m2.query.sourceWideContext)
   lazy val alternateStringSim = JaroWinklerMetric.compare(m1.output.entityStringUsed, m2.output.entityStringUsed).getOrElse(0.0)
   lazy val entityStringSim = JaroWinklerMetric.compare(m1.query.name, m2.query.name).getOrElse(0.0)
+}
+object MentionPair {
+  def allPairs(ms: Seq[Mention]) = ms.zipWithIndex.flatMap { case (m1, index) =>
+    ms.drop(index + 1).map { m2 => 
+      val label = m1.output.linkId == m2.output.linkId
+      new MentionPair(m1, m2) 
+    }  
+  }
 }
 
 object MentionPairFeatures {

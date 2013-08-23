@@ -93,7 +93,7 @@ object KBPQuery{
   }
   
   private def parseSingle2011KBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
-    //val pathToXML = Source.fromFile(pathToFile)
+
     try{
 	    val idText = queryXML.attribute("id") match 
 	    		{case Some(id) if id.length ==1 => id(0).text
