@@ -20,7 +20,7 @@ class CorefHelperMethods(val year: String) {
   
   private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?$""".r
   private val stopWords = {
-    val url = getClass.getResource("stopwords.txt")
+    val url = getClass.getResource("/edu/knowitall/tac2013/entitylinking/classifier/stopwords.txt")
     require(url != null, "Could not find stopwords.txt")
     io.Source.fromURL(url, "UTF8").getLines.flatMap(_.split(",")).map(_.toLowerCase).toSet
   }
@@ -175,7 +175,7 @@ class CorefHelperMethods(val year: String) {
         	  q.name
         	}
         	}
-        case "PERSON" => {findBestPersonString(q,namedEntityCollection.people)}
+        case "PERSON" => {findBestPersonString(q,namedEntityCollection.people,true)}
       }
     }
     alternateName match{
@@ -187,7 +187,7 @@ class CorefHelperMethods(val year: String) {
           }
         }
         if(alternateName == q.name){
-          alternateName = findBestPersonString(q,namedEntityCollection.people)
+          alternateName = findBestPersonString(q,namedEntityCollection.people,false)
         }
       }
       case _ => {}
@@ -203,7 +203,10 @@ class CorefHelperMethods(val year: String) {
       var nextIndex = rawDoc.indexOf(uniqueCandidate)
       var minDistance = rawDoc.length()
       while(nextIndex != -1){
-        minDistance = math.min(minDistance, math.abs(entityPosition - nextIndex))
+        val proximity = entityPosition - nextIndex
+        if( proximity > 0){
+          minDistance = math.min(minDistance, proximity)
+        }
         nextIndex = rawDoc.indexOf(uniqueCandidate,nextIndex+1)
       }
       (uniqueCandidate,minDistance)
@@ -259,20 +262,43 @@ class CorefHelperMethods(val year: String) {
     //non caps organization, check if there is a longer string than the original
     //name with the original name as the rightmost word
     else{
-      for(cs <- candidateStrings){
-        val words = cs.split(" ")
-        val originalWords = originalString.split(" ")
-        if( (words.length > originalWords.length) &&
-            ( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
-              (words.take(originalWords.length).mkString(" ") == originalString)  )){
-          return words mkString " "
+      var probablyOrganization = true  
+      var originalStringIsLocation = false
+      val namedEntityCollection = queryNamedEntityCollectionMap.get.get(kbpQuery.id).get
+      val locations = namedEntityCollection.locations
+      
+      for(loc <- locations){
+        if(loc.contains(originalString)){
+          originalStringIsLocation = true
         }
+      }
+      
+      if(originalStringIsLocation){
+        probablyOrganization = false
+        if(kbpQuery.sportsSense.getOrElse(false)){
+          probablyOrganization = true
+        }
+      }
+
+      
+      
+      if(probablyOrganization){
+	      //do this if original String is not refferring to a location
+	      for(cs <- candidateStrings){
+	        val words = cs.split(" ")
+	        val originalWords = originalString.split(" ")
+	        if( (words.length > originalWords.length) &&
+	            ( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
+	              (words.take(originalWords.length).mkString(" ") == originalString)  )){
+	          return words mkString " "
+	        }
+	      }
       }
     }
     
     //finally check if the original string if prefix of an organization
     for(cs <- sortedCandidateStrings){
-      if(cs.toLowerCase().startsWith(originalString.toLowerCase()) && cs.length() > originalString.length()){
+      if(cs.toLowerCase().startsWith(originalString.toLowerCase()) && cs.length() > originalString.length() && cs.split(" ").length ==1){
         return cs
       }
     }
@@ -347,9 +373,10 @@ class CorefHelperMethods(val year: String) {
   }
   private def findBestLocationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
     val originalString = kbpQuery.name.trim()
+    val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
     var candidates = List[String]()
     val originalWords = originalString.split(" ")
-    for(cs <- candidateStrings){
+    for(cs <- sortedCandidateStrings){
       val size = cs.split(" ").length
       var index = 0
       while(index < (size-1)){
@@ -370,7 +397,7 @@ class CorefHelperMethods(val year: String) {
       val containerMap = scala.collection.mutable.Map[String,Int]()
       for(cs <- candidateStrings){
         if(locationContainsLocation(cs,originalString)){
-          if(cs != originalString){
+          if(cs != originalString && cs != "United States"){
 	          if(containerMap.contains(cs)){
 	              containerMap += ((cs,containerMap.get(cs).get+1))
 	          }
@@ -405,17 +432,21 @@ class CorefHelperMethods(val year: String) {
         }
       }
       else{
-        var largestCount =0
-        var largestContainer = ""
-        for(containerCandidate <- containerMap){
-          val container = containerCandidate._1
-          val count = containerCandidate._2
-          if(count > largestCount){
-            largestCount = count
-            largestContainer = container
-          }
-        }
-        locationCasing(originalString +", " + largestContainer)
+        //sort by distance to original string
+        val containerStrings = containerMap.keys
+        val sortedContainerStrings = sortCandidateStringsByProximity(kbpQuery,containerStrings.toList)
+        locationCasing(originalString + ", " + sortedContainerStrings.head)
+//        var largestCount =0
+//        var largestContainer = ""
+//        for(containerCandidate <- containerMap){
+//          val container = containerCandidate._1
+//          val count = containerCandidate._2
+//          if(count > largestCount){
+//            largestCount = count
+//            largestContainer = container
+//          }
+//        }
+//        locationCasing(originalString +", " + largestContainer)
       }
     }
     else{
@@ -423,18 +454,30 @@ class CorefHelperMethods(val year: String) {
        expandAbbreviation(locationCasing(candidate))
       }
   }
-  private def findBestPersonString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
+  private def findBestPersonString(kbpQuery: KBPQuery, candidateStrings: List[String], probablyPerson: Boolean) :String = {
       val originalString = kbpQuery.name.trim()
-      for(cs <- candidateStrings){
+      for(cs <- sortCandidateStringsByProximity(kbpQuery,candidateStrings)){
         val words = cs.split(" ")
         val originalWords = originalString.split(" ")
         if( (words.length > originalWords.length) &&
         		( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
         		   (words.take(originalWords.length).mkString(" ") == originalString)) &&
         		   (words.length < 4)){
-          return words mkString " "
+          return (words mkString " ") 
         }
       }
+
+      if(probablyPerson){
+      //try a conservative name regex if nothing from Stanford NER was found
+	      val nameRegex = """(\.|(\s[a-z]+\s))([A-Z]\w+\s[A-Z]\w+)(\.|(\s[a-z]+\s))""".r
+	      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+	      val nameList = for(nameMatch <- nameRegex.findAllMatchIn(rawDoc); name = nameMatch.group(3); if name.contains(originalString)) yield name
+	      val sortedNameList = sortCandidateStringsByProximity(kbpQuery,nameList.toList)
+	      if(sortedNameList.headOption.isDefined){
+	        return sortedNameList.head
+	      }
+      }
+      
       originalString
   }
   
