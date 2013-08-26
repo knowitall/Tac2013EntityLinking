@@ -18,21 +18,20 @@ class MentionPairClassifier(val trainingData: Iterable[Labelled[MentionPair]]) {
 
 object MentionPairClassifier {
   lazy val default = new MentionPairClassifier(new MentionPairTrainingData("/scratch/", "2012"))
+  
+  
+  
 }
 
 object MentionPairClassifierTest {
 
   def main(args: Array[String]): Unit = {
 
-    val allTrainingDataSet = new MentionPairTrainingData("/scratch/", "2012").toSet
+    val allTrainingDataSet = new MentionPairTrainingData("/scratch/", "2011").toSet
 
-    val splits = 10
+    val allTestDataSet = new MentionPairTrainingData("/scratch/", "2012").toSet
 
-    val testSize = math.ceil(allTrainingDataSet.size.toDouble / splits.toDouble).toInt
-
-    lazy val testSets = allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
-
-    lazy val trainTestSets = testSets.map(tset => (allTrainingDataSet &~ tset, tset))
+    val trainTestSets = Seq((allTrainingDataSet, allTestDataSet))
 
     def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
 
@@ -45,8 +44,8 @@ object MentionPairClassifierTest {
         total += 1
         if (label) {
           correct += 1
+          result ::= (correct.toDouble / total.toDouble)
         }
-        result ::= (correct.toDouble / total.toDouble)
       }
       result.reverse.tails.filter(_.nonEmpty).toSeq.map { tail => tail.max }
     }
@@ -54,7 +53,11 @@ object MentionPairClassifierTest {
     println(allTrainingDataSet.size)
     println(allTrainingDataSet.filter(_.label == true).size)
     println(allTrainingDataSet.filter(_.label == false).size)
-
+    println(allTestDataSet.size)
+    println(allTestDataSet.filter(_.label == true).size)
+    println(allTestDataSet.filter(_.label == false).size)
+    
+    
     val scoredTestUnflattened = for ((train, test) <- trainTestSets) yield {
       val classifier = new MentionPairClassifier(train)
       val scores = test.map(l => (l, classifier.score(l.item)))
@@ -67,7 +70,7 @@ object MentionPairClassifierTest {
 
     val sortedBooleans = sortedTest.map(_._1.label)
 
-    val precsItems = precRecall(sortedBooleans).zip(sortedTest)
+    val precsItems = precRecall(sortedBooleans).zip(sortedTest.filter(_._1.label == true))
 
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble
