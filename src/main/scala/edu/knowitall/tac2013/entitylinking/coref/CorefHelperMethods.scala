@@ -19,6 +19,11 @@ object CorefHelperMethods {
 class CorefHelperMethods(val year: String) {
   
   private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?$""".r
+  private val stopWords = {
+    val url = getClass.getResource("stopwords.txt")
+    require(url != null, "Could not find stopwords.txt")
+    io.Source.fromURL(url, "UTF8").getLines.flatMap(_.split(",")).map(_.toLowerCase).toSet
+  }
   
   val queryMentionMap = {
     System.err.println("Loading query to Coref String Mentions map...")
@@ -212,8 +217,8 @@ class CorefHelperMethods(val year: String) {
     val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
     //if the organization is an acronym
     if(originalString.forall(p => p.isUpper)){
-      
-      for(cs <- candidateStrings){
+            
+      for(cs <- sortedCandidateStrings){
         val words = cs.split(" ").filter(p => {p(0).isUpper}).takeRight(originalString.length())
         var goodCandidate = true
         var index = 0
@@ -236,6 +241,19 @@ class CorefHelperMethods(val year: String) {
 	        }
         }
       }
+      
+      // if in parentheses and nothing was found...
+      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+      val parenthesisRegexPattern = new Regex("([A-Z]\\w+ (\\w+ )*[A-Z]\\w+)[\\.\\s]*\\([^\\)\\(]{0,5}"+originalString+"[^\\)\\(]{0,5}\\)")
+      val accronymMatch = parenthesisRegexPattern.findFirstMatchIn(rawDoc)
+      if(accronymMatch.isDefined){
+        var expandedString = accronymMatch.get.group(1)
+        if(stopWords.contains(expandedString.split(" ")(0).toLowerCase())){
+          expandedString = expandedString.split(" ").drop(1).mkString(" ")
+        }
+        return expandedString
+      }
+      
     }
     
     //non caps organization, check if there is a longer string than the original
@@ -253,8 +271,8 @@ class CorefHelperMethods(val year: String) {
     }
     
     //finally check if the original string if prefix of an organization
-    for(cs <- candidateStrings){
-      if(cs.toLowerCase().startsWith(originalString.toLowerCase())){
+    for(cs <- sortedCandidateStrings){
+      if(cs.toLowerCase().startsWith(originalString.toLowerCase()) && cs.length() > originalString.length()){
         return cs
       }
     }
