@@ -16,9 +16,9 @@ class FormattedOutputToHumanReadableOutputConverter(val formattedOutput: Formatt
   val entityString = kbpQuery.name
   val entityStringUsed = kbpQuery.entityString
   val sourceContext = kbpQuery.corefSourceContext.mkString(" ")
-  val kbSentence = KBPQuery.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId).getOrElse({"None"})
+  val kbSentence = kbpQuery.helper.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId).getOrElse({"None"})
   val docId = kbpQuery.doc
-  val kbTitle = KBPQuery.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
+  val kbTitle = kbpQuery.helper.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
   
   override def toString(): String = {
     Iterator(queryId,entityString,entityStringUsed,docId,sourceContext,linkId,kbTitle,kbSentence).mkString("\t")
@@ -59,11 +59,11 @@ object FormattedOutputToHumanReadableOutputConverter{
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
     
-    ResourceHelper.initialize(year)
+    ResourceHelper.initialize(baseDir, year)
     //activate maps in KBPQuery
-    KBPQuery.activate(baseDir,year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
     println(queryFile)
-    val queries = KBPQuery.parseKBPQueries(queryFile)
+    val queries = kbpQueryHelper.parseKBPQueries(queryFile)
     val formattedOutputLines = Source.fromFile(outputFile)(scala.io.Codec.UTF8).getLines.toList
     
     
@@ -86,6 +86,5 @@ object FormattedOutputToHumanReadableOutputConverter{
     }
     
     pw.close()
-    
   }  
 }

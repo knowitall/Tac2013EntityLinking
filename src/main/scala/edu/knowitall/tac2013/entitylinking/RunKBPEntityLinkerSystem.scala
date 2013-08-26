@@ -1,6 +1,5 @@
 package edu.knowitall.tac2013.entitylinking
 
-import KBPQuery.parseKBPQueries
 import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.browser.entity.batch_match
 import edu.knowitall.browser.entity.StringMatchCandidateFinder
@@ -9,8 +8,8 @@ import edu.knowitall.browser.entity.EntityTyper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
+import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
-import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
 import edu.knowitall.tac2013.entitylinking.classifier.MentionPairClassifier
 import edu.knowitall.tac2013.entitylinking.classifier.Mention
@@ -20,6 +19,7 @@ import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 object RunKBPEntityLinkerSystem {
   
   var baseDir = "/scratch/"
+  val year = "2012"
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -41,7 +41,7 @@ object RunKBPEntityLinkerSystem {
   }
 
   def linkQuery(q: KBPQuery, linker: EntityLinker, linkClassifier: LinkClassifier): FormattedOutput = {
-    val entityString = identifyBestEntityStringByRules(q)
+    val entityString = CorefHelperMethods.get(year).identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
     val links = linker.getBestEntities(entityString, q.corefSourceContext)
@@ -53,7 +53,7 @@ object RunKBPEntityLinkerSystem {
         //than the one given in KBP check KB for
         var answer: Option[FormattedOutput] = None
         if (q.entityString != q.name) {
-          val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
+          val kbIdOption = KBPQuery.getHelper(baseDir, year).kbTitleToIdMap.get.get(q.entityString)
           if (kbIdOption.isDefined) {
             answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
           }
@@ -65,7 +65,7 @@ object RunKBPEntityLinkerSystem {
         }
       }
       case Some(link) => {
-        val nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
+        val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
         //new FormattedOutput(q.id, nodeId.getOrElse(fbidCluster(link.entity.fbid)), link.combinedScore)
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
@@ -130,10 +130,10 @@ object RunKBPEntityLinkerSystem {
     }
     
     
-    ResourceHelper.initialize(year)
-    KBPQuery.activate(baseDir,year)
+    ResourceHelper.initialize(baseDir, year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
     
-    val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     val answers = Clusterer.pairwiseClusterNils(linkQueries(queries),queries)
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers

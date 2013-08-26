@@ -1,6 +1,7 @@
 package edu.knowitall.tac2013.entitylinking.classifier
 
 import edu.knowitall.tac2013.entitylinking.KBPQuery
+import edu.knowitall.tac2013.entitylinking.KBPQueryHelper
 import edu.knowitall.common.Resource.using
 import scala.io.Source
 import edu.knowitall.tac2013.entitylinking.FormattedOutput
@@ -16,11 +17,10 @@ object SportsSenseTrainingData {
   def main(args: Array[String]){
     val baseDir = args(0)
     
-    var year = "2012"
-    KBPQuery.activate(baseDir, year)
-    val queries = KBPQuery.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val helper2012 = KBPQuery.getHelper(baseDir, "2012")
+    val queries = helper2012.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     
-    val answerUrl = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
+    val answerUrl = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_2012_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val queryAnswerList = queries zip answers
     var trainingList = List[SportsSenseInstance]()
@@ -34,9 +34,9 @@ object SportsSenseTrainingData {
           TipsterData.stateOrProvinces.contains(queryName.toLowerCase()) ||
           TipsterData.countries.contains(queryName.toLowerCase())) &&
           (!answer.kbLink.startsWith("NIL") &&
-           (KBPQuery.kbIdToWikiTypeMap.get.contains(answer.kbLink)) &&
+           (helper2012.kbIdToWikiTypeMap.get.contains(answer.kbLink)) &&
            (query.stanfordNERType != "PERSON"))){
-        if(kbEntryIsTeam(answer.kbLink)){
+        if(kbEntryIsTeam(helper2012, answer.kbLink)){
           trainingList = new SportsSenseInstance(query,true) :: trainingList
         }
         else{
@@ -45,12 +45,9 @@ object SportsSenseTrainingData {
       }
     }
     
-    KBPQuery.deactivate()
-    year = "2011"
-    KBPQuery.activate(baseDir, year)
-    val queries2011 = KBPQuery.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    
-    val answerUrl2011 = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
+    val helper2011 = KBPQuery.getHelper(baseDir, "2011")
+    val queries2011 = helper2011.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2011_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val answerUrl2011 = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_2011_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers2011 = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val queryAnswerList2011 = queries2011 zip answers2011
     for(queryAnswer <- queryAnswerList2011){
@@ -63,9 +60,9 @@ object SportsSenseTrainingData {
           TipsterData.stateOrProvinces.contains(queryName.toLowerCase()) ||
           TipsterData.countries.contains(queryName.toLowerCase())) &&
           (!answer.kbLink.startsWith("NIL") &&
-           (KBPQuery.kbIdToWikiTypeMap.get.contains(answer.kbLink))&&
+           (helper2011.kbIdToWikiTypeMap.get.contains(answer.kbLink))&&
            (query.stanfordNERType != "PERSON"))){
-        if(kbEntryIsTeam(answer.kbLink)){
+        if(kbEntryIsTeam(helper2011, answer.kbLink)){
           trainingList = new SportsSenseInstance(query,true) :: trainingList
         }
         else{
@@ -90,7 +87,7 @@ object SportsSenseTrainingData {
       val id = trainingInstance.kbpQuery.id
       val context = trainingInstance.kbpQuery.sourceWideContext
       val counter = getContextCounter(context)
-      val ex = Example(label,counter)
+      val ex = Example(label    ,counter)
       exList = ex :: exList
     }
     val instanceAndNBData = exList zip trainingList
@@ -119,9 +116,9 @@ object SportsSenseTrainingData {
   }
   
   
-  def kbEntryIsTeam(kbId: String): Boolean = {
+  def kbEntryIsTeam(helper: KBPQueryHelper, kbId: String): Boolean = {
     
-    val wikiTypeMap = KBPQuery.kbIdToWikiTypeMap.get
+    val wikiTypeMap = helper.kbIdToWikiTypeMap.get
     if(wikiTypeMap.get(kbId).get.contains("team")||
         wikiTypeMap.get(kbId).get.contains("club")){
       true

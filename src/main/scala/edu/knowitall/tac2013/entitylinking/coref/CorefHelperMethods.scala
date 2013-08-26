@@ -6,15 +6,23 @@ import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbreviation
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData
 import java.io.File
+import scala.collection.mutable
 
 object CorefHelperMethods {
+  
+  private val helperCache = new mutable.HashMap[String, CorefHelperMethods] with mutable.SynchronizedMap[String, CorefHelperMethods]
+  
+  def get(year: String) = helperCache.getOrElseUpdate(year, new CorefHelperMethods(year))
+}
+
+class CorefHelperMethods(val year: String) {
   
   private val stateAbbreviationPattern = """(\w+),\s([A-Za-z])\.?([A-Za-z])\.?$""".r
   
   val queryMentionMap = {
     System.err.println("Loading query to Coref String Mentions map...")
     try{
-     val corefFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"corefStringMentions.txt").getPath()
+     val corefFile = getClass.getResource(year+"corefStringMentions.txt").getPath()
      Some(using{scala.io.Source.fromFile(corefFile)}{ source =>
       source.getLines.map{ line =>
         line.split("\t") match{
@@ -35,12 +43,12 @@ object CorefHelperMethods {
     System.err.println("Loading query to Named Entities map...")
     var namedEntityFile = ""
     try{
-      namedEntityFile = getClass.getResource(KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+      namedEntityFile = getClass.getResource(year+"namedEntities.txt").getPath()
     }
     catch{
       case e: Exception => {
         try{
-          namedEntityFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+KBPQuery.year.getOrElse({throw new Exception("Activate KBP Query")})+"namedEntities.txt").getPath()
+          namedEntityFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+year+"namedEntities.txt").getPath()
         }
         catch{
           case e: Exception => {

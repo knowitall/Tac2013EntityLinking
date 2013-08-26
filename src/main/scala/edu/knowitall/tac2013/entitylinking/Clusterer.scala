@@ -1,6 +1,5 @@
 package edu.knowitall.tac2013.entitylinking
 
-import KBPQuery.parseKBPQueries
 import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.browser.entity.batch_match
 import edu.knowitall.browser.entity.StringMatchCandidateFinder
@@ -10,7 +9,6 @@ import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
-import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
 import edu.knowitall.tac2013.entitylinking.classifier.MentionPairClassifier
 import edu.knowitall.tac2013.entitylinking.classifier.Mention
@@ -23,14 +21,16 @@ import scala.collection.mutable.HashMap
 
 object Clusterer {
   
+  private val cutoff= 0.9998516902911898
+  
   private var mentionPairCache = new HashMap[(String, String), Option[MentionPair]]
   val mpClassifier = MentionPairClassifier.default
   
   def pairwiseClusterNils(answers: Seq[FormattedOutput], queries: Seq[KBPQuery]) :Seq[FormattedOutput] = {
     // get all the mentions 
-    val mentions = answers.zip(queries).map(p => new Mention(p))
+    val mentions = answers.zip(queries).map(p => Mention.from(p._2, new FormattedOutputToHumanReadableOutputConverter(p._1, p._2)))
     // get a map of link id's to clusters
-    var clusters = mentions.groupBy(_.output.linkId)
+    var clusters = mentions.groupBy(_.linkId)
     println(s"Starting with ${clusters.size} clusters")
     // iteratively, compute similarity between all pairs of clusters and merge the two most similar
     var done = false
@@ -39,17 +39,26 @@ object Clusterer {
       val clusterPairs = allDistinctPairs(clusters.keys.toSeq).filter(p => p._1.startsWith("NIL") || p._2.startsWith("NIL"))
       print(s"Computing similarity for ${clusterPairs.size} cluster pairs")
       val clusterPairSimilarities = clusterPairs.zipWithIndex.map { case ((id1, id2), index) => 
-        if (index % 10000 == 0) print(".")
+        if (index % 100000 == 0) print(".")
         val similarity = clusterSimilarity(clusters(id1), clusters(id2))
         ((id1, id2), similarity)      
       }
       val ((ms1, ms2), maxSim) = clusterPairSimilarities.maxBy(_._2)
-      if (maxSim < 0.995) done = true
+      if (maxSim < cutoff) done = true
       else {
-        println(s"Merging $ms1 and $ms2")
+        val merg1 = clusters(ms1)
+        val merg2 = clusters(ms2)
+        val m1Names = merg1.map(_.entityStringUsed).mkString("(", ", ", ")")
+        val m2Names = merg2.map(_.entityStringUsed).mkString("(", ", ", ")")
+        println(s"Merging $ms1 and $ms2 $m1Names and $m2Names")
         val mergedMentions = clusters(ms1) ++ clusters(ms2)
-        clusters -= ms2
-        clusters += (ms1 -> mergedMentions)
+        if (!ms2.startsWith("E")) {
+          clusters -= ms2
+          clusters += (ms1 -> mergedMentions)
+        } else {
+          clusters -= ms1
+          clusters += (ms2 -> mergedMentions)
+        }
       }
     }
     
