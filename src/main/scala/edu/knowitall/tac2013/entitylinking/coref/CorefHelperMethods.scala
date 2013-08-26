@@ -6,6 +6,7 @@ import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData.expandStateAbbreviation
 import edu.knowitall.tac2013.entitylinking.utils.TipsterData
 import java.io.File
+import scala.util.matching.Regex
 
 object CorefHelperMethods {
   
@@ -152,28 +153,28 @@ object CorefHelperMethods {
     if(entityType != "None"){
       alternateName =
       entityType match{
-        case "ORGANIZATION" => { findBestOrganizationString(q.name.trim(),namedEntityCollection.organizations)}
+        case "ORGANIZATION" => { findBestOrganizationString(q,namedEntityCollection.organizations)}
         case "LOCATION" => {
         	if(couldBeLocation){
-        	  findBestLocationString(q.name.trim(),namedEntityCollection.locations)
+        	  findBestLocationString(q,namedEntityCollection.locations)
         	}
         	else{
         	  q.name
         	}
         	}
-        case "PERSON" => {findBestPersonString(q.name.trim(),namedEntityCollection.people)}
+        case "PERSON" => {findBestPersonString(q,namedEntityCollection.people)}
       }
     }
     alternateName match{
       case q.name => {
-        alternateName = findBestOrganizationString(q.name,namedEntityCollection.organizations)
+        alternateName = findBestOrganizationString(q,namedEntityCollection.organizations)
         if(alternateName == q.name){
           if(couldBeLocation){
-            alternateName = findBestLocationString(q.name,namedEntityCollection.locations)
+            alternateName = findBestLocationString(q,namedEntityCollection.locations)
           }
         }
         if(alternateName == q.name){
-          alternateName = findBestPersonString(q.name,namedEntityCollection.people)
+          alternateName = findBestPersonString(q,namedEntityCollection.people)
         }
       }
       case _ => {}
@@ -181,7 +182,8 @@ object CorefHelperMethods {
     alternateName
   }
   
-  private def findBestOrganizationString(originalString: String, candidateStrings: List[String]) :String = {
+  private def findBestOrganizationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
+    val originalString = kbpQuery.name.trim()
     
     //if the organization is an acronym
     if(originalString.forall(p => p.isUpper)){
@@ -300,7 +302,8 @@ object CorefHelperMethods {
       str
     }
   }
-  private def findBestLocationString(originalString: String, candidateStrings: List[String]) :String = {
+  private def findBestLocationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
+    val originalString = kbpQuery.name.trim()
     var candidates = List[String]()
     val originalWords = originalString.split(" ")
     for(cs <- candidateStrings){
@@ -335,7 +338,29 @@ object CorefHelperMethods {
         }
       }
       if(containerMap.isEmpty){
-        originalString
+        //try  regular string searching instead of relying on Stanford NER
+        val containedPlace = originalString
+        val locationRegex = new Regex("("+originalString+"|"+originalString.toLowerCase()+"|"+originalString.toUpperCase()+"), ([A-Z][\\S]+)[\\s\\.\\?!,]")
+        val sourceText = SolrHelper.getRawDoc(kbpQuery.doc)
+        val candidates = scala.collection.mutable.Map[String,Int]()
+        for( locationRegex(containedLoc,containerLoc) <- locationRegex.findAllMatchIn(sourceText); fullLocation = expandAbbreviation(locationCasing(containedLoc+", " +containerLoc)).split(",");
+             if locationContainsLocation(fullLocation(1).trim(),fullLocation(0).trim())) {
+          println("Trying to find RAW LOCATION STRING: " + fullLocation(0) +", " + fullLocation(1))
+          val containerLocation = fullLocation(1).trim()
+          if(candidates.contains(containerLocation)){
+            candidates += ((containerLocation, 1 + candidates.get(containerLocation).get))
+          }
+          else{
+            candidates += ((containerLocation,1))
+          }
+        }
+        val headTuple = candidates.toMap.toList.sortBy(f => f._2).headOption
+        if(headTuple.isDefined){
+          containedPlace + ", "+headTuple.get._1
+        }
+        else{
+          originalString
+        }
       }
       else{
         var largestCount =0
@@ -356,7 +381,8 @@ object CorefHelperMethods {
        expandAbbreviation(locationCasing(candidate))
       }
   }
-  private def findBestPersonString(originalString: String, candidateStrings: List[String]) :String = {
+  private def findBestPersonString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
+      val originalString = kbpQuery.name.trim()
       for(cs <- candidateStrings){
         val words = cs.split(" ")
         val originalWords = originalString.split(" ")
