@@ -190,9 +190,26 @@ class CorefHelperMethods(val year: String) {
     alternateName
   }
   
+  private def sortCandidateStringsByProximity(kbpQuery: KBPQuery, candidateStrings: List[String]): List[String] =  {
+    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+    val entityPosition = kbpQuery.begOffset
+    val uniqueCandidateMap = candidateStrings.groupBy[String](f=> f)
+    val candidateDistanceTuples = for(uniqueCandidate <- uniqueCandidateMap.keys) yield {
+      var nextIndex = rawDoc.indexOf(uniqueCandidate)
+      var minDistance = rawDoc.length()
+      while(nextIndex != -1){
+        minDistance = math.min(minDistance, math.abs(entityPosition - nextIndex))
+        nextIndex = rawDoc.indexOf(uniqueCandidate,nextIndex+1)
+      }
+      (uniqueCandidate,minDistance)
+    }
+    println("sorted candidate strings..")
+    candidateDistanceTuples.toList.sortBy(f => f._2).map(x => x._1)
+  }
+  
   private def findBestOrganizationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
     val originalString = kbpQuery.name.trim()
-    
+    val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
     //if the organization is an acronym
     if(originalString.forall(p => p.isUpper)){
       
@@ -321,7 +338,7 @@ class CorefHelperMethods(val year: String) {
 	      val words = cs.split(" ").drop(index)
 	      if( (words.length > (originalWords.length +1)) &&
 	          (words.take(originalWords.length).mkString(" ").toLowerCase() == originalString.toLowerCase()) &&
-	          (words(originalWords.length) == ",")){
+	          (words(originalWords.length) == "," || words(originalWords.length) == "in")){
 	        candidates  = candidates :+ words.take(originalWords.length).mkString(" ") + ", " + words.drop(originalWords.length+1).mkString(" ") 
 	      }
 	      index += 1
