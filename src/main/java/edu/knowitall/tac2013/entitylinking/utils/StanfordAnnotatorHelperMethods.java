@@ -178,7 +178,8 @@ public class StanfordAnnotatorHelperMethods {
 	    		}
 	    		else if((t.ner().equals("LOCATION") && lastToken.ner().equals("LOCATION")) &&
 	    				(t.sentIndex()== lastToken.sentIndex()) && (t.index() == (2 + lastToken.index())) && 
-	    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(","))){
+	    				(allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals(",") ||
+	    				 allTokens.get(t.sentIndex()).get(t.index()-1).originalText().equals("in"))){
 	    			matchingTypes.get(currIndex).add(allTokens.get(t.sentIndex()).get(t.index()-1));
 	    			matchingTypes.get(currIndex).add(t);
 	    		}

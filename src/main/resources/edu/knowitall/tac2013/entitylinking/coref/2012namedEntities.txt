@@ -64,7 +64,7 @@ EL_ENG_00016	PERSON	Annan	Carter	Annan	Carter	Kofi Annan	Jimmy Carter
 	PERSON	Annan	Carter	Annan	Carter	Kofi Annan	Jimmy Carter
 EL_ENG_00017
 	ORGANIZATION	Zep Hu	Industrial Technology Research Institute	ITRI	ITRI	ITRI	Microsystems Technology Center	MTC
-	LOCATION	Taipei	Southern Taiwan Science Park	Tainan County
+	LOCATION	Taipei	Southern Taiwan Science Park in Tainan County
 	PERSON	Lu Ying-ke	Lu	Lu
 EL_ENG_00018
 	ORGANIZATION	MTV	Xscape	Confederate States of America	Nazi
@@ -154,9 +154,9 @@ EL_ENG_00039	PERSON	Vladimir Malakhovsky	Vladimir Pereverzin	Malakhovsky	Perever
 	ORGANIZATION	Yukos	Yukos	Yukos	Yukos	Yukos	RIA-Novosti	ITAR-Tass	Interfax	Yukos	Yukos	Yukos
 	LOCATION	Moscow	MOSCOW	Moscow	Basmanny	Kremlin	Moscow
 	PERSON	Vladimir Malakhovsky	Vladimir Pereverzin	Malakhovsky	Pereverzin	Yekaterina Khasyanova	Mikhail Khodorkovsky	Antonio Valdes Garcia	Malakhovsky	Pereverzin	Valdes Garcia
-EL_ENG_00040	LOCATION	Northeast	Portland , Maine	Washington	PORTLAND , MAINE	Portland	South Portland Greenbelt Walkway	South Portland	South Portland	Mill Creek	Casco Bay	Portland	Portland Harbor	Manhattan	Brooklyn	Harborwalk Trail	Portland	Casco Bay Bridge	Greenbelt Walkway	Kittery , Maine	Portland Trails	BOSTON	Boston	Canton , Mass	Boston	Atlantic Ocean	Hingham	Hartford	New Haven	Connecticut	Kensington Avenue	Meriden	New Haven	Long Island	Connecticut Valley	Hartford	Hartford	New Haven	NEW YORK Manhattan	Hudson Valley	Mount Taurus	N.Y	Manhattan	Hudson River	Manhattan	Hudson	Manhattan	PHILADELPHIA Fairmount Park	Schuylkill River	Philadelphia	Philadelphia	Fairmount Park	Schuylkill	Montgomery Avenue	Belmont Avenue	Philadelphia	United States	Fairmount Park	PITTSBURGH	Md.	Hawaii	Monongahela River	McKeesport , Pa.	Pittsburgh	Monongahela	Ohio	Monongahela	WASHINGTON , D.C	Baltimore	Ohio Railroad	Georgetown	Bethesda , Md.	District of Columbia	Chesapeake	Ohio Canal	Potomac River	Arizona	Virginia	Potomac	Mount Vernon	Washington	Washington	Pittsburgh	Seattle	St. Louis
+EL_ENG_00040	LOCATION	Northeast	Portland , Maine	Washington	PORTLAND , MAINE	Portland	South Portland Greenbelt Walkway	South Portland	South Portland	Mill Creek	Casco Bay	Portland	Portland Harbor	Manhattan	Brooklyn	Harborwalk Trail in Portland	Casco Bay Bridge	Greenbelt Walkway	Kittery , Maine	Portland Trails	BOSTON	Boston	Canton , Mass	Boston	Atlantic Ocean	Hingham	Hartford	New Haven	Connecticut	Kensington Avenue	Meriden	New Haven	Long Island	Connecticut Valley	Hartford	Hartford	New Haven	NEW YORK Manhattan	Hudson Valley	Mount Taurus	N.Y	Manhattan	Hudson River	Manhattan	Hudson	Manhattan	PHILADELPHIA Fairmount Park	Schuylkill River	Philadelphia	Philadelphia	Fairmount Park	Schuylkill	Montgomery Avenue	Belmont Avenue	Philadelphia	United States	Fairmount Park	PITTSBURGH	Md.	Hawaii	Monongahela River	McKeesport , Pa.	Pittsburgh	Monongahela	Ohio	Monongahela	WASHINGTON , D.C	Baltimore	Ohio Railroad	Georgetown	Bethesda , Md.	District of Columbia	Chesapeake	Ohio Canal	Potomac River	Arizona	Virginia	Potomac	Mount Vernon	Washington	Washington	Pittsburgh	Seattle	St. Louis
 	ORGANIZATION	Portland Trails	Appalachian Mountain Club	Blue Hills Reservation	Metacomet Trail	Appalachian Mountain Club	Castle Craig	AMC	Appalachian Mountain Club	AMC	AMC	Major Welch Trail	American Hiking Society	Golden Triangle	Hot Metal Bridge	Eliza Furnace Trail	Arlington Memorial Bridge	Mount Vernon Trail	Capital Crescent Trail	Capital Crescent Trail
-	LOCATION	Northeast	Portland , Maine	Washington	PORTLAND , MAINE	Portland	South Portland Greenbelt Walkway	South Portland	South Portland	Mill Creek	Casco Bay	Portland	Portland Harbor	Manhattan	Brooklyn	Harborwalk Trail	Portland	Casco Bay Bridge	Greenbelt Walkway	Kittery , Maine	Portland Trails	BOSTON	Boston	Canton , Mass	Boston	Atlantic Ocean	Hingham	Hartford	New Haven	Connecticut	Kensington Avenue	Meriden	New Haven	Long Island	Connecticut Valley	Hartford	Hartford	New Haven	NEW YORK Manhattan	Hudson Valley	Mount Taurus	N.Y	Manhattan	Hudson River	Manhattan	Hudson	Manhattan	PHILADELPHIA Fairmount Park	Schuylkill River	Philadelphia	Philadelphia	Fairmount Park	Schuylkill	Montgomery Avenue	Belmont Avenue	Philadelphia	United States	Fairmount Park	PITTSBURGH	Md.	Hawaii	Monongahela River	McKeesport , Pa.	Pittsburgh	Monongahela	Ohio	Monongahela	WASHINGTON , D.C	Baltimore	Ohio Railroad	Georgetown	Bethesda , Md.	District of Columbia	Chesapeake	Ohio Canal	Potomac River	Arizona	Virginia	Potomac	Mount Vernon	Washington	Washington	Pittsburgh	Seattle	St. Louis
+	LOCATION	Northeast	Portland , Maine	Washington	PORTLAND , MAINE	Portland	South Portland Greenbelt Walkway	South Portland	South Portland	Mill Creek	Casco Bay	Portland	Portland Harbor	Manhattan	Brooklyn	Harborwalk Trail in Portland	Casco Bay Bridge	Greenbelt Walkway	Kittery , Maine	Portland Trails	BOSTON	Boston	Canton , Mass	Boston	Atlantic Ocean	Hingham	Hartford	New Haven	Connecticut	Kensington Avenue	Meriden	New Haven	Long Island	Connecticut Valley	Hartford	Hartford	New Haven	NEW YORK Manhattan	Hudson Valley	Mount Taurus	N.Y	Manhattan	Hudson River	Manhattan	Hudson	Manhattan	PHILADELPHIA Fairmount Park	Schuylkill River	Philadelphia	Philadelphia	Fairmount Park	Schuylkill	Montgomery Avenue	Belmont Avenue	Philadelphia	United States	Fairmount Park	PITTSBURGH	Md.	Hawaii	Monongahela River	McKeesport , Pa.	Pittsburgh	Monongahela	Ohio	Monongahela	WASHINGTON , D.C	Baltimore	Ohio Railroad	Georgetown	Bethesda , Md.	District of Columbia	Chesapeake	Ohio Canal	Potomac River	Arizona	Virginia	Potomac	Mount Vernon	Washington	Washington	Pittsburgh	Seattle	St. Louis
 	PERSON	Charles W.G. Smith	Nan Cumming	Cumming	Michael Tougias	Tougias	Tougias	Castle Craig	Smith	Rene Laubach	Smith	Castle Craig	Smith	Smith	Castle Craig	Peter W. Kick	Kick	Kick	Ed Talone	Allegheny Rivers	Talone	George Washington	Talone
 EL_ENG_00041	ORGANIZATION	Online Training " Gulf Coast Council BSA	Gulf Coast Council	Boy Scouts of America	BSA
 	ORGANIZATION	Online Training " Gulf Coast Council BSA	Gulf Coast Council	Boy Scouts of America	BSA
@@ -232,15 +232,15 @@ EL_ENG_00058	LOCATION	Salem	NY	Salem	Salem Location Nuclear
 	PERSON
 EL_ENG_00059	PERSON	Robert Graysmith	Graysmith	Graysmith	Graysmith	Jake Gyllenhaal	Mark Ruffalo	Robert Downey Jr	Francis	Graysmith	Stine	Paul Lee Stine	Graysmith	Graysmith	Graysmith	Stine	Graysmith	Gilbert	Sullivan	Harold	Stine	Graysmith	Graysmith	Zodiac	Jack	Graysmith	Graysmith	Graysmith	Paul Avery	Downey	Zodiac	Paul Avery	Dave Toschi	Ruffalo	Steve McQueen	Graysmith	Zodiac	Graysmith	Graysmith	Hogan	Bob Crane	Graysmith	James Vanderbilt	Mike Medavoy	Garry Trudeau	Sam	Robert	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Zodiac	Graysmith	Margot	Margot	Zodiac	David Fincher	Graysmith	Graysmith	Arthur Leigh Allen	Allen	Graysmith	Graysmith
 	ORGANIZATION	Yellow Cab Co.	FBI	San Francisco Chronicle	Phoenix Pictures	Vanderbilt	VW Rabbit
-	LOCATION	SAN FRANCISCO	San Francisco State	Lake Street	Washington	Presidio Heights	Bay Area	Lake Berryessa	Napa County	San Francisco	Vallejo
+	LOCATION	SAN FRANCISCO	San Francisco State	Lake Street	Washington	Presidio Heights	Bay Area	Lake Berryessa in Napa County	San Francisco	Vallejo
 	PERSON	Robert Graysmith	Graysmith	Graysmith	Graysmith	Jake Gyllenhaal	Mark Ruffalo	Robert Downey Jr	Francis	Graysmith	Stine	Paul Lee Stine	Graysmith	Graysmith	Graysmith	Stine	Graysmith	Gilbert	Sullivan	Harold	Stine	Graysmith	Graysmith	Zodiac	Jack	Graysmith	Graysmith	Graysmith	Paul Avery	Downey	Zodiac	Paul Avery	Dave Toschi	Ruffalo	Steve McQueen	Graysmith	Zodiac	Graysmith	Graysmith	Hogan	Bob Crane	Graysmith	James Vanderbilt	Mike Medavoy	Garry Trudeau	Sam	Robert	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Graysmith	Zodiac	Graysmith	Margot	Margot	Zodiac	David Fincher	Graysmith	Graysmith	Arthur Leigh Allen	Allen	Graysmith	Graysmith
 EL_ENG_00060	PERSON	Ashley Clark	Ashley Clark	Clark	Sheila Clark	Sheila Clark	Joseph Nagle	Cheyenne Blanton	Clark	Clark	Sheila Clark	Ashley Clark	Nagle	Robin N. Piper	Piper	Sheila Clark
 	ORGANIZATION	Piper
 	LOCATION	OHIO	CINCINNATI	Ohio	Hanover Township	Fort Hamilton Hospital	Hamilton	Ohio	Butler County
 	PERSON	Ashley Clark	Ashley Clark	Clark	Sheila Clark	Sheila Clark	Joseph Nagle	Cheyenne Blanton	Clark	Clark	Sheila Clark	Ashley Clark	Nagle	Robin N. Piper	Piper	Sheila Clark
-EL_ENG_00061	LOCATION	Harlem	Dorchester	Connecticut Berkshires	New England	Salisbury	Salisbury	Salisbury	Dorchester	Boston	Salisbury	Salisbury	Madison Park	Mattapan	Boston	Boston	US	Salisbury	Dorchester	Garvey Park	Dorchester	Salisbury	Dorchester	Madison Park
+EL_ENG_00061	LOCATION	Harlem	Dorchester	Connecticut Berkshires	New England	Salisbury	Salisbury	Salisbury	Dorchester	Boston	Salisbury	Salisbury	Madison Park	Mattapan	Boston	Boston	US	Salisbury	Dorchester	Garvey Park in Dorchester	Salisbury	Dorchester	Madison Park
 	ORGANIZATION	Salisbury School	Dorchester Eagles	Pop Warner	Salisbury School	ESPN	Eagles	HBO	Dorchester High School	Madison Park Technical Vocational High School	HBO	Pop Warner	Eagles	Eagles	Eagles	Eagles	Pop Warner
-	LOCATION	Harlem	Dorchester	Connecticut Berkshires	New England	Salisbury	Salisbury	Salisbury	Dorchester	Boston	Salisbury	Salisbury	Madison Park	Mattapan	Boston	Boston	US	Salisbury	Dorchester	Garvey Park	Dorchester	Salisbury	Dorchester	Madison Park
+	LOCATION	Harlem	Dorchester	Connecticut Berkshires	New England	Salisbury	Salisbury	Salisbury	Dorchester	Boston	Salisbury	Salisbury	Madison Park	Mattapan	Boston	Boston	US	Salisbury	Dorchester	Garvey Park in Dorchester	Salisbury	Dorchester	Madison Park
 	PERSON	Langston Hughes	Chris Adamson	Jon Berment	Da'Vaughn Goss	Adamson	Berment	Goss	Adamson	Adamson	Salisbury	Adamson	Berment	Goss	Berment	Salisbury	Berment	Goss	Terry Cousin	Adamson	Adamson	Adamson	Salisbury	Berment	Goss	Berment	Goss	Salisbury	Leslie Goodwin	Adamson	Salisbury	Berment	Goss	Berment	Adamson	Goss	Berment	Goss	Goss	Peter Berment	Salisbury	Peter Berment	Adamson	Cousin	Salisbury	Esse Quam Videri	Berment	Goss	God	Adamson	Berment	Goss	Salisbury	Adamson	Salisbury	Berment	Goss	Adamson	Adamson	Berment	Goss	Adamson	Salisbury	Berment	Goss	Berment	Salisbury	Berment	Berment	Goss	Salisbury	Adamson	Goss	Salisbury	Goss	Goss	Adamson	Goss	Adamson	Adamson	Salisbury	Cousin	Goodwin	Langston Hughes	Adamson	Berment	Goss	Goodwin
 EL_ENG_00062	PERSON	Sergio Marchi	Marchi	Marchi	Marchi	Brunson McKinley	McKinley	William McKinley	William Lacy Swing	Luca Riccardi	Marchi	Jean Chretien	Marchi	McKinley	John Negroponte	McKinley	Negroponte	Marchi	Marchi
 	ORGANIZATION	International Organization for Migration	Associated Press	IOM	World Trade Organization	IOM	United Nations	U.N.	United Nations	IOM	IOM	IOM
@@ -534,9 +534,9 @@ EL_ENG_00134	LOCATION	Massachusetts	CAMBRIDGE , Massachusetts	Massachusetts	Lexi
 	ORGANIZATION	Shire	Shire PLC	Shire Human Genetic Therapies
 	LOCATION	Massachusetts	CAMBRIDGE , Massachusetts	Massachusetts	Lexington	Cambridge	Lexington Technology Park	Lexington	Massachusetts	Lexington
 	PERSON	Shire
-EL_ENG_00135	LOCATION	Baltimore	Chicago	Baltimore	Baltimore	Franklin Square Hospital	Baltimore	Europe	Rome	Taylor Manor Hospital	Ellicott City , Md.	Hunt Valley , Md.	Parkville , Md.	Towson , Md.	Md.	Cedarcroft , Md.	Timonium , Md.	Towson , Va.	Umbria , Italy	Towson	Troutdale , Va.	Catonsville , Md.	Timonium	York , Pa.	Parkville	Parkville
+EL_ENG_00135	LOCATION	Baltimore	Chicago	Baltimore	Baltimore	Franklin Square Hospital in Baltimore	Europe	Rome	Taylor Manor Hospital in Ellicott City , Md.	Hunt Valley , Md.	Parkville , Md.	Towson , Md.	Md.	Cedarcroft , Md.	Timonium , Md.	Towson , Va.	Umbria , Italy	Towson	Troutdale , Va.	Catonsville , Md.	Timonium	York , Pa.	Parkville	Parkville
 	ORGANIZATION	American Psychiatric Association	Food and Drug Administration	New York Times	Case Western Reserve University	Rush University	Collegium Internationale Neuro	American College of Neuropsychopharmacology	International Drug Therapy Newsletter	Psychopharm Review	Johns Hopkins School of Medicine	Loyola College	University of Maryland School of Medicine	Navy	Pontifical Gregorian University	Psychiatric Times
-	LOCATION	Baltimore	Chicago	Baltimore	Baltimore	Franklin Square Hospital	Baltimore	Europe	Rome	Taylor Manor Hospital	Ellicott City , Md.	Hunt Valley , Md.	Parkville , Md.	Towson , Md.	Md.	Cedarcroft , Md.	Timonium , Md.	Towson , Va.	Umbria , Italy	Towson	Troutdale , Va.	Catonsville , Md.	Timonium	York , Pa.	Parkville	Parkville
+	LOCATION	Baltimore	Chicago	Baltimore	Baltimore	Franklin Square Hospital in Baltimore	Europe	Rome	Taylor Manor Hospital in Ellicott City , Md.	Hunt Valley , Md.	Parkville , Md.	Towson , Md.	Md.	Cedarcroft , Md.	Timonium , Md.	Towson , Va.	Umbria , Italy	Towson	Troutdale , Va.	Catonsville , Md.	Timonium	York , Pa.	Parkville	Parkville
 	PERSON	Frank J. Ayd Jr.	Loretta M. Simpson	Ayd	Ayd	Ayd	Robert L. Findling	Ayd	Philip G. Janicak	Ayd	Ayd	Ayd	Ayd	J. Raymond DePaulo	Ayd	DePaulo	Ayd	Janicak	Ayd	Ayd	DePaulo	Ayd	Frank Joseph Ayd Jr.	Ayd	Ayd	Ayd	Ayd	Loretta	Ayd	Rita Anne Corasaniti	Frank III	Joseph	Thomas	Vincent	John	Margaret Reid	Simpson	Teresa Knott	Martha Teitelbaum	Christina Lears	Rita O'Brennan	Jane Morales	Regina Brockmeyer	Robert	Ayd
 EL_ENG_00136	PERSON	Jim Sims Jr.	Sims	Sims	Jim	Clifton	Rhonda McLearen	Jim Sims Sr.	Linda Keith	Sims	Sims	Sims	Sims	Hewitt	Whitney	McGregor	Clifton	Clifton	Clifton	Clifton	Sims	Jim	Terri Jo Ryan
 	ORGANIZATION	Cox News Service	Pizza Today	Eastfield College	Waco Tribune-Herald
@@ -558,9 +558,9 @@ EL_ENG_00140	PERSON	Carroll	Carroll	Mike Silvestri	Carroll	Richard Anthony	Carro
 	ORGANIZATION	Environmental Advisory Council	Public Works Department
 	LOCATION	BALTIMORE	San Diego	Los Angeles	Austin , Texas	Texas	Carroll County	Frederick County	San Diego , California
 	PERSON	Carroll	Carroll	Mike Silvestri	Carroll	Richard Anthony	Carroll	Anthony	Carroll	Anthony	Anthony	Anthony	Anthony	Carroll	Anthony	Anthony
-EL_ENG_00141	LOCATION	LOS ANGELES	Newtown	Heathrow Airport	London
+EL_ENG_00141	LOCATION	LOS ANGELES	Newtown	Heathrow Airport in London
 	ORGANIZATION	ABC	The Associated Press	ABC
-	LOCATION	LOS ANGELES	Newtown	Heathrow Airport	London
+	LOCATION	LOS ANGELES	Newtown	Heathrow Airport in London
 	PERSON	Naomi Campbell	Naomi Campbell	Becki Newton	Newton	Amanda	Amanda Sommers	Campbell	Campbell	Victoria Beckham	Gene Simmons	Amanda	Newton	Simmons
 EL_ENG_00142	PERSON	Richard Jewell	Jewell	Steve Whitlock	Jewell	Johnny Worley	Jewell	Dana	Worley	Jewell	Worley	Jewell	Worley	Whitlock	Jewell	Richard	Whitlock	Jewell	Jewell	Eric Robert Rudolph	Jewell	Jewell	Jewell	Jewell	Jewell	John Mellott	Richard Jewell	Mellott	Jewell	Jewell	Sonny Perdue	Perdue	Jewell	Jewell	Jeffry Scott	Mike Morris	Rhonda Cook
 	ORGANIZATION	Cox News Service	Meriwether County Sheriff	Georgia Bureau of Investiation	FBI	The Atlanta Journal Constitution	FBI	AJC	NBC	CNN	AJC	The Atlanta Journal
@@ -570,9 +570,9 @@ EL_ENG_00143	PERSON	Paul Holland	Mansfield	Holland	Billy Dearden	Paul	Mansfield	
 	ORGANIZATION
 	LOCATION	MANSFIELD , England
 	PERSON	Paul Holland	Mansfield	Holland	Billy Dearden	Paul	Mansfield	Stephen Booth	Mansfield
-EL_ENG_00144	LOCATION	Northampton	Northampton	Northampton	England	Western Province	South Africa
+EL_ENG_00144	LOCATION	Northampton	Northampton	Northampton	England	Western Province in South Africa
 	ORGANIZATION	BBC Radio Northampton
-	LOCATION	Northampton	Northampton	Northampton	England	Western Province	South Africa
+	LOCATION	Northampton	Northampton	Northampton	England	Western Province in South Africa
 	PERSON	Van Niekerk	Joe van Niekerk	Keith Barwell	Barwell	Van Niekerk
 EL_ENG_00145	ORGANIZATION	ANP	ANP
 	ORGANIZATION	ANP	ANP
@@ -580,7 +580,7 @@ EL_ENG_00145	ORGANIZATION	ANP	ANP
 	PERSON
 EL_ENG_00146
 	ORGANIZATION	USA Falcons
-	LOCATION	MUSCATINE , Iowa	United States	France	U.S.	England	U.S.	U.S.	North America	U.S.	France	England	Lens
+	LOCATION	MUSCATINE , Iowa	United States	France	U.S.	England	U.S.	U.S.	North America	U.S.	France	England in Lens
 	PERSON	Viljoen	Osborne	Andrew	Osborne	Francois Viljoen	Viljoen	Francois	Peter Thorburn	Osborne	Francois	Osborne
 EL_ENG_00147	PERSON	gore	Schoolly	Sarah Silverman	Todd Field	Zakk Wylde	Jim Lehrer	Matt Maiellaro	Dave Willis	Maiellaro	Willis	Jay Wade Edwards	Carl	Maiellaro	Willis	Willis	Rush	Neil Peart	Tina Fey	Phil Collins	Monty Python	Jean-Luc Godard	Todd Hanson	Maiellaro	Willis	Hanson	Meatwad	Willis	Maiellaro	Frylock	Meatwad	Meatwad	Chuck Warren	Rebecca	Warren	Ignignokt	Peter Berdovsky	Sean Stevens	Berdovsky
 	ORGANIZATION	Aqua Teen Hunger Force	Ozzy Osbourne	Turner Broadcasting System	Cartoon Network	Wikipedia	MSNBC	Fox News
@@ -794,9 +794,9 @@ EL_ENG_00199	LOCATION	Kansas	Kansas	Andover	Argonia , Arkansas City , Atlanta , 
 	ORGANIZATION	Kansas Counties	Belle Plaine	Valley Center	PA	VA
 	LOCATION	Kansas	Kansas	Andover	Argonia , Arkansas City , Atlanta , Augusta , Barstow , Bayneville , Beaumont	Burrton	Cambridge	Chautauqua Springs , Cheney , Clearwater	Cloverdale	Conway Springs	Derby	East Geuda Springs , Eldorado	Elk Falls , Eureka , Fall River	Garden Plains , Geuda Springs	Greenwich , Grenola	Hamilton , Hesston	Keighley	Longton	Milan , Moline	Mulvane	New Salem , Newton , Oak Valley , Oatville , Oxford , Peru , Piedmont , Pontiac , Potwin	Salt City	South Haven	Towanda	Wellington , Wichita	Kansas	Kansas	Kansas
 	PERSON	Butler	Cowley	Elk	Greenwood	Harvey	Sedgwick	Sumner	Cowley	Elk	Greenwood	Harvey	Sedgwick	Sumner	Benton	Brainard	Caldwell	Cale	Corbin	Dalton	Degraff	Dexter	Douglass	Elgin	Goddard	Halstead	Howard	Hunnewell	Kellogg	Latham	Leon	Madison	McLain	Neal	Reece	Rosalia	Sedgwick	Seeley	Severy	Torrance	Udall	Walton	Waneta	Wilmot	Winfield	Wingate
-EL_ENG_00200	LOCATION	CABOT TRAIL PORT HASTINGS , Nova Scotia	Cape Breton Island	Loewe	Cabot Trail	Cape Breton	Highland Village Museum	Iona	Cape Breton	Cape Breton	Scotland	Englishtown	US	Baddeck	Boston	US	Cape Breton	Beautiful Mountain	Scotland	Cape Breton	Cape Breton	Baddeck	Little River Harbour	Lake Thompson Farm	Speerville , New Brunswick	Scotland	Canada	Glenora Inn	Glenville	Canada	United States	Cape Breton	Cape Breton	Cape Breton	Cape Breton	Glenora	CraftsMacKillop Road	Highland Village	Cape Breton
+EL_ENG_00200	LOCATION	CABOT TRAIL PORT HASTINGS , Nova Scotia	Cape Breton Island	Loewe	Cabot Trail	Cape Breton	Highland Village Museum in Iona	Cape Breton	Cape Breton	Scotland	Englishtown	US	Baddeck	Boston	US	Cape Breton	Beautiful Mountain	Scotland	Cape Breton	Cape Breton	Baddeck	Little River Harbour	Lake Thompson Farm	Speerville , New Brunswick	Scotland	Canada	Glenora Inn	Glenville	Canada	United States	Cape Breton	Cape Breton	Cape Breton	Cape Breton	Glenora	CraftsMacKillop Road	Highland Village	Cape Breton
 	ORGANIZATION	BRETON	Gaelic College of Celtic Arts	American Rockies	Celtic Colours International Festival	Keltic Lodge Middle Head	Chanterelle Country Inn &amp; amp	Cabot Trail	Harbour Restaurant &amp; amp	Cabot Trail	Gaelic College of Celtic Arts	Celtic Colours International
-	LOCATION	CABOT TRAIL PORT HASTINGS , Nova Scotia	Cape Breton Island	Loewe	Cabot Trail	Cape Breton	Highland Village Museum	Iona	Cape Breton	Cape Breton	Scotland	Englishtown	US	Baddeck	Boston	US	Cape Breton	Beautiful Mountain	Scotland	Cape Breton	Cape Breton	Baddeck	Little River Harbour	Lake Thompson Farm	Speerville , New Brunswick	Scotland	Canada	Glenora Inn	Glenville	Canada	United States	Cape Breton	Cape Breton	Cape Breton	Cape Breton	Glenora	CraftsMacKillop Road	Highland Village	Cape Breton
+	LOCATION	CABOT TRAIL PORT HASTINGS , Nova Scotia	Cape Breton Island	Loewe	Cabot Trail	Cape Breton	Highland Village Museum in Iona	Cape Breton	Cape Breton	Scotland	Englishtown	US	Baddeck	Boston	US	Cape Breton	Beautiful Mountain	Scotland	Cape Breton	Cape Breton	Baddeck	Little River Harbour	Lake Thompson Farm	Speerville , New Brunswick	Scotland	Canada	Glenora Inn	Glenville	Canada	United States	Cape Breton	Cape Breton	Cape Breton	Cape Breton	Glenora	CraftsMacKillop Road	Highland Village	Cape Breton
 	PERSON	Brigadoon	Lerner	Alexander Graham	Beinn Breagh	Bell	Bell	Richard Carpenter	Alexander Graham
 EL_ENG_00201	PERSON	ROTEM	Jonathan " J.R. " Rotem	Rihanna	Sean Kingston	Britney Spears	Jennifer Lopez	Christina Milian	Mya	Jessi Malay	Nikki Flores	Keke Palmer	Trey Songz	Jada	Jonathan	Rotem	Hamada	Monica	Kingston	Sean Kingston
 	ORGANIZATION	Sony Music	Sony Music	Motown Records	Atlantic Records	Atlantic Records	Sony Music	Atlantic Records	Geffen Records	Atlantic Records	Motown Records
@@ -956,7 +956,7 @@ EL_ENG_00239	ORGANIZATION	AP	Network Solutions Inc.	9th U.S. Circuit Court of Ap
 	PERSON	Alex Kozinski	Kozinski	Gary Kremen	Stephen Michael Cohen	Kremen	Cohen	Kremen	Cohen	Kremen	Cohen	Kremen	Cohen	Kremen	Kremen	Kremen	Cohen	Kremen	Kremen	Cohen	Cohen	Kremen	Cohen	Kremen	Cohen	Kozinski	Cohen	Jason M. Schultz
 EL_ENG_00240	PERSON	Tillie Olsen	Tillie Olsen	Olsen	Laurie Olsen	Tillie Olsen	Olsen	Alice Walker	Margaret Atwood	Grace Paley	Paley	Olsen	Samuel Lerner	Olsen	Laurie Olsen	Tillie Olsen	Jack Olsen	Olsen	Olsen	Olsen	Olsen	Wallace Stegner	Olsen	Olsen	Olsen	Rebecca Harding Davis	Olsen	Davis	Olsen	Charlotte Perkins Gilman	Agnes Smedley	Olsen
 	ORGANIZATION	The Associated Press	AP	Young Communist League	Stanford University	Feminist Press	Feminist Press	San Francisco Public Library
-	LOCATION	NEW YORK	Berkeley , California	Kaiser Hospital	Oakland , California	Omaha , Nebraska	Nebraska	San Francisco
+	LOCATION	NEW YORK	Berkeley , California	Kaiser Hospital in Oakland , California	Omaha , Nebraska	Nebraska	San Francisco
 	PERSON	Tillie Olsen	Tillie Olsen	Olsen	Laurie Olsen	Tillie Olsen	Olsen	Alice Walker	Margaret Atwood	Grace Paley	Paley	Olsen	Samuel Lerner	Olsen	Laurie Olsen	Tillie Olsen	Jack Olsen	Olsen	Olsen	Olsen	Olsen	Wallace Stegner	Olsen	Olsen	Olsen	Rebecca Harding Davis	Olsen	Davis	Olsen	Charlotte Perkins Gilman	Agnes Smedley	Olsen
 EL_ENG_00241	PERSON	Howard	John Howard	Howard	Michael Jeffery	Howard	Kevin Rudd	Howard	Howard	Jeffery
 	ORGANIZATION	UTC	Labor Party
@@ -996,7 +996,7 @@ EL_ENG_00249	PERSON	Pete Hodgson	Hodgson	Hodgson	Hodgson	Hodgson
 	PERSON	Pete Hodgson	Hodgson	Hodgson	Hodgson	Hodgson
 EL_ENG_00250	ORGANIZATION	Hartford Food Not Bombs	FNB	Charter Oak Cultural Center	Charter Oak	FNB	Muslim	Christian
 	ORGANIZATION	Hartford Food Not Bombs	FNB	Charter Oak Cultural Center	Charter Oak	FNB	Muslim	Christian
-	LOCATION	Bushnell Park	Hartford , Conn.	Hartford	Hartford	West Hartford	West Hartford	Cambridge , Mass.	California	New York
+	LOCATION	Bushnell Park in Hartford , Conn.	Hartford	Hartford	West Hartford	West Hartford	Cambridge , Mass.	California	New York
 	PERSON	Dave Rozza	Rozza	Kelsey Larsen	Ken Tong	Tong	Donna Berman	Berman
 EL_ENG_00251
 	ORGANIZATION	Automobile Association	Permira	CVC	Charterhouse	Permira	CVC
@@ -1006,9 +1006,9 @@ EL_ENG_00252	PERSON	Jim Clifton	Clifton	Clifton	Clifton	George W. Bush
 	ORGANIZATION	The Gallup Organization
 	LOCATION	Iraq	Tokyo	United States	Iraq
 	PERSON	Jim Clifton	Clifton	Clifton	Clifton	George W. Bush
-EL_ENG_00253	LOCATION	Russia	Los Angeles Times NOME , Alaska	Nome	Alaska	Anchorage	Los Anchorage	Nome	Bering Sea	Alaska	Russia	Russia	Russia	Alaska	Alaska	Anchorage	Wasilla	Wales	Diomede Island	Russia	Russia	Alaska	Alaska	Alaska	Los Angeles	San Fernando Valley	Nome	Koreans	Russia	Russia	Bering Sea	Provideniya	Nome	U.S.	Russia	Russia
+EL_ENG_00253	LOCATION	Russia	Los Angeles Times NOME , Alaska	Nome	Alaska	Anchorage	Los Anchorage	Nome	Bering Sea	Alaska	Russia	Russia	Russia	Alaska	Alaska	Anchorage	Wasilla	Wales	Diomede Island in Russia	Russia	Alaska	Alaska	Alaska	Los Angeles	San Fernando Valley	Nome	Koreans	Russia	Russia	Bering Sea	Provideniya	Nome	U.S.	Russia	Russia
 	ORGANIZATION	Cabinet	Arctic Trading Post	GOP	National Guard	Milano 's Pizzeria &amp; Sushi
-	LOCATION	Russia	Los Angeles Times NOME , Alaska	Nome	Alaska	Anchorage	Los Anchorage	Nome	Bering Sea	Alaska	Russia	Russia	Russia	Alaska	Alaska	Anchorage	Wasilla	Wales	Diomede Island	Russia	Russia	Alaska	Alaska	Alaska	Los Angeles	San Fernando Valley	Nome	Koreans	Russia	Russia	Bering Sea	Provideniya	Nome	U.S.	Russia	Russia
+	LOCATION	Russia	Los Angeles Times NOME , Alaska	Nome	Alaska	Anchorage	Los Anchorage	Nome	Bering Sea	Alaska	Russia	Russia	Russia	Alaska	Alaska	Anchorage	Wasilla	Wales	Diomede Island in Russia	Russia	Alaska	Alaska	Alaska	Los Angeles	San Fernando Valley	Nome	Koreans	Russia	Russia	Bering Sea	Provideniya	Nome	U.S.	Russia	Russia
 	PERSON	Steve Lopez	Sarah Palin	Palin	John McCain-Sarah Palin	Norbert Thomas	Thomas	Nancy McGuire	Palin	McGuire	McGuire	McGuire	Vladimir Putin	McGuire	Diomede	Palin	McGuire	Mary Knodel	Sarah	Knodel	Palin	Knodel	McCain	Palin	Leo Rasmussen	Palin	McCain	Rasmussen	Palin	Palin	Palin	Tina Fey	Palin	Tina Fey	Lew Tobin	Lew Tobin	McCain	Palin	Tobin	Palin	McGuire	Palin	McGuire	Palin
 EL_ENG_00254	PERSON	Winchester	Rob
 	ORGANIZATION
@@ -1128,15 +1128,15 @@ EL_ENG_00282	LOCATION	Missouri	Springfield	Republic , Missouri	Springfield
 	PERSON	Michael Fare	Michael Fare
 EL_ENG_00283	ORGANIZATION	Thompson Speedway	Thompson International Speedway	Northeast Midget Association	NASCAR	NASCAR
 	ORGANIZATION	Thompson Speedway	Thompson International Speedway	Northeast Midget Association	NASCAR	NASCAR
-	LOCATION	Connecticut THOMPSON , Connecticut	American	Halifax , Massachusetts	Day Kimball Hospital	Putnam
+	LOCATION	Connecticut THOMPSON , Connecticut	American	Halifax , Massachusetts	Day Kimball Hospital in Putnam
 	PERSON	Shane Hammond	Russ Dowd	Dowd	Hammond	Dowd	Chris Leonard	John Blewett III
 EL_ENG_00284	ORGANIZATION	Senate	CMA Consulting Services	CMA	Senate	CMA	CMA	CMA	CMA	Assembly Transportation Committee	CMA	CMA	Senate Republican Campaign Committee	CMA	Republican Party	Senate
 	ORGANIZATION	Senate	CMA Consulting Services	CMA	Senate	CMA	CMA	CMA	CMA	Assembly Transportation Committee	CMA	CMA	Senate Republican Campaign Committee	CMA	Republican Party	Senate
 	LOCATION	ALBANY , N.Y	Latham , N.Y.	Albany	New York	Albany	Nassau County	Rochester	New York City	New York	New York
 	PERSON	BRUNO	Joseph L. Bruno	Bruno	Bruno	Bruno	Bruno	Bruno	Robert Scott Gaddy	David F. Gantt	Gantt	Gantt	Bruno	Kay Stafford	Stafford	Bruno	Bruno
-EL_ENG_00285	LOCATION	Portland	Shambhala Cafe	Portland	Shambhala Cafe	Portland	Portland	Shambhala Center	Portland , Oregon	Portland	Portland	Shambhala Center	Portland	Portland
+EL_ENG_00285	LOCATION	Portland	Shambhala Cafe	Portland	Shambhala Cafe	Portland	Portland	Shambhala Center	Portland , Oregon	Portland	Portland	Shambhala Center in Portland	Portland
 	ORGANIZATION
-	LOCATION	Portland	Shambhala Cafe	Portland	Shambhala Cafe	Portland	Portland	Shambhala Center	Portland , Oregon	Portland	Portland	Shambhala Center	Portland	Portland
+	LOCATION	Portland	Shambhala Cafe	Portland	Shambhala Cafe	Portland	Portland	Shambhala Center	Portland , Oregon	Portland	Portland	Shambhala Center in Portland	Portland
 	PERSON	Christopher Rempel	Laura Ross	Chris
 EL_ENG_00286	ORGANIZATION	NHL	NHL	NHL	NHL	USC	New York Rangers	MSG	Knicks	NHL	Pittsburgh Pens	NBC	NBC	Chicago Blackhawks
 	ORGANIZATION	NHL	NHL	NHL	NHL	USC	New York Rangers	MSG	Knicks	NHL	Pittsburgh Pens	NBC	NBC	Chicago Blackhawks
@@ -1214,9 +1214,9 @@ EL_ENG_00304	PERSON	Olbermann	Wilson	Joe Wilson	Keith Olbermann
 	ORGANIZATION	Congress
 	LOCATION
 	PERSON	Olbermann	Wilson	Joe Wilson	Keith Olbermann
-EL_ENG_00305	LOCATION	French	French	Boulogne-sur-Mer	Boulogne	Dover	England	Dover	Dover	Boulogne	Dover
+EL_ENG_00305	LOCATION	French	French	Boulogne-sur-Mer	Boulogne	Dover in England	Dover	Dover	Boulogne	Dover
 	ORGANIZATION
-	LOCATION	French	French	Boulogne-sur-Mer	Boulogne	Dover	England	Dover	Dover	Boulogne	Dover
+	LOCATION	French	French	Boulogne-sur-Mer	Boulogne	Dover in England	Dover	Dover	Boulogne	Dover
 	PERSON	Pascale Vernieuwe	Boulogne	Philippe Reydant	Curt Davis
 EL_ENG_00306	PERSON	Jheryl Busby	Jheryl Busby	Ed Winter	Busby	Busby	Motown	Latifah	Busby	Magic Johnson	Janet Jackson
 	ORGANIZATION	Motown Records	Founders National Bank of Los Angeles
@@ -1264,7 +1264,7 @@ EL_ENG_00316	PERSON	Clay Aiken	Eric Idle	Clay Aiken	Monty Python	Robin	Mike Nich
 	PERSON	Clay Aiken	Eric Idle	Clay Aiken	Monty Python	Robin	Mike Nichols	Aiken	Mike Nichols	Eric Idle	Aiken	Monty Python	Python	John DuPrez	Clay Aiken	Nichols
 EL_ENG_00317	ORGANIZATION	European Paralympic Committee	EPC	EPC	EPC	European Paralympic Committee
 	ORGANIZATION	European Paralympic Committee	EPC	EPC	EPC	European Paralympic Committee
-	LOCATION	Vienna	Vienna	Vienna	Istanbul , Rome , Piestany	Slovakia	Lausanne	Bonn , Germany
+	LOCATION	Vienna	Vienna	Vienna	Istanbul , Rome , Piestany in Slovakia	Lausanne	Bonn , Germany
 	PERSON	Alfred Gusenbauer	Gusenbauer	Enrique Sanchez-Guijo Acevedo
 EL_ENG_00318	ORGANIZATION	University of Science and Technology	NTNU	British Association of University Teachers	Bar-Ilan	Haifa University	Bar-Ilan
 	ORGANIZATION	University of Science and Technology	NTNU	British Association of University Teachers	Bar-Ilan	Haifa University	Bar-Ilan
@@ -1418,9 +1418,9 @@ EL_ENG_00356
 	ORGANIZATION	Cleveland Indians	American League	Cleveland Plain Dealer	New York Yankees
 	LOCATION	Cleveland	Cleveland	Cleveland
 	PERSON	Westbrook	Jake Westbrook	Westbrook	Westbrook	Mark Shapiro	Jake	Jake	Westbrook
-EL_ENG_00357	LOCATION	Hanover	Germany
+EL_ENG_00357	LOCATION	Hanover in Germany
 	ORGANIZATION
-	LOCATION	Hanover	Germany
+	LOCATION	Hanover in Germany
 	PERSON
 EL_ENG_00358
 	ORGANIZATION	House of Hohenzollern	Protestant
@@ -1454,9 +1454,9 @@ EL_ENG_00365	LOCATION	Norway	Phoenix	Phoenix	Phoenix	Aberdeen , Scotland	India
 	ORGANIZATION	Aker Kvaerner	Phoenix Polymers OSLO	UTC Aker Kvaerner ASA	Phoenix Polymers International	Aker Kvaerner	Aker Kvaerner	Praj Industries	Aker Kvaerner
 	LOCATION	Norway	Phoenix	Phoenix	Phoenix	Aberdeen , Scotland	India
 	PERSON	Praj
-EL_ENG_00366	LOCATION	North Carolina	Outer Banks	New York	Hamptons	Cape Cod , Mass.	South Carolina	Outer Banks	Bodie Island	Virginia	Southern Shores	Kill Devil Hills	Hatteras Island	Oregon Inlet	Bodie Island	Rodanthe	Avon	Frisco	Hatteras Inlet	Ocracoke Island	Roanoke Island	Cape Hatteras	Atlantic	North Atlantic	Arctic	Europe	Cape Hatteras	Cape Hatteras	Currituck	Bodie Island Lighthouse	Cape Hatteras	Ocracoke Lighthouse	Fenwick Island	Delaware
+EL_ENG_00366	LOCATION	North Carolina	Outer Banks	New York	Hamptons	Cape Cod , Mass.	South Carolina	Outer Banks	Bodie Island	Virginia	Southern Shores	Kill Devil Hills	Hatteras Island	Oregon Inlet	Bodie Island	Rodanthe	Avon	Frisco	Hatteras Inlet	Ocracoke Island	Roanoke Island	Cape Hatteras	Atlantic	North Atlantic	Arctic	Europe	Cape Hatteras	Cape Hatteras	Currituck	Bodie Island Lighthouse	Cape Hatteras	Ocracoke Lighthouse	Fenwick Island in Delaware
 	ORGANIZATION	Outer Banks	Outer Banks Visitors Bureau
-	LOCATION	North Carolina	Outer Banks	New York	Hamptons	Cape Cod , Mass.	South Carolina	Outer Banks	Bodie Island	Virginia	Southern Shores	Kill Devil Hills	Hatteras Island	Oregon Inlet	Bodie Island	Rodanthe	Avon	Frisco	Hatteras Inlet	Ocracoke Island	Roanoke Island	Cape Hatteras	Atlantic	North Atlantic	Arctic	Europe	Cape Hatteras	Cape Hatteras	Currituck	Bodie Island Lighthouse	Cape Hatteras	Ocracoke Lighthouse	Fenwick Island	Delaware
+	LOCATION	North Carolina	Outer Banks	New York	Hamptons	Cape Cod , Mass.	South Carolina	Outer Banks	Bodie Island	Virginia	Southern Shores	Kill Devil Hills	Hatteras Island	Oregon Inlet	Bodie Island	Rodanthe	Avon	Frisco	Hatteras Inlet	Ocracoke Island	Roanoke Island	Cape Hatteras	Atlantic	North Atlantic	Arctic	Europe	Cape Hatteras	Cape Hatteras	Currituck	Bodie Island Lighthouse	Cape Hatteras	Ocracoke Lighthouse	Fenwick Island in Delaware
 	PERSON	Kitty Hawk	Buxton
 EL_ENG_00367
 	ORGANIZATION	Chelsea	Chelsea	Rennes	Chelsea	Tottenham Hotspurs	Chelsea	Tottenham Hotspurs	PFA	Manchester United	Chelsea	UEFA	Community Shield	Chelsea	Barclay ’s Premier League	Manchester United	Barcelona
@@ -1574,9 +1574,9 @@ EL_ENG_00395	ORGANIZATION	Cavs	Cavaliers	Cavaliers	Chicago Bulls	Seattle Superso
 	ORGANIZATION	Cavs	Cavaliers	Cavaliers	Chicago Bulls	Seattle Supersonics	Cavs	Cavs	Cavs	Ira Newble	Virginia Union	Cavs
 	LOCATION	Chicago	Chicago	Seattle
 	PERSON	Branson Wright	Larry Hughes	Shannon Brown	Drew Gooden	Cedric Simmons	Ben Wallace	Joe Smith	Wally Szczerbiak	Donyell Marshall	Danny Ferry	Hughes	Gooden	Simmons	Newble	Marshall	Brown	Wallace	Smith	Szczerbiak	Wallace	Wallace	Hughes	Smith	Szczerbiak
-EL_ENG_00396	LOCATION	PASADENA , California	Missouri	Huntington Hospital	Pasadena , California	Missouri	Albany , N.Y.	Fairview , Missouri	Pineville	Pasadena
+EL_ENG_00396	LOCATION	PASADENA , California	Missouri	Huntington Hospital in Pasadena , California	Missouri	Albany , N.Y.	Fairview , Missouri	Pineville	Pasadena
 	ORGANIZATION	Los Angeles Times	McDonald County	Times Union	Neosho Daily News
-	LOCATION	PASADENA , California	Missouri	Huntington Hospital	Pasadena , California	Missouri	Albany , N.Y.	Fairview , Missouri	Pineville	Pasadena
+	LOCATION	PASADENA , California	Missouri	Huntington Hospital in Pasadena , California	Missouri	Albany , N.Y.	Fairview , Missouri	Pineville	Pasadena
 	PERSON	Dabbs Greer	Dabbs Greer	Robert Alden	Greer	Bill Klukken	B.J. Goodwin	Greer	Mike	Carol Brady	Greer	Robert William Greer	Greer	Anderson	Jesse James	Greer
 EL_ENG_00397	PERSON	Katherine Starr	Starr	Yasuo Fukuda
 	ORGANIZATION	White House	US National Security Council
@@ -1628,7 +1628,7 @@ EL_ENG_00408	PERSON	Bird Johnson	Boris Yeltsin	Benazir Bhutto	Robert Drinan	Jerr
 	PERSON	Bird Johnson	Boris Yeltsin	Benazir Bhutto	Robert Drinan	Jerry Falwell	Bradford Washburn	Walter Schirra	Steve Fossett	Art Buchwald	Molly Ivins	Kurt Vonnegut	Mstislav Rostropovich	Luciano Pavarotti	Beverly Sills	Ingmar Bergman	Max Roach	Oscar Peterson	Norman Mailer	David Halberstam	Arthur Schlesinger	Thomas Eagleton	Henry Hyde	Bill Clinton	E. Howard Hunt	Michael Deaver	William Crowe	William Verity	Pamela Ahearn	Craig Thomas	George Smathers	Daniel Brewster	Parren Mitchell	Gilbert Gude	Charles Norwood	Steven Derounian	Augustus Hawkins	Juanita Millender-McDonald	Frank Burke	Marion Snyder	Paul Gillmor	Donald Clancy	William Anderson	Jo Ann Davis	Peter Hoagland	Jennifer Dunn	Jack Metcalf	Wiley Mayne	Julia Carson	Robert McNair	William O'Neill	Thomas Meskill	Jane Bolin	Joseph Farland	Richard Nolte	Philip Kaiser	Paul Tibbets	Eugene Fluckey	Billy Walkabout	John Henebry	Silvestre Herrera	Jefferson DeBlanc	Raleigh Rhodes	Jay Zeamer	Yolanda King	Carolyn Goodman	Charlie Brady Hauser	Irene Kirkaldy	Randall Forsberg	Barbara Gittings	Lorraine Rothman	Mary Crisp	Vernon Bellecourt	Catherine Roraback	Oliver Hill	Chad Varah	Harry Dent	Brooke Astor	Tammy Faye Bakker	James Oakes	John Withers	Bill Strauss	Richard Jewell	Kurt Waldheim	Ian Smith	Theodor Kollek	Hanley Denning	Vilma Esp	Abb	Pierre	Raymond Barre	Pascal Yoadimnadji	Ivica Racan	Ladislav Adamec	Kiichi Miyazawa	Gaston Thorn	John Compton	Alfonso L	Michelsen	Abdel-Rahman Aref	Luis Herrera Campins	Tosiwo Nakayama	Mohammed Zahir Shah	Maria Julia Hernandez	Adrian Esquino Lisco	Alain Le Ray	Lucie Aubrac	Andree de Jongh	Zakia Zaki	Bo Yibo	Barbara Dainton	Bob Denard	Elizabeth Hardwick	Sidney Sheldon	Ira Levin	Rosemary	Madeleine L'Engle	Tillie Olsen	Grace Paley	Mark Harris	A.I. Bezzerides	Richard Prather	Sheila Ballantyne	Philip Craig	Elizabeth Jolley	Lloyd Alexander	Robert Jordan	Paul Erdman	John Gardner	Jane Rule	Michael Dibdin	William Meredith	Philip Booth	Mary Ellen Solt	Liam Rector	Sekou Sundiata	Jane Cooper	Paul Roche	Buchheim	Emmett Williams	John Garraty	Eugen Weber	Norman Cohn	Gerald Feldman	Allan Berube	Winthrop Jordan	Nina Schneider	Clyde Robert Bulla	Diane Middlebrook	Jean Baudrillard	Thomas Whitney	Itche Goldberg	Curie Labouisse	Peter Tompkins	Charles Einstein	Colin Fletcher	Kathleen Woodiwiss	Marjabelle Young Stewart	Judy Mazel	Bruce Metzger	Julien Gracq	Peg Bracken	Jack Valenti	Michelangelo Antonioni	Jane Wyman	Deborah Kerr	Carlo Ponti	Floyd Westerman	Aaron Russo	Ray Evans	Laszlo Kovacs	Freddie Francis	Peter Zinner	Peter Ellenshaw	Jack Williams	Betty Hutton	Maj-Britt Nilsson	Janet Blair	Lois Maxwell	Miyoshi Umeki	Laraine Day	Mala Powers	Charles Lane	Frank Campanella	Ulrich Muhe	Herman Brix	Michel Serrault	Bobby Mauch	Carl Wright	Gordon Scott	Stuart Rosenberg	Bob Clark	Edward Yang	Delbert Mann	Curtis Harrington	Claire Bourne	Ousmane Semb	Peter Viertel	Mel Shavelson	Bernard Gordon	Frank Capra Jr.	Herman Stein	William Tuttle	Marit Allen	Frank Rosenfelt	Merv Griffin	Don Herbert	Joey Bishop	Tom Snyder	Joel Siegel	Yvonne De Carlo	Tom Poston	Bill Flemming	Rex Humbard	Mel Tolkin	Bobby Rosengarden	Jack Linkletter	Calvert DeForest	Roger King	Friedman Paul Erhardt	Herb Carneal	Jack Zander	Iwao Takamoto	Stanley Myron Handelman	Richard Jeni	Stan Daniels	David Shaw	Bob Carroll	Tige Andrews	Percy Rodrigues	Ron Carey	Gareth Hunt	Dick Wilson	Edward Mallory	Alice Ghostley	Brett Somers	Carol Bruce	Jeanne Davis Glynn	Judy Crichton	Martin Manulis	Ned Sherrin	Jack Kuney	Ed Friendly	Andy Sidaris	Bob Clark	Tom Mooreand Alan Wagner	Anna Nicole Smith	Robert Goulet	Kitty Carlisle Hart	Marcel Marceau	Ruthanna Boris	Michael Kidd	George Grizzard	Charles Nelson Reilly	Barry Nelson	Ian Richardson	William Hutt	Roscoe Lee Browne	Tom Murphy	Michael Evans	Anne Pitoniak	Ellen Hanley	Gretchen Wyler	Igor Moiseyev	Maurice B	Michael Smuin	Glen Tetley	Henry LeTang	Alfred Desio	Vilma Ebsen	Sheridan Morley	George Tabori	George W. George	Sol LeWitt	Johnny Hart	Joel Brodsky	Wallace Seawell	J.B. Handelsman	Hans Wegner	Gianfranco Ferr	Laurel Burch	Nora Ezell	Lenore Tawney	Mary Walker Phillips	Jimmy Lee Sudduth	Roy Kuhlman	Marshall Rogers	Joseph Low	Anne Dowden	Brant Parker	Buck Brown	Howie Schneider	Jules Olitski	Elizabeth Murray	Roy De Forest	Jorg Immendorff	Fannie Hillsmith	Edward Avedisian	Ken Danby	R.B. Kitaj	Paul Brach	Herman Rose	Dan Christensen	Tatsuzo Shimaoka	Mary Scheier	John Szarkowski	John Scott	Ileana Sonnabend	Robert Kulicke	Doug Marlette	Whitney Balliett	Herbert Muschamp	Eliot Fremont-Smith	Claudia Cohen	Nigel Dempster	Edmund Arnold	Ralph de Toledano	Hollis Alpert	Jack Lang	James Michaels	Jack Cappon	Ben Gilbert	Richard Nenneman	Charles Maynes	D.D. Ryan	Chauncey Bailey	Bruce Wolmer	Isabella Blow	Jack Myers	Kate Webb	Edward Behr	Salih Saif Aldin	Thomas Morgan	James Ryan	William Peters	Earl Ubell	James F	Clarity Elsie Carper	James Deakin	Inez Baskin	Douglas Kneeland	Sylvan Fox	Ryszard Kapuscinski	Raymond Cromley	Chet Currier	George Kiseda	Alan Greenberg	Neal Shine	Robert Petersen	Alexandra Boulat	Ernest Withers	Fred McDarrah	Al Chang	Arnold Hardy	Joseph Jamieson	Hugh Massingberd	Tommy Makem	Porter Wagoner	Don Ho	Brad Delp	Ike Turner	Dan Fogelberg	Frankie Laine	Boots Randolph	Michael Brecker	Herb Pomeroy	Eric von Schmidt	Lee Hazlewood	Gian Carlo Menotti	Karlheinz Stockhausen	J. Robert Bradley	James Davis	Hank Thompson	Del Reeves	Pete Kleinow	Hank Medress	Pookie Hudson	Bobby Byrd	Luther Ingram	Janis Martin	Carlos Vald	Carey Bell	Weepin	Willie Robinson	Kevin Dubrow	Joe Hunter	Lucky Dube	Louis Moyse	Andrew Imbrie	John Thow	Jerry Hadley	Teresa Stich-Randall	Rose Bampton	Frank Guarrera	Crespin	Alice Coltrane	Andrew Hill	Tommy Newsom	Alavin Batiste	Peggy Gilbert	Al Viola	Art Davis	Tony Scott	Herman Riley	Bill Barber	Johnny Frigo	Joe Zawinul	Frank Morgan	Bobby	Pickett	Teresa Brewer	Denny Doherty	Jon Lucien	Zola Taylor	Barbara McNair	Hy Zaret	John Wallowitch	Lydia Mendoza	Joel Dorn	Elaine Lorillard	Enrico Banducci	Hilly Kristal	Dennis Johnson	Tom Johnson	Marquise Hill	Darryl Stingley	Francis	Kilroy	Eddie Robinson	Bill Walsh	Bowie Kuhn	Bill Hartack	Barbaro	Phil Rizzuto	Rod Beck	Josh Hancock	Hank Bauer	Steve Barber	Clete Boyer	Lew Burdette	Vern Ruhle	Art Fowler	Ed Bailey	Clem Labine	John Vukovich	Bill Robinson	Don Nottebart	Tommy Byrne	Joe Nuxhall	Max Lanier	Shag Crawford	Bing Devine	Max McGee	Dick Nolan	Jim Ringo	Ken Kavanaugh	George Webster	Johnny Perkins	Lamar Lundy	Ernie Ladd	James David	George Preas	Dewitt Coulter	Sam Dana	John Baker	Sean Taylor	Darrent Williams	Bill Willis	Ed Brown	Ken MacAfee	Evel Knievel	Jim Shoulders	Eddie Feigner	Benny Parsons	Veikko Karvonen	Ted Corbitt	Chip Reese	Peter Davi	Bob Bates	Erich Windisch	Bud Delp	Gay Brewer	Don Massengale	Maureen Orcutt	Jimmy Walker	Gino Pariani	John Ferguson	Gaetan Duchesne	Gump Worsley	Sam Pollock	Mary Lillian Ellison	Abe Coleman	Butch van Breda Kolff	Al Oerter	Parry O'Brien	John Woodruff	Bob Owen	Robert Taylor	Willye White	Janice-Lee Romary	Roger Smith	Leona Helmsley	Liz Claiborne	Alfred Peet	Anita Roddick	Warren Avis	William Becker	Bob Evans	Harold Alfond	Garry Betty	Lamar Muse	James Moroney	Ernest Gallo	Steven Florio	Orin Atkins	Robert Anderson	Gordon Macklin	Charles Walgreen	Alan Pottasch	George Kovacs	Nina Wang	James Needham	Guy de Rothschild	Baron Elie de Rothschild	Ken Hendricks	John Swearingen	William Golden	Preston Martin	William Mercer	Robert Lantz	Irving Buestone	Albert Ellis	Wally Herbert	Leslie Orgel	Merle Sande	Stella Chess	Hugo Moser	Gene Savoy	Indiana Jones	Homer Stewart	Arthur Kornberg	Paul Lauterbur	Kai Siegbahn	Pierre-Gilles de Gennes	Alan MacDiarmid	Kenneth Franklin	Ellen Dorrit Hoffleit	Ronald Bracewell	Donald Osterbrock	Bohdan Paczynski	Philip Bowditch	Stanley Butchart	Ken Kennedy	Eric Wolf	Donald Michie	Eva Crane	Charles Remington	Olga MacBryde	Richard Goodwin	Anne McLaren	Seymour Benzer	Terry Yates	Elizabeth Hay	Jay Haley	Proctor Harvey	Edmund Sonnenblick	Eugene Bell	Edward Brandt	Paul Bohannan	Priscilla Reining	Clark Howell	Wolfgang Panofsky	Carl von Weizsacker	Ralph Alpher	Stanley Miller	Atle Selberg	Paul Cohen	Richard Steffy	Robert Adler	John Backus	Herbert Saffir	Arthur Jones	Vincent DeDomenico	Edwin Traisman	Momofuku Ando	Jack Odell	Jack Naylor	David Shepard	Theodore Maiman	Paul Lauterbur	Ed Yost	Paul MacCready	Jay Monroe	Florence Melton	George Rieveschl	J. Robert Cade	Seymour Martin Lipset	Richard Rorty	Rudolf Arnheim	Nelson Polsby	Elizabeth Hadley	Frank Snowden	Stanton Wheeler	Harold Leavitt	Alfred Chandler	Elizabeth Fox-Genovese	Elkan Blout	Frank Westheimer	David Turnbull	Zeph Stewart	John Pappenheimer	Gerald Gill	G. Robert Stange	Jack Mitus	Calvin Plimpton	Stanley Ballinger	Nils Wessell	Jack Nolan	Jean Paul Mather	John Lederle	Charles Warner	Francis Low	F. Champion Ward	James M. Kelly	Albert L.	O'Neil	Paul Sullivan	Harold Madison Jr.	Butch	George Bent	Myra McAdoo	Vernon Carter	William Mullin Eric Weinberger	Cynthia Foster	David Bird	Francis O'Connor	Edward Hennessey	Martha Sosman	Robert DeGiacomo	Marilyn Sullivan	Francis X. Morrissey	Robert Keeton	Nancy King	Edward Hanley	Edward Sullivan	Edward Collins	John Saltonstall	Kevin Fitzgerald	Jack Leary	Melvin Goldstein	Craig Smith	Leo Panasevich	Rae Anne Donlin	Dick Raphael	Stanley Bauman	Charles Rogers	Norman Fletcher	William LeMessurier	Oliver Ames	John Lawrence	Mortimer Buckley	Marshall Kreidberg	Tucker Collins	Joseph Killory	Josefina Yanguas	Jack Sidell	Gus Saunders	Jerry Hickey	Ralph Long	Tracey Albainy	Joe Breiteneicher	Robert Lawler	Diane Lewis	Jeff McLaughlin	Jerry Taylor	Kay Longcope	David Stanger	Dorothy Crandall	Patrick Knight	Francis Sturgis	Frank Jakubasz	Joseph Parrish	Bob Monahan	Barry Cadigan	Larry Whiteside	Joseph P. Kahn
 EL_ENG_00409	ORGANIZATION	UTC	Boston College	Ducks	Wildcats	Wildcats	Wildcats
 	ORGANIZATION	UTC	Boston College	Ducks	Wildcats	Wildcats	Wildcats
-	LOCATION	Oregon	Arizona	TUCSON , Arizona	Oregon	Arizona	U.S.	Oregon	Southern California , California , South Florida	Oklahoma	Oregon	Oregon	Arizona Stadium	Arizona	Oregon
+	LOCATION	Oregon	Arizona	TUCSON , Arizona	Oregon	Arizona in U.S.	Oregon	Southern California , California , South Florida	Oklahoma	Oregon	Oregon	Arizona Stadium	Arizona	Oregon
 	PERSON	Dixon	Dennis Dixon	Dixon	Dixon	Dixon	Antoine Cason	Mike Stoops	Brady Leaf	Dixon	Dixon	Willie Tuitama	Mike Thomas	Jonathan Stewart
 EL_ENG_00410	ORGANIZATION	Stanford	Campbell	UTC Stanford University	Stanford	New Dimensions Broadcasting Media Network	Stanford University Libraries	Stanford	Stanford
 	ORGANIZATION	Stanford	Campbell	UTC Stanford University	Stanford	New Dimensions Broadcasting Media Network	Stanford University Libraries	Stanford	Stanford
@@ -1670,9 +1670,9 @@ EL_ENG_00419
 	ORGANIZATION	BBC	Newcastle	Newcastle United	BBC	Newcastle	Newcastle	BBC	Barnsley	BBC	Newcastle	Reading	Newcastle United	Newcastle	Newcastle	BBC	BBC	Newcastle	Cardiff	Newcastle	BBC	Newcastle United	The Football League	BBC	Ipswich Town	Newcastle	BBC	Newcastle	Newcastle	Football League	BBC	Newcastle	Newcastle	Barnsley OR West Brom	Newcastle	West Brom	Newcastle	Cardiff	Beeb	Football League	Plymouth	Newcastle	Nottingham Forest	Newcastle
 	LOCATION	Villa Park	Toon	West Brom	South Yorkshire	Sheffield	Barnsley	Peterborough	Newcastle	UK	West Brom	North East	West Brom	Brazil	Newcastle	West Brom
 	PERSON	Chris Foy	Shola Ameobi	Roy Keane	Danny	Mike Ashley	Geordie	Chelsea	Arsene	Geordie	Adam Johnsons	Chopra	Boro	Chelsea	Jennifer	Geordie
-EL_ENG_00420	LOCATION	Newtown	Heathrow Airport	London
+EL_ENG_00420	LOCATION	Newtown	Heathrow Airport in London
 	ORGANIZATION	AP Entertainment	ABC	The Associated Press	ABC
-	LOCATION	Newtown	Heathrow Airport	London
+	LOCATION	Newtown	Heathrow Airport in London
 	PERSON	Naomi Campbell	Naomi Campbell	DERRIK J. LANG	Naomi Campbell	Becki Newton	Newton	Amanda	Amanda Sommers	Campbell	Campbell	Victoria Beckham	Gene Simmons	Amanda	Newton	Simmons	Smith
 EL_ENG_00421	PERSON	Wheeling-Pitt MINGO	John Goodwin	Jack Walter	Goodwin	Goodwin	Goodwin	Goodwin	Mark Trapp	John	Trapp	Trapp	Tom Modrowski	Wheeling-Pitt	Goodwin	Dave McCall	John Goodwin	McCall	Goodwin	James Bouchard	Goodwin	McCall	Wheeling-Pitt
 	ORGANIZATION	Wheeling Pittsburgh Corp.	U.S. Steel Corp.	Wheeling-Pitt	Esmark Inc.	Wheeling-Pitt	Mittal Steel Co.	International Steel Group Inc.	Nucor Corp	Esmark	United Steelworkers	Esmark	U.S. Steel	Esmark
@@ -1808,7 +1808,7 @@ EL_ENG_00453	PERSON	Jones	Andruw Jones	Jones	Jones	Jones
 	PERSON	Jones	Andruw Jones	Jones	Jones	Jones
 EL_ENG_00454	PERSON	Raymond Walworth Wilson	Wilson	Wilson	Wilson	David Christian
 	ORGANIZATION	Taco Bell
-	LOCATION	London DETROIT	Michigan	London	Detroit	Waterford	Oakland County	London	Brixton	U.S.
+	LOCATION	London DETROIT	Michigan	London	Detroit	Waterford in Oakland County	London	Brixton	U.S.
 	PERSON	Raymond Walworth Wilson	Wilson	Wilson	Wilson	David Christian
 EL_ENG_00455
 	ORGANIZATION	Liverpool	STO	Stoke	Liverpool	Liverpool	Liverpool	BIR	Sporting Gijon	Manchester United	Burnley	Burnley	Manchester United	United	Tottenham	Tottenham	Tottenham	Tottenham	Sunderland	Chelsea	United and Arsenal	Sunderland	Wigan	Wigan	Wigan	Everton	Everton	Everton	Chelsea	Arsenal	Tottenham	Everton	Aston Villa vs West Ham	Liverpool	Freddie Sears	Aston Villa	Blackburn	Fulham	BLA	Blackburn	Arsenal	ARS	Arsenal
@@ -1868,7 +1868,7 @@ EL_ENG_00468	LOCATION	UK	Houston	UK	UK	Somerville	England	UK	New York City
 	PERSON	Harold Melvin	Teddy Pendergrass	Thelma Houston	Thelma Houston	Bronski Beat	Jimmy Somerville	Richard Coles	Jeanie Tracy	Sylvester	Sylvester	Tracy	Jeanie Tracy	Jeanie Tracy	Sheena Easton	Karen Finley
 EL_ENG_00469
 	ORGANIZATION	Roanoke Co.	DMK Heritage	Plymouth Companies-Expedition	Indians	First Courts and County Officers-Changes	Tombstone Near Hollins Institute-Indian	Virginia Frontiers-Mason	First Public Institutions of Salem	Development-Business Industries	Shenandoah Valley Railroad-The Roanoke Land &amp; improvement Company-Roanoke Machine Works	Labor	Public Improvements-Churches-Educational Facilities-Virginia College	National Business College	Historical Sketch of Roanoke City High School	Common Council-Terms of Council	Norfolk &amp; Petersburg Railroad	Southside Railroad and Virginia &amp;	Mississippi &amp; Ohio Railroad	Ores-Norfolk Terminal Company	Coal and Iron Region of Southwest Virginia	Equipment	Earnings-Roanoke Machine Works-Iron-Belt Mining &amp; Development Company	Methodist Episcopal Church	Evangelical Lutheran Church	College Evangelical Lutheran Church	Salem-The Protestant Episcopal Church	Salem-The Protestant Episcopal Church	Methodist Episcopal Church	Evangelical Lutheran Church-The Baptist Church	Roman Catholic Church	House of Delegates	Judges of County Court	Clerks of County Court-Commonwealth	County Treasurers-Officers of Circuit Court
-	LOCATION	Va	ROANOKE COUNTY	ROANOKE CITY VIRGINIA	Mound Austin , TX	VIRGINIA	SETTLEMENT Virginia	Virginia	Roanoke Island	London	ROANOKE COUNTY Orange County	Frederick-Botetourt County	Augusta County-Fincastle County Erected	Roanoke	New County of Roanoke-Origin	Western Boundary Line-Part	Montgomery County Annexed-Craig County	Botetourt , Roanoke	VIRGINIA	Roanoke , Catawba	River	Augusta	Salem	ROANOKE	Roanoke	Drives-The City	Roanoke	Roanoke	NORFOLK	Southwest Virginia	Kentucky	Atlantic	Norfolk	New River Railroad	Norfolk	Norfolk	Virginia	Roanoke City	Roanoke	Salem-The Baptist Church	Roanoke County-Salem Baptist Church Salem Presbyterian Church-Vinton	Roanoke County	Roanoke County	Roanoke	Roanoke City	Roanoke	Roanoke	United Brethren	Christ-Lutheran Orphan Home	Salem , Virginia	Virginia	Upper Valley of Virginia	Roanoke	ROANOKE
+	LOCATION	Va	ROANOKE COUNTY	ROANOKE CITY VIRGINIA	Mound Austin , TX	VIRGINIA	SETTLEMENT Virginia	Virginia	Roanoke Island	London	ROANOKE COUNTY Orange County	Frederick-Botetourt County	Augusta County-Fincastle County Erected	Roanoke	New County of Roanoke-Origin	Western Boundary Line-Part	Montgomery County Annexed-Craig County	Botetourt , Roanoke	VIRGINIA	Roanoke , Catawba	River	Augusta	Salem	ROANOKE	Roanoke	Drives-The City	Roanoke	Roanoke	NORFOLK	Southwest Virginia	Kentucky	Atlantic	Norfolk	New River Railroad	Norfolk	Norfolk	Virginia	Roanoke City	Roanoke	Salem-The Baptist Church in Roanoke County-Salem Baptist Church Salem Presbyterian Church-Vinton	Roanoke County	Roanoke County	Roanoke	Roanoke City	Roanoke	Roanoke	United Brethren in Christ-Lutheran Orphan Home	Salem , Virginia	Virginia	Upper Valley of Virginia	Roanoke	ROANOKE
 	PERSON	Doris Christian	WILLIAM McCAULEY	A. M.	John Cabot-Voyages	Humphrey Gilbert	Walter Raleigh-Expeditions	Richard Grenville-Thu Name	Christopher Newport	John Smith	Giles	Monroe	Batte	John Marlin	John Sailing-Grants	Beverly	Jackson	Roanoke Grays-Dixie Grays-Roanoke Guards-Jeff Davis Rifles	Andrew Lewis-James Simpson	Clarence H. Clark-Relation	Mark	Andrew	John Lewis	Andrew Lewis	William Fleming-Rev	Urias Powers-The Bryan Family-William C. Williams-John McCauley-Rev	David Frederick Bittle	Abraham Hupp	Charles Lewis Cocke
 EL_ENG_00470	PERSON	Robert Olson	Olson	Olson	Olson	Olson	Tom Hoyt	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Olson	Ban Chiang	Olson	Armand Labbe	Olson	Labbe	Olson	Olson	Bowers	Labbe	Labbe	Olson	Olson	Labbe	Bowers	Olson	Olson	Ban Chiang	Olson	Olson	Barry MacLean	Olson	Olson	Olson	Olson	Olson	Buddha
 	ORGANIZATION	Social Security	Los Angeles County Museum of Art	Pacific Asia Museum	Bowers Museum of Cultural Art	Mingei International Museum in San Diego	Southwest Museum	Bowers Museum
@@ -1880,7 +1880,7 @@ EL_ENG_00471	PERSON	Gil Clark	Clark	Clark	Clark	Clark	Roxanne	Hurricane Roxanne	
 	PERSON	Gil Clark	Clark	Clark	Clark	Clark	Roxanne	Hurricane Roxanne	Clark	Hurricane Gilbert	Clark	Clark	Clark	Roxanne	Gilbert	Baker	Charlie	Clark	Clark	Bill Proenza	Clark	Proenza	Clark	Clark	Clark	Clark	Clark	Clark	Clark
 EL_ENG_00472
 	ORGANIZATION	VA
-	LOCATION	Princeton-Summerland Road	Princeton-Summerland Road	Princeton-Summerland Road	Okanogan	British Columbia	Osprey Lake	Penticton
+	LOCATION	Princeton-Summerland Road	Princeton-Summerland Road	Princeton-Summerland Road	Okanogan in British Columbia	Osprey Lake	Penticton
 	PERSON	Bill Parker
 EL_ENG_00473	PERSON	K. Misra	Franklin	Franklin	Mohit K. Misra	Misra	Mohit	Mohit K. Misra	James Bible	James Bible	Missy	Mack	William P. Mackenzie Allen Philips	Missy	Mack	Franklin	Franklin	Franklin	Franklin	Franklin	Franklin	Franklin	Franklin	BOOKMAN	BOOKMAN	John	Gibson
 	ORGANIZATION	Bible	KJV	Strong	BBALPGDKODIGQDDLDA	Packard Technologies Bible	KJV	Strong	Mackenzie Allen Philips	Casio	Compaq Aero	Compaq Ipaq	HP Jornada	Casio	Compaq Aero	Compaq Ipaq	HP Jornada	ASV	Thomas Nelson &amp; amp	ASV	BBALRGBRLIFHUYDLDA	Packard Technologies	ASV	Thomas Nelson &amp; Sons	ASV
@@ -1988,7 +1988,7 @@ EL_ENG_00498	PERSON	Michael Lee McCormick	McCormick	Donna Jean Nichols	Nichols	M
 	PERSON	Michael Lee McCormick	McCormick	Donna Jean Nichols	Nichols	McCormick	McCormick	Michael Richardson	McCormick
 EL_ENG_00499	ORGANIZATION	Awami National Party	ANP
 	ORGANIZATION	Awami National Party	ANP
-	LOCATION	Pakistan	Pakistan	Charsadda	North West Frontier Province	Peshawar
+	LOCATION	Pakistan	Pakistan	Charsadda in North West Frontier Province	Peshawar
 	PERSON	Masood Afridi
 EL_ENG_00500	ORGANIZATION	Xinhua	Awami National Party
 	ORGANIZATION	Xinhua	Awami National Party
@@ -2074,9 +2074,9 @@ EL_ENG_00520	LOCATION	Colorado	Avon	New York	Kurobuta	Spago	Vail	Beaver Creek	Co
 	ORGANIZATION	COUNTRYWIDE	New York Times	Countrywide Financial Corp.	New York Post	Countrywide	Countrywide	Bank of America	Congress	Countrywide	Countrywide	Countrywide	Bank of America	Tyco	Countrywide	Eldora Ski Area	Eldora	Ritz	Nederland	Pioneer Inn	Eldora	Gucci	Contact Denver Post
 	LOCATION	Colorado	Avon	New York	Kurobuta	Spago	Vail	Beaver Creek	Colorado	New York	Colorado	Arapahoe Basin	Boulder	Nederland	Avon
 	PERSON	Kobe Steak	Angelo Mozilo	Charles Schumer	Dennis Kozlowski	Kozlowski	Al Lewis
-EL_ENG_00521	LOCATION	ATLANTA	Hinesville , Ga	Iraq	Iraq	Fort Stewart , Ga.	Iraq	Korea	Vietnam	America	Iraq	Waynesboro	Coopersville	Fort Stewart	Fort Gordon	Athens
+EL_ENG_00521	LOCATION	ATLANTA	Hinesville , Ga	Iraq	Iraq	Fort Stewart , Ga.	Iraq	Korea	Vietnam	America	Iraq	Waynesboro in Coopersville	Fort Stewart	Fort Gordon	Athens
 	ORGANIZATION	Cox News Service	Army	Navy
-	LOCATION	ATLANTA	Hinesville , Ga	Iraq	Iraq	Fort Stewart , Ga.	Iraq	Korea	Vietnam	America	Iraq	Waynesboro	Coopersville	Fort Stewart	Fort Gordon	Athens
+	LOCATION	ATLANTA	Hinesville , Ga	Iraq	Iraq	Fort Stewart , Ga.	Iraq	Korea	Vietnam	America	Iraq	Waynesboro in Coopersville	Fort Stewart	Fort Gordon	Athens
 	PERSON	Kevin Benderman	Benderman	Benderman	Benderman	Benderman	Benderman	Benderman	Monica	Hadjii	Julie Christie	Jay Brooks	Bob Longino
 EL_ENG_00522	ORGANIZATION	Manchester Kentucky Fried Chicken
 	ORGANIZATION	Manchester Kentucky Fried Chicken
@@ -2156,7 +2156,7 @@ EL_ENG_00540	PERSON	Wilson	Glenn Hanson	Daniel Riegle	Riegle	Pink	Wilson	Wilson	
 	PERSON	Wilson	Glenn Hanson	Daniel Riegle	Riegle	Pink	Wilson	Wilson	Wilson	Riegle	Dick Price	Wilson	Wilson	Wilson	Ada	Wilson	Chrissie Oakes	Oakes	Jackie Oakes	Riegle	Riegle	Lawrence Tynes	Riegle	Riegle	Wilson
 EL_ENG_00541	ORGANIZATION	Seibu Lions	Seibu Lions	Tianjin Lions	Lions	Seibu Lions	Uni-President Lions
 	ORGANIZATION	Seibu Lions	Seibu Lions	Tianjin Lions	Lions	Seibu Lions	Uni-President Lions
-	LOCATION	Tianjin	Asia	TOKYO	Japan	China	Asia	Japan	Japan , South Korea , Taiwan	China	South Korea	Taiwan
+	LOCATION	Tianjin in Asia	TOKYO	Japan	China	Asia	Japan	Japan , South Korea , Taiwan	China	South Korea	Taiwan
 	PERSON	Takeya Nakamura	Nakamura
 EL_ENG_00542	PERSON	Linda Thompson	Thompson	Thompson
 	ORGANIZATION	Oklahoma Medical Research Foundation	Cornell University	University of Turku	EAE	National Academy of Sciences
@@ -2270,9 +2270,9 @@ EL_ENG_00569	LOCATION	Phoenix	Rikers Island	Phoenix	Phoenix	Brooklyn
 	ORGANIZATION
 	LOCATION	Phoenix	Rikers Island	Phoenix	Phoenix	Brooklyn
 	PERSON	Keith Phoenix	Jose Sucuzhanay	Keith Phoenix	Jose Sucuzhanay	Sucuzhanay	Phoenix	Jose Sucuzhanay	Keith Phoenix
-EL_ENG_00570	LOCATION	Normandy	Granville	Paris	Normandy	Olympia	Paris	Les Rhumbs
+EL_ENG_00570	LOCATION	Normandy	Granville	Paris	Normandy	Olympia in Paris	Les Rhumbs
 	ORGANIZATION	Musee Christian Dior
-	LOCATION	Normandy	Granville	Paris	Normandy	Olympia	Paris	Les Rhumbs
+	LOCATION	Normandy	Granville	Paris	Normandy	Olympia in Paris	Les Rhumbs
 	PERSON	Sarah Shard Legendary dandy Oscar Wilde	Christian Dior	Wilde	Christopher Holland	Jules Barbey	John Galliano	Emile Levy	DAurevilley	Conte Robert de Montesquieu	Loup	Loups	Honore de Balzac	Galliano	Napoleon	David Bowie	Hedi Slimane	Alexis Mabille	Galliano	Napoleon	Marc Bohans	Galliano	Granville
 EL_ENG_00571	ORGANIZATION	UTC	American Medical Association	AMA	AMA	AMA	AMA	AMA	Agency for Healthcare Research	AMA	National Medical Association	Commission	AMA	AMA	AMA	AMA	AMA	American Cancer Society	AMA	AMA	National Medical Association	AMA	AMA	AMA	AMA	National Medical Association	AMA	AMA	NMA
 	ORGANIZATION	UTC	American Medical Association	AMA	AMA	AMA	AMA	AMA	Agency for Healthcare Research	AMA	National Medical Association	Commission	AMA	AMA	AMA	AMA	AMA	American Cancer Society	AMA	AMA	National Medical Association	AMA	AMA	AMA	AMA	National Medical Association	AMA	AMA	NMA
@@ -2452,7 +2452,7 @@ EL_ENG_00614	LOCATION	Chinese	AMSTERDAM , Netherlands	Chinese	Arnemuiden	Middleb
 	PERSON	Koos Schouwenaar
 EL_ENG_00615	PERSON	TIM HADDOCK Matt Kenseth	Kenseth	Kenseth	Kenseth	Kenseth	Hendrick Motorsports	Kenseth	Kenseth	Jeff Gordon	Jimmie Johnson	Denny Hamlin	Joe Gibbs	Kenseth	Gordon	Kenseth	Wayne	Connie Spears	Spears Motorsports	Spears Motorsports	Bill Sedgwick	Dan Press	Kevin Harvick	David Starr	Starr	Starr	Dennis Setzer	Setzer	Spears	Spears Motorsports	Spears Motorsports	Lowe	Setzer	Mike Skinner	Aaron Fike	Setzer	Larry Dixon	Kenny Bernstein	Dixon	Joe Amato	Dixon	Dixon	Donnie Bender	Dick LaHaie	Donnie	Dixon	Don Prudhomme	Don Prudhomme	Travis Thirkettle	Thirkettle	Rip Michels	Thirkettle	Bandoleros
 	ORGANIZATION	NASCAR	Michigan International Speedway	California Speedway	Ford	Roush Fenway Racing	Chevrolet for Hendrick Motorsports	Chevrolet for Hendrick Motorsports	NASCAR	NASCAR	Michigan International Speedway	Agua Dulce	Spears Manufacturing Company	NHRA	NHRA	Newhall	NASCAR	Irwindale Speedway	Irwindale Speedway
-	LOCATION	MICHIGAN	California	Michigan	California	Michigan	Michigan	Michigan	Spears Motorsports	Mansfield Motorsports Park	Ohio	Michigan	Mansfield	Illinois	Old Bridge Township Raceway Park , Englishtown , N.J.	San Fernando
+	LOCATION	MICHIGAN	California	Michigan	California	Michigan	Michigan	Michigan	Spears Motorsports	Mansfield Motorsports Park in Ohio	Michigan	Mansfield	Illinois	Old Bridge Township Raceway Park , Englishtown , N.J.	San Fernando
 	PERSON	TIM HADDOCK Matt Kenseth	Kenseth	Kenseth	Kenseth	Kenseth	Hendrick Motorsports	Kenseth	Kenseth	Jeff Gordon	Jimmie Johnson	Denny Hamlin	Joe Gibbs	Kenseth	Gordon	Kenseth	Wayne	Connie Spears	Spears Motorsports	Spears Motorsports	Bill Sedgwick	Dan Press	Kevin Harvick	David Starr	Starr	Starr	Dennis Setzer	Setzer	Spears	Spears Motorsports	Spears Motorsports	Lowe	Setzer	Mike Skinner	Aaron Fike	Setzer	Larry Dixon	Kenny Bernstein	Dixon	Joe Amato	Dixon	Dixon	Donnie Bender	Dick LaHaie	Donnie	Dixon	Don Prudhomme	Don Prudhomme	Travis Thirkettle	Thirkettle	Rip Michels	Thirkettle	Bandoleros
 EL_ENG_00616	ORGANIZATION	Leicester	Sheffield Wednesday	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Sheffield Wednesday	Sheffield Wednesday	Nottingham Forest	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Leicester	TBC	Hillsborough Managers
 	ORGANIZATION	Leicester	Sheffield Wednesday	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Sheffield Wednesday	Sheffield Wednesday	Nottingham Forest	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Leicester	TBC	Hillsborough Managers
@@ -2490,9 +2490,9 @@ EL_ENG_00624	LOCATION	U.S.	HILLSDALE , Michigan	Michigan	U.S.	Iraq	Afghanistan	A
 	ORGANIZATION	Hillsdale College	Democratic National Committee
 	LOCATION	U.S.	HILLSDALE , Michigan	Michigan	U.S.	Iraq	Afghanistan	America	America	Iran	Michigan	Massachusetts	Arizona	New York	Michigan	Hillsdale	Michigan	American	Iraq
 	PERSON	Romney	Mitt Romney	Romney	Romney	Romney	George	John McCain	Rudy Giuliani	McCain	Romney	Damien LaVera
-EL_ENG_00625	LOCATION	Cape Cod	Pacific Northwest	Nantucket Island	Cape Cod	Massachusetts	New Jersey , Oregon , Washington	Wisconsin	Warrens , Wis.	Wisconsin	Wisconsin	Chatsworth , N.J.	Chatsworth	Pacific Northwest	Bandon , Ore.	Long Beach Peninsula	Washington	BANDON , Ore	WARRENS , Wis	NANTUCKET , Mass	WAREHAM , Mass	ILWACO , Wash	CHATSWORTH , N.J	Chatsworth
+EL_ENG_00625	LOCATION	Cape Cod	Pacific Northwest	Nantucket Island	Cape Cod	Massachusetts	New Jersey , Oregon , Washington	Wisconsin	Warrens , Wis.	Wisconsin	Wisconsin	Chatsworth , N.J.	Chatsworth	Pacific Northwest	Bandon , Ore.	Long Beach Peninsula in Washington	BANDON , Ore	WARRENS , Wis	NANTUCKET , Mass	WAREHAM , Mass	ILWACO , Wash	CHATSWORTH , N.J	Chatsworth
 	ORGANIZATION	Nantucket Conservation Foundation	Cape Cod	Cranberry Harvest Celebration	Ocean Spray	Bandon Cranberry Festival
-	LOCATION	Cape Cod	Pacific Northwest	Nantucket Island	Cape Cod	Massachusetts	New Jersey , Oregon , Washington	Wisconsin	Warrens , Wis.	Wisconsin	Wisconsin	Chatsworth , N.J.	Chatsworth	Pacific Northwest	Bandon , Ore.	Long Beach Peninsula	Washington	BANDON , Ore	WARRENS , Wis	NANTUCKET , Mass	WAREHAM , Mass	ILWACO , Wash	CHATSWORTH , N.J	Chatsworth
+	LOCATION	Cape Cod	Pacific Northwest	Nantucket Island	Cape Cod	Massachusetts	New Jersey , Oregon , Washington	Wisconsin	Warrens , Wis.	Wisconsin	Wisconsin	Chatsworth , N.J.	Chatsworth	Pacific Northwest	Bandon , Ore.	Long Beach Peninsula in Washington	BANDON , Ore	WARRENS , Wis	NANTUCKET , Mass	WAREHAM , Mass	ILWACO , Wash	CHATSWORTH , N.J	Chatsworth
 	PERSON	Gage Dobbins	Dobbins	Kim Billard	Billard	Lynn Giamalis	Giamalis
 EL_ENG_00626	LOCATION	U.S.	Iraq	PELHAM , New Hampshire	Iraq	U.S.	Iraq	Iraq	Anbar	Iraq	Iraq	Iraq	U.S.	Pelham	Iraq	Vietnam	New Hampshire	New Hampshire	Concord
 	ORGANIZATION	Osama bin Laden	Al-Jazeera	Defense	Army
@@ -2508,7 +2508,7 @@ EL_ENG_00628	LOCATION	Scranton	D-Ill	D-N.Y.	San Francisco	Pennsylvania	Scranton	
 	PERSON	Slan Obama	JEREMY G. BURTON	Barack Obama	Chris Doherty	Obama	Doherty	Hillary Clinton	Obama	Doherty	Obama	Jim Connors	Obama	Connors	John Mitchell	Doherty	Doherty	Doherty	Connors	Jessup	Taylor	Freeland	Lou D'Allesandro	Taylor	Richard Bowen	Obama	Connors	Obama	Connors	Obama	Obama	John Fetterman	Braddock	Obama	Fetterman	Bob Casey Jr.	Obama	Rosemary Boland	Clinton	Obama
 EL_ENG_00629	PERSON	John Newton	John Martin	Newton	Watts	Charles Wesley	Newton	John Newton	John Newton	John Newton	John Newton	John Newton	Stephen Conte	Stephen Conte Wade Kotter	Stephen	Wade Kotter Ogden	Stephen Conte
 	ORGANIZATION	Olney Hymns	Google	Kessinger Publishing	Amazon.com	UT	Yahoo
-	LOCATION	Denson Sacred Harp	Newton	Newton	Cowper-Newton Museum	Olney , England	Newton
+	LOCATION	Denson Sacred Harp	Newton	Newton	Cowper-Newton Museum in Olney , England	Newton
 	PERSON	John Newton	John Martin	Newton	Watts	Charles Wesley	Newton	John Newton	John Newton	John Newton	John Newton	John Newton	Stephen Conte	Stephen Conte Wade Kotter	Stephen	Wade Kotter Ogden	Stephen Conte
 EL_ENG_00630
 	ORGANIZATION	Leicester	Sheffield Wednesday	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Sheffield Wednesday	Sheffield Wednesday	Nottingham Forest	Nottingham Forest	Leicester	Sheffield Wednesday	Leicester	Leicester	TBC	Hillsborough Managers
@@ -2524,7 +2524,7 @@ EL_ENG_00632	ORGANIZATION	NFL	Boston College Eagles	Atlantic Coast Conference	Wa
 	PERSON	B.J. Raji Nero	B.J. Raji All	B.J. Raji	Raji	Raji	Spaziani	Chris Crane	Dominique Davis	Mark Herzlich	Davis	Davis	Herzlich	Raji	Herzlich	Raji	Ron Brace	Davis	Raji	Raji	Raji
 EL_ENG_00633	PERSON	Kansan Mother	Barry Obama	Wilder	Maya	Ann	Barack Obama	Obama	Obama	Obama	Barack Obama	Stanley Ann Dunham	Barack Hussein Obama	Madelyn	Stan Dunham	Gramps	Obama	Bill Clinton	Obama	Obama	Hillary Rodham Clinton	Bill Clinton	Obama	Obama	Stanley Ann Dunham	Stan	Madelyn	Stanley Ann	Stanley	Stanny	Stanny Ann	Stanley	Susan Botkin	Stanley	John Hunt	Stanley	Hunt	Stanley	Susan Botkin	Stanley	Stan	Madelyn	Madelyn	Stan	Maxine Box	Stan	Stanley	Stanley	Hunt	Jim Wichterman	Val Foubert	Plato	Aristotle	Kierkegaard	Sartre	William H. Whyte	David Riesman	Hegel	Marx	Wichterman	Hunt	Wichterman	Foubert	Obama	Stanley	Adlai Stevenson	Susan Botkin	Stanley	Stanley	Stanley Ann Dunham	Maxine Box	Obama	Chip Wall	Stanley	Barack Obama Jr.	Stanley	Botkin	Botkin	Stanley	Ann	Botkin	Ann	Barack Hussein Obama	Stanley Ann Dunham	Tom Mboya	Obama	Shurei Hirozawa	Luo	Obama	Hirozawa	Charles H. Atherton	Obama	Abercrombie	Neil	Hal	Peter Gilpin	Chet Gorman	Pake Zane	Zane	Neil Abercrombie	Obama	Abercrombie	Obama	Mau Mau	Obama	George	Peter Gilpin	Sonny Terry	Brownie McGhee	Obama	Neil Abercrombie	Jomo Kenyatta	Barack	Mboya	Luo	Obama	Stanley Ann Dunham	Anna	Ann	Barack Obama	Obama	Ann	Ann	Hal Abercrombie	Pake Zane	Ann	Obama	Neil Abercrombie	Obama	Ann	Obama	Madelyn Dunham	David Mendell	Obama	Dunham	Mendell	Stanley Ann	Obama	Mendell	Obama	Obama	Mendell	Madelyn	Madelyn	Obama	Ann	Obama	Barack Hussein Obama Jr.	Ann	Obama	Barack Jr.	Obama	Hal Abercrombie	Shirley	Abercrombie	Shirley	Hal	Barack	Obama	Obama	Abercrombie	Obama	Ann	Susan Botkin	Maxine Box	John W. Hunt	Ann	Barry	Botkin	Stanley	Botkin	Stanley Ann	Barry Obamawas	Barack Obama Sr.	Ann	Lolo Soetoro	Barry	Barry	Ann	Barry	Maya	Soetoro	Maya	Soetoro	Barry	Lolo	Ann	Barry	Soetoro	Obama	Soetoro	Soetoro	Obama	Soetoro	Obama	Barry Obama	Soetoro	Maya	Ann	Obama	Maya	Ann	Lolo	Maya	Barack Obama	Barry	Maya	Obama	Obama	Stan Dunham	Dunham	Gramps	Arthur Miller	Eugene O'Neill	Barry	Madelyn	Stan	Gramps	Dale Carnegie	Stan	Gramps	Barry	Stan Dunham	Madelyn Dunham	Barry	Dorothy K. Yamamoto	Barry	Barry	Barry	Mabel Hefty	Barry	Obama	Neil Abercrombie	Pake Zane	Obama	Ann	Abercrombie	Abercrombie	Zane	Barack	Zane	Barry	Lolo	Barry	Wilder	Ann	Maya	Madelyn	Gramps	Ann	Barry	Keith	Tony Peterson	Keith	Barry Obama	Obama	Obama	Ray	Keith Kukagawa	Kukagawa	Obama	Obama	Keith Peterson	Obama	Tony	Obama	Tony	Obama	Obama	Tony	Obama	Lewis Anthony	Rik Smith	Angie Jones	Peterson	Smith	Obama	Cooke Hall	Obama	Smith	Peterson	Barry	Peterson	Rick	Barry	Obama	Tony Peterson	Obama	Tony	Barry	Kansan	Maya	Obama	Bill Clinton	Obama	Keith Peterson	Obama	Ka Wai Ola	Obama	Mike Ramos	Anglo	Barry	Stevie Wonder	Miles Davis	Grover Washington	Greg	Mike Ramos	Barry	Grover	Grover	Mike Ramos	Barry	Obama	Greg Ramos	Keith Peterson	Barack	Punahou	Barack	Obama	Chris McLachlin	Obama	McLachlin	Buffanblu	Obama	Ann	Charlie	Barry	Barack	Ann	Stan	Madelyn	Ann	Alice Dewey	Ann	Ann	Suharto	Dewey	Ann	David McCauley	Barack	Maya	Maya	Maya	Ann	Ann	Maya	Maya	Barack	Ann	Barack	Maya	Sandy Beach	Barry	Ann	Barack	Maya	Maya	Barack Obama
 	ORGANIZATION	Kapiolani Medical Center	University of Hawaii	Punahou School	Punahou School	Jayhawk	Dunhams	Dunhams	University of	Mercer Island High	Vance Packard	University of Chicago	University of Washington	University of Hawaii	University of Hawaii	YMCA	Dunhams	Chicago Tribune	Harvard	Blue Fox	Harvard	New School	Harvard	New School	Harvard	University of Washington	University of Hawaii	Harvard	Union Oil	U.S. Embassy	Punahou School	John Hancock Mutual Life Insurance	Bank of Hawaii	Punahou School	Grinch	University of Hawaii	Punahou School	Kentucky Fried Chicken	Punahou School	Petersons	Petersons	Petersons	Schofield Barracks	Rotary	Senate	Boys Nation	Outrigger Canoe Club	Schofield Barracks	Fleetwood Mac	NBA	Columbia	Harvard Law	University of Hawaii	Ford Foundation	Bank Rakyat	University	NYU	University of Hawaii	Stanley Ann
-	LOCATION	Pacific	S. Beretania	Waikiki Beach	Punahou Street	Pearl Harbor	Poki	Indonesia	Honolulu	Oahu	California	Easter Island	American	United States	U.S.	Hawaii	Chicago	Honolulu	Hawaii	Hawaii	Chicago	Hawaii	Chicago	Chicago	Hawaii	Chicago	Hawaii	Great Plains	West Coast	Hawaii	Pacific	Indonesia	Honolulu	Beretania	Punahou	Kenya , Africa	Kansas	Kenya	Wichita	Kansas	Berkeley , Calif.	Ponca City , Okla.	Wichita Falls , Tex.	Seattle	Mercer Island	Lake Washington	Staten Island	Seattle	Mercer Island	Seattle	Seattle	Cascade Mountains	Mercer Island	Seattle	Seattle	Washington	French	Honolulu	Mercer Island	Seattle	Hawaii	Mercer Island	Hawaii	Honolulu	Seattle	U.S.	Kenya	Honolulu	Kenya , Jordan	Iran	Lake Victoria	Kenya	Africa	Nairobi	Hawaii	U.S.	Hawaii	Kenya	Buffalo	Honolulu	Honolulu	Hawaii	Honolulu	Hawaii	Hawaii	Africa	Kenya	Kenya	Kenya	Kenya	Africa	Stardust Lounge	Kenya	Kenya	Hawaii	Kenya	Kenya	Maui	Honolulu	Hawaii	San Francisco	New York	Cambridge	Mercer Island	Seattle	Boston	Boston	Cambridge	Seattle	Hawaii	Kenya	Indonesia	Seattle	Kansas	Indonesia	Indonesia	Jakarta	Indonesia	Hawaii	New Guinea	Texas	Louisiana	Indonesian	Hawaii	Honolulu	Beretania	Jakarta	Hawaii	Honolulu	Indonesia	Indonesia	Kenya	Punahou	Kenya	Honolulu	Kenya	Nairobi	Mombasa	India	Hawaii	Poki	Indonesia	Puu Ualakaa State Park	Hawaii	Indonesia	Boulder , Colo.	Punahou	Pearl City	Punahou	Punahou	Indonesian	Hot Springs High	Arkansas	Punahou	Sandy Beach Park	Hawaii	Hawaii	Hawaii	Punahou	Indonesia	Hawaii	Chicago	Hawaii	Honolulu	Indonesia	New York	Beretania	Indonesia	Indonesian	Kajar	Yogyakarta	Indonesia	Lahore , Pakistan	New Delhi	New York	Jakarta	New York	New York	Kansas	Seattle	Hawaii	Indonesia	Hanauma Bay	Hawaii	Hawaii	Chicago
+	LOCATION	Pacific	S. Beretania	Waikiki Beach	Punahou Street	Pearl Harbor	Poki	Indonesia	Honolulu	Oahu	California	Easter Island	American	United States	U.S.	Hawaii	Chicago	Honolulu	Hawaii	Hawaii	Chicago	Hawaii	Chicago	Chicago	Hawaii	Chicago	Hawaii	Great Plains	West Coast	Hawaii	Pacific	Indonesia	Honolulu	Beretania	Punahou	Kenya , Africa	Kansas	Kenya	Wichita	Kansas	Berkeley , Calif.	Ponca City , Okla.	Wichita Falls , Tex.	Seattle	Mercer Island	Lake Washington	Staten Island	Seattle	Mercer Island	Seattle	Seattle	Cascade Mountains	Mercer Island	Seattle	Seattle	Washington	French	Honolulu	Mercer Island	Seattle	Hawaii	Mercer Island	Hawaii	Honolulu	Seattle	U.S.	Kenya	Honolulu	Kenya , Jordan	Iran	Lake Victoria in Kenya	Africa	Nairobi	Hawaii	U.S.	Hawaii	Kenya	Buffalo	Honolulu	Honolulu	Hawaii	Honolulu	Hawaii	Hawaii	Africa	Kenya	Kenya	Kenya	Kenya	Africa	Stardust Lounge	Kenya	Kenya	Hawaii	Kenya	Kenya	Maui	Honolulu	Hawaii	San Francisco	New York	Cambridge	Mercer Island	Seattle	Boston	Boston	Cambridge	Seattle	Hawaii	Kenya	Indonesia	Seattle	Kansas	Indonesia	Indonesia	Jakarta	Indonesia	Hawaii	New Guinea	Texas	Louisiana	Indonesian	Hawaii	Honolulu	Beretania	Jakarta	Hawaii	Honolulu	Indonesia	Indonesia	Kenya	Punahou	Kenya	Honolulu	Kenya	Nairobi	Mombasa	India	Hawaii	Poki	Indonesia	Puu Ualakaa State Park	Hawaii	Indonesia	Boulder , Colo.	Punahou	Pearl City	Punahou	Punahou	Indonesian	Hot Springs High in Arkansas	Punahou	Sandy Beach Park	Hawaii	Hawaii	Hawaii	Punahou	Indonesia	Hawaii	Chicago	Hawaii	Honolulu	Indonesia	New York	Beretania	Indonesia	Indonesian	Kajar	Yogyakarta	Indonesia	Lahore , Pakistan	New Delhi	New York	Jakarta	New York	New York	Kansas	Seattle	Hawaii	Indonesia	Hanauma Bay	Hawaii	Hawaii	Chicago
 	PERSON	Kansan Mother	Barry Obama	Wilder	Maya	Ann	Barack Obama	Obama	Obama	Obama	Barack Obama	Stanley Ann Dunham	Barack Hussein Obama	Madelyn	Stan Dunham	Gramps	Obama	Bill Clinton	Obama	Obama	Hillary Rodham Clinton	Bill Clinton	Obama	Obama	Stanley Ann Dunham	Stan	Madelyn	Stanley Ann	Stanley	Stanny	Stanny Ann	Stanley	Susan Botkin	Stanley	John Hunt	Stanley	Hunt	Stanley	Susan Botkin	Stanley	Stan	Madelyn	Madelyn	Stan	Maxine Box	Stan	Stanley	Stanley	Hunt	Jim Wichterman	Val Foubert	Plato	Aristotle	Kierkegaard	Sartre	William H. Whyte	David Riesman	Hegel	Marx	Wichterman	Hunt	Wichterman	Foubert	Obama	Stanley	Adlai Stevenson	Susan Botkin	Stanley	Stanley	Stanley Ann Dunham	Maxine Box	Obama	Chip Wall	Stanley	Barack Obama Jr.	Stanley	Botkin	Botkin	Stanley	Ann	Botkin	Ann	Barack Hussein Obama	Stanley Ann Dunham	Tom Mboya	Obama	Shurei Hirozawa	Luo	Obama	Hirozawa	Charles H. Atherton	Obama	Abercrombie	Neil	Hal	Peter Gilpin	Chet Gorman	Pake Zane	Zane	Neil Abercrombie	Obama	Abercrombie	Obama	Mau Mau	Obama	George	Peter Gilpin	Sonny Terry	Brownie McGhee	Obama	Neil Abercrombie	Jomo Kenyatta	Barack	Mboya	Luo	Obama	Stanley Ann Dunham	Anna	Ann	Barack Obama	Obama	Ann	Ann	Hal Abercrombie	Pake Zane	Ann	Obama	Neil Abercrombie	Obama	Ann	Obama	Madelyn Dunham	David Mendell	Obama	Dunham	Mendell	Stanley Ann	Obama	Mendell	Obama	Obama	Mendell	Madelyn	Madelyn	Obama	Ann	Obama	Barack Hussein Obama Jr.	Ann	Obama	Barack Jr.	Obama	Hal Abercrombie	Shirley	Abercrombie	Shirley	Hal	Barack	Obama	Obama	Abercrombie	Obama	Ann	Susan Botkin	Maxine Box	John W. Hunt	Ann	Barry	Botkin	Stanley	Botkin	Stanley Ann	Barry Obamawas	Barack Obama Sr.	Ann	Lolo Soetoro	Barry	Barry	Ann	Barry	Maya	Soetoro	Maya	Soetoro	Barry	Lolo	Ann	Barry	Soetoro	Obama	Soetoro	Soetoro	Obama	Soetoro	Obama	Barry Obama	Soetoro	Maya	Ann	Obama	Maya	Ann	Lolo	Maya	Barack Obama	Barry	Maya	Obama	Obama	Stan Dunham	Dunham	Gramps	Arthur Miller	Eugene O'Neill	Barry	Madelyn	Stan	Gramps	Dale Carnegie	Stan	Gramps	Barry	Stan Dunham	Madelyn Dunham	Barry	Dorothy K. Yamamoto	Barry	Barry	Barry	Mabel Hefty	Barry	Obama	Neil Abercrombie	Pake Zane	Obama	Ann	Abercrombie	Abercrombie	Zane	Barack	Zane	Barry	Lolo	Barry	Wilder	Ann	Maya	Madelyn	Gramps	Ann	Barry	Keith	Tony Peterson	Keith	Barry Obama	Obama	Obama	Ray	Keith Kukagawa	Kukagawa	Obama	Obama	Keith Peterson	Obama	Tony	Obama	Tony	Obama	Obama	Tony	Obama	Lewis Anthony	Rik Smith	Angie Jones	Peterson	Smith	Obama	Cooke Hall	Obama	Smith	Peterson	Barry	Peterson	Rick	Barry	Obama	Tony Peterson	Obama	Tony	Barry	Kansan	Maya	Obama	Bill Clinton	Obama	Keith Peterson	Obama	Ka Wai Ola	Obama	Mike Ramos	Anglo	Barry	Stevie Wonder	Miles Davis	Grover Washington	Greg	Mike Ramos	Barry	Grover	Grover	Mike Ramos	Barry	Obama	Greg Ramos	Keith Peterson	Barack	Punahou	Barack	Obama	Chris McLachlin	Obama	McLachlin	Buffanblu	Obama	Ann	Charlie	Barry	Barack	Ann	Stan	Madelyn	Ann	Alice Dewey	Ann	Ann	Suharto	Dewey	Ann	David McCauley	Barack	Maya	Maya	Maya	Ann	Ann	Maya	Maya	Barack	Ann	Barack	Maya	Sandy Beach	Barry	Ann	Barack	Maya	Maya	Barack Obama
 EL_ENG_00634	PERSON	Eric Thompson	Thompson	Thompson	Thompson	Herrin
 	ORGANIZATION	US Anti-Doping Agency	USADA	Eugene
@@ -2628,7 +2628,7 @@ EL_ENG_00658	ORGANIZATION	Manchester	LGBT
 	PERSON	Doug Manchester	Doug Manchester
 EL_ENG_00659	PERSON	Kurt Cobain	Courtney Love	Courtney Michelle Love	Courtney Michelle Harrison	Kurt Cobain	Kurt Cobain	Cobain	Courtney Love	Kurt Cobain	Courtney Love	Kurt Cobain	Courtney Love	Cobain	Cobain	Courtney	Cobain	Frances Bean Cobain	Kurt Cobain	Cobain	Cobain	Cobain	Cobain	Neil Young	Cobain	Love	Courtney Love	David Letterman	Linda Carroll	Paula Fox	Carroll	Carroll	Marlon Brando	Carroll	Carroll	Linda Carroll	Marlon Brando	Marlon Brando	Madonna	Courtney	Steve Coogan	Ai Yazawa	Linda Perry	Perry	Love	Kurt Cobain	Courtney Love	Christopher Scott	David LaChapelle	Christie	Kurt Cobain	Charles R. Cross
 	ORGANIZATION	Rolling Stone	Buddhist	New York Daily News	House of Blues	Universal Pictures
-	LOCATION	Portland , Oregon	Los Angeles	New York	Washington	Los Angeles	Europe	Waikiki Beach	Honolulu , Hawaii	Seattle , Washington	Seattle	Seattle	Europe	Los Angeles
+	LOCATION	Portland , Oregon	Los Angeles	New York	Washington	Los Angeles	Europe	Waikiki Beach in Honolulu , Hawaii	Seattle , Washington	Seattle	Seattle	Europe	Los Angeles
 	PERSON	Kurt Cobain	Courtney Love	Courtney Michelle Love	Courtney Michelle Harrison	Kurt Cobain	Kurt Cobain	Cobain	Courtney Love	Kurt Cobain	Courtney Love	Kurt Cobain	Courtney Love	Cobain	Cobain	Courtney	Cobain	Frances Bean Cobain	Kurt Cobain	Cobain	Cobain	Cobain	Cobain	Neil Young	Cobain	Love	Courtney Love	David Letterman	Linda Carroll	Paula Fox	Carroll	Carroll	Marlon Brando	Carroll	Carroll	Linda Carroll	Marlon Brando	Marlon Brando	Madonna	Courtney	Steve Coogan	Ai Yazawa	Linda Perry	Perry	Love	Kurt Cobain	Courtney Love	Christopher Scott	David LaChapelle	Christie	Kurt Cobain	Charles R. Cross
 EL_ENG_00660	PERSON	Fritz Gelowicz	Adem Yilmaz	Daniel Martin Schneider	Schneider	Frank Wallenta	Gelowicz
 	ORGANIZATION	NATO	TNT	Islamic Jihad Union	Taliban
@@ -2664,7 +2664,7 @@ EL_ENG_00667	ORGANIZATION	Aliquippa Allentown Altoona Ambridge ArendtsvilleAvalo
 	PERSON	CONRAD	Smith	Whacko Christian Nutjobs
 EL_ENG_00668
 	ORGANIZATION	Roanoke Co.	DMK Heritage	Plymouth Companies-Expedition	Indians	First Courts and County Officers-Changes	Tombstone Near Hollins Institute-Indian	Virginia Frontiers-Mason	First Public Institutions of Salem	Development-Business Industries	Shenandoah Valley Railroad-The Roanoke Land &amp; improvement Company-Roanoke Machine Works	Labor	Public Improvements-Churches-Educational Facilities-Virginia College	National Business College	Historical Sketch of Roanoke City High School	Common Council-Terms of Council	Norfolk &amp; Petersburg Railroad	Southside Railroad and Virginia &amp;	Mississippi &amp; Ohio Railroad	Ores-Norfolk Terminal Company	Coal and Iron Region of Southwest Virginia	Equipment	Earnings-Roanoke Machine Works-Iron-Belt Mining &amp; Development Company	Methodist Episcopal Church	Evangelical Lutheran Church	College Evangelical Lutheran Church	Salem-The Protestant Episcopal Church	Salem-The Protestant Episcopal Church	Methodist Episcopal Church	Evangelical Lutheran Church-The Baptist Church	Roman Catholic Church	House of Delegates	Judges of County Court	Clerks of County Court-Commonwealth	County Treasurers-Officers of Circuit Court
-	LOCATION	Va	ROANOKE COUNTY	ROANOKE CITY VIRGINIA	Mound Austin , TX	VIRGINIA	SETTLEMENT Virginia	Virginia	Roanoke Island	London	ROANOKE COUNTY Orange County	Frederick-Botetourt County	Augusta County-Fincastle County Erected	Roanoke	New County of Roanoke-Origin	Western Boundary Line-Part	Montgomery County Annexed-Craig County	Botetourt , Roanoke	VIRGINIA	Roanoke , Catawba	River	Augusta	Salem	ROANOKE	Roanoke	Drives-The City	Roanoke	Roanoke	NORFOLK	Southwest Virginia	Kentucky	Atlantic	Norfolk	New River Railroad	Norfolk	Norfolk	Virginia	Roanoke City	Roanoke	Salem-The Baptist Church	Roanoke County-Salem Baptist Church Salem Presbyterian Church-Vinton	Roanoke County	Roanoke County	Roanoke	Roanoke City	Roanoke	Roanoke	United Brethren	Christ-Lutheran Orphan Home	Salem , Virginia	Virginia	Upper Valley of Virginia	Roanoke	ROANOKE
+	LOCATION	Va	ROANOKE COUNTY	ROANOKE CITY VIRGINIA	Mound Austin , TX	VIRGINIA	SETTLEMENT Virginia	Virginia	Roanoke Island	London	ROANOKE COUNTY Orange County	Frederick-Botetourt County	Augusta County-Fincastle County Erected	Roanoke	New County of Roanoke-Origin	Western Boundary Line-Part	Montgomery County Annexed-Craig County	Botetourt , Roanoke	VIRGINIA	Roanoke , Catawba	River	Augusta	Salem	ROANOKE	Roanoke	Drives-The City	Roanoke	Roanoke	NORFOLK	Southwest Virginia	Kentucky	Atlantic	Norfolk	New River Railroad	Norfolk	Norfolk	Virginia	Roanoke City	Roanoke	Salem-The Baptist Church in Roanoke County-Salem Baptist Church Salem Presbyterian Church-Vinton	Roanoke County	Roanoke County	Roanoke	Roanoke City	Roanoke	Roanoke	United Brethren in Christ-Lutheran Orphan Home	Salem , Virginia	Virginia	Upper Valley of Virginia	Roanoke	ROANOKE
 	PERSON	Doris Christian	WILLIAM McCAULEY	A. M.	John Cabot-Voyages	Humphrey Gilbert	Walter Raleigh-Expeditions	Richard Grenville-Thu Name	Christopher Newport	John Smith	Giles	Monroe	Batte	John Marlin	John Sailing-Grants	Beverly	Jackson	Roanoke Grays-Dixie Grays-Roanoke Guards-Jeff Davis Rifles	Andrew Lewis-James Simpson	Clarence H. Clark-Relation	Mark	Andrew	John Lewis	Andrew Lewis	William Fleming-Rev	Urias Powers-The Bryan Family-William C. Williams-John McCauley-Rev	David Frederick Bittle	Abraham Hupp	Charles Lewis Cocke
 EL_ENG_00669
 	ORGANIZATION	Wikipedia	NFL	New England Patriots	Orangemen	Colorado	Clemson	Syracuse	Syracuse	University of Texas	Syracuse University Football	Syracuse University	NFL	NFL	Syracuse
@@ -2714,9 +2714,9 @@ EL_ENG_00680	PERSON	ESTER	Monica	Ester Dean	Dean	Mary J. Blige	Keri Hilson	Girli
 	ORGANIZATION	Kelis Rogers
 	LOCATION
 	PERSON	ESTER	Monica	Ester Dean	Dean	Mary J. Blige	Keri Hilson	Girlicious	Jermaine Dupri	Mariah Carey	Janet Jackson	Missy	Elliot	Keyshia Cole	Adina Howard	Erik Hermansen	Mikkel Storleer Eriksen	Beyonce Knowles	Lionel Richie	Jamal	Da Don " Jones	Nicole Scherzinger	Bryan Michael Cox	Brandy Norwood
-EL_ENG_00681	LOCATION	Milford	Purchase Street	Hopkinton	Milford	Milford	Purchase Street	Boston	Purchase Street	Milford	Jesus Parish	Milford	Milford
+EL_ENG_00681	LOCATION	Milford	Purchase Street	Hopkinton	Milford	Milford	Purchase Street	Boston	Purchase Street	Milford	Jesus Parish in Milford	Milford
 	ORGANIZATION	Milford Police Department	State Police	Milford Police Department	Board of Selectmen	Legislature	Board of Selectmen
-	LOCATION	Milford	Purchase Street	Hopkinton	Milford	Milford	Purchase Street	Boston	Purchase Street	Milford	Jesus Parish	Milford	Milford
+	LOCATION	Milford	Purchase Street	Hopkinton	Milford	Milford	Purchase Street	Boston	Purchase Street	Milford	Jesus Parish in Milford	Milford
 	PERSON	Thomas O'Loughlin	O'Loughlin	O'Loughlin	O'Loughlin	O'Loughlin	O'Loughlin	O'Loughlin	Dustin Testa	O'Loughlin	Testa	O'Loughlin	O'Loughlin	Brian Murray	Joyce Shreenan	Marie J. Parente	Parente	Murray	Murray	Michael Levenson	Christine McConville
 EL_ENG_00682	ORGANIZATION	Sharks	KwaZulu-Natal Sharks	Blue Bulls
 	ORGANIZATION	Sharks	KwaZulu-Natal Sharks	Blue Bulls
@@ -2790,9 +2790,9 @@ EL_ENG_00699	LOCATION	Toronto	San Jose	San Jose	Detroit	Columbus	Colorado	Minnes
 	ORGANIZATION	Carolina Hurricanes	Leafs	Sharks	Sharks	Thrashers	Thrashers	Sabres	Panthers	Islanders	Rangers	Pittsburgh Penguins
 	LOCATION	Toronto	San Jose	San Jose	Detroit	Columbus	Colorado	Minnesota	Phoenix	Toronto	Phoenix	Calgary , Vancouver	Dallas	Nashville	Atlanta	Boston	Boston	Buffalo	Buffalo	Carolina	Florida	Montreal	New Jersey	New Jersey	New Jersey	Ottawa	Philly	Pittsburgh	Washington	East	Washington	Toronto , Philly	Anaheim
 	PERSON	Corey Johnson	Jeff Hamilton	Maxim Kondratiev	Brian Leetch	Eklund	Raycroft	Antropov	McCabe	McCabe	Antropov	McCabe	Souray	Raycroft	Evgeni	Franzen	Federov	Hannon	Smyth	Ray Emery	Kubina	Kovalchuk	Hossa	Kozlov	Jokinen	Stuart	Preissing	Martin	Jokinen	Jokinen	Federov	Smyth	Rob Blake	Redden	Emery	Tyler Arnason	Ovechkin	Corey Johnson
-EL_ENG_00700	LOCATION	Tampa	Maryland	Annapolis	Chesapeake Bay	Baltimore	Linthicum Heights	Baltimore-Washington	Maryland	Old Bay	Maryland	Florida	Chesapeake Bay	Baltimore	Eastern Shore	Old Bay	Maryland	Carolinas , Louisiana	Florida	Asia	Florida	Annapolis	Maryland	South River	Riverside Inn	Severn River	Spa Creek	Sanibel Island	Baltimore	Talbot County	Baltimore	Oxford	Chesapeake	Perry Cabin	Miles River	St. Michaels	Chesapeake Bay Maritime Museum	Easton	Tilghman Island	Crab Claw	St. Michaels	Eastern Shore	Taylors Island	Dorchester County	Baltimore	Lexington	Lexington	Lexington	Baltimore	Koco	Linthicum Heights , Md.	Paca St. , Baltimore	Harford Road , Baltimore	Forest Beach Road , Annapolis , Md.	Dover St. , Easton , Md.	St. Michaels , Md.	Tilghman Island , Md.	Island Grille	Taylors Island Road , Taylors Island , Md.	St. Michaels	Chesapeake Bay Maritime Museum	St. Michaels , Md.	Lexington	Linthicum Heights	Maryland	Baltimore-Washington International Airport
+EL_ENG_00700	LOCATION	Tampa	Maryland	Annapolis	Chesapeake Bay	Baltimore	Linthicum Heights	Baltimore-Washington	Maryland	Old Bay	Maryland	Florida	Chesapeake Bay	Baltimore	Eastern Shore	Old Bay	Maryland	Carolinas , Louisiana	Florida	Asia	Florida	Annapolis	Maryland	South River	Riverside Inn	Severn River	Spa Creek	Sanibel Island	Baltimore	Talbot County	Baltimore	Oxford	Chesapeake	Perry Cabin	Miles River in St. Michaels	Chesapeake Bay Maritime Museum	Easton	Tilghman Island	Crab Claw	St. Michaels	Eastern Shore	Taylors Island	Dorchester County	Baltimore	Lexington	Lexington	Lexington	Baltimore	Koco	Linthicum Heights , Md.	Paca St. , Baltimore	Harford Road , Baltimore	Forest Beach Road , Annapolis , Md.	Dover St. , Easton , Md.	St. Michaels , Md.	Tilghman Island , Md.	Island Grille	Taylors Island Road , Taylors Island , Md.	St. Michaels	Chesapeake Bay Maritime Museum	St. Michaels , Md.	Lexington	Linthicum Heights	Maryland	Baltimore-Washington International Airport
 	ORGANIZATION	International	Legislature	U.S. Naval Academy	Crab House	Boatyard Bar &amp; amp	Hampton Inn	Robert Morris Inn	Big Al	Talbot Cinema Society	Hammonds Ferry Road	Lexington Market	Riverside Inn	Chesapeake House	Chesapeake House	Perry Cabin	Watkins Lane	Navy Point
-	LOCATION	Tampa	Maryland	Annapolis	Chesapeake Bay	Baltimore	Linthicum Heights	Baltimore-Washington	Maryland	Old Bay	Maryland	Florida	Chesapeake Bay	Baltimore	Eastern Shore	Old Bay	Maryland	Carolinas , Louisiana	Florida	Asia	Florida	Annapolis	Maryland	South River	Riverside Inn	Severn River	Spa Creek	Sanibel Island	Baltimore	Talbot County	Baltimore	Oxford	Chesapeake	Perry Cabin	Miles River	St. Michaels	Chesapeake Bay Maritime Museum	Easton	Tilghman Island	Crab Claw	St. Michaels	Eastern Shore	Taylors Island	Dorchester County	Baltimore	Lexington	Lexington	Lexington	Baltimore	Koco	Linthicum Heights , Md.	Paca St. , Baltimore	Harford Road , Baltimore	Forest Beach Road , Annapolis , Md.	Dover St. , Easton , Md.	St. Michaels , Md.	Tilghman Island , Md.	Island Grille	Taylors Island Road , Taylors Island , Md.	St. Michaels	Chesapeake Bay Maritime Museum	St. Michaels , Md.	Lexington	Linthicum Heights	Maryland	Baltimore-Washington International Airport
+	LOCATION	Tampa	Maryland	Annapolis	Chesapeake Bay	Baltimore	Linthicum Heights	Baltimore-Washington	Maryland	Old Bay	Maryland	Florida	Chesapeake Bay	Baltimore	Eastern Shore	Old Bay	Maryland	Carolinas , Louisiana	Florida	Asia	Florida	Annapolis	Maryland	South River	Riverside Inn	Severn River	Spa Creek	Sanibel Island	Baltimore	Talbot County	Baltimore	Oxford	Chesapeake	Perry Cabin	Miles River in St. Michaels	Chesapeake Bay Maritime Museum	Easton	Tilghman Island	Crab Claw	St. Michaels	Eastern Shore	Taylors Island	Dorchester County	Baltimore	Lexington	Lexington	Lexington	Baltimore	Koco	Linthicum Heights , Md.	Paca St. , Baltimore	Harford Road , Baltimore	Forest Beach Road , Annapolis , Md.	Dover St. , Easton , Md.	St. Michaels , Md.	Tilghman Island , Md.	Island Grille	Taylors Island Road , Taylors Island , Md.	St. Michaels	Chesapeake Bay Maritime Museum	St. Michaels , Md.	Lexington	Linthicum Heights	Maryland	Baltimore-Washington International Airport
 	PERSON	H.L. Mencken	Mike	Jimmy Cantler	Cantler	James Michener	Bo Diddley	St. Michaels	Harrison	Holli Anderson	Lisa Hubbard	Faidley	Faidley	Koco	Janet Keeler	Faidley	Koco	Jimmy Cantler	Al	Talbot St.	Harrison	SCOTT KEELER	Faidley	Faidley	Cook Loannis Kalavrezos	Lounge
 EL_ENG_00701	LOCATION	Syracuse COLUMBUS , Ohio	Columbus
 	ORGANIZATION	Columbus Blue Jackets	American Hockey League	Syracuse	NHL
@@ -3060,11 +3060,11 @@ EL_ENG_00766	LOCATION	Dusty Springfield	Springfield	Hollywood	Springfield	Spring
 	PERSON	Nicole Kidman	Nicole Kidman
 EL_ENG_00767	PERSON	Jeffrey Lynn Kirk	Kirk	Kirk	Kirk	Carly Kirk	Jeff	David Hawley	Reynaldo Leal	Kenneth Distelhorst	Kirk	Kirk	Richard Natonski	Kirk	Lynyrd Skynyrd	Kirk	Kirk	Hawley	Kirk	Distelhorst
 	ORGANIZATION	Kilo Company	Marines
-	LOCATION	PENDLETON , Calif	U.S.	Baghdad	Fallujah	Iraq	Fallujah	Louisiana	Florida Boulevard Baptist Church	Baton Rouge , La
+	LOCATION	PENDLETON , Calif	U.S.	Baghdad	Fallujah	Iraq	Fallujah	Louisiana	Florida Boulevard Baptist Church in Baton Rouge , La
 	PERSON	Jeffrey Lynn Kirk	Kirk	Kirk	Kirk	Carly Kirk	Jeff	David Hawley	Reynaldo Leal	Kenneth Distelhorst	Kirk	Kirk	Richard Natonski	Kirk	Lynyrd Skynyrd	Kirk	Kirk	Hawley	Kirk	Distelhorst
-EL_ENG_00768	LOCATION	Plainfield , N.H	US	US	New Hampshire	Plainfield	Vermont	Ruby Ridge	Waco	Plainfield	Lebanon , N.H.	Plainfield	Ruby Ridge	Idaho	US	Vermont , New York , Texas	Missouri	New Hampshire	US
+EL_ENG_00768	LOCATION	Plainfield , N.H	US	US	New Hampshire	Plainfield	Vermont	Ruby Ridge	Waco	Plainfield	Lebanon , N.H.	Plainfield	Ruby Ridge in Idaho	US	Vermont , New York , Texas	Missouri	New Hampshire	US
 	ORGANIZATION	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns	Browns
-	LOCATION	Plainfield , N.H	US	US	New Hampshire	Plainfield	Vermont	Ruby Ridge	Waco	Plainfield	Lebanon , N.H.	Plainfield	Ruby Ridge	Idaho	US	Vermont , New York , Texas	Missouri	New Hampshire	US
+	LOCATION	Plainfield , N.H	US	US	New Hampshire	Plainfield	Vermont	Ruby Ridge	Waco	Plainfield	Lebanon , N.H.	Plainfield	Ruby Ridge in Idaho	US	Vermont , New York , Texas	Missouri	New Hampshire	US
 	PERSON	Ed	Elaine Brown	Browns	Stephen Monier	Monier	Monier	Ed Brown	Elaine	Monier	Randy Weaver	Monier	Monier	Monier
 EL_ENG_00769
 	ORGANIZATION	NRM	EIA
@@ -3208,7 +3208,7 @@ EL_ENG_00804	PERSON	Granville Adams	Edward M. Kratt	Adams	Orlando Valle	Valle	Va
 	PERSON	Granville Adams	Edward M. Kratt	Adams	Orlando Valle	Valle	Valle	Adams	Kratt	Adams	Kratt	Kratt	Valle	Adams	Kratt	Adams	Adams	Valle	Adams	Kratt	Valle	Adams	Valle
 EL_ENG_00805	ORGANIZATION	Ashland	Roma	Columbia City Theater Seattle	Ashland
 	ORGANIZATION	Ashland	Roma	Columbia City Theater Seattle	Ashland
-	LOCATION	Seattle	Portland	Oregon	Seattle , Tacoma	Ridgefield	Washington	Pacific Northwest	Transylvania	Portland	Seattle	Kennedy School Portland	WA	Tacoma , WA	WA	Ridgefield , WA
+	LOCATION	Seattle	Portland	Oregon	Seattle , Tacoma	Ridgefield in Washington	Pacific Northwest	Transylvania	Portland	Seattle	Kennedy School Portland	WA	Tacoma , WA	WA	Ridgefield , WA
 	PERSON	Port Townsend	Amy	Fabrice Martinez	Ursula Knudsen	Port Townsend	Havurah Shir Hadash
 EL_ENG_00806	PERSON	Andrew Firestone	Andrew Firestone	Ivana Bozilovic	Alisha Mahon	Firestone	Bozilovic	Mark	Firestone	Jen Schefft	Ivana Bozilovic
 	ORGANIZATION	Associated Press	Valley Episcopal Church
@@ -3244,7 +3244,7 @@ EL_ENG_00813	PERSON	G.E. Patterson	G.E. Patterson	Patterson	Patterson	God	Patter
 	PERSON	G.E. Patterson	G.E. Patterson	Patterson	Patterson	God	Patterson	Patterson	Patterson
 EL_ENG_00814	ORGANIZATION	Daily News	MetroWest	Ashland	Hindu	Ashland	U.S.C.
 	ORGANIZATION	Daily News	MetroWest	Ashland	Hindu	Ashland	U.S.C.
-	LOCATION	New England	Waverly Street	Ashland	Framingham	India	US
+	LOCATION	New England	Waverly Street in Ashland	Framingham	India	US
 	PERSON	Jai Maharaj	David Riley	Raj Raghavan	Raghavan	Hindustani	Raghavan	Raghavan	Jai Maharaj
 EL_ENG_00815	ORGANIZATION	Amnesty International University of Newcastle	Newcastle Uni Group
 	ORGANIZATION	Amnesty International University of Newcastle	Newcastle Uni Group
@@ -3258,9 +3258,9 @@ EL_ENG_00817	LOCATION	Breckenridge	Denver	Breckenridge Brewery	Kalamath Street	B
 	ORGANIZATION	Illinois and Kansas	Denver Post
 	LOCATION	Breckenridge	Denver	Breckenridge Brewery	Kalamath Street	Breckenridge	Breckenridge	Colorado , Texas , Arizona , Ohio	Breckenridge Brewery	Denver
 	PERSON	Kalamath St.	Marcus Chamberland
-EL_ENG_00818	LOCATION	US	ATKINS , Arkansas	Arkansas , Mississippi , Tennessee	Kentucky	Arkansas River	Arkansas	Tennessee	Kentucky	Greenville	Little Rock	Arkansas	Atkins	Oxford , Mississippi	Tennessee	Memphis	Hickory Ridge Mall	Memphis	Wolf River	Jackson	Arkansas	U.S.	Gassville	Pope County	Hardin County , Tennessee	Memphis	Fayette County	Memphis	Southaven	Mississippi	Desoto County	Jackson , Mississippi	Memphis , Tennessee
+EL_ENG_00818	LOCATION	US	ATKINS , Arkansas	Arkansas , Mississippi , Tennessee	Kentucky	Arkansas River	Arkansas	Tennessee	Kentucky	Greenville	Little Rock	Arkansas	Atkins	Oxford , Mississippi	Tennessee	Memphis	Hickory Ridge Mall in Memphis	Wolf River	Jackson	Arkansas	U.S.	Gassville	Pope County	Hardin County , Tennessee	Memphis	Fayette County	Memphis	Southaven	Mississippi	Desoto County	Jackson , Mississippi	Memphis , Tennessee
 	ORGANIZATION	Pope County Sheriff 's Office	W.J. Matthews Civic Center	American Red Cross	National Weather Service	Memphis Police Department	Union University	Baxter County Sheriff 's Office	Memphis Fire Department	Associated Press
-	LOCATION	US	ATKINS , Arkansas	Arkansas , Mississippi , Tennessee	Kentucky	Arkansas River	Arkansas	Tennessee	Kentucky	Greenville	Little Rock	Arkansas	Atkins	Oxford , Mississippi	Tennessee	Memphis	Hickory Ridge Mall	Memphis	Wolf River	Jackson	Arkansas	U.S.	Gassville	Pope County	Hardin County , Tennessee	Memphis	Fayette County	Memphis	Southaven	Mississippi	Desoto County	Jackson , Mississippi	Memphis , Tennessee
+	LOCATION	US	ATKINS , Arkansas	Arkansas , Mississippi , Tennessee	Kentucky	Arkansas River	Arkansas	Tennessee	Kentucky	Greenville	Little Rock	Arkansas	Atkins	Oxford , Mississippi	Tennessee	Memphis	Hickory Ridge Mall in Memphis	Wolf River	Jackson	Arkansas	U.S.	Gassville	Pope County	Hardin County , Tennessee	Memphis	Fayette County	Memphis	Southaven	Mississippi	Desoto County	Jackson , Mississippi	Memphis , Tennessee
 	PERSON	Hillary Rodham Clinton	Barack Obama	Mike Huckabee	Atkins	Mike Beebe	Stuart Recke	Mike Huckabee	Huckabee	Atkins	Jackson	Richard Okulski	Steve Cole	Tim Ellsworth	Atkins	Leonard Krout	Krout	Keith Staples	Steve Atkinson	Atkinson	Holbrook Mohr	Woody Baird
 EL_ENG_00819	LOCATION	OXFORD , Ohio	Oxford	Ohio
 	ORGANIZATION	UTC House	Miami University of Ohio
@@ -3530,9 +3530,9 @@ EL_ENG_00885	LOCATION	Oregon	Salem
 	ORGANIZATION	UTC Police
 	LOCATION	Oregon	Salem
 	PERSON	Tony Gonzalez	Gonzalez	Gonzalez	A.J. Hanlon	Gonzalez	Gonzalez	Joseph Ochoa	Gonzalez
-EL_ENG_00886	LOCATION	WILMINGTON , N.C.	Virgin Atlantic	Wilmington	Miami-to-London	Wilmington International Airport	North Carolina
+EL_ENG_00886	LOCATION	WILMINGTON , N.C.	Virgin Atlantic	Wilmington	Miami-to-London	Wilmington International Airport in North Carolina
 	ORGANIZATION	Star-News
-	LOCATION	WILMINGTON , N.C.	Virgin Atlantic	Wilmington	Miami-to-London	Wilmington International Airport	North Carolina
+	LOCATION	WILMINGTON , N.C.	Virgin Atlantic	Wilmington	Miami-to-London	Wilmington International Airport in North Carolina
 	PERSON	Jon Rosborough	Rosborough
 EL_ENG_00887	PERSON	PALIN	Sarah Palin	Palin	Lynette Clark	Palin	Clark	John McCain	Palin	Clark	Palin
 	ORGANIZATION	New York Times	Alaskan Independence Party	Times
@@ -3690,9 +3690,9 @@ EL_ENG_00925
 	ORGANIZATION	The Supreme Court	Supreme Court	Washington Education Association	U.S. Supreme Court
 	LOCATION	WASHINGTON	Washington	Washington	Washington	Washington	Washington
 	PERSON	Antonin Scalia	Scalia	Scalia
-EL_ENG_00926	LOCATION	Texas , Oklahoma	Michigan	BRECKENRIDGE , Texas	Texas	Oklahoma	Breckenridge	Dallas	Dallas-Fort Worth	Palo Pinto County	Graford	Oran	Oran	Dallas	Caddo County	Oklahoma
+EL_ENG_00926	LOCATION	Texas , Oklahoma	Michigan	BRECKENRIDGE , Texas	Texas	Oklahoma	Breckenridge	Dallas	Dallas-Fort Worth	Palo Pinto County	Graford	Oran	Oran	Dallas	Caddo County in Oklahoma
 	ORGANIZATION	Stephens Memorial Hospital	Oklahoma Highway Patrol
-	LOCATION	Texas , Oklahoma	Michigan	BRECKENRIDGE , Texas	Texas	Oklahoma	Breckenridge	Dallas	Dallas-Fort Worth	Palo Pinto County	Graford	Oran	Oran	Dallas	Caddo County	Oklahoma
+	LOCATION	Texas , Oklahoma	Michigan	BRECKENRIDGE , Texas	Texas	Oklahoma	Breckenridge	Dallas	Dallas-Fort Worth	Palo Pinto County	Graford	Oran	Oran	Dallas	Caddo County in Oklahoma
 	PERSON	Robbie Dewberry	Jennifer Dunn
 EL_ENG_00927	LOCATION	NY	Maija City	Newton	New Jersey
 	ORGANIZATION	PA	Hearing Association	Language/Hearing Association
@@ -3704,7 +3704,7 @@ EL_ENG_00928	LOCATION	Bordeaux	Marseille	Marseille	Marseille	Zurich	Zurich	Spani
 	PERSON	Didier Deschamps	Chelsea Fc	Deschamps	Didier Deschamps	Deschamps	Gabriel Heinze	Les Phoceens	Deschamps	Niang	Hatem Ben Arfa	Charles Kabore	Bakari Kone	Hatem Ben Arfa	Deschamps	Pablo Aimar	Ramires	Javier Saviola	Nuno Gomes	Angel Di Maria	Di Maria	Niang	Hatem Ben Arfa	Fernando Morientes	Deschamps
 EL_ENG_00929	PERSON	Brian Nichols	Hilton M. Fuller Jr.	Nichols	Nichols	Nichols	Nichols	Nichols	Nichols	Gene	Gene Nichols	Brian Nichols	Gene Nichols	Allan Anderson	Anderson
 	ORGANIZATION	Army Reserve	Georgia Superior Court	Army Reserve	Army Reserve
-	LOCATION	Atlanta	ATLANTA	Fulton County Courthouse	Atlanta	Fort Jackson	South Carolina	Cambridge , Maryland
+	LOCATION	Atlanta	ATLANTA	Fulton County Courthouse	Atlanta	Fort Jackson in South Carolina	Cambridge , Maryland
 	PERSON	Brian Nichols	Hilton M. Fuller Jr.	Nichols	Nichols	Nichols	Nichols	Nichols	Nichols	Gene	Gene Nichols	Brian Nichols	Gene Nichols	Allan Anderson	Anderson
 EL_ENG_00930	PERSON	Cornelius Vander Starr	Starr	Maurice	Hank " Greenberg	Starr	Greenberg	Greenberg	Martin Sullivan	Sullivan	Bob Willumstad
 	ORGANIZATION	American International Group	AIG	Forbes	AIG	AIG	American Asiatic Underwriters	AIG	AIG	AIG	AIG	AIG	Securities and Exchange Commission	Citigroup
@@ -3742,9 +3742,9 @@ EL_ENG_00938	PERSON	Gail Charnley	Jacqueline Patterson	Charnley	Patterson	Charnl
 	ORGANIZATION	Washington Post	Consumer Product Safety Commission	Environmental Health Perspectives
 	LOCATION
 	PERSON	Gail Charnley	Jacqueline Patterson	Charnley	Patterson	Charnley	Patterson
-EL_ENG_00939	LOCATION	Golf Australia	Perth	US	Newton	Sydney	Australia
+EL_ENG_00939	LOCATION	Golf Australia in Perth	US	Newton	Sydney	Australia
 	ORGANIZATION	Newcastle	McGrath Foundation
-	LOCATION	Golf Australia	Perth	US	Newton	Sydney	Australia
+	LOCATION	Golf Australia in Perth	US	Newton	Sydney	Australia
 	PERSON	Sarah Kemp	Kristie Newton	Kemp	Kemp	Salamander Bay	Cherie Byrnes
 EL_ENG_00940
 	ORGANIZATION	Big State University	BSU	Penn State	Big State University	Ohio State	Nittany Lions	Ohio State	Nittany Lions	Buckeyes	Ohio State	Penn State	Nittany Lions	Penn State	Trojans	Delta Connection	Chicago Tribune	Tigers	Auburn	Auburn	Southeastern Conference	LSU	Auburn	Associated Press	AP	Sun Devils	Doak Campbell Stadium	ESPN	Huskers	UCLA	ABC	Rutgers	Mississippi State	Boston College	NCAA	Nancy Osborne Athletic Complex	Florida State	Seminoles	Seminoles	USC	Trojans	Orange County Fire Authority
@@ -4012,7 +4012,7 @@ EL_ENG_01006	ORGANIZATION	Westfield	Westfield Group Ltd.	Westfield	Securities Ex
 	PERSON	Frank Lowy	Lowy	Gordon Brown
 EL_ENG_01007
 	ORGANIZATION	Kathmandu Post	TCN Office	Public Health Office	Nepal Army	Redcross Society	Shiva Raj Bhatta	Thapapur Village Development Committee	Nepal Red Cross Society	NRCS	Rastriya Secondary School	Mahendra Secondary School	Karmeshwor Secondary School of Lalbojhi	Janapriya Higher Secondary School	Janakalyan Secondary School	Rastriya Secondary School	Geta VDC	Simrik Air	Nepal Army	NRCS	Himalayan Times	Central Natural Disaster Rescue Committee	Kathmandu Post
-	LOCATION	Far Westen Nepal	KAILALI	Kailali	Kailashpur	Karnali River	Kailashpur	Karnali River	Karnali River	India	Kailashpur	Karnali	Uttar Pradesh	Kailali	DHANGADHI	Kailali	Hasuliya	Pawera , Udasipur	Basauti	Mohan River	Tikapur	Phoolbari	Dhangadhi	Kailali	Lalbojhi	Khelad	Darakh	Ramsikharjhala	Beladevipur	Kailali	Kailali	Jomsom	Jomsom Muktinath	Nepal	Kailali	Kanchanpur	Saptakoshi	Kailali	Kanchanpur	Kailali	Bhajani	Hasauliya	Kailali	Thapapur	Bhajani	Bal Bidya Mandir	Pathraiya	Baghmara	Narayani	Kailali	Udasipur	KATHMANDU	Bajura	Kanchanpur	Dadeldhura	Gulmi	Darchula	Bajhang	Kailali	Kanchanpur	Doti	Salyan	Kailali	Kanchanpur	Bardiya	Kanchanpur	Kailali	Kanchanpur
+	LOCATION	Far Westen Nepal	KAILALI	Kailali	Kailashpur	Karnali River	Kailashpur	Karnali River	Karnali River	India	Kailashpur	Karnali	Uttar Pradesh	Kailali	DHANGADHI	Kailali	Hasuliya	Pawera , Udasipur	Basauti	Mohan River	Tikapur	Phoolbari	Dhangadhi	Kailali	Lalbojhi	Khelad	Darakh	Ramsikharjhala	Beladevipur	Kailali	Kailali	Jomsom	Jomsom Muktinath	Nepal	Kailali	Kanchanpur	Saptakoshi	Kailali	Kanchanpur	Kailali	Bhajani	Hasauliya in Kailali	Thapapur	Bhajani	Bal Bidya Mandir in Pathraiya	Baghmara in Narayani	Kailali	Udasipur	KATHMANDU	Bajura	Kanchanpur	Dadeldhura	Gulmi	Darchula	Bajhang	Kailali	Kanchanpur	Doti	Salyan	Kailali	Kanchanpur	Bardiya	Kanchanpur	Kailali	Kanchanpur
 	PERSON	Mohan Budhaair	Bir Bahadur Hamal	Kailali	Hamal	Rajiv Mandal	Bhajani	Hasuliya	Attariya	Bhajani	Mustang	Jomsom Ghansi	Ram Prasad Chaudhary	Kailali	Bhajani	Nara Bahadur Bhandari	Fulbari	Hasauliya	Pathlaiya	Sitaram Joshi	Kailali	Joshi	Bam Dev Gautam	Gautam	Kalikot	Salyan	Gautam
 EL_ENG_01008	LOCATION	India , Pakistan India	Pakistan	Mumbai	India	Pakistan	India	Pakistan	Pakistan	Mumbai	Karachi	Lashkar-i-Taiba	Pakistan	New Delhi
 	ORGANIZATION
@@ -4084,7 +4084,7 @@ EL_ENG_01024	PERSON	Heather Tierney	Tierney
 	PERSON	Heather Tierney	Tierney
 EL_ENG_01025
 	ORGANIZATION	ORLANDO PIRATES	ORLANDO PIRATES	Kaizer Chiefs FC	Vodacom Challenge	Manchester United FC	Chiefs	Manchester City	Kaizer Chiefs	Orlando Pirates FC	ORLANDO PIRATES	Elvis Sekgobela Media
-	LOCATION	Loftus Stadium	Pretoria
+	LOCATION	Loftus Stadium in Pretoria
 	PERSON
 EL_ENG_01026	PERSON	John O'Neill	Richard Clarke	Al Qaeda	Clarke	Clarke
 	ORGANIZATION	New Yorker Magazine	C.I.A.	Federal Aviation Administration	Coast Guard	Naturalization Service	F.B.I.
@@ -4108,7 +4108,7 @@ EL_ENG_01030	LOCATION	French	Toulouse	Clermont	Perpignan	Stade de France	Biarrit
 	PERSON	Albi
 EL_ENG_01031	PERSON	Pope Benedict XVI	Brian Spillane	Spillane	Spillane	St. Stanislaus	Michael Goodwin	Goodwin	Spillane	Greg Walsh	Walsh	Walsh	John Edwards	Edwards	Edwards	Spillane	Edwards	Edwards
 	ORGANIZATION	Anglican All Saints College
-	LOCATION	Australia	SYDNEY , Australia	Australia	Sydney	New South Wales	St. Stanislaus	Bathurst	Sydney	Bathurst	Sydney	St. Stanislaus	Armidale	Sydney	Russell Island	Queensland	Bathurst	Bathurst	St. Stanislaus
+	LOCATION	Australia	SYDNEY , Australia	Australia	Sydney	New South Wales	St. Stanislaus	Bathurst	Sydney	Bathurst	Sydney	St. Stanislaus	Armidale	Sydney	Russell Island in Queensland	Bathurst	Bathurst	St. Stanislaus
 	PERSON	Pope Benedict XVI	Brian Spillane	Spillane	Spillane	St. Stanislaus	Michael Goodwin	Goodwin	Spillane	Greg Walsh	Walsh	Walsh	John Edwards	Edwards	Edwards	Spillane	Edwards	Edwards
 EL_ENG_01032	ORGANIZATION	Xinhua	Apple Inc.	Intermediate People 's Court	New Apple Concept Digital Technology Co.	Ltd.	Apple	Apple Inc.	Apple Concept Digital Technology Co.	Ltd.	Apple	Apple Inc.	Apple Inc.
 	ORGANIZATION	Xinhua	Apple Inc.	Intermediate People 's Court	New Apple Concept Digital Technology Co.	Ltd.	Apple	Apple Inc.	Apple Concept Digital Technology Co.	Ltd.	Apple	Apple Inc.	Apple Inc.
@@ -4208,7 +4208,7 @@ EL_ENG_01055	LOCATION	Jamaica	KINGSTON , Jamaica	Kingston	Jamaica
 	PERSON	Verene Sheperd
 EL_ENG_01056	ORGANIZATION	UTC All Blacks	Canterbury Crusaders	Christchurch Press	Somerville	All Blacks
 	ORGANIZATION	UTC All Blacks	Canterbury Crusaders	Christchurch Press	Somerville	All Blacks
-	LOCATION	WELLINGTON , New Zealand	New Zealand	South Africa	Somerville	Somerville	France	Auckland
+	LOCATION	WELLINGTON , New Zealand	New Zealand	South Africa	Somerville	Somerville	France in Auckland
 	PERSON	Greg Somerville	Greg Somerville	Deb Robinson	Robinson	Robinson	Robbie Deans	Greg	Deans
 EL_ENG_01057	PERSON	Barrie Carter	Carter	Carter	Pervin Anklesaria	Carter	Mark Kay	Kay	Theodore Friedmann	Friedmann
 	ORGANIZATION	Recombinant DNA Advisory Committee	National Institutes of Health	Targeted Genetics of Seattle	Food and Drug Administration	NIH	Stanford University	University of California	San Diego School of Medicine	Nasdaq Stock Market
@@ -4432,7 +4432,7 @@ EL_ENG_01111	PERSON	JIMMY WALKER	Jimmy Walker	Walker	Ryan Gomes	Walker	Walker	Da
 	PERSON	JIMMY WALKER	Jimmy Walker	Walker	Ryan Gomes	Walker	Walker	Dave Bing	Walker	Walker	Jalen Rose	Walker	Rose	Jeanne	Walker	James	Leonard	Rose	Walker	Walker	Mitch Albom	Jeanne	Walker	Walker	Rose	Rose	Walker
 EL_ENG_01112	PERSON	Rosie Rubio	Rubio	Ciudad Acuna	Rubio	Acuna	Rubio	Juan Balderas	Acuna	Juan Balderas	Lawrence Buxton	Buxton	Reynaldo Casillas Carrera	Acuna	Carrera	Arturo Rivera	Balderas	Acuna	Hector Arocha	Acuna	Arocha	Acuna	Rubio
 	ORGANIZATION	Casillas Dental Clinic
-	LOCATION	Texas	Del Rio , Texas	Mexico	Mexico	Acuna	American	Texas	Mexico	Midland , Texas	America	America	Parkland Hospital	Dallas	Mexico	India , Bangkok	Singapore	Texas	Optica Acuna	San Angelo , Texas
+	LOCATION	Texas	Del Rio , Texas	Mexico	Mexico	Acuna	American	Texas	Mexico	Midland , Texas	America	America	Parkland Hospital in Dallas	Mexico	India , Bangkok	Singapore	Texas	Optica Acuna	San Angelo , Texas
 	PERSON	Rosie Rubio	Rubio	Ciudad Acuna	Rubio	Acuna	Rubio	Juan Balderas	Acuna	Juan Balderas	Lawrence Buxton	Buxton	Reynaldo Casillas Carrera	Acuna	Carrera	Arturo Rivera	Balderas	Acuna	Hector Arocha	Acuna	Arocha	Acuna	Rubio
 EL_ENG_01113	LOCATION	Lunken Airport , Newtown , Mariemont , Fairfax	Smith Road	Cincinnati
 	ORGANIZATION	Oxford Physical Therapy	Riemenschneider League of American Bicyclists	Cincinnati Cycle Club Membership Director	Queen City Wheels Racing
@@ -4498,9 +4498,9 @@ EL_ENG_01128	PERSON	Sinclair	Sinclair	Sinclair	Sinclair	Sinclair	Fox	Thomas Lars
 	ORGANIZATION	Cable Company Settle Fee Dispute Sinclair Broadcast Group Inc.	Mediacom Communications Corp.	Mediacom	Mediacom	Mediacom	Mediacom	ABC	Mediacom
 	LOCATION	Midwest	South	Des Moines , Iowa	Nashville , Tenn.	Lexington , Ky	Cedar Rapids	Waterloo , Iowa.
 	PERSON	Sinclair	Sinclair	Sinclair	Sinclair	Sinclair	Fox	Thomas Larsen
-EL_ENG_01129	LOCATION	Mississippi River	BROWNSVILLE , Minnesota	Mississippi River	U.S. Midwest	Rio Grande	Parana River	Brazil	Yangtze River	China	Mississippi	Cairo , Illinois	Minneapolis	St. Paul	Minnesota	Mississippi River	Stoddard , Wisconsin	Mississippi	Brownsville	Wisconsin	Upper Mississippi River National Wildlife	Mississippi River	Wisconsin , Minnesota	Illinois	U.S.	Mississippi	Illinois	Brownsville	U.S.	Mississippi	Illinois	Chesapeake Bay	Louisiana	Mississippi	Mississippi River	Onalaska	Genoa	La Crosse , Wisconsin
+EL_ENG_01129	LOCATION	Mississippi River	BROWNSVILLE , Minnesota	Mississippi River	U.S. Midwest	Rio Grande	Parana River in Brazil	Yangtze River in China	Mississippi	Cairo , Illinois	Minneapolis	St. Paul	Minnesota	Mississippi River	Stoddard , Wisconsin	Mississippi	Brownsville	Wisconsin	Upper Mississippi River National Wildlife	Mississippi River	Wisconsin , Minnesota	Illinois	U.S.	Mississippi	Illinois	Brownsville	U.S.	Mississippi	Illinois	Chesapeake Bay	Louisiana	Mississippi	Mississippi River	Onalaska	Genoa	La Crosse , Wisconsin
 	ORGANIZATION	US Army Corps of Engineers	U.S. Army Corps of Engineers	U.S. Army Corps of Engineers	Genoa	U.S. Geological Survey	Wildlife Service	Congress	USGS	Upper Midwest Environmental Sciences Center	Marquette University
-	LOCATION	Mississippi River	BROWNSVILLE , Minnesota	Mississippi River	U.S. Midwest	Rio Grande	Parana River	Brazil	Yangtze River	China	Mississippi	Cairo , Illinois	Minneapolis	St. Paul	Minnesota	Mississippi River	Stoddard , Wisconsin	Mississippi	Brownsville	Wisconsin	Upper Mississippi River National Wildlife	Mississippi River	Wisconsin , Minnesota	Illinois	U.S.	Mississippi	Illinois	Brownsville	U.S.	Mississippi	Illinois	Chesapeake Bay	Louisiana	Mississippi	Mississippi River	Onalaska	Genoa	La Crosse , Wisconsin
+	LOCATION	Mississippi River	BROWNSVILLE , Minnesota	Mississippi River	U.S. Midwest	Rio Grande	Parana River in Brazil	Yangtze River in China	Mississippi	Cairo , Illinois	Minneapolis	St. Paul	Minnesota	Mississippi River	Stoddard , Wisconsin	Mississippi	Brownsville	Wisconsin	Upper Mississippi River National Wildlife	Mississippi River	Wisconsin , Minnesota	Illinois	U.S.	Mississippi	Illinois	Brownsville	U.S.	Mississippi	Illinois	Chesapeake Bay	Louisiana	Mississippi	Mississippi River	Onalaska	Genoa	La Crosse , Wisconsin
 	PERSON	Marvin Hubbell	Hubbell	Gary Dillabar	Dillabar	Randall Devendorf	Jim Nissen	Devendorf	Hubbell	Nissen	Barry Johnson	Johnson	Charles Melching
 EL_ENG_01130	PERSON	MOORE	LATTIMORE	Moore	Kenny Lattimore	Bryan Michael Cox	Ciara
 	ORGANIZATION	MOORE &amp; KENNY LATTIMORE
@@ -4516,7 +4516,7 @@ EL_ENG_01132	PERSON	Roy Keane	Damien Delaney	Lee Martin	Jon Walters	Jon Stead	Pa
 	PERSON	Roy Keane	Damien Delaney	Lee Martin	Jon Walters	Jon Stead	Pablo Counago	Roy Keane	Boro	Gary O’Neil	Mido	Afonso Alves	Tuncay	Danny Coyne	Mark Yeates	Matthew Bates	Adam Johnson	Rhys Williams	Jonathan Grounds	Boro	Michael Owen	Obafemi Martins	Sebastein Bassong	Steven Taylor	Kevin Nolan	Damien Duff	Shola Ameobi	Andy Carroll	Lee Camp	Paul Anderson	Chris Gunter	David McGoldrick	Robert Earnshaw	Nathan Tyson	Joe Garner	Luke Chambers	Julian Bennett	James Perch	Lewis McGugan	Chris Cohen
 EL_ENG_01133	ORGANIZATION	Junkyard Dog	WWF	MTV	YouTube	Staples Center	British Airways	BBC	KOKO
 	ORGANIZATION	Junkyard Dog	WWF	MTV	YouTube	Staples Center	British Airways	BBC	KOKO
-	LOCATION	Africa	London	London	Heathrow	Tambo International Airport	Johannesburg	Heathrow	Britain	UK	London	New York	West Coast	US	Paris	Paris
+	LOCATION	Africa	London	London	Heathrow	Tambo International Airport in Johannesburg	Heathrow	Britain	UK	London	New York	West Coast	US	Paris	Paris
 	PERSON	Hulk Hogan	Jimmy Superfly Snuka	Rowdy Roddy Piper	Kevin Federline	Federline	Pink	Kevin Federline	John Cena	Cena	Kevin	Kevin	Chris Pontius	Aaron Carter/Nick Carter	Madonna	Madonna	David	Madonna	Daniel	David	Madonna	David Banda	Madonna	David Banda	Daniel Ciccone Ritchie	Madonna	Madonna	Ritchie	Ryan Phillippe	Reese Witherspoon	Ryan	Ryan	Lance Armstrong	Robert Downey	Jake Gyllenhaal	Matthew McConaughey	Robert Downey	Jake	Jake	Gyllenhaal	Maggie Gyllenhaal	Peter Sarsgaard	Ramona	Peter	Maggie	Ramona	Jake	Katie Holmes	Katie	Tom Cruise	Dustin Hoffman	Dita von Teese	Dita	Dannielynn Hope Marshall	Anna Nicole Smith	Howard K. Stern	Anna	Anna Nicole	Anna Nicole Smith	Rachel Bilson	Victoria Beckham	Rachel	Hiro	Peter	Hiro	Hayden Panettiere	Julie	Reichen Lemkuhl	Lance Bass	Julie	Sutton Pierce	Jayden James	Fabolous	Marc Malkin	Jack Osbourne	Aaron Carter	Michael Jackson	Lindsay Lohan	Linds	Nicky Hilton	Kevin Connolly	Becks	Victoria Beckham	Scarlett Johansson	Ashlee Simpson	Jessica Simpson	Lloyd Grove	Wyclef Jean	Eminem	Chris Kirkpatrick	Evel Knievel	Mary Kate Olsen	Wesley Snipes	David	Jim	David	Zachary Quinto	Tori Spelling
 EL_ENG_01134	ORGANIZATION	NBC	NBC	Philadelphia Parking Authority	PPA	PPA	PPA	PPA	Militia
 	ORGANIZATION	NBC	NBC	Philadelphia Parking Authority	PPA	PPA	PPA	PPA	Militia
@@ -4642,9 +4642,9 @@ EL_ENG_01164	PERSON	Nick Carter	Nick Carter	Carter	Carter	Carter
 	ORGANIZATION	Backstreet Boys	U.N.	AP Radio News	dolphins
 	LOCATION	WASHINGTON
 	PERSON	Nick Carter	Nick Carter	Carter	Carter	Carter
-EL_ENG_01165	LOCATION	Oxford	Oxford	Shanghai	Oxford	China	Bodleian Library	Europe	Ashmolean Museum	River Thames	Stavanger	Norway	Oxford	US	Chicago	Oxford	Strasbourg	France	Europe	Chicago
+EL_ENG_01165	LOCATION	Oxford	Oxford	Shanghai	Oxford	China	Bodleian Library	Europe	Ashmolean Museum	River Thames	Stavanger in Norway	Oxford	US	Chicago	Oxford	Strasbourg	France	Europe	Chicago
 	ORGANIZATION	Salters Boat Hire	Isis	AFP	Isis	Christ Church	Magdalen College	Loyola University
-	LOCATION	Oxford	Oxford	Shanghai	Oxford	China	Bodleian Library	Europe	Ashmolean Museum	River Thames	Stavanger	Norway	Oxford	US	Chicago	Oxford	Strasbourg	France	Europe	Chicago
+	LOCATION	Oxford	Oxford	Shanghai	Oxford	China	Bodleian Library	Europe	Ashmolean Museum	River Thames	Stavanger in Norway	Oxford	US	Chicago	Oxford	Strasbourg	France	Europe	Chicago
 	PERSON	Jessy Li	Neil Kinch	Stuart Scott	Scott	Scott	Lewis Carroll	Ingrid Meimich-Bache	Nicole Jorwic
 EL_ENG_01166	ORGANIZATION	General Labor Confederation	CTA	CGT	Supreme Court	CTA	CGT
 	ORGANIZATION	General Labor Confederation	CTA	CGT	Supreme Court	CTA	CGT
@@ -4942,9 +4942,9 @@ EL_ENG_01239	ORGANIZATION	Detroit Red Wings	Detroit Red Wings	Pittsburgh Penguin
 	ORGANIZATION	Detroit Red Wings	Detroit Red Wings	Pittsburgh Penguins	NHL	Detroit Red Wings	Pittsburgh Penguins	Red Wings	NHL	Detroit Red Wings
 	LOCATION	Hockeytown	Pennsylvania	Detroit	Detroit	Montreal	Toronto
 	PERSON	Petr Sykora
-EL_ENG_01240	LOCATION	Britain	Newark	England	British Museum	London	Sedgeford	Newark	Newark
+EL_ENG_01240	LOCATION	Britain	Newark	England	British Museum in London	Sedgeford	Newark	Newark
 	ORGANIZATION
-	LOCATION	Britain	Newark	England	British Museum	London	Sedgeford	Newark	Newark
+	LOCATION	Britain	Newark	England	British Museum in London	Sedgeford	Newark	Newark
 	PERSON	Maurice Richardson	JD Hill	Richardson
 EL_ENG_01241	PERSON	Sara Jane Olson	Sarah Jane Olson	Olson	Olson
 	ORGANIZATION	Symbionese Liberation Army
@@ -4964,7 +4964,7 @@ EL_ENG_01244	LOCATION	Newport LOS ANGELES The Duke	Beverly Hills	Newport Beach	W
 	PERSON	John Wayne	Wayne	Larry Flynt	Flynt	Duke	Wayne	Cheryl Friedling	John Wayne	Harry Jackson	Wayne	Jackson	Jackson	Jackson	Flynt	John Wayne	Jackson	Jackson	Gary Kisner	Homer Bludau	Bludau	Rong-Gong Lin II
 EL_ENG_01245	PERSON	O'Gorman	Jai Maharaj	O'Gorman	Josh Verges THE ARGUS	Tom Gust	Bob Krantz	Krantz	Jerry Klein	Krantz	Klein	Krantz	Krantz	Krantz	Gust	Bill Walsh	Howard Carroll	Gust	O'Gorman	Carroll	Krantz	Dick Hines	Hines	Krantz	Hines	Walsh	Paul Swain	Carroll	Lambert Hoch	Jai Maharaj
 	ORGANIZATION	O'Gorman High School	Sioux Falls Catholic Diocese	U.S.C.
-	LOCATION	Sioux Falls	South Dakota	Escalon , Calif	Montrose	St. Ann	Humboldt	Parkston	Sioux Falls	Sioux Falls	US
+	LOCATION	Sioux Falls	South Dakota	Escalon , Calif	Montrose	St. Ann in Humboldt	Parkston	Sioux Falls	Sioux Falls	US
 	PERSON	O'Gorman	Jai Maharaj	O'Gorman	Josh Verges THE ARGUS	Tom Gust	Bob Krantz	Krantz	Jerry Klein	Krantz	Klein	Krantz	Krantz	Krantz	Gust	Bill Walsh	Howard Carroll	Gust	O'Gorman	Carroll	Krantz	Dick Hines	Hines	Krantz	Hines	Walsh	Paul Swain	Carroll	Lambert Hoch	Jai Maharaj
 EL_ENG_01246	PERSON	Sally Clark	Clark	Clark	Christopher	Clark	Clark	Christopher	Harry	Clark	Harry	Roy Meadow	Roy	Clark
 	ORGANIZATION	Court of Appeal	Royal Statistical Society
@@ -5130,9 +5130,9 @@ EL_ENG_01286	LOCATION	OREGON	Portland , Ore.	Oregon	Portland	Salem , Ore.	Salem	
 	ORGANIZATION	Compassion &amp; amp	British Medical Journal	Oregon Health Sciences University	Physicians for Compassionate Care Education Foundation	Oregon Health and Science University	Compassion &amp; amp	Unitarian Church	Compassion &amp; amp	Health Department
 	LOCATION	OREGON	Portland , Ore.	Oregon	Portland	Salem , Ore.	Salem	Oregon	Washington	Oregon	Oregon	Washington	Oregon	Portland	Oregon	Oregon	Oregon	Springfield	Oregon	Scio	Oregon	Washington
 	PERSON	James Powell	Powell	Katy Powell	Barbara Bentz	Theresa Crocker	Bentz	Bentz	Powell	Bentz	Barbara Coombs Lee	Linda Ganzini	Charles Bentz	Barbara Bentz	Bentz	Coombs Lee	Ganzini	Barbara Wagner	Ken Stevens	Wagner	Stevens	Powell	Powell	Powell	Autry	Powell	Bentz	Bentz	Ron
-EL_ENG_01287	LOCATION	Britain	Wallingford	Oxfordshire	Britain	Britain	Huntingdon	Cambridgeshire	Oxfordshire	Britain
+EL_ENG_01287	LOCATION	Britain	Wallingford in Oxfordshire	Britain	Britain	Huntingdon in Cambridgeshire	Oxfordshire	Britain
 	ORGANIZATION	Amazon	Amazon	Hogwarts
-	LOCATION	Britain	Wallingford	Oxfordshire	Britain	Britain	Huntingdon	Cambridgeshire	Oxfordshire	Britain
+	LOCATION	Britain	Wallingford in Oxfordshire	Britain	Britain	Huntingdon in Cambridgeshire	Oxfordshire	Britain
 	PERSON	Harry Potter-crazy	Harry Potter-crazy	Agatha Christie	J.K. Rowling	Harry Potter	Faringdon	Harry Potter	Rowling	Harry
 EL_ENG_01288	LOCATION	WELLSVILLE , Ohio	America	Wellsville	Italy	Wellsville	Wellsville	Wash.	Ohio	Ohio River	Nebraska , Ohio	Iowa	Wellsville	Ohio River Valley	Wellsville	Wellsville	Ohio	Germany	England	South Africa	Ohio	Wellsville	Steubenville , Ohio	Weirton , W. Va.	Midland , Pa	Wellsville	Wellsville	Ohio River	Ohio	Ohio	Columbiana County Port Authority	Ohio	Columbiana County
 	ORGANIZATION	OHIO REGION Cox News Service	Eljer Daniels Plumbing Fixtures	Full Gospel Assembly	Elks	Baard Energy of Vancouver	Baard Energy	Ohio Environmental Protection Agency	U.S. Army Corps of Engineers	Columbiana County Port Authority	Baard	U.S. Air Force	Air Force	University of Dayton	Air Force	EPA	Green Party	Ohio Department of Development
@@ -5400,7 +5400,7 @@ EL_ENG_01353	ORGANIZATION	UNH	NCAA	Northeast Regional	University of New Hampshir
 	PERSON	Enrico Blasi	Blasi	Jeff Zatkoff	Ryan Jones	Brian Kaufman	Kaufman	Nathan Davis	Davis	Kevin Regan	Zatkoff	Jacob Micflikier	Zatkoff	Brett Hemingway	Micflikier	Jones	Kaufman	Chris Murray	Regan	Kaufman	Jones	Mike Radja	Zatkoff	Regan	Jamie Fritsch	Dick Umile	Radja	Nancy Marrapese-Burrell
 EL_ENG_01354	PERSON	Andras Schiff	Schiff	Schiff	Schiff	Beethoven	Haydn	Beethoven	Schiff	Ann Arbor	Ann Arbor	Beethoven	Sandor Vegh	Schiff	Kreutzer	Schiff	Schiff	Schiff	Haydn	Mozart	Schubert	Schumann	Schiff	Bela Bartok	Erno Dohnanyi	Gyorgy Kurtag	Beethoven	Schiff	Mozart	Mozart	Schiff	Beethoven	Beethoven	Schiff	Mozart	Beethoven	Beethoven	Mozart	Ann Arbor	Schiff	Claudio Arrau	Schiff	Schiff	Beethoven	Beethoven	Schiff	Haydn	Schiff	Schiff	Ann Arbor	Bach	Schubert	Beethoven	Schiff
 	ORGANIZATION	BEETHOVEN ANN	University of Michigan
-	LOCATION	ARBOR , Mich	San Francisco	Los Angeles	Carnegie Hall	New York	Zurich	Europe	Japan	Budapest	Florence , Italy	Bach	Bach	Beethoven	Wigmore Hall	London
+	LOCATION	ARBOR , Mich	San Francisco	Los Angeles	Carnegie Hall in New York	Zurich	Europe	Japan	Budapest	Florence , Italy	Bach	Bach	Beethoven	Wigmore Hall in London
 	PERSON	Andras Schiff	Schiff	Schiff	Schiff	Beethoven	Haydn	Beethoven	Schiff	Ann Arbor	Ann Arbor	Beethoven	Sandor Vegh	Schiff	Kreutzer	Schiff	Schiff	Schiff	Haydn	Mozart	Schubert	Schumann	Schiff	Bela Bartok	Erno Dohnanyi	Gyorgy Kurtag	Beethoven	Schiff	Mozart	Mozart	Schiff	Beethoven	Beethoven	Schiff	Mozart	Beethoven	Beethoven	Mozart	Ann Arbor	Schiff	Claudio Arrau	Schiff	Schiff	Beethoven	Beethoven	Schiff	Haydn	Schiff	Schiff	Ann Arbor	Bach	Schubert	Beethoven	Schiff
 EL_ENG_01355	LOCATION	Vogue	Newton
 	ORGANIZATION	Vogue Bonnes Mares.-Vogue
@@ -5488,7 +5488,7 @@ EL_ENG_01375	PERSON	ABU DHABI	Cristina Kirchner	Serge Brammertz	Shimon Peres	Ann
 	PERSON	ABU DHABI	Cristina Kirchner	Serge Brammertz	Shimon Peres	Anna Politovskaya	Hosni Mubarak	Sergei Lavrov	Angela Merkel	Silvio Berlusconi	Demetris Christofias	Sami Essid Ben Mekaies	Francois Fillon	Sidi Ould Cheikh Abdallahi	Dmitry Medvedev	Henry Okah	Hu Juntao	Christopher Neil	Michel Suleiman	Ehud Olmert	George W. Bush	Dmitry Medvedev	Wladyslaw Sikorski	Dmitry Medvedev	Velupillai Prabhakaran	Elizabeth	Dalai Lama	Jacob Zuma	Josef Proell	Clinton	Bill Clinton	Peter Lloyd	Michel Sleiman	Amanda Knox	Raffaele Sollecito	Meredith Kercher	Lech Walesa	Dalai Lama	Nicolas Sarkozy	Kaing Guek Eav	Duch	Marie Gustave Le Clezio	Francoise Barre-Sinoussi	Luc Montagnier	Harald zur Hausen	Cristina Kirchner	Ronny Ron	Rose	Madhya Pradesh	Khieu Samphan	Jean-Pierre Bemba
 EL_ENG_01376	PERSON	Seema Mehta	Kim Quickel	Chase	Blake	Kelsey	Chase	Chase	Chase Crawford Quickel	Chase	Chase	Chase	Blake	Chase	Neudorf	Chase	Chase	Chase	Chase	Chase	Chase	Chase	Steven Neudorf	Chase	Kim Quickel	Chase	Blake	Kyle	Kim	Chase	Chase	Chase	Kyle	Kyle	Chase	Kelsey	Chase	Ivan Kirov	Chase	Kim	Kyle	Chase	Chase	Dan Quickel	Chase	Chase	Kim	Kim	Dan	Kim	Chase	Chuck Crawford	Chase	Kim	Kyle	Kim	Chase	Chase	Chase	Kim	Chase	Charles Salter	Aliso Niguel	Chase	Chase	Chase
 	ORGANIZATION	Times	Aliso Niguel High School	Los Angeles Angels	Santa Barbara City College
-	LOCATION	Los Angeles	Southern California	Orange County	Southern California	Kelsey	San Francisco	Newport Harbor	Texas
+	LOCATION	Los Angeles	Southern California	Orange County in Southern California	Kelsey	San Francisco	Newport Harbor	Texas
 	PERSON	Seema Mehta	Kim Quickel	Chase	Blake	Kelsey	Chase	Chase	Chase Crawford Quickel	Chase	Chase	Chase	Blake	Chase	Neudorf	Chase	Chase	Chase	Chase	Chase	Chase	Chase	Steven Neudorf	Chase	Kim Quickel	Chase	Blake	Kyle	Kim	Chase	Chase	Chase	Kyle	Kyle	Chase	Kelsey	Chase	Ivan Kirov	Chase	Kim	Kyle	Chase	Chase	Dan Quickel	Chase	Chase	Kim	Kim	Dan	Kim	Chase	Chuck Crawford	Chase	Kim	Kyle	Kim	Chase	Chase	Chase	Kim	Chase	Charles Salter	Aliso Niguel	Chase	Chase	Chase
 EL_ENG_01377	ORGANIZATION	Xinhua	Coca-Cola Company	POA	Coca-Cola	Coca-Cola Export Corporation Pakistan	Cola Beverages Pakistan Ltd.	World Squash Federation	Xinhua
 	ORGANIZATION	Xinhua	Coca-Cola Company	POA	Coca-Cola	Coca-Cola Export Corporation Pakistan	Cola Beverages Pakistan Ltd.	World Squash Federation	Xinhua
@@ -5554,9 +5554,9 @@ EL_ENG_01392	PERSON	Jim Brown	Dan Sgambelluri	Jim Brown	Brown	Brown
 	ORGANIZATION	AP	NFL Hall of Famer	Sony	Electronic Arts	Cleveland Browns	Browns	Sony USA Inc.	Electronics Arts Inc.
 	LOCATION	NEW YORK	New York	Hollywood
 	PERSON	Jim Brown	Dan Sgambelluri	Jim Brown	Brown	Brown
-EL_ENG_01393	LOCATION	LEXINGTON , Kentucky	Curlin	Darley	Jonabell	Lexington	Dubai	Darley	Brooklyn Handicap	Tampa Bay Derby
+EL_ENG_01393	LOCATION	LEXINGTON , Kentucky	Curlin	Darley	Jonabell in Lexington	Dubai	Darley	Brooklyn Handicap	Tampa Bay Derby
 	ORGANIZATION
-	LOCATION	LEXINGTON , Kentucky	Curlin	Darley	Jonabell	Lexington	Dubai	Darley	Brooklyn Handicap	Tampa Bay Derby
+	LOCATION	LEXINGTON , Kentucky	Curlin	Darley	Jonabell in Lexington	Dubai	Darley	Brooklyn Handicap	Tampa Bay Derby
 	PERSON	Haskell	Shiekh Mohammed bin Rashid al Maktoum	John Ferguson	Ferguson
 EL_ENG_01394	ORGANIZATION	Xinhua	IBM	China Acrobats Association	CAA	Xinhua	IBM
 	ORGANIZATION	Xinhua	IBM	China Acrobats Association	CAA	Xinhua	IBM
@@ -5864,7 +5864,7 @@ EL_ENG_01469	PERSON	Justin Van De Kamp	Robert	Buckley	Buckley	Heather Locklear	R
 	PERSON	Justin Van De Kamp	Robert	Buckley	Buckley	Heather Locklear	Robert Buckley
 EL_ENG_01470	PERSON	Wakefield	Wakefield	Andrew Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield
 	ORGANIZATION	U.K. Medical Inquiry Threatens Scientific Inquiry &amp; Progress in Autism The National Autism Association	NAA	TACA	General Medical Council	Lancet	MMR	MMR	National Autism Association	TACA
-	LOCATION	United Kingdom	U.S.	U.K.	London	Royal Free Hospital	London	U.S.	U.S.	U.K.	U.S.	U.K.	U.S.	U.K.	America	Austin , Texas	London
+	LOCATION	United Kingdom	U.S.	U.K.	London	Royal Free Hospital in London	U.S.	U.S.	U.K.	U.S.	U.K.	U.S.	U.K.	America	Austin , Texas	London
 	PERSON	Wakefield	Wakefield	Andrew Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield	Wakefield
 EL_ENG_01471	LOCATION	Vancouver	VANCOUVER , British Columbia	Vancouver
 	ORGANIZATION	Starbucks
@@ -5890,13 +5890,13 @@ EL_ENG_01476	PERSON	William F. Buckley	William F. Buckley	Buckley	Buckley	Willia
 	ORGANIZATION	National Review
 	LOCATION	America
 	PERSON	William F. Buckley	William F. Buckley	Buckley	Buckley	William F. Buckley
-EL_ENG_01477	LOCATION	WATERLOO	LONDON	PARIS PARIS	Paris	London	Waterloo	France	French	Waterloo	Waterloo	London	London	Brussels	Paris	Waterloo	London	St. Pancras	London	St. Pancras	Britain	France	Europe	Waterloo	London	Austria	Russia	Britain	St. Pancras	Paris	Brussels	British	St. Pancras	Folkestone	St. Pancras	Gare du Nord	Paris	French	Paris	London	Paris	Waterloo	London	Paris	Brussels	French	St. Pancras	London	St. Pancras	New York	St. Pancras	Grand Central	St. Pancras	St. Pancras	London	St. Pancras	London	London
+EL_ENG_01477	LOCATION	WATERLOO	LONDON	PARIS PARIS	Paris	London	Waterloo	France	French	Waterloo	Waterloo	London	London	Brussels	Paris	Waterloo	London	St. Pancras	London	St. Pancras	Britain	France	Europe	Waterloo in London	Austria	Russia	Britain	St. Pancras	Paris	Brussels	British	St. Pancras	Folkestone	St. Pancras	Gare du Nord in Paris	French	Paris	London	Paris	Waterloo	London	Paris	Brussels	French	St. Pancras	London	St. Pancras	New York	St. Pancras	Grand Central	St. Pancras	St. Pancras	London	St. Pancras	London	London
 	ORGANIZATION	Parliament	Paris Metro	St. Pancras	St. Pancras	Continental Railways
-	LOCATION	WATERLOO	LONDON	PARIS PARIS	Paris	London	Waterloo	France	French	Waterloo	Waterloo	London	London	Brussels	Paris	Waterloo	London	St. Pancras	London	St. Pancras	Britain	France	Europe	Waterloo	London	Austria	Russia	Britain	St. Pancras	Paris	Brussels	British	St. Pancras	Folkestone	St. Pancras	Gare du Nord	Paris	French	Paris	London	Paris	Waterloo	London	Paris	Brussels	French	St. Pancras	London	St. Pancras	New York	St. Pancras	Grand Central	St. Pancras	St. Pancras	London	St. Pancras	London	London
+	LOCATION	WATERLOO	LONDON	PARIS PARIS	Paris	London	Waterloo	France	French	Waterloo	Waterloo	London	London	Brussels	Paris	Waterloo	London	St. Pancras	London	St. Pancras	Britain	France	Europe	Waterloo in London	Austria	Russia	Britain	St. Pancras	Paris	Brussels	British	St. Pancras	Folkestone	St. Pancras	Gare du Nord in Paris	French	Paris	London	Paris	Waterloo	London	Paris	Brussels	French	St. Pancras	London	St. Pancras	New York	St. Pancras	Grand Central	St. Pancras	St. Pancras	London	St. Pancras	London	London
 	PERSON	Le Figaro	Charles von Steuben	Napoleon	Austerlitz	Napoleon	Richard Brown	Harold Wilson	John Betjeman	Betjeman	Brown	Austi Pierre-Stephane
-EL_ENG_01478	LOCATION	Vermont	Canada	United States	Wallingford	Manchester	North Bennington	Bennington	Morrisville	Vermont	Waterville	Lake Champlain Maritime Museum	Vergennes	Virginia
+EL_ENG_01478	LOCATION	Vermont	Canada	United States	Wallingford	Manchester	North Bennington	Bennington	Morrisville	Vermont	Waterville	Lake Champlain Maritime Museum in Vergennes	Virginia
 	ORGANIZATION	Missisquoi Riverbend Bed &amp; amp	Haskell Free Library &amp; amp	Opera House	Eddington House	Green Mountain Oasis	Basin Harbor Club	Alexandria Seaport Foundation	Harbor Club
-	LOCATION	Vermont	Canada	United States	Wallingford	Manchester	North Bennington	Bennington	Morrisville	Vermont	Waterville	Lake Champlain Maritime Museum	Vergennes	Virginia
+	LOCATION	Vermont	Canada	United States	Wallingford	Manchester	North Bennington	Bennington	Morrisville	Vermont	Waterville	Lake Champlain Maritime Museum in Vergennes	Virginia
 	PERSON	Stowe	Bevin	Richard P. Carpenter
 EL_ENG_01479
 	ORGANIZATION	MBC	Horn Pond	Massachusetts Butterfly Club	AM Horn Pond Mt.	New England Rehabilitation Hospital	AM Martin Burns Wildlife Management Area
@@ -6220,11 +6220,11 @@ EL_ENG_01558	LOCATION	US	LAKEWOOD , Ohio	Cleveland	Lakewood	Cuyahoga County	Lake
 	PERSON	Lee Billi	Tim Malley	Billi	Malley	Malley	Billi	Peter Nemeth	Nemeth	Michael Dvorak	Allen McBride	McBride	Tom Coyne
 EL_ENG_01559	PERSON	Franklin	James Franklin	Franklin	Franklin
 	ORGANIZATION	Cricket New Zealand	Dominion Post
-	LOCATION	New Zealand	South Africa New Zealand	South Africa	Australia	Wellington	New Zealand	South Africa	Johannesburg	New Zealand	Australia	Bangladesh	England
+	LOCATION	New Zealand	South Africa New Zealand	South Africa	Australia	Wellington	New Zealand	South Africa in Johannesburg	New Zealand	Australia	Bangladesh	England
 	PERSON	Franklin	James Franklin	Franklin	Franklin
 EL_ENG_01560	ORGANIZATION	Sri Lanka Army	SLA	SLA	LTTE	Sri Lanka Army	SLA	Liberation Tigers of Tamileelam	LTTE	SLA	SLA	LTTE	Tigers	LTTE	Tigers	SLA	LTTE	Medium Machine Guns	SLA	Tigers	LTTE
 	ORGANIZATION	Sri Lanka Army	SLA	SLA	LTTE	Sri Lanka Army	SLA	Liberation Tigers of Tamileelam	LTTE	SLA	SLA	LTTE	Tigers	LTTE	Tigers	SLA	LTTE	Medium Machine Guns	SLA	Tigers	LTTE
-	LOCATION	Vavuniyaa	Vavuniyaa	Paalamoaddai	Vavuniya	Vavuniyaa	Koayil Kugnchukku	Paalmoaddai
+	LOCATION	Vavuniyaa	Vavuniyaa	Paalamoaddai in Vavuniya	Vavuniyaa	Koayil Kugnchukku	Paalmoaddai
 	PERSON	Irasiah Ilanthirayan
 EL_ENG_01561	LOCATION	Alabama	LEEDS , Alabama	Alabama	Leeds	Birmingham	U.S.	United States
 	ORGANIZATION
@@ -6448,7 +6448,7 @@ EL_ENG_01615	PERSON	Joseph Clark	Irma Clark	Michael Manning	David	Clark	Manning	
 	PERSON	Joseph Clark	Irma Clark	Michael Manning	David	Clark	Manning	Clark	Clark	Clark	Manning	Clark	Manning	Clark	Andrea Dean	Clark	Clark	Christopher Newton	Clark	Dennis	Michael Manning	Clark
 EL_ENG_01616	PERSON	BROWN	Troy Brown	McGowan	Brown	Matthew McGowan	Matthew	Richard	Linda	John Rijo	Brown	Brown	Troy	Rijo	Matthew	Brown	Brown	Brown	Matthew	Brown	Tom Brady	Brown	Brown	Matthew	Brown	Brown	Rijo	Rijo	Matthew	Troy Brown	Matthew	Richard	Matthew
 	ORGANIZATION	Dolphins	Dolphins
-	LOCATION	Attleboro	Hasbro Children 's Hospital	Providence
+	LOCATION	Attleboro	Hasbro Children 's Hospital in Providence
 	PERSON	BROWN	Troy Brown	McGowan	Brown	Matthew McGowan	Matthew	Richard	Linda	John Rijo	Brown	Brown	Troy	Rijo	Matthew	Brown	Brown	Brown	Matthew	Brown	Tom Brady	Brown	Brown	Matthew	Brown	Brown	Rijo	Rijo	Matthew	Troy Brown	Matthew	Richard	Matthew
 EL_ENG_01617	ORGANIZATION	NSI Online Short Film Festival	NSI	The National Screen Institute	NSI	NSI	NSI	NSI	NSI	NSI	NSI Online Short Film Festival	NSI	NSI Online Short Film Festival	National Screen Institute	NSI
 	ORGANIZATION	NSI Online Short Film Festival	NSI	The National Screen Institute	NSI	NSI	NSI	NSI	NSI	NSI	NSI Online Short Film Festival	NSI	NSI Online Short Film Festival	National Screen Institute	NSI
@@ -6460,11 +6460,11 @@ EL_ENG_01618	PERSON	Maha Ghosananda	Maha Ghosananda	Ghosananda	Christina Trinche
 	PERSON	Maha Ghosananda	Maha Ghosananda	Ghosananda	Christina Trinchero	Trinchero	Ghosananda	Pol Pot	Jim Perkins	Ghosananda	Dhamma Yatra	Perkins
 EL_ENG_01619	ORGANIZATION	Stanford	Stanford	Wales Cricket Board	Stanford	Stanford Superstars	Stanford	Stanford	Stanford	ECB
 	ORGANIZATION	Stanford	Stanford	Wales Cricket Board	Stanford	Stanford Superstars	Stanford	Stanford	Stanford	ECB
-	LOCATION	England	England	Antigua	England	West Indies	West Indies	US	Antigua	England
+	LOCATION	England	England in Antigua	England	West Indies	West Indies	US	Antigua	England
 	PERSON	Allen Stanford	Viv Richards	Matt Prior
-EL_ENG_01620	LOCATION	Lakewood	LAKEWOOD	Lakewood	Ocean County	Ventura Drive	Lakewood	Princeton Avenue	Carey Street	Lakewood	Lakewood	Ocean County	Ocean County Jail
+EL_ENG_01620	LOCATION	Lakewood	LAKEWOOD	Lakewood	Ocean County	Ventura Drive	Lakewood	Princeton Avenue	Carey Street in Lakewood	Lakewood	Ocean County	Ocean County Jail
 	ORGANIZATION	Lakewood Cheder School
-	LOCATION	Lakewood	LAKEWOOD	Lakewood	Ocean County	Ventura Drive	Lakewood	Princeton Avenue	Carey Street	Lakewood	Lakewood	Ocean County	Ocean County Jail
+	LOCATION	Lakewood	LAKEWOOD	Lakewood	Ocean County	Ventura Drive	Lakewood	Princeton Avenue	Carey Street in Lakewood	Lakewood	Ocean County	Ocean County Jail
 	PERSON	Lee Tucker	Mordechai Moskowitz	Tucker	Moskowitz	Tucker	Steven Wexler	Carlos Trujillo-Tovar	Tucker
 EL_ENG_01621	PERSON	James	Jacquelyn	Elijah Warren	Elijah Warren	Warren	Jeff Thomason	Warren	Thomason	Warren	Warren	Geoff Warren	Elijah Warren	Traci Lee-Warren	Jinho Warren	Warren	Elijah	Earl Hooker	Elijah	Warren	Elijah	Maurice Jones	Warren	Warren	Peter Ryan	Warren	Antonio Herrera	Warren	Warren	Warren	Geoff Warren	Jinho Warren	Elijah	Warren	King	George Wallace
 	ORGANIZATION	Oakland	Oakland Police	UC Berkeley	U.S. Army	Sweet Home Baptist Church	GSI	Berkeley Technology Academy	East Oakland Deliverance Center
@@ -6528,7 +6528,7 @@ EL_ENG_01635	PERSON	Joseph Sullivan	Carolyn Kirk	Christopher Farmer	Kirk	Sulliva
 	PERSON	Joseph Sullivan	Carolyn Kirk	Christopher Farmer	Kirk	Sullivan	Sullivan	Sullivan	Kirk	Kirk	Sullivan	Kirk	Kirk	Sullivan
 EL_ENG_01636
 	ORGANIZATION	Coachella Valley Music Festival	Coachella Valley Music	Motorola Coachella House	Motorola	NY Rangers	NJ Devils	LA Lakers	LA Angels	Detroit Tigers	Supreme Court	New Orleans Jazz &amp; Heritage Festival	ABC	MisShapes
-	LOCATION	Indio California	Kanye West	New York	Texas	Coachella	Coachella	Paris Hilton	Austria	Hollywood	Florida	Lae Oak	Hollywood	Paris
+	LOCATION	Indio California	Kanye West	New York	Texas	Coachella	Coachella	Paris Hilton	Austria	Hollywood	Florida	Lae Oak in Hollywood	Paris
 	PERSON	Daft Punk	Madonna	Madonna	Madonna	Madonna	George Bush	Madonna	Madonna	Ana Matronic	Nicole Richie	Taryn Manning	Nicole	Nicole	Jac	Nicky Hilton	Kevin Connolly	Brooke Shields	Grier Hammond Henchy	Suri	Debbie Gibson	Jennifer Love Hewitt	Kimberly Stewart	Kim Stewart	Victoria Beckham	Heather Locklear	Denise Richards	David Spade	David	Richie Sambora	Sean William Scott gettin	Demi Moore	Rumer	Jennifer Lopez	Marc Anthony	Star Jones	Anna Nicole Smith	Mike G.	Pete Doherty	Keith Richards	Madonna	Oprah	Bruce Springsteen	Brett Ratner	Scarlett Johansson	Liev Schrieber	Naomi Watts	Bill Clinton	Britney Spears	Johnny Cash	D'Arcy Wretzky	Tim McGraw	Ray Parker Junior	Don Johnson	Jess	Tom Cruise	JJ Abrams	Manya	Jack Osbourne	David	Brad	Kathy
 EL_ENG_01637	ORGANIZATION	Fendi	BankFirst Corp	Haute Living	BankFirst	Savoy Hotel Partners	Savoy Hotel Partners	Shutts &amp; amp	Savoy Hotel	CMA Cos.	CMA	CMA	Prudential Douglas Elliman	Soho Beach House
 	ORGANIZATION	Fendi	BankFirst Corp	Haute Living	BankFirst	Savoy Hotel Partners	Savoy Hotel Partners	Shutts &amp; amp	Savoy Hotel	CMA Cos.	CMA	CMA	Prudential Douglas Elliman	Soho Beach House
@@ -6650,13 +6650,13 @@ EL_ENG_01666	LOCATION	New Jamestown	Jamestown	Newport , R.I.	St. Lawrence River	
 	ORGANIZATION	Canada Steamship Lines	Valley Camp Coal Carrier	St Lawrence Seaway Postcard	Valley Camp	New Jersey Turnpike Underpasses Pulaski Skyway Vintage	New Jersey Turnpike Underpasses Local Street Vintage
 	LOCATION	New Jamestown	Jamestown	Newport , R.I.	St. Lawrence River	Saratoga	NY	Clayton , N.Y.	Poplar Avenue , Wildwood By-The-Sea Boardwalk North of Poplar Avenue , Wildwood By-The-Sea , New Jersey	Wildwood By-The-Sea	Wildwood By-The-Sea , N.J.	Pulaski Skyway	Central Jersey
 	PERSON	James Stewart	Clayton	James Stewart	Hanna Dock	Lawrence Seaway
-EL_ENG_01667	LOCATION	Australia CANBERRA	Australian	Australia	Philippines	Sydney	New South Wales	Manila	U.S.	Tempe	Sydney	Sydney
+EL_ENG_01667	LOCATION	Australia CANBERRA	Australian	Australia	Philippines	Sydney	New South Wales	Manila	U.S.	Tempe in Sydney	Sydney
 	ORGANIZATION	Xinhua	Associated Press	Port Botany
-	LOCATION	Australia CANBERRA	Australian	Australia	Philippines	Sydney	New South Wales	Manila	U.S.	Tempe	Sydney	Sydney
+	LOCATION	Australia CANBERRA	Australian	Australia	Philippines	Sydney	New South Wales	Manila	U.S.	Tempe in Sydney	Sydney
 	PERSON
-EL_ENG_01668	LOCATION	Midwest Literary Walk	Chelsea	Chelsea	River Gallery	River Gallery	Chelsea District
+EL_ENG_01668	LOCATION	Midwest Literary Walk in Chelsea	Chelsea	River Gallery	River Gallery	Chelsea District
 	ORGANIZATION	Keith Taylor &amp; Macklin Smith	Chelsea Gallery	Cranesbill Books	Chelsea District Library	Chelsea District Library	Chelsea Center
-	LOCATION	Midwest Literary Walk	Chelsea	Chelsea	River Gallery	River Gallery	Chelsea District
+	LOCATION	Midwest Literary Walk in Chelsea	Chelsea	River Gallery	River Gallery	Chelsea District
 	PERSON	Leslie	Michael McClure	Michael Zadoorian	Bill Harris	Bret Lott	Janet Kauffman	Zou Zou	Liebler	Michael McClure	Michael McClure
 EL_ENG_01669	PERSON	Hamish Carter	Hamish Carter	Carter
 	ORGANIZATION
@@ -6746,9 +6746,9 @@ EL_ENG_01690	PERSON	Burke	Delta Burke	Burke
 	ORGANIZATION
 	LOCATION	LOS ANGELES
 	PERSON	Burke	Delta Burke	Burke
-EL_ENG_01691	LOCATION	Louisiana	Kisatchie	Alexandria	Shreveport	Longfellow	Louisiana	Kisatchie	Kisatchie	Pineville	Alexandria	Calcasieu Ranger District	Winn District	Winnfield	Longleaf Vista	Louisiana	Briarwood	New Orleans	Cane River Lake	Red River	Natchitoches	Cane River Lake	Shreveport	Natchitoches	Louisiana Purchase	Dallas	New Orleans	Shreveport Highway	Pineville	Briarwood	Winnfield	Natchitoches , Louisiana Purchase	Rapides Drive
+EL_ENG_01691	LOCATION	Louisiana	Kisatchie	Alexandria	Shreveport	Longfellow	Louisiana	Kisatchie	Kisatchie	Pineville	Alexandria	Calcasieu Ranger District	Winn District	Winnfield	Longleaf Vista	Louisiana	Briarwood	New Orleans	Cane River Lake	Red River	Natchitoches	Cane River Lake	Shreveport	Natchitoches	Louisiana Purchase	Dallas	New Orleans	Shreveport Highway in Pineville	Briarwood	Winnfield	Natchitoches , Louisiana Purchase	Rapides Drive
 	ORGANIZATION	Kisatchie National Forest	Kisatchie National Forest	Kisatchie National Forest	Caroline Dormon Nature Preserve	Cane River National Heritage Area	Oakland Plantation	Magnolia Plantation	Oakland Plantation	Magnolia Plantation	Association for the Preservation of Historic Natchitoches	Electric Slide	Northwestern State University	Kisatchie National Forest	Cane River National Heritage Area	Oyster House
-	LOCATION	Louisiana	Kisatchie	Alexandria	Shreveport	Longfellow	Louisiana	Kisatchie	Kisatchie	Pineville	Alexandria	Calcasieu Ranger District	Winn District	Winnfield	Longleaf Vista	Louisiana	Briarwood	New Orleans	Cane River Lake	Red River	Natchitoches	Cane River Lake	Shreveport	Natchitoches	Louisiana Purchase	Dallas	New Orleans	Shreveport Highway	Pineville	Briarwood	Winnfield	Natchitoches , Louisiana Purchase	Rapides Drive
+	LOCATION	Louisiana	Kisatchie	Alexandria	Shreveport	Longfellow	Louisiana	Kisatchie	Kisatchie	Pineville	Alexandria	Calcasieu Ranger District	Winn District	Winnfield	Longleaf Vista	Louisiana	Briarwood	New Orleans	Cane River Lake	Red River	Natchitoches	Cane River Lake	Shreveport	Natchitoches	Louisiana Purchase	Dallas	New Orleans	Shreveport Highway in Pineville	Briarwood	Winnfield	Natchitoches , Louisiana Purchase	Rapides Drive
 	PERSON	Tharon Neal	Neal	Evangeline	Neal	Delores Carpenter	Calvin	Carpenter	Caroline Dormon	Dormon	Jessie Johnson	Richard	Dormon	Johnson	Jean Carter	Carter	Shon Andrus	Andrus	John	Cammie Henry	Cammie	Henry	Brian Hicks	Oumpa Lumpa	Heather Guyans	Caroline Dormon	Caroline Dormon Road	Anne
 EL_ENG_01692	ORGANIZATION	Cox News Service	Becks	Brigham Young	Dolphins	Dolphins	NFL	BYU	Cougars	BYU	Cougars	BYU	Cougars	Western New Mexico University	Cougars	The Palm Beach Post
 	ORGANIZATION	Cox News Service	Becks	Brigham Young	Dolphins	Dolphins	NFL	BYU	Cougars	BYU	Cougars	BYU	Cougars	Western New Mexico University	Cougars	The Palm Beach Post
@@ -6790,9 +6790,9 @@ EL_ENG_01701	PERSON	Marquise Hill	Bill Walsh	Walsh	Walsh	Joe Montana	Jerry Rice	
 	ORGANIZATION	New England Patriots	National Football League	NFL	Barcelona Games	US Army	Chris Mainwaring West Coast Eagles	Eagles	Eagles	Major League Baseball	New York Yankees	Baltimore Orioles	Purple Hearts	New York Yankees	Milwaukee Braves	New York Yankees	Dodgers	Dodgers	New York Yankees	Los Angeles Dodgers	Chicago White Sox	New York Yankees	Yankees	Yankees	US Navy	National Basketball Association	NBA All-Star	Boston Celtics	Seattle Supersonics	NBA	Boston Celtics	NBA	Celtics	Sonics	Phoenix Suns	WBC	WBA	WBC	WBC	International Cricket Council	ICC	United Cricket Board	Liege-Bastogne-Liege	Lazio	Everton	Benfica	Galatasaray	Wolverhampton Wanderers	Professional Footballers Association	AC Milan	Roma	Buffin United	Everton	Leeds United	Leeds	Sevilla	Horserace Betting Levy Board	British Horseracing Board	Clement Attlee	Warrington	Hull Kingston Rovers	Irish Lions	Lions	Irish Lions	Lions	All Blacks at Murrayfield	Japan Rugby Football Union	International Rugby Board	Asian Rugby Football Union
 	LOCATION	New Orleans	New Orleans	San Francisco	Romania	Bulgaria	Athens	Turkey	Melbourne	Volgograd	US	Berlin	Berlin	US	Okinawa	US	Atlantic City	Brooklyn	Los Angeles	Brooklyn	Las Vegas	Panama	London	Ghana	India	England	India	India	England	South Africa	South Africa	South Africa	Pakistan	Ireland	India	England	South Africa	South Africa	Australia	Luxembourg	Salo , Italy	Helsinki	Melbourne	Berlin	Austria	Berlin	West Germany	England	Portugal	Portugal	France	Germany	East Germany	Montreal	Derwall Former West Germany	Northern Ireland	Sweden	Brazil	Italian	Republic of Ireland	Sunderland	England	Zambia	Armenia	Portugal	Getafe	Sevilla	Chile	Brazil	Germany	Dakar	Great Britain	Great Britain	Sydney	Australia	Wigan	Wembley	Wales	Cardiff	Former Wales	British	Mallorca	South Africa	Scotland	British	New Zealand	Auckland	South Africa	New Zealand	Japan	London	Hiroshima	Asia	Brazil
 	PERSON	Marquise Hill	Bill Walsh	Walsh	Walsh	Joe Montana	Jerry Rice	Ronnie Lott	Walsh	Cioncan	Al Oerter	Oerter	Carl Lewis	Oerter	Yelena Romanova	Romanova	John Woodruff	Adolf Hitler	John	Jesse Owens	Woodruff	Hank Bauer	Bauer	Clete Boyer	Boyer	Lew Burdette	Burdette	Bowie Kuhn	Kuhn	Kuhn	George Steinbrenner	Charles O. Finley	Hank Aaron	Mickey Mantle	Willie Mays	Clem Labine	Labine	Phil Rizzuto Known	George Steinbrenner	Rizzuto	Joe DiMaggio	Yogi Berra	Rizzuto	Dennis Johnson	Johnson	Austin Toros	Jose Luis Castillo	Floyd Mayweather	Joel Casamayor	Castillo	Hugo Corro Argentina	Hugo Corro	Corro	Rodrigo Valdez	Carlos Monzon	James Oyebola	Dilip Sardesai Once	Sardesai	Sardesai	Percy Sonn	Sonn	Bob Woolmer	Joseph Planckaert	Planckaert	Jacques Anquetil	Stablinski	Giuseppe Baldo	Alan Ball	Manuel Galrinho Bento	Georg Buschner	Josef	Derwall	Derek Dougan Lanky	Dougan	Nils Liedholm	Pele	Nils	Silvio Berlusconi	Jimmy O'Neill	Stanley Matthews	Ian Porterfield	Porterfield	Chelsea	Puerta	Viliam Schrojf	Norman Von Nida Known	Peter Thomson	Bruce Crampton	Bruce Devlin	Jack Newton	Von Nida	Jack Nicklaus	Gary Player	David Graham	Greg Norman	Nick Faldo	Tristram Ricketts	Stafford Cripps	Reinhard Hess Ski	Colin McRae	Chris Burns	Mike Gregory Former	Gregory	Gregory	Paul Woods Tough	Hull	Steve Fenwick	Ray Gravell	Shigeru	Konno	Konno	Queen Elizabeth II	Maria Lenk Known	Lenk
-EL_ENG_01702	LOCATION	San Francisco	Foynes Airport	County Limerick , Ireland	Shannon International Airport	Buena Vista	Buena Vista	Shannon Airport	Ireland	Los Angeles	Irish	Woodland Hills	Irish	San Francisco	Burbank Blvd. , Sherman Oaks	Ventura Blvd. , Woodland Hills	Riverside Drive , Toluca Lake	S. Fairfax Ave. , Los Angeles	Burbank	Ireland	Burbank Blvd.	S. Fairfax Ave. , Los Angeles
+EL_ENG_01702	LOCATION	San Francisco	Foynes Airport in County Limerick , Ireland	Shannon International Airport	Buena Vista	Buena Vista	Shannon Airport	Ireland	Los Angeles	Irish	Woodland Hills	Irish	San Francisco	Burbank Blvd. , Sherman Oaks	Ventura Blvd. , Woodland Hills	Riverside Drive , Toluca Lake	S. Fairfax Ave. , Los Angeles	Burbank	Ireland	Burbank Blvd.	S. Fairfax Ave. , Los Angeles
 	ORGANIZATION	ST. PATRICK	Buena Vista Cafe	Buena Vista Caf	Buena Vista	White Harte Pub	VISTA	Buena Vista Cafe	W. Burbank Ave.
-	LOCATION	San Francisco	Foynes Airport	County Limerick , Ireland	Shannon International Airport	Buena Vista	Buena Vista	Shannon Airport	Ireland	Los Angeles	Irish	Woodland Hills	Irish	San Francisco	Burbank Blvd. , Sherman Oaks	Ventura Blvd. , Woodland Hills	Riverside Drive , Toluca Lake	S. Fairfax Ave. , Los Angeles	Burbank	Ireland	Burbank Blvd.	S. Fairfax Ave. , Los Angeles
+	LOCATION	San Francisco	Foynes Airport in County Limerick , Ireland	Shannon International Airport	Buena Vista	Buena Vista	Shannon Airport	Ireland	Los Angeles	Irish	Woodland Hills	Irish	San Francisco	Burbank Blvd. , Sherman Oaks	Ventura Blvd. , Woodland Hills	Riverside Drive , Toluca Lake	S. Fairfax Ave. , Los Angeles	Burbank	Ireland	Burbank Blvd.	S. Fairfax Ave. , Los Angeles
 	PERSON	Joe Sheridan	Sheridan	Jack Koeppler	Koeppler	Stanton Delaplane	Sheridan	Michael Carden	Carden	Carden	Tom Bergin	Chris Doyle	Doyle	Bailey	Stacy Taylor	Bailey	Taylor	Taylor	Michael Carden	Holly Burrows	Katie Walter	Lora Brody	Robin Hood	Timmy Nolan	Tom Bergin	Van Nuys	Molly Malone
 EL_ENG_01703	PERSON	Juan Carlos	Walter Alva	Mina Mochica	Leonardo Patterson	Patterson	Alva	Patterson	Patterson	Patterson	Anton Roeckl	Patterson	Roeckl	Roeckl	Cecilia Bakula	Juan Carlos	Patrick McGroarty
 	ORGANIZATION	UTC	Foreign Ministry	U.N.	Interpol	Interpol	The Associated Press	National Culture Institute	Associated Press
@@ -6952,7 +6952,7 @@ EL_ENG_01741	LOCATION	Ottawa	Toronto
 	PERSON	Dean McAmmond	Steve Downie	Kubina
 EL_ENG_01742	PERSON	Eddie Johnson	Eddie Johnson	Johnson	Michael Kammarman	Johnson	Johnson	Johnson
 	ORGANIZATION	Premier League	Washington Post	Fulham
-	LOCATION	U.S.	CARSON , California	U.S.	Fulham	England	American	Sweden	Derby
+	LOCATION	U.S.	CARSON , California	U.S.	Fulham in England	American	Sweden	Derby
 	PERSON	Eddie Johnson	Eddie Johnson	Johnson	Michael Kammarman	Johnson	Johnson	Johnson
 EL_ENG_01743	LOCATION	Newport	Alaska	Newport
 	ORGANIZATION	Ronald Reagan Building	Republican	Google
@@ -7074,9 +7074,9 @@ EL_ENG_01772	PERSON	Randy Fenton	Fenton	Fenton	Fenton	James Levine	Fenton	Fenton
 	ORGANIZATION	ESPN	Mayo Clinic
 	LOCATION
 	PERSON	Randy Fenton	Fenton	Fenton	Fenton	James Levine	Fenton	Fenton
-EL_ENG_01773	LOCATION	Rockland , Maine	Maine	Camden , Rockport , Rockland , Lincolnville	Samoset Resort	Rockport	Penobscot Bay	Lincolnville	Maine	Youngtown	Lincolnville	Camden Hills	Maine	Rockland Harbor	Rockland	Berry Manor Inn	Lime Rock Inn	Maine	Rockland	Rockland	Maine	Vinalhaven	Maine	Maine	Maine	Kenya	Thailand	Newport , R.I.	Galapagos	Yosemite	South Africa	Alaska	Israel	Israel	Tel Aviv , Jerusalem , Bethlehem	Nazareth	Boston
+EL_ENG_01773	LOCATION	Rockland , Maine	Maine	Camden , Rockport , Rockland , Lincolnville	Samoset Resort in Rockport	Penobscot Bay	Lincolnville	Maine	Youngtown	Lincolnville	Camden Hills	Maine	Rockland Harbor	Rockland	Berry Manor Inn	Lime Rock Inn	Maine	Rockland	Rockland	Maine	Vinalhaven	Maine	Maine	Maine	Kenya	Thailand	Newport , R.I.	Galapagos	Yosemite	South Africa	Alaska	Israel	Israel	Tel Aviv , Jerusalem , Bethlehem	Nazareth	Boston
 	ORGANIZATION	Rock City Books &amp; amp	Farnsworth Art Museum	Wyeths	Maine Lighthouse Museum	Owls Head Transportation Museum	Maine Windjammer Association	Tracfone	Tracfone	Tracfone	Mountain Travel Sobek	Disney	Beantown &amp; amp	Big Apple	Israel Perillo Tours
-	LOCATION	Rockland , Maine	Maine	Camden , Rockport , Rockland , Lincolnville	Samoset Resort	Rockport	Penobscot Bay	Lincolnville	Maine	Youngtown	Lincolnville	Camden Hills	Maine	Rockland Harbor	Rockland	Berry Manor Inn	Lime Rock Inn	Maine	Rockland	Rockland	Maine	Vinalhaven	Maine	Maine	Maine	Kenya	Thailand	Newport , R.I.	Galapagos	Yosemite	South Africa	Alaska	Israel	Israel	Tel Aviv , Jerusalem , Bethlehem	Nazareth	Boston
+	LOCATION	Rockland , Maine	Maine	Camden , Rockport , Rockland , Lincolnville	Samoset Resort in Rockport	Penobscot Bay	Lincolnville	Maine	Youngtown	Lincolnville	Camden Hills	Maine	Rockland Harbor	Rockland	Berry Manor Inn	Lime Rock Inn	Maine	Rockland	Rockland	Maine	Vinalhaven	Maine	Maine	Maine	Kenya	Thailand	Newport , R.I.	Galapagos	Yosemite	South Africa	Alaska	Israel	Israel	Tel Aviv , Jerusalem , Bethlehem	Nazareth	Boston
 	PERSON	Marcel	Robert Indiana	Lindsey House	Farnsworth	Ted Panayotoff	Jack	Bob Pratt	Bella Italia	Richard P. Carpenter
 EL_ENG_01774	PERSON	Frank Miller	Tom	Tom	Frank Miller	Frank Miller	Tom	Johnnie	Corona	Tom Johnnie	Corona	Tom	Johnnie	Tom Jason Michael	Dave Gibbon	Miller	Jim Lee	Gibbons	Miller	Robin	Bruce	Hal Jordan	Hal	Bruce	Harry Callahan	Jason jason michael
 	ORGANIZATION	Google
@@ -7178,9 +7178,9 @@ EL_ENG_01798	ORGANIZATION	The Food and Drug Administration	Congress	Menu Foods L
 	ORGANIZATION	The Food and Drug Administration	Congress	Menu Foods Ltd.	Colgate-Palmolive	FDA	Menu Foods	FDA	New York Department of Agriculture	FDA	FDA	Massachusetts Department of Agricultural Resources	Oxford	Kroger Co.	PetSmart Inc.	Safeway Inc.	Wal-Mart Stores Inc	Menu Foods	FDA	Cornell University	Menu Foods	Cornell	House Energy and Commerce	FDA	FDA
 	LOCATION	ROCKVILLE , Md.	China	China	China	Danvers , New Bedford	Massachusetts	North America	South Bay	Dorchester	Michigan	Emporia , Kan.
 	PERSON	Hill	Paul Henderson	Henderson	Stephen F. Sundlof	Hill	Howard Vinton	Vinton	Vinton	Donald F. Smith	John D. Dingell	Diedtra Henderson
-EL_ENG_01799	LOCATION	PHILADELPHIA	South Philadelphia	Pennsauken , N.J.	South Philadelphia	Philadelphia	New Jersey , Pennsylvania	Delaware	Philadelphia	Philadelphia	Alabama	Florida	Philadelphia	Camden	Salem	New Jersey	Philadelphia	Keyontyli	Philadelphia	New Jersey	New Jersey	Philadelphia	Philadelphia	Clementon , N.J.	Camden , N.J.	Cooper River
+EL_ENG_01799	LOCATION	PHILADELPHIA	South Philadelphia	Pennsauken , N.J.	South Philadelphia	Philadelphia	New Jersey , Pennsylvania	Delaware	Philadelphia	Philadelphia	Alabama	Florida	Philadelphia	Camden	Salem	New Jersey	Philadelphia	Keyontyli in Philadelphia	New Jersey	New Jersey	Philadelphia	Philadelphia	Clementon , N.J.	Camden , N.J.	Cooper River
 	ORGANIZATION	AP Twins	Philadelphia Daily News	The Associated Press	Keyon	TLA Entertainment Group	Daily News
-	LOCATION	PHILADELPHIA	South Philadelphia	Pennsauken , N.J.	South Philadelphia	Philadelphia	New Jersey , Pennsylvania	Delaware	Philadelphia	Philadelphia	Alabama	Florida	Philadelphia	Camden	Salem	New Jersey	Philadelphia	Keyontyli	Philadelphia	New Jersey	New Jersey	Philadelphia	Philadelphia	Clementon , N.J.	Camden , N.J.	Cooper River
+	LOCATION	PHILADELPHIA	South Philadelphia	Pennsauken , N.J.	South Philadelphia	Philadelphia	New Jersey , Pennsylvania	Delaware	Philadelphia	Philadelphia	Alabama	Florida	Philadelphia	Camden	Salem	New Jersey	Philadelphia	Keyontyli in Philadelphia	New Jersey	New Jersey	Philadelphia	Philadelphia	Clementon , N.J.	Camden , N.J.	Cooper River
 	PERSON	Keyontyli	Taleon Goffney	Keyontyli	Taleon Goffney	Keyontyli	Taleon	Taleon	Jeffrey Zucker	Zucker	Michael Gushue	Taleon	Keyontyli	Gushue	Teyon	Erik Schut	Schut	Keyontyli	Taleon	Taleon	Dave Kunkel	Flipper	Kunkel	Taleon	Taleon	Zucker	Charles Du Bos
 EL_ENG_01800	PERSON	Fay Vincent	Gehrig	DiMaggio	Foxx	Greenberg	Williams	Feller	Elden Auker	Tommy Henrich	Dom DiMaggio	Johnny Pesky	Bob Feller	Auker	Ruth	Gehgrig	Dizzy Dean	Henrich	Dom DiMaggio	Joe	Feller	Greenberg	Joe DiMaggio
 	ORGANIZATION	Yankees	Red Sox	Enos Slaughter
@@ -7344,7 +7344,7 @@ EL_ENG_01839
 	PERSON	Willie Nelson	Willie Nelson	Nelson	Nelson	Nelson	Colleen Kawahara	Willie Nelson
 EL_ENG_01840	PERSON	Mannie Berk	Berk	Berk	Berk	Berk	Berk	Butler	Berk	Berk	Vinhos Barbeito	Berk	Boal Reserva	Gordon Ramsay	Telepan	Blue Hill	Garnet	Blandy	Berk	Thomas Jefferson	Mannie Berk	Tom Stevenson
 	ORGANIZATION	Rare Wine Co.	Hedges &amp; amp	Rare Wine Co.	Boston Bual	Zachys	Rare Wine Co.	Madeira Wine Institute	Sotheby 's Wine Encyclopedia
-	LOCATION	Madeira	Atlantic	Madeira	Madeira	Dallas	America	Madeira	Madeira	America	Sonoma , Calif.	Guilford , Conn	Madeira	Madeira	England	London	Madeira	Madeira	Madeira	Madeira	Madeira	Madeira	American	Boston Bual , New York Malmsey	Charleston Sercial	New Orleans	Bual	Malvasia	New Orleans	Madeira	Boston , New York	Charleston	New Orleans	New Orleans	New York Malmsey	Madeira	Madeira	Madeira	Madeira	New Orleans	Madeira	Madeira	Madeira	New York	New York	London , Hearth , Del Posto	Astor	Harlem Vintage	Westchester	Madeira	Madeira	Sherry-Lehmann	New York	Bual	Madeira	Madeira	Madeira	Madeira
+	LOCATION	Madeira	Atlantic	Madeira	Madeira	Dallas	America	Madeira	Madeira	America	Sonoma , Calif.	Guilford , Conn	Madeira	Madeira	England	London	Madeira	Madeira	Madeira	Madeira	Madeira	Madeira	American	Boston Bual , New York Malmsey	Charleston Sercial	New Orleans	Bual	Malvasia	New Orleans	Madeira	Boston , New York	Charleston	New Orleans	New Orleans	New York Malmsey	Madeira	Madeira	Madeira	Madeira	New Orleans	Madeira	Madeira	Madeira	New York	New York	London , Hearth , Del Posto	Astor	Harlem Vintage	Westchester	Madeira	Madeira	Sherry-Lehmann in New York	Bual	Madeira	Madeira	Madeira	Madeira
 	PERSON	Mannie Berk	Berk	Berk	Berk	Berk	Berk	Butler	Berk	Berk	Vinhos Barbeito	Berk	Boal Reserva	Gordon Ramsay	Telepan	Blue Hill	Garnet	Blandy	Berk	Thomas Jefferson	Mannie Berk	Tom Stevenson
 EL_ENG_01841	ORGANIZATION	KNCU	CSA
 	ORGANIZATION	KNCU	CSA
@@ -7474,9 +7474,9 @@ EL_ENG_01872	LOCATION	Jamaica	KINGSTON , Jamaica	Kingston	Port Royal	Caribbean
 	ORGANIZATION	UTC Jamaica	Kingston Wharf
 	LOCATION	Jamaica	KINGSTON , Jamaica	Kingston	Port Royal	Caribbean
 	PERSON	Pat Belinfanti
-EL_ENG_01873	LOCATION	St. Louis KANSAS CITY , Missouri	New York City	Missouri	Chesterfield , Missouri	New York	Chesterfield	New York	Barnes Jewish Hospital	St. Louis
+EL_ENG_01873	LOCATION	St. Louis KANSAS CITY , Missouri	New York City	Missouri	Chesterfield , Missouri	New York	Chesterfield	New York	Barnes Jewish Hospital in St. Louis
 	ORGANIZATION
-	LOCATION	St. Louis KANSAS CITY , Missouri	New York City	Missouri	Chesterfield , Missouri	New York	Chesterfield	New York	Barnes Jewish Hospital	St. Louis
+	LOCATION	St. Louis KANSAS CITY , Missouri	New York City	Missouri	Chesterfield , Missouri	New York	Chesterfield	New York	Barnes Jewish Hospital in St. Louis
 	PERSON	Giuliani	Rudy Giuliani	Katie Levinson	Levinson	Giuliani	Maria Comella
 EL_ENG_01874	PERSON	Niall Clarke	Clarke	John Woodcock	Clarke	Clarke	Clarke	Michael	Mary Clarke	County Clare	Clarke	Clarke
 	ORGANIZATION	U.S. District Court	Trinity College	Bangor Daily News
@@ -7524,7 +7524,7 @@ EL_ENG_01884
 	PERSON	Mark Milner
 EL_ENG_01885	PERSON	John S. Varley	Frederick A. Goodwin	Goodwin	Varley	Goodwin	Julian Chillingworth	Goodwin	Goodwin	Goodwin	Goodwin	Rob MacGregor	Goodwin	MacGregor	Goodwin	Goodwin	Varley	Goodwin	Varley	Varley	Goodwin	Varley	Varley	Samir Shah	Shah	Robert Diamond	Varley	Varley	Varley	Varley	Caroline	Richard Thorn Pease	Varley	Goodwin	Varley	Goodwin
 	ORGANIZATION	ABN AMRO	ABN Amro Holding	Barclays	Royal Bank of Scotland Group	ABN Amro	ABN Amro	ABN Amro	ABN Amro	Barclays	ABN Amro	LaSalle Bank	ABN Amro	Banco Santander Central Hispano	Fortis	ABN Amro	LaSalle	Bank of America	ABN Amro	LaSalle	LaSalle	Royal Bank	LaSalle	Rathbone Brothers	National Westminster Bank	Bank of Scotland	NatWest	Royal Bank	ABN Amro	NatWest	ABN Amro	ABN Amro	Teather &amp; amp	Barclays	Barclays	ABN Amro	Woolwich	Absa	ABN Amro	Barclays	Barclays	Barclays	Barclays	Royal Bank of Scotland	Barclays	ABN Amro
-	LOCATION	LONDON	Europe	America	Brazil	Chicago	Spain	Belgium	London	Edinburgh	United States	Amsterdam	London , Europe	Greenwood	London	Varley	South Africa	Varley
+	LOCATION	LONDON	Europe	America	Brazil	Chicago	Spain	Belgium	London	Edinburgh	United States	Amsterdam	London , Europe	Greenwood in London	Varley	South Africa	Varley
 	PERSON	John S. Varley	Frederick A. Goodwin	Goodwin	Varley	Goodwin	Julian Chillingworth	Goodwin	Goodwin	Goodwin	Goodwin	Rob MacGregor	Goodwin	MacGregor	Goodwin	Goodwin	Varley	Goodwin	Varley	Varley	Goodwin	Varley	Varley	Samir Shah	Shah	Robert Diamond	Varley	Varley	Varley	Varley	Caroline	Richard Thorn Pease	Varley	Goodwin	Varley	Goodwin
 EL_ENG_01886	PERSON	Wells Fargo	Carl Stine	Wolf Popper	Stine	Walls Fargo	Stine	Stine	Christy Phillips-Brown
 	ORGANIZATION	Wachovia	Wachovia Corp.	Wells Fargo &amp; Co.	Wachovia	Walls Fargo	Congress	Wachovia	North Carolina Business Court	Wachovia
@@ -7610,9 +7610,9 @@ EL_ENG_01906	LOCATION	Pioneer Valley	Massachusetts	Northampton	Pioneer Valley	Am
 	ORGANIZATION	Amherst Books	Smith College	Amherst Books	Amherst Books	Mount Holyoke College	Amherst Books	Amherst College	Amherst Cinema Arts Center	Mount Holyoke College	Academy of Music	Smith College Poetry Center	Amtrak	Daily Hampshire Gazette	Forbes Library	Interlink Publishing	Amherst Books	Jeffery Amherst Bookshop	Robert Frost Library	Amherst College	Hampshire College	Sugarloaf St.	Montague Bookmill
 	LOCATION	Pioneer Valley	Massachusetts	Northampton	Pioneer Valley	Amherst	South Hadley	Connecticut River	Massachusetts	South Hadley	Manhattan	Upper West Side	Northampton	Northampton	Northampton	Amherst	Northampton	Northampton	Pioneer Valley	New York City	Northampton	Amherst	Amherst	Northampton	Amherst	Pioneer Valley	NORTHAMPTON	Northampton	West St.	Northampton	Northampton	Amherst	South Amherst	South Deerfield	Northampton	West St. , North Hatfield	South Deerfield	Judaica	Vienna	Berlin	Greenfield Road	Sawmill River
 	PERSON	Bonnie Isman	Nat Herold	Joan Grenier	Shakespeare	Herold	Jonathan Kozol	Emily Dickinson	Emily Dickinson	Tony Maroulis	Richard Russo	Diane Ackerman	Michael Korda	Isaiah Sheffer	Ellen Dore Watson	Watson	Nancy Felton	Eric Carle	Augusten Burroughs	Herold	Peter Pan Bus	ROGER MUMMERT	Henry Walz	Walz	Seth Nemeroff	Gabriel Books	Emily Dickinson	Robert Frost	Judith Tingley	Robert Willig	Ken Schoen
-EL_ENG_01907	LOCATION	VINELAND , N.J	Vineland	South Jersey	Philadelphia	Camden	Camden County	East Oak Road	Vineland	Vineland	Cumberland County	New Jersey
+EL_ENG_01907	LOCATION	VINELAND , N.J	Vineland	South Jersey	Philadelphia	Camden	Camden County	East Oak Road in Vineland	Vineland	Cumberland County	New Jersey
 	ORGANIZATION	Ancora Psychiatric Hospital	Smaniotto	Smaniotto
-	LOCATION	VINELAND , N.J	Vineland	South Jersey	Philadelphia	Camden	Camden County	East Oak Road	Vineland	Vineland	Cumberland County	New Jersey
+	LOCATION	VINELAND , N.J	Vineland	South Jersey	Philadelphia	Camden	Camden County	East Oak Road in Vineland	Vineland	Cumberland County	New Jersey
 	PERSON	Thomas Ulrich	Edgar J. Carrasquillo	Debra Smaniotto	Carrasquillo	Smaniotto	Bruce Bertoldi	Bertoldi	Carrasquillo	Linda Moffa	Carrasquillo	Moffa	Debbie	Moffa	Smaniotto	Bertoldi	Smaniotto	Ashton	Ronald J. Casella	Ulrich	Bertoldi	Casella	Carrasquillo	Bertoldi	Carrasquillo	Bertoldi	Carrasquillo	Edgar	Moffa	Smaniotto	Carrasquillo	Moffa	Carrasquillo	Smaniotto	Carrasquillo	Moffa	Carrasquillo	Casella	Carrasquillo	Carrasquillo	Smaniotto	Bertoldi	Stella Falciani	Falciani
 EL_ENG_01908	LOCATION	Illinois PEORIA , Illinois	Peoria	Peoria
 	ORGANIZATION	UTC Police	Taser
@@ -7852,7 +7852,7 @@ EL_ENG_01966	PERSON	Michael Fields	Wayne Hicks	Stephan Adams	Adams	Adams	Mike	Hi
 	PERSON	Michael Fields	Wayne Hicks	Stephan Adams	Adams	Adams	Mike	Hicks	Hicks	Hicks	Hicks	Hicks	Darrell Garrett	Arthur Bart-Williams	Garrett	Garrett
 EL_ENG_01967	PERSON	Bonnie Tierney	Tierney	Tierney	Tierney	Tierney	Tierney	Randy Gaddo	Gaddo	Gaddo	Timothy Geraghty	Geraghty	Geraghty	Tierney	Tierney	Tierney
 	ORGANIZATION	Rhein Main Air Force Base	Department of Veterans Affairs	Honda
-	LOCATION	BEIRUT	Beirut	Lebanon	Frankfurt , Germany	Denver	Oklahoma City	London	New York	Germany	Beirut	Lebanon	Camp Lejeune	Jacksonville , N.C.	Beirut	Frankfurt
+	LOCATION	BEIRUT	Beirut	Lebanon	Frankfurt , Germany	Denver	Oklahoma City	London	New York	Germany	Beirut	Lebanon	Camp Lejeune in Jacksonville , N.C.	Beirut	Frankfurt
 	PERSON	Bonnie Tierney	Tierney	Tierney	Tierney	Tierney	Tierney	Randy Gaddo	Gaddo	Gaddo	Timothy Geraghty	Geraghty	Geraghty	Tierney	Tierney	Tierney
 EL_ENG_01968	LOCATION	LAKEVILLE , Conn	Lime Rock Park	Connecticut	Lakeville	Lancaster , N.Y.	Iraq	Philadelphia	Europe
 	ORGANIZATION	Toyota	Skip Barber New Driver Program	Tonio	Skip Barber Racing School	Center for Injury Research and Prevention	Mazda	Mazda
@@ -7902,9 +7902,9 @@ EL_ENG_01979	ORGANIZATION	Xinhua	Jordan Times	NRA	Royal Dutch Shell Oil	Shell	Ee
 	ORGANIZATION	Xinhua	Jordan Times	NRA	Royal Dutch Shell Oil	Shell	Eesti Energia	Petrobras	Jordanian-British Jordan Energy	NRA	National Electric Power Company
 	LOCATION	Jordan	AMMAN	Jordan	Yarmouk River , Buweida , Beit Ras	Karak , Madaba	Jordan
 	PERSON	Maher Hijazin	Al Attarat	Lajoun	Hijazin	Maan
-EL_ENG_01980	LOCATION	Concord	Lexington	Concord	Lahey Clinic	Burlington	Lexington	Florida	Hamilton	Concord	Bristol , R.I.	Concord
+EL_ENG_01980	LOCATION	Concord	Lexington	Concord	Lahey Clinic in Burlington	Lexington	Florida	Hamilton	Concord	Bristol , R.I.	Concord
 	ORGANIZATION	Concord-Carlisle Regional High School	Dodge Caravan	Sporting Goods	Roger Williams University	Concord-Carlisle	Dee Funeral Home
-	LOCATION	Concord	Lexington	Concord	Lahey Clinic	Burlington	Lexington	Florida	Hamilton	Concord	Bristol , R.I.	Concord
+	LOCATION	Concord	Lexington	Concord	Lahey Clinic in Burlington	Lexington	Florida	Hamilton	Concord	Bristol , R.I.	Concord
 	PERSON	Chris Hentchel	Greg Woodson	Woodson	Janice Pappas	Woodson	George Anderson	Woodson	Hentchel	Woodson	Pappas	Hentchel	Hentchel	Melody Orfei	Pappas	Hentchel	Pappas	Pappas	Pappas	Pappas	Tania deLuzuriaga
 EL_ENG_01981	LOCATION	Indiana	BEDFORD , Indiana	Indiana	Bedford	Virgil I. Grissom Municipal Airport	Bloomington
 	ORGANIZATION	Indiana State Police	National Transportation Safety Board	The Times-Mail
@@ -7916,7 +7916,7 @@ EL_ENG_01982	ORGANIZATION	ABC Learning	UTC ABC Learning Centers Ltd.	ABC Learnin
 	PERSON
 EL_ENG_01983	PERSON	Ansel Adams	Ansel Adams	Adams	Michael	Ansel Adams	Michael Adams	Michael Adam	Jeanne Falk Adams	Michael Adams	Michael Adams	Ansel Adams	Michael Adams	Ansel Adams	James M. Hutchings	Ansel Adams	Michael Adams	Ansel Adams	Jonathan Spaulding	Ansel Adams	Spaulding	Michael Adams	Michael Adams	Michael Adams	Adams	Hernandez	Michael Adams	Adams	Michael Adams	Adams	Michael Adams	Adams	Michael Adams	Ansel Adams
 	ORGANIZATION	Washington University	Washington University School of Medicine
-	LOCATION	ST. LOUIS	St. Louis	Carmel Highlands , California	Yosemite Valley	California	Yosemite Valley	Tenaya Peak	New Mexico	Sangre de Cristo	United States	Mount McKinley	Alaska
+	LOCATION	ST. LOUIS	St. Louis	Carmel Highlands , California	Yosemite Valley	California	Yosemite Valley	Tenaya Peak	New Mexico	Sangre de Cristo	United States	Mount McKinley in Alaska
 	PERSON	Ansel Adams	Ansel Adams	Adams	Michael	Ansel Adams	Michael Adams	Michael Adam	Jeanne Falk Adams	Michael Adams	Michael Adams	Ansel Adams	Michael Adams	Ansel Adams	James M. Hutchings	Ansel Adams	Michael Adams	Ansel Adams	Jonathan Spaulding	Ansel Adams	Spaulding	Michael Adams	Michael Adams	Michael Adams	Adams	Hernandez	Michael Adams	Adams	Michael Adams	Adams	Michael Adams	Adams	Michael Adams	Ansel Adams
 EL_ENG_01984	ORGANIZATION	Xinhua	New Light of Myanmar	Ministry of Health	Myanmar Medical Association	MMA	MMA	MMA
 	ORGANIZATION	Xinhua	New Light of Myanmar	Ministry of Health	Myanmar Medical Association	MMA	MMA	MMA
@@ -7966,9 +7966,9 @@ EL_ENG_01995	PERSON	Brian Austin Green Megan Fox	Brian Austin Green	Megan Fox	Me
 	ORGANIZATION	Crimes of Fashion	FHM	Lose Friends &amp; Alienate People	FHM	FHM	FHM magazine	Gersh Agency
 	LOCATION	Rockwood , Tennessee , USA	Hilton Head Island , South Carolina	Hollywood	Beverly Hills	Van Nuys , Los Angeles , California	Beverly Hills	Austin Green	Beverly Hills
 	PERSON	Brian Austin Green Megan Fox	Brian Austin Green	Megan Fox	Megan Denise Fox	Megan Fox	Fox	megan fox	marilyn monroe	Fox	Mikaela Banes	Sam Witwicky	Fox	Jeff Bridges	Kirsten Dunst	Fox	Fox	Jessica Biel	Jessica Alba	Fox	Fox	Cassie	Fox	Cassie	Fox	Brian Austin Green	Sarah Connor	Fox	Brian	Marilyn Monroe	Shakespeare	Lear	Fox	Brian Austin Green	David Silver	Tiffani Amber Thiessen	Vanessa Marcil	Kassius Lijah
-EL_ENG_01996	LOCATION	LOS ANGELES	Portland	Los Angeles	San Diego	Portland	Portland	Portland	San Diego	Portland	West Pacific	Louisiana	North Dakota	Portland	USS Minneapolis St. Paul	Portland
+EL_ENG_01996	LOCATION	LOS ANGELES	Portland	Los Angeles	San Diego	Portland	Portland	Portland in San Diego	Portland	West Pacific	Louisiana	North Dakota	Portland	USS Minneapolis St. Paul	Portland
 	ORGANIZATION	UTC	Navy	U.S. Navy	Navy	Associated Press	Submarine Squadron 11	Submarine Squadron Eleven	Navy	Navy	Navy	Navy Times	Navy	Minot Air Force Base	Air Force	USS Newport News
-	LOCATION	LOS ANGELES	Portland	Los Angeles	San Diego	Portland	Portland	Portland	San Diego	Portland	West Pacific	Louisiana	North Dakota	Portland	USS Minneapolis St. Paul	Portland
+	LOCATION	LOS ANGELES	Portland	Los Angeles	San Diego	Portland	Portland	Portland in San Diego	Portland	West Pacific	Louisiana	North Dakota	Portland	USS Minneapolis St. Paul	Portland
 	PERSON	Hampton	Michael B. Portland	Alli Myrick	Hampton	Hampton	Myrick	Hampton	Myrick	Myrick	Hampton	Edwin Ruff	Matthew Weingart	William Schwalm	William J. Houston
 EL_ENG_01997	PERSON	Adams	Gerry Adams	Brian Higgins	Adams	Adams	Adams	Jennifer Peppin	Adams	Higgins	Chuck Eaton	Adams	Adams	Higgins	Adams	Adams	Richard McAuley	Higgins	Adams	Higgins	Gerry Adams	Higgins	Adams	Bertie Ahern	Bush	Adams	Adams	Bill Clinton	Adams	Adams	McAuley	Adams
 	ORGANIZATION	Sinn Fein	Sinn Fein	White House	Buffalo Irish Center	Transportation Security Administration	TSA	Dulles International	TSA	State Department	IRA	IRA	IRA
@@ -8032,7 +8032,7 @@ EL_ENG_02011	PERSON	Obama	Michael Smith	Michael Smith	Barack Obama	Deborah Needl
 	PERSON	Obama	Michael Smith	Michael Smith	Barack Obama	Deborah Needleman	Smith	Steven Spielberg	Rupert Murdoch	Obama	Huffington Post	Smith	Barack Obama	Michael Smith
 EL_ENG_02012	PERSON	Michael	Brown	Brown	Brown	H.G. Roosters	Brown	Brown	Brown	Brown	Brown	Michael Brown	Michael	Bryant Park	Tony Plakas	Michael Brown	Brown	H.G. Roosters	Michael Brown
 	ORGANIZATION	NAMES Project Foundation	Sun-Sentinel
-	LOCATION	Bryant Park	Lake Worth , Florida	Palm Beach County	South Florida	South Florida	South Florida	Florida	West Palm Beach
+	LOCATION	Bryant Park in Lake Worth , Florida	Palm Beach County	South Florida	South Florida	South Florida	Florida	West Palm Beach
 	PERSON	Michael	Brown	Brown	Brown	H.G. Roosters	Brown	Brown	Brown	Brown	Brown	Michael Brown	Michael	Bryant Park	Tony Plakas	Michael Brown	Brown	H.G. Roosters	Michael Brown
 EL_ENG_02013	PERSON	Michael Goodwin	Mickey Thompson	Teri Schwartz	Elena M. Saris	Goodwin	Thompson	Collene Campbell	Mickey	Thompson	Trudy	Thompson	Goodwin	Thompson	Goodwin	Thompson	Thompson	Goodwin	Thompson	Goodwin	Goodwin	Goodwin	Thompson	Goodwin
 	ORGANIZATION	Los Angeles County Superior Court	Thompsons	Thompsons
@@ -8048,7 +8048,7 @@ EL_ENG_02015	ORGANIZATION	NoHo Arts District	Universal City North Hollywood Cham
 	PERSON	Tony Safoian	Bruce Spiegel	Jack Kyser	Gazala Pirzada	Pirzada	Annie Reed	Reed	Reed
 EL_ENG_02016	PERSON	Guy Clark	Darrell Scott	Rodney Crowell	Lee Roy Parnell	Verlon Thompson	Guy Clark	Clark	Clark	Townes Van Zandt	Van Zandt	Robert Earl Keen	Clark	Susanna	Susanna	Clark	Clark	Jerry Jeff Walker	Guy Clark	Jerry Jeff Walker	Clark	Clark	Randall Knife	Chuck Berry	Mohandas Gandhi	Woody Guthrie	Clark	Jimmy Buffett	Guy Clark	Rock Cesario
 	ORGANIZATION	Cox News Service	Dopyera Brothers	Warner Bros.	Daily Sentinel
-	LOCATION	Colo.	Dublin	Monahans , Texas	Houston	Aspen	San Francisco	Los Angeles	Southern California	Nashville	L.A.	Nashville	Dublin	Texas	Cinco de Mayo	Memphis	Colo
+	LOCATION	Colo.	Dublin	Monahans , Texas	Houston	Aspen	San Francisco	Los Angeles	Southern California	Nashville	L.A.	Nashville	Dublin	Texas	Cinco de Mayo in Memphis	Colo
 	PERSON	Guy Clark	Darrell Scott	Rodney Crowell	Lee Roy Parnell	Verlon Thompson	Guy Clark	Clark	Clark	Townes Van Zandt	Van Zandt	Robert Earl Keen	Clark	Susanna	Susanna	Clark	Clark	Jerry Jeff Walker	Guy Clark	Jerry Jeff Walker	Clark	Clark	Randall Knife	Chuck Berry	Mohandas Gandhi	Woody Guthrie	Clark	Jimmy Buffett	Guy Clark	Rock Cesario
 EL_ENG_02017	PERSON	Steven Lee Olson	Francisco de Goya	Olson	Olson	Olson	Olson	Michael Drewniak	Olson	Drewniak	Sandra Carroll	Olson	Goya
 	ORGANIZATION	Goya	Solomon R. Guggenheim Museum	FBI
@@ -8150,9 +8150,9 @@ EL_ENG_02041	PERSON	Barry Bonds	Tammy Thomas	Kelcey Dalton	Victor Conte Jr.	Bond
 	ORGANIZATION	Bay Area Laboratory Co-Operative	BALCO	BALCO	Arnold	BALCO	U.S. Anti-Doping Agency	USADA	IRS
 	LOCATION	SAN FRANCISCO
 	PERSON	Barry Bonds	Tammy Thomas	Kelcey Dalton	Victor Conte Jr.	Bonds	Dalton	Patrick Arnold	Conte	Barry Bonds	Dalton	Conte	Thomas	Bonds	Conte	Dalton	Kelcey Dalton	Barry Bonds	Conte	Barry	Barry Bonds	Michael Rains	Bonds	Dalton	Conte	Marion Jones	Tim Montgomery	Conte	Thomas	Thomas	Tom McVay	Thomas	Chris Starr	Thomas	Starr	Adam	Jeff Novitzky
-EL_ENG_02042	LOCATION	Michigan	Michigan	Florida	Atlantic Ocean	Lansing	Coopersville	Riveria Hotel	Las Vegas	Michigan	Mount Pleasant	Michigan	Louisiana	Mississippi	Detroit	Monroe , La.	Detroit
+EL_ENG_02042	LOCATION	Michigan	Michigan	Florida	Atlantic Ocean	Lansing	Coopersville	Riveria Hotel in Las Vegas	Michigan	Mount Pleasant	Michigan	Louisiana	Mississippi	Detroit	Monroe , La.	Detroit
 	ORGANIZATION	Detroit News	Westin Diplomat Hotel	APWU	UAW	Michigan Education Association	National Association of Letter Carriers	UAW	Red Cross	Salvation Army	SEIU
-	LOCATION	Michigan	Michigan	Florida	Atlantic Ocean	Lansing	Coopersville	Riveria Hotel	Las Vegas	Michigan	Mount Pleasant	Michigan	Louisiana	Mississippi	Detroit	Monroe , La.	Detroit
+	LOCATION	Michigan	Michigan	Florida	Atlantic Ocean	Lansing	Coopersville	Riveria Hotel in Las Vegas	Michigan	Mount Pleasant	Michigan	Louisiana	Mississippi	Detroit	Monroe , La.	Detroit
 	PERSON	Mike Wilkinson	Tim Haggart	Haggart	Mike Wilkinson
 EL_ENG_02043	PERSON	Thomson	Thomson	Woodbridge	Woodbridge	Pehr G. Gyllenhammar	Rupert Murdoch	Thomas H. Glocer	Woodbridge	Thomson	Dow Jones	O'Reilly	Gavin K. O'Reilly	Thomson	Thomson	Glocer	David Schlesinger
 	ORGANIZATION	Reuters Group	Thomson Corp.	Reuters	Reuters	Bloomberg	Reuters Trust Principles	Dow Jones &amp; amp ; Co.	The Wall Street Journal	News Corp.	Reuters	Reuters	Reuters	Reuters	Reuters	Reuters	National Union of Journalists	Newspaper Guild	Canadian Media Guild	Reuters	The New York Times Co.	Bancrofts	Dow Jones	The Times Co.	Independent News	Independent News and Media	World Association of Newspapers	Reuters	Thomson	Reuters	Reuters	Reuters
@@ -8184,7 +8184,7 @@ EL_ENG_02049	PERSON	Tony	Mary Louise Wilson	Mary Louise Wilson	Wilson	Wilson	Chr
 	PERSON	Tony	Mary Louise Wilson	Mary Louise Wilson	Wilson	Wilson	Christine Ebersole	Tony
 EL_ENG_02050	ORGANIZATION	DFA	Metro Manila	Xinhua	DFA	DFA	DFA	DFA	DVA	Metro Manila
 	ORGANIZATION	DFA	Metro Manila	Xinhua	DFA	DFA	DFA	DFA	DVA	Metro Manila
-	LOCATION	MANILA	Metro Manila	Dasmarinas village	Makati	Dasmarinas	Dasmarinas Village	China , Egypt , India , Iran , Iraq , Kuwait , Libya , Mexico , Nigeria , Qatar , Romania , Russia , Sri Lanka	Turkey	Dasmarinas	Vienna
+	LOCATION	MANILA	Metro Manila	Dasmarinas village in Makati	Dasmarinas	Dasmarinas Village	China , Egypt , India , Iran , Iraq , Kuwait , Libya , Mexico , Nigeria , Qatar , Romania , Russia , Sri Lanka	Turkey	Dasmarinas	Vienna
 	PERSON	Jerril Santos	Encarnacion Legaspi	Santos
 EL_ENG_02051	ORGANIZATION	LIverpool City Council	Anfield	Liverpool City Council	Liverpool Football Club
 	ORGANIZATION	LIverpool City Council	Anfield	Liverpool City Council	Liverpool Football Club
@@ -8262,9 +8262,9 @@ EL_ENG_02069	PERSON	Lady Bird Johnson	Boris Yeltsin	Benazir Bhutto	Robert Drinan
 	ORGANIZATION	Boston Museum of Science	NASA	Camelot White House	Joint Chiefs of Staff	commerce	Richmond Flowers	United Nations	French Resistance	The New York Review of Books	ex-White House	Motion Picture Association of America	Broadcasting Television	New Yorker	Playboy	Marshall Rogers	New Yorker	New York Times	Cole Campbell	Clancy Brothers	R &amp; amp	Funk Brothers	Newport Jazz Festival	Celtics	Bruins	New England Patriots	NBA	NASCAR	NHL	General Motors	Dexter Shoe	EarthLink	Southwest Airlines	Belo Corp.	Gallo Winery	Ashland Oil	Nasdaq	PepsiCo	NY Stock Exchange	New England Telephone	NASA	Tensor	Harvard	Amherst College	Tufts	Mass College of Arts	Brandeis	MIT	MacArthur Foundation	Supreme Judicial Court	Boston Municipal Court	US District Court	Emmanuel Music	BSO	MFA	Globe
 	LOCATION	Soviet Union	Massachusetts	Capitol Hill	Nevada	American	US	Missouri	US	Illinois	Capitol Hill	US	Wyoming	Florida	Maryland	US	Maryland	Georgia	New York	California	Kentucky	Ohio	Tennessee	Virginia	Nebraska	Charlotte Reid	Illinois	Washington	Iowa	Indiana	South Carolina	Connecticut	America	Atlanta	Rhodesian	Africa	Jerusalem	Cuban	Sri Chinmoy	France	Chad	Croatia	Czechoslovakia	Japan	Luxembourg	St. Lucia	Burma	Colombia	Iraq	Micronesia	Afghanistan	Belgium	Afghan	Chinese	Manhattan	Hollywood	Mali	Hollywood	Boston	Boston	Grambling	San Francisco	Kentucky Derby	William France	American	Conde Nast	Asian	Arctic	Antarctic	Earth	America	New England	Boston	Boston	US	Boston
 	PERSON	Lady Bird Johnson	Boris Yeltsin	Benazir Bhutto	Robert Drinan	Jerry Falwell	Bradford Washburn	Walter Schirra	Steve Fossett	Art Buchwald	Molly Ivins	Kurt Vonnegut	Mstislav Rostropovich	Luciano Pavarotti	Beverly Sills	Ingmar Bergman	Max Roach	Oscar Peterson	Norman Mailer	David Halberstam	Arthur Schlesinger	Thomas Eagleton	Henry Hyde	Bill Clinton	E. Howard Hunt	Michael Deaver	William Crowe	William Verity	Pamela Ahearn	Craig Thomas	George Smathers	Daniel Brewster	Parren Mitchell	Gilbert Gude	Charles Norwood	Steven Derounian	Augustus Hawkins	Juanita Millender-McDonald	Frank Burke	Marion Snyder	Paul Gillmor	Donald Clancy	William Anderson	Jo Ann Davis	Peter Hoagland	Jennifer Dunn	Jack Metcalf	Wiley Mayne	Julia Carson	Robert McNair	William O'Neill	Thomas Meskill	Jane Bolin	Joseph Farland	Richard Nolte	Philip Kaiser	Paul Tibbets	Eugene Fluckey	Billy Walkabout	John Henebry	Silvestre Herrera	Jefferson DeBlanc	Raleigh Rhodes	Jay Zeamer	Yolanda King	Carolyn Goodman	Charlie Brady Hauser	Irene Kirkaldy	Randall Forsberg	Barbara Gittings	Lorraine Rothman	Mary Crisp	Vernon Bellecourt	Catherine Roraback	Oliver Hill	Chad Varah	Harry Dent	Brooke Astor	Tammy Faye Bakker	James Oakes	John Withers	Bill Strauss	Richard Jewell	Kurt Waldheim	Ian Smith	Theodor Kollek	Hanley Denning	Vilma Esp	Abb	Pierre	Raymond Barre	Pascal Yoadimnadji	Ivica Racan	Ladislav Adamec	Kiichi Miyazawa	Gaston Thorn	John Compton	Alfonso L	Michelsen	Abdel-Rahman Aref	Luis Herrera Campins	Tosiwo Nakayama	Mohammed Zahir Shah	Maria Julia Hernandez	Adrian Esquino Lisco	Alain Le Ray	Lucie Aubrac	Andree de Jongh	Zakia Zaki	Bo Yibo	Barbara Dainton	Bob Denard	Elizabeth Hardwick	Sidney Sheldon	Ira Levin	Rosemary	Madeleine L'Engle	Tillie Olsen	Grace Paley	Mark Harris	A.I. Bezzerides	Richard Prather	Sheila Ballantyne	Philip Craig	Elizabeth Jolley	Lloyd Alexander	Robert Jordan	Paul Erdman	John Gardner	Jane Rule	Michael Dibdin	William Meredith	Philip Booth	Mary Ellen Solt	Liam Rector	Sekou Sundiata	Jane Cooper	Paul Roche	Buchheim	Emmett Williams	John Garraty	Eugen Weber	Norman Cohn	Gerald Feldman	Allan Berube	Winthrop Jordan	Nina Schneider	Clyde Robert Bulla	Diane Middlebrook	Jean Baudrillard	Thomas Whitney	Itche Goldberg	Curie Labouisse	Peter Tompkins	Charles Einstein	Colin Fletcher	Kathleen Woodiwiss	Marjabelle Young Stewart	Judy Mazel	Bruce Metzger	Julien Gracq	Peg Bracken	Jack Valenti	Michelangelo Antonioni	Jane Wyman	Deborah Kerr	Carlo Ponti	Floyd Westerman	Aaron Russo	Ray Evans	Laszlo Kovacs	Freddie Francis	Peter Zinner	Peter Ellenshaw	Jack Williams	Betty Hutton	Maj-Britt Nilsson	Janet Blair	Lois Maxwell	Miyoshi Umeki	Laraine Day	Mala Powers	Charles Lane	Frank Campanella	Ulrich Muhe	Herman Brix	Michel Serrault	Bobby Mauch	Carl Wright	Gordon Scott	Stuart Rosenberg	Bob Clark	Edward Yang	Delbert Mann	Curtis Harrington	Claire Bourne	Ousmane Semb	Peter Viertel	Mel Shavelson	Bernard Gordon	Frank Capra Jr.	Herman Stein	William Tuttle	Marit Allen	Frank Rosenfelt	Merv Griffin	Don Herbert	Joey Bishop	Tom Snyder	Joel Siegel	Yvonne De Carlo	Tom Poston	Bill Flemming	Rex Humbard	Mel Tolkin	Bobby Rosengarden	Jack Linkletter	Calvert DeForest	Roger King	Friedman Paul Erhardt	Herb Carneal	Jack Zander	Iwao Takamoto	Stanley Myron Handelman	Richard Jeni	Stan Daniels	David Shaw	Bob Carroll	Tige Andrews	Percy Rodrigues	Ron Carey	Gareth Hunt	Dick Wilson	Edward Mallory	Alice Ghostley	Brett Somers	Carol Bruce	Jeanne Davis Glynn	Judy Crichton	Martin Manulis	Ned Sherrin	Jack Kuney	Ed Friendly	Andy Sidaris	Bob Clark	Tom Mooreand Alan Wagner	Anna Nicole Smith	Robert Goulet	Kitty Carlisle Hart	Marcel Marceau	Ruthanna Boris	Michael Kidd	George Grizzard	Charles Nelson Reilly	Barry Nelson	Ian Richardson	William Hutt	Roscoe Lee Browne	Tom Murphy	Michael Evans	Anne Pitoniak	Ellen Hanley	Gretchen Wyler	Igor Moiseyev	Maurice B	Michael Smuin	Glen Tetley	Henry LeTang	Alfred Desio	Vilma Ebsen	Sheridan Morley	George Tabori	George W. George	Sol LeWitt	Johnny Hart	Joel Brodsky	Wallace Seawell	J.B. Handelsman	Hans Wegner	Gianfranco Ferr	Laurel Burch	Nora Ezell	Lenore Tawney	Mary Walker Phillips	Jimmy Lee Sudduth	Roy Kuhlman	Joseph Low	Anne Dowden	Brant Parker	Buck Brown	Howie Schneider	Jules Olitski	Elizabeth Murray	Roy De Forest	Jorg Immendorff	Fannie Hillsmith	Edward Avedisian	Ken Danby	R.B. Kitaj	Paul Brach	Herman Rose	Dan Christensen	Tatsuzo Shimaoka	Mary Scheier	John Szarkowski	John Scott	Ileana Sonnabend	Robert Kulicke	Doug Marlette	Whitney Balliett	Herbert Muschamp	Eliot Fremont-Smith	Claudia Cohen	Nigel Dempster	Edmund Arnold	Ralph de Toledano	Hollis Alpert	Jack Lang	James Michaels	Jack Cappon	Ben Gilbert	Richard Nenneman	Charles Maynes	D.D. Ryan	Chauncey Bailey	Bruce Wolmer	Isabella Blow	Jack Myers	Kate Webb	Edward Behr	Salih Saif Aldin	Thomas Morgan	James Ryan	William Peters	Earl Ubell	James F	Clarity Elsie Carper	James Deakin	Inez Baskin	Douglas Kneeland	Sylvan Fox	Ryszard Kapuscinski	Raymond Cromley	Chet Currier	George Kiseda	Alan Greenberg	Neal Shine	Robert Petersen	Alexandra Boulat	Ernest Withers	Fred McDarrah	Al Chang	Arnold Hardy	Joseph Jamieson	Hugh Massingberd	Tommy Makem	Porter Wagoner	Don Ho	Brad Delp	Ike Turner	Dan Fogelberg	Frankie Laine	Boots Randolph	Michael Brecker	Herb Pomeroy	Eric von Schmidt	Lee Hazlewood	Gian Carlo Menotti	Karlheinz Stockhausen	J. Robert Bradley	James Davis	Hank Thompson	Del Reeves	Pete Kleinow	Hank Medress	Pookie Hudson	Bobby Byrd	Luther Ingram	Janis Martin	Carlos Vald	Carey Bell	Weepin	Willie Robinson	Kevin Dubrow	Joe Hunter	Lucky Dube	Louis Moyse	Andrew Imbrie	John Thow	Jerry Hadley	Teresa Stich-Randall	Rose Bampton	Frank Guarrera	Crespin	Alice Coltrane	Andrew Hill	Tommy Newsom	Alavin Batiste	Peggy Gilbert	Al Viola	Art Davis	Tony Scott	Herman Riley	Bill Barber	Johnny Frigo	Joe Zawinul	Frank Morgan	Bobby	Pickett	Teresa Brewer	Denny Doherty	Jon Lucien	Zola Taylor	Barbara McNair	Hy Zaret	John Wallowitch	Lydia Mendoza	Joel Dorn	Elaine Lorillard	Enrico Banducci	Hilly Kristal	Dennis Johnson	Tom Johnson	Marquise Hill	Darryl Stingley	Francis	Kilroy	Eddie Robinson	Bill Walsh	Bowie Kuhn	Bill Hartack	Barbaro	Phil Rizzuto	Rod Beck	Josh Hancock	Hank Bauer	Steve Barber	Clete Boyer	Lew Burdette	Vern Ruhle	Art Fowler	Ed Bailey	Clem Labine	John Vukovich	Bill Robinson	Don Nottebart	Tommy Byrne	Joe Nuxhall	Max Lanier	Shag Crawford	Bing Devine	Max McGee	Dick Nolan	Jim Ringo	Ken Kavanaugh	George Webster	Johnny Perkins	Lamar Lundy	Ernie Ladd	James David	George Preas	Dewitt Coulter	Sam Dana	John Baker	Sean Taylor	Darrent Williams	Bill Willis	Ed Brown	Ken MacAfee	Evel Knievel	Jim Shoulders	Eddie Feigner	Benny Parsons	Veikko Karvonen	Ted Corbitt	Chip Reese	Peter Davi	Bob Bates	Erich Windisch	Bud Delp	Gay Brewer	Don Massengale	Maureen Orcutt	Jimmy Walker	Gino Pariani	John Ferguson	Gaetan Duchesne	Gump Worsley	Sam Pollock	Mary Lillian Ellison	Abe Coleman	Butch van Breda Kolff	Al Oerter	Parry O'Brien	John Woodruff	Bob Owen	Robert Taylor	Willye White	Janice-Lee Romary	Roger Smith	Leona Helmsley	Liz Claiborne	Alfred Peet	Anita Roddick	Warren Avis	William Becker	Bob Evans	Harold Alfond	Garry Betty	Lamar Muse	James Moroney	Ernest Gallo	Steven Florio	Orin Atkins	Robert Anderson	Gordon Macklin	Charles Walgreen	Alan Pottasch	George Kovacs	Nina Wang	James Needham	Guy de Rothschild	Baron Elie de Rothschild	Ken Hendricks	John Swearingen	William Golden	Preston Martin	William Mercer	Robert Lantz	Irving Buestone	Albert Ellis	Wally Herbert	Leslie Orgel	Merle Sande	Stella Chess	Hugo Moser	Gene Savoy	Indiana Jones	Homer Stewart	Arthur Kornberg	Paul Lauterbur	Kai Siegbahn	Pierre-Gilles de Gennes	Alan MacDiarmid	Kenneth Franklin	Ellen Dorrit Hoffleit	Ronald Bracewell	Donald Osterbrock	Bohdan Paczynski	Philip Bowditch	Stanley Butchart	Ken Kennedy	Eric Wolf	Donald Michie	Eva Crane	Charles Remington	Olga MacBryde	Richard Goodwin	Anne McLaren	Seymour Benzer	Terry Yates	Elizabeth Hay	Jay Haley	Proctor Harvey	Edmund Sonnenblick	Eugene Bell	Edward Brandt	Paul Bohannan	Priscilla Reining	Clark Howell	Wolfgang Panofsky	Carl von Weizsacker	Ralph Alpher	Stanley Miller	Atle Selberg	Paul Cohen	Richard Steffy	Robert Adler	John Backus	Herbert Saffir	Arthur Jones	Vincent DeDomenico	Edwin Traisman	Momofuku Ando	Jack Odell	Jack Naylor	David Shepard	Theodore Maiman	Paul Lauterbur	Ed Yost	Paul MacCready	Jay Monroe	Florence Melton	George Rieveschl	J. Robert Cade	Seymour Martin Lipset	Richard Rorty	Rudolf Arnheim	Nelson Polsby	Elizabeth Hadley	Frank Snowden	Stanton Wheeler	Harold Leavitt	Alfred Chandler	Elizabeth Fox-Genovese	Elkan Blout	Frank Westheimer	David Turnbull	Zeph Stewart	John Pappenheimer	Gerald Gill	G. Robert Stange	Jack Mitus	Calvin Plimpton	Stanley Ballinger	Nils Wessell	Jack Nolan	Jean Paul Mather	John Lederle	Charles Warner	Francis Low	F. Champion Ward	James M. Kelly	Albert L.	O'Neil	Paul Sullivan	Harold Madison Jr.	Butch	George Bent	Myra McAdoo	Vernon Carter	William Mullin Eric Weinberger	Cynthia Foster	David Bird	Francis O'Connor	Edward Hennessey	Martha Sosman	Robert DeGiacomo	Marilyn Sullivan	Francis X. Morrissey	Robert Keeton	Nancy King	Edward Hanley	Edward Sullivan	Edward Collins	John Saltonstall	Kevin Fitzgerald	Jack Leary	Melvin Goldstein	Craig Smith	Leo Panasevich	Rae Anne Donlin	Dick Raphael	Stanley Bauman	Charles Rogers	Norman Fletcher	William LeMessurier	Oliver Ames	John Lawrence	Mortimer Buckley	Marshall Kreidberg	Tucker Collins	Joseph Killory	Josefina Yanguas	Jack Sidell	Gus Saunders	Jerry Hickey	Ralph Long	Tracey Albainy	Joe Breiteneicher	Robert Lawler	Diane Lewis	Jeff McLaughlin	Jerry Taylor	Kay Longcope	David Stanger	Dorothy Crandall	Patrick Knight	Francis Sturgis	Frank Jakubasz	Joseph Parrish	Bob Monahan	Barry Cadigan	Larry Whiteside	Joseph P. Kahn
-EL_ENG_02070	LOCATION	Fort Dix	Cherry Hill , N.J.	Philadelphia	Distan	Yugoslavia	United States	Cherry Hill	Fort Dix	Turnersville , N.J.	Fort Dix	United States	Turkey	Northeast Philadelphia	Fort Dix	Philadelphia	Fort Dix	Buena Vista Township	Atlantic County , N.J.	Yugoslavia	United States	Yugoslavian	Buena Vista	Williamstown , N.J	Buena Vista
+EL_ENG_02070	LOCATION	Fort Dix	Cherry Hill , N.J.	Philadelphia	Distan	Yugoslavia	United States	Cherry Hill	Fort Dix	Turnersville , N.J.	Fort Dix	United States	Turkey	Northeast Philadelphia	Fort Dix	Philadelphia	Fort Dix	Buena Vista Township in Atlantic County , N.J.	Yugoslavia	United States	Yugoslavian	Buena Vista	Williamstown , N.J	Buena Vista
 	ORGANIZATION	Cherry Hill High School West	Cherry Hill High School West	U.S. Marine	Temple University
-	LOCATION	Fort Dix	Cherry Hill , N.J.	Philadelphia	Distan	Yugoslavia	United States	Cherry Hill	Fort Dix	Turnersville , N.J.	Fort Dix	United States	Turkey	Northeast Philadelphia	Fort Dix	Philadelphia	Fort Dix	Buena Vista Township	Atlantic County , N.J.	Yugoslavia	United States	Yugoslavian	Buena Vista	Williamstown , N.J	Buena Vista
+	LOCATION	Fort Dix	Cherry Hill , N.J.	Philadelphia	Distan	Yugoslavia	United States	Cherry Hill	Fort Dix	Turnersville , N.J.	Fort Dix	United States	Turkey	Northeast Philadelphia	Fort Dix	Philadelphia	Fort Dix	Buena Vista Township in Atlantic County , N.J.	Yugoslavia	United States	Yugoslavian	Buena Vista	Williamstown , N.J	Buena Vista
 	PERSON	Mohamad Ibrahim Shnewer	Shnewer	Shnewer	Dritan Duka	Anthony	Tony Duka	Albanian	Duka	Eljvir Duka	Sulayman	Elvis	Duka	Duka	Shain Duka	Shaheen	Dritan	Tony Soprano	Tony Giordano	Giordano	Shain Duka	Serdar Tatar	Fort Dix	Tatar	Agron Abdullahu	Abdullahu	Eljvir Duka	Duka	Dritan Duka	Mary Williams	Abdullahu	Abdullahu
 EL_ENG_02071	PERSON	Andy Clifton	Clifton	Denman
 	ORGANIZATION	BBC	Kauto Star
@@ -8320,7 +8320,7 @@ EL_ENG_02083	ORGANIZATION	Taiwan Securities Association	MOU	Taiwan Securities As
 	PERSON	Ruth Wang	Huang Min-chu	Robert Priestley
 EL_ENG_02084	ORGANIZATION	The American Psychological Association	APA	APA	APA	APA	APA	APA council of representatives	APA	APA	APA	APA	APA
 	ORGANIZATION	The American Psychological Association	APA	APA	APA	APA	APA	APA council of representatives	APA	APA	APA	APA	APA
-	LOCATION	US	US	Cuba	Guantanamo	San Francisco	US	Guantanamo Bay	Cuba
+	LOCATION	US	US	Cuba	Guantanamo	San Francisco	US	Guantanamo Bay in Cuba
 	PERSON	Neil Altman	Laurie Wagner	Bernice Lott	Larry James	Beth Wiggins
 EL_ENG_02085	PERSON	Josh Hamilton	Hamilton	Hamilton	Jerry Narron	Hamilton	Hamilton	Hamilton	Hamilton	Narron	Hamilton	Narron	Narron	Narron	Johnny	Hamilton	Johnny Narron	Hamilton	Josh	Josh	Johnny Narron	Josh	Hamilton	Katie	Hamilton	Hamilton	Marc Topkin
 	ORGANIZATION	Devil Rays	Reds	Reds	Rays	Reds	Reds
@@ -8392,7 +8392,7 @@ EL_ENG_02101
 	PERSON	Linde Knighton	Linde Richard Winger	Alan Keyes	Alan Keyes	Linde Knighton	Linde Knighton	Linde Linde Knighton	Linde Bob Peck	Linde Knighton	Linde	Marjorie	Linde Knighton	Linde Knighton	Linde PAUL SCHLOSSMAN	Linde Knighton	Linde Knighton	Linde Knighton	Linde Knighton	Linde Karen Murray	Karen	Richard Winger	Richard Winger	Linde Knighton	Linde Knighton	Linde	Rachel H.	Linde	Rachel Hawkridge Chair	Tony	Karen Murray	Marjorie	Rachel H.	PAUL SCHLOSSMAN	Linde Knighton	Linde Knighton	Rachel	Shoen	Linde
 EL_ENG_02102	ORGANIZATION	Cincy Ultimate News	Cincy Ultimate News	YUC Coaching Clinic	UPA High School Easterns	CUPA	YUC Coaching Clinic	YUC League Youth Ultimate Cincinnati League	Sycamore HS	CUPA	Cincinnati Ultimate Players Association	Release of Liability Form	CUPA	Cincinnati Ultimate Players Association	CUPA	Xavier University	Open College	Xavier University	Warren County Convention and Visitors Bureau	Lebanon Sports Complex	UPA	UPA High School Easterns	UPA High School Easterns	Winton Woods Sunday	CUPA
 	ORGANIZATION	Cincy Ultimate News	Cincy Ultimate News	YUC Coaching Clinic	UPA High School Easterns	CUPA	YUC Coaching Clinic	YUC League Youth Ultimate Cincinnati League	Sycamore HS	CUPA	Cincinnati Ultimate Players Association	Release of Liability Form	CUPA	Cincinnati Ultimate Players Association	CUPA	Xavier University	Open College	Xavier University	Warren County Convention and Visitors Bureau	Lebanon Sports Complex	UPA	UPA High School Easterns	UPA High School Easterns	Winton Woods Sunday	CUPA
-	LOCATION	Cincinnati	Lockland Stadium	Grine Field	Lockland	River	River Road	River Road	South Milford Road	Milford	Sem Haven	Cleveland Ave. , Milford	Sem Haven	Cleveland Ave.	Cincinnati , Ohio	Lebanon , Ohio	Lakeridge Drive	McKelvey Road , Cincinnati , Ohio
+	LOCATION	Cincinnati	Lockland Stadium	Grine Field	Lockland	River	River Road	River Road	South Milford Road in Milford	Sem Haven	Cleveland Ave. , Milford	Sem Haven	Cleveland Ave.	Cincinnati , Ohio	Lebanon , Ohio	Lakeridge Drive	McKelvey Road , Cincinnati , Ohio
 	PERSON	Liz Keuffer	Peter Tran	Liz Kueffer	Peter Tran	Liz Keuffer	Liz	Liz	Liz Keuffer	Liz	Liz Keuffer	Dan Teller	Dan Teller	Dan Teller	Joyce Park	Aaron Armbruster	Joyce Park	Aaron Armbruster	Christine Scheadler	Christine Scheadler	Winton Woods	Peter	Peter YUC_2009_Waiver_Form
 EL_ENG_02103
 	ORGANIZATION	NTC	Canucks	Montral	Habs	New Jersey Devils	Islanders	Islanders	Leafs
@@ -8432,7 +8432,7 @@ EL_ENG_02111	LOCATION	Atlantic	Atlantic Ocean	Caribbean	Antigua	Gibraltar	Spain	
 	PERSON	Michael Perham	Peter	Heather
 EL_ENG_02112	PERSON	Naomi Campbell	Naomi Campbell	Becki Newton	Newton	Amanda	Amanda Sommers	Campbell	Campbell	Victoria Beckham	Gene Simmons	Amanda	Newton	Simmons
 	ORGANIZATION	ABC	The Associated Press	ABC
-	LOCATION	LOS ANGELES	Newtown	Heathrow Airport	London
+	LOCATION	LOS ANGELES	Newtown	Heathrow Airport in London
 	PERSON	Naomi Campbell	Naomi Campbell	Becki Newton	Newton	Amanda	Amanda Sommers	Campbell	Campbell	Victoria Beckham	Gene Simmons	Amanda	Newton	Simmons
 EL_ENG_02113	LOCATION	New Mexico	New Mexico	La Crosse , Wis.	Lakeville , Minn	Cincinnati , Cleveland	Pittsburgh	Chillicothe	Columbus , Ohio	Springfield , Mo
 	ORGANIZATION	United Nations	National Public Radio
@@ -8520,7 +8520,7 @@ EL_ENG_02133	PERSON	Larkin	Horowitz	Graham Larkin	David Horowitz	Larkin	Darwin	H
 	PERSON	Larkin	Horowitz	Graham Larkin	David Horowitz	Larkin	Darwin	Horowitz	Ralph Nader	Nader	Horowitz	Horowitz	Horowitz	Horowitz	Democrats	Horowitz	Horowitz
 EL_ENG_02134	ORGANIZATION	Xinhua	YTL Corp Bhd	Lehman Brothers Investments Pte Ltd	YTL	LBI	YTL	LBI	Lehman Brothers	LBI	New Straits Times	YTL
 	ORGANIZATION	Xinhua	YTL Corp Bhd	Lehman Brothers Investments Pte Ltd	YTL	LBI	YTL	LBI	Lehman Brothers	LBI	New Straits Times	YTL
-	LOCATION	Malaysia	KUALA LUMPUR	Malaysia	U.S.	Thailand	Koh Samui	Southeast Asia	Kuala Lumpur	Vietnam , Cambodia	Philippines	Malaysia	Sarawak	Pahang	Thailand	Malaysia	Southeast Asia	Indonesia	Asia	Mediterranean	Caribbean	Southeast Asia	Malaysia	Phuket	Bali	Thailand	Indonesia
+	LOCATION	Malaysia	KUALA LUMPUR	Malaysia	U.S.	Thailand	Koh Samui	Southeast Asia	Kuala Lumpur	Vietnam , Cambodia	Philippines	Malaysia	Sarawak	Pahang	Thailand	Malaysia	Southeast Asia	Indonesia	Asia	Mediterranean	Caribbean	Southeast Asia	Malaysia	Phuket	Bali in Thailand	Indonesia
 	PERSON	Francis Yeoh Sock Ping	Sabah	Charles Rubin	Lehman	Yeoh
 EL_ENG_02135	LOCATION	Hudson , Mass.	Worcester	Boston	Boston	California	Hudson	Boxborough	Hudson	Hiawatha Bray
 	ORGANIZATION	Intel Corp.	Advanced Micro Devices Inc	FBI	Intel	US District Court	FBI	Intel	Intel	Intel	Intel	Intel	AMD	AMD	Intel	Intel	FBI	Intel	AMD	Intel	Department of Justice	FBI	AMD	Intel	AMD	AMD	FBI	AMD	AMD	Intel	AMD
@@ -8602,9 +8602,9 @@ EL_ENG_02154	LOCATION	Utah	Cove Fort	Cove Fort	Cove Fort	Cove Fort	Milford	Cove 
 	ORGANIZATION	Cox News Service	Chevron	Cove Fort	Brigham Young
 	LOCATION	Utah	Cove Fort	Cove Fort	Cove Fort	Cove Fort	Milford	Cove Fort	Colo.
 	PERSON	Elder Moore	Moores	Moore	Moore	Moore	Moore	Moores	Cove Fort	Moore	Cassie Hewlings
-EL_ENG_02155	LOCATION	BEIJING	Beijing	China	France	China	Beijing	Oxford	Britain	Oxford	Oxford
+EL_ENG_02155	LOCATION	BEIJING	Beijing	China	France	China	Beijing	Oxford in Britain	Oxford	Oxford
 	ORGANIZATION	Xinhua	State Administration for Industry and Commerce	State Administration Industry and Commerce	Intermediate People 's Court	Oxford	Oxford University
-	LOCATION	BEIJING	Beijing	China	France	China	Beijing	Oxford	Britain	Oxford	Oxford
+	LOCATION	BEIJING	Beijing	China	France	China	Beijing	Oxford in Britain	Oxford	Oxford
 	PERSON	Holdham	Holdham	Holdham
 EL_ENG_02156	LOCATION	Dallas , Lewisville , Frisco	Southlake	West Windsor	TX	Lewisville , TX	Main St &amp; Valley	North Carroll Ave. , Southlake , TX	Frisco , TX	Preston	Lebanon	Dallas	Dallas , TX	Dallas	Fisher Road , Dallas , TX
 	ORGANIZATION	Denton North Lakes Recreation Center	Lewisville Civic Circle Recreation Center	Southlake Carroll Intermediate School	Frisco Athletic Center	Lovers Lane &amp; Mockingbird
@@ -8890,9 +8890,9 @@ EL_ENG_02226	PERSON	Friedman	Brown	Friedman	Thomas L. Friedman	Friedman	Brown	Ma
 	ORGANIZATION	New York Times	New York Times	New York Times	Brown University
 	LOCATION	Haiti	Iraq
 	PERSON	Friedman	Brown	Friedman	Thomas L. Friedman	Friedman	Brown	Margaree Little	Friedman	Brown	Friedman	Friedman	Brown	Friedman
-EL_ENG_02227	LOCATION	U.S.	HINGHAM , Massachusetts	Bare Cove Park	Hingham
+EL_ENG_02227	LOCATION	U.S.	HINGHAM , Massachusetts	Bare Cove Park in Hingham
 	ORGANIZATION	Hingham District Court
-	LOCATION	U.S.	HINGHAM , Massachusetts	Bare Cove Park	Hingham
+	LOCATION	U.S.	HINGHAM , Massachusetts	Bare Cove Park in Hingham
 	PERSON	Eric Snow	James Winquist	William Chrapan	David Lyons	Winquist	Chrapan	Chrapan
 EL_ENG_02228	ORGANIZATION	American Automobile Association
 	ORGANIZATION	American Automobile Association
