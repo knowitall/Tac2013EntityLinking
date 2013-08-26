@@ -7,13 +7,14 @@ import java.util.Properties;
 
 import scala.actors.threadpool.Executors;
 import scala.actors.threadpool.TimeUnit;
-
 import edu.knowitall.collection.immutable.Interval;
 import edu.stanford.nlp.dcoref.CorefChain;
 import edu.stanford.nlp.dcoref.CorefChain.CorefMention;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefClusterIdAnnotation;
-import edu.stanford.nlp.ling.CoreAnnotations.*;
+import edu.stanford.nlp.ling.CoreAnnotations.NamedEntityTagAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;

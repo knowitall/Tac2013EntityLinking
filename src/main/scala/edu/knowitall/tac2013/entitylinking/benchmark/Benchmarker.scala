@@ -6,6 +6,7 @@ import edu.knowitall.tac2013.entitylinking.KBPQuery
 import scopt.OptionParser
 import java.io.PrintWriter
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
+import edu.knowitall.tac2013.entitylinking.Clusterer
 
 sealed trait SortType
 case object SystemClusterSort extends SortType
@@ -128,7 +129,7 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
     val recStr  = "%.03f" format rec
     val f1Str   = "%.03f" format f1
     
-    comparisons ++ Seq("", "SUMMARY",
+    comparisons ++ List("", "SUMMARY",
         s"Number of exact KB ID matches:    \t$numCorrect", 
         s"Number of NILXXX-NILYYY matches:  \t$numNilOk", 
         s"Number of Wrong KB ID mismatches: \t$numWrongKb",
@@ -167,7 +168,6 @@ object Benchmarker {
   import java.io.File
   import edu.knowitall.common.Resource.using
   import scala.io.Source
-  import edu.knowitall.tac2013.entitylinking.KBPQuery.parseKBPQueries
   import edu.knowitall.tac2013.entitylinking.RunKBPEntityLinkerSystem
   
   def main(args: Array[String]): Unit = {
@@ -200,10 +200,10 @@ object Benchmarker {
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
     
-    ResourceHelper.initialize(year)
-    KBPQuery.activate(baseDir,year)
+    ResourceHelper.initialize(baseDir, year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
     
-    val queries = parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
+    val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year,sportsClassifyOn),queries)
@@ -213,11 +213,10 @@ object Benchmarker {
     if(outputFile == ""){
       new Benchmarker(sortType, queries, results, answers).benchmarkOutput foreach println
     }
-    else{
+    else {
       val pw = new PrintWriter(new File(outputFile))
-      new Benchmarker(sortType, queries, results, answers).benchmarkOutput.foreach{p => {pw.write(p+"\n")}}
+      new Benchmarker(sortType, queries, results, answers).benchmarkOutput.foreach{p => { pw.write(p+"\n") } }
       pw.close()
     }
-    
   }
 }

@@ -128,12 +128,12 @@ object SportsSenseFeatures {
   object locationVariance extends SportsSenseFeature("location variance"){
     def apply(si :SportsSenseInstance) = {
       val queryId = si.kbpQuery.id
-      var namedEntityCollectionMap :Option[Map[String,CorefHelperMethods.NamedEntityCollection]] = None
+      var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
       }
       else{
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
       }
       
       try{
@@ -159,12 +159,12 @@ object SportsSenseFeatures {
   object organizationsWithLocationStrings extends SportsSenseFeature("Ratio of Organizations With Locations to Other Organizations"){
     def apply(si: SportsSenseInstance) = {
       val queryId = si.kbpQuery.id
-      var namedEntityCollectionMap :Option[Map[String,CorefHelperMethods.NamedEntityCollection]] = None
+      var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
       }
       else{
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
       }
       try{
         val organizations = namedEntityCollectionMap.get.get(queryId).get.organizations
@@ -216,12 +216,12 @@ object SportsSenseFeatures {
     def apply(si: SportsSenseInstance) = {
       val kbpQuery = si.kbpQuery
       val queryId = kbpQuery.id
-      var namedEntityCollectionMap :Option[Map[String,CorefHelperMethods.NamedEntityCollection]] = None
+      var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
       }
       else{
-        namedEntityCollectionMap = CorefHelperMethods.queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
       }
       val queryName = kbpQuery.name
       val context = kbpQuery.sourceContext
