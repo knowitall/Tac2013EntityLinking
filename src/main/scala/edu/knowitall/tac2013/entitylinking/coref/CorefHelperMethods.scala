@@ -353,7 +353,6 @@ class CorefHelperMethods(val year: String) {
         val candidates = scala.collection.mutable.Map[String,Int]()
         for( locationRegex(containedLoc,containerLoc) <- locationRegex.findAllMatchIn(sourceText); fullLocation = expandAbbreviation(locationCasing(containedLoc+", " +containerLoc)).split(",");
              if locationContainsLocation(fullLocation(1).trim(),fullLocation(0).trim())) {
-          println("Trying to find RAW LOCATION STRING: " + fullLocation(0) +", " + fullLocation(1))
           val containerLocation = fullLocation(1).trim()
           if(candidates.contains(containerLocation)){
             candidates += ((containerLocation, 1 + candidates.get(containerLocation).get))
