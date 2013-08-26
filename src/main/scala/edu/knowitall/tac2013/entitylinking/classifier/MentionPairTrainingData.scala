@@ -29,12 +29,12 @@ class MentionPairTrainingData(val basePath: String, val year: String) extends It
   private val queryAnswers = queries.map(q => (q, answersMap(q.id)))
   private val mentions = queryAnswers.map { case (query, answer) =>
     val humanReadable = new FormattedOutputToHumanReadableOutputConverter(answer, query)
-    new Mention(query, humanReadable)
+    Mention.from(query, humanReadable)
   }
   
   private val allMentionPairs = mentions.zipWithIndex.flatMap { case (m1, index) =>
     mentions.drop(index + 1).map { m2 => 
-      val label = m1.output.linkId == m2.output.linkId
+      val label = m1.linkId == m2.linkId
       Labelled(label, new MentionPair(m1, m2)) 
     }  
   }

@@ -44,8 +44,9 @@ object RunKBPEntityLinkerSystem {
     val entityString = identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
-    val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
-    linkOpt.filter(l => linkClassifier.score(l) > 0.84) match {
+    val links = linker.getBestEntities(entityString, q.corefSourceContext)
+    val linkOpt = links.sortBy(l => -1.0 * linkClassifier.score(l)).headOption
+    linkOpt.filter(l => linkClassifier.score(l) > 0.9) match {
 
       case None => {
         //if link is null and there is a better entity string
