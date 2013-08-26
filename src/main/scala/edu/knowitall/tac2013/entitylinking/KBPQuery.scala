@@ -10,10 +10,11 @@ import edu.knowitall.collection.immutable.Interval
 import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods
 
 class KBPQuery (val id: String, val name: String, val doc: String,
-    val begOffset: Int, val endOffset: Int){
+    val begOffset: Int, val endOffset: Int, val baseDir: String, val year: String){
   
   var entityString = name
   
+  val helper = KBPQuery.getHelper(baseDir, year)
   
   private def getSourceContext(): String = {
     SolrHelper.getContextFromDocument(doc, begOffset, name)
@@ -25,7 +26,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
-    val corefMentions = KBPQuery.queryToCorefMentionsMap.get(id)
+    val corefMentions = KBPQuery.getHelper(baseDir, year).queryToCorefMentionsMap.get(id)
     for(cmi <- corefMentions){
       val contextSentence = SolrHelper.getContextFromDocument(doc,cmi.start,name)
       contextualSentences = contextualSentences :+ contextSentence
@@ -36,7 +37,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   val sourceContext = getSourceContext()
   val sourceWideContext = getWideContext()
   lazy val corefSourceContext = getContextOfAllMentions()
-  lazy val stanfordNERType = CorefHelperMethods.getStanfordNERType(id)
+  lazy val stanfordNERType = CorefHelperMethods.get(year).getStanfordNERType(id)
   
   
   def trimSourceContext():String = {
@@ -54,7 +55,16 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   //System.err.println("KBPQuery for entity: " + name +" has context sentence of: " + sourceContext)
 }
 
-object KBPQuery{
+object KBPQuery {
+  
+  private val helperCache = new scala.collection.mutable.HashMap[(String, String), KBPQueryHelper]
+  
+  def getHelper(baseDir: String, year: String) = helperCache.getOrElseUpdate((baseDir, year), KBPQueryHelper(baseDir, year))
+}
+
+case class KBPQueryHelper(val baseDir: String, val year: String) {
+  
+  activate(baseDir, year)
   
   var wikiMap :Option[Map[String,String]] = None
   var kbIdToTitleMap :Option[Map[String,String]] = None
@@ -62,7 +72,6 @@ object KBPQuery{
   var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
   var kbTitleToIdMap :Option[Map[String,String]] = None
   var kbIdToWikiTypeMap :Option[Map[String,String]] = None
-  var year :Option[String] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
@@ -82,7 +91,7 @@ object KBPQuery{
 	    val endText = queryXML.\\("end").text
 	    val endInt = endText.toInt
 	    
-	    val x = new KBPQuery(idText,nameText,docIDText,begInt,endInt)
+	    val x = new KBPQuery(idText,nameText,docIDText,begInt,endInt, baseDir, year)
 	    Some(x)
     }
     catch {
@@ -103,7 +112,7 @@ object KBPQuery{
 	    val docIDText = queryXML.\\("docid").text
 
 	    
-	    val x = new KBPQuery(idText,nameText,docIDText,-1,-1)
+	    val x = new KBPQuery(idText,nameText,docIDText,-1,-1, baseDir, year)
 	    Some(x)
     }
     catch {
@@ -124,7 +133,7 @@ object KBPQuery{
   }
   
   def activate (baseDir: String, year:String) {
-      this.year = Some(year)
+    
 	  val mapFile = baseDir + "/wikimap.txt"
 	  wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
 	      Some(WikiMappingHelper.loadNameToNodeIdMap(source.getLines))
@@ -154,17 +163,5 @@ object KBPQuery{
 	  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
 	  kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile,"UTF8")) { source =>
 	    Some(WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines))}
-  }
-  
-  def deactivate(){
-    
-	   wikiMap  = None
-	  kbIdToTitleMap  = None
-	  kbIdTextMap  = None
-	  queryToCorefMentionsMap = None
-	  kbTitleToIdMap  = None
-	  kbIdToWikiTypeMap  = None
-	  year = None
-    
   }
 }
