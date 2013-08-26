@@ -1,6 +1,5 @@
 package edu.knowitall.tac2013.entitylinking
 
-import KBPQuery.parseKBPQueries
 import edu.knowitall.browser.entity.EntityLinker
 import edu.knowitall.browser.entity.batch_match
 import edu.knowitall.browser.entity.StringMatchCandidateFinder
@@ -9,16 +8,23 @@ import edu.knowitall.browser.entity.EntityTyper
 import edu.knowitall.common.Resource.using
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import scopt.OptionParser
+import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods
 import edu.knowitall.tac2013.entitylinking.utils.FormattedOutputToHumanReadableOutputConverter
-import edu.knowitall.tac2013.entitylinking.coref.CorefHelperMethods.identifyBestEntityStringByRules
 import edu.knowitall.tac2013.entitylinking.classifier.LinkClassifier
+import edu.knowitall.tac2013.entitylinking.classifier.MentionPairClassifier
+import edu.knowitall.tac2013.entitylinking.classifier.Mention
+import edu.knowitall.tac2013.entitylinking.classifier.MentionPair
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseLabeller
 import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
 
 object RunKBPEntityLinkerSystem {
   
-  var baseDir = "/scratch/resources/entitylinkingResources"
+  var baseDir = "/scratch/"
+  val year = "2012"
+
+  //var baseDir = "/scratch/resources/entitylinkingResources"
+
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -35,10 +41,7 @@ object RunKBPEntityLinkerSystem {
   		)
   
   def linkQueries(queries: Seq[KBPQuery], year: String, sportsClassifyOn:Boolean): Seq[FormattedOutput] = {
-    if(KBPQuery.year.getOrElse("") != year){
-	  KBPQuery.deactivate()
-	  KBPQuery.activate(baseDir, year)
-    }
+
     for(q <- queries) yield linkQuery(q, linker, linkClassifier, sportsClassifyOn)
   }
 
@@ -46,7 +49,7 @@ object RunKBPEntityLinkerSystem {
     if(sportsClassifyOn){
       q.sportsSense = SportsSenseLabeller.labelSportsSense(q)
     }
-    val entityString = identifyBestEntityStringByRules(q)
+    val entityString = CorefHelperMethods.get(year).identifyBestEntityStringByRules(q)
     q.entityString = entityString
     println(q.id + "\t" + q.name + "\t" + entityString)
     val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
@@ -60,7 +63,7 @@ object RunKBPEntityLinkerSystem {
         //than the one given in KBP check KB for
         var answer: Option[FormattedOutput] = None
         if (q.entityString != q.name) {
-          val kbIdOption = KBPQuery.kbTitleToIdMap.get.get(q.entityString)
+          val kbIdOption = KBPQuery.getHelper(baseDir, year).kbTitleToIdMap.get(q.entityString)
           if (kbIdOption.isDefined) {
             answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
           }
@@ -72,15 +75,17 @@ object RunKBPEntityLinkerSystem {
         }
       }
       case Some(link) => {
+
         var nodeId :Option[String] = None
-        nodeId = KBPQuery.wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
+        nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
+
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
     }
     
     if(q.sportsSense.isDefined){
       if(q.sportsSense.get == true){
-        if(SportsHelperMethods.isLocation(answer.kbLink)){
+        if(SportsHelperMethods(baseDir, year).isLocation(answer.kbLink)){
           return new FormattedOutput(q.id,nextCluster,.5)
         }
       }
@@ -120,9 +125,9 @@ object RunKBPEntityLinkerSystem {
     }
     
     newAnswerSeq.toList
-    
   }
   
+
   def main(args: Array[String]) {
  
     var outputStream = System.out
@@ -148,11 +153,12 @@ object RunKBPEntityLinkerSystem {
     }
     
     
-    ResourceHelper.initialize(year)
-    KBPQuery.activate(baseDir,year)
-    
-    val queries = parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    ResourceHelper.initialize(baseDir, year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
+
+    val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     val answers = clusterNils(linkQueries(queries,year,sportsClassifyOn),queries)
+
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers
       for (qa <- queryAnswerList) yield {

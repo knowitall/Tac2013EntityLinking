@@ -8,7 +8,7 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
     new batch_match(linkerSupportPath),
-    new CrosswikisCandidateFinder(linkerSupportPath, 0.01, 10),
+    new CrosswikisCandidateFinder(linkerSupportPath, 0.00, 1),
     new EntityTyper(linkerSupportPath))
   
   val trainingResource = {
@@ -31,7 +31,7 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
   
   def fieldsToLink(label: String, entity: String, expected: String, context: String): Option[Labelled[EntityLink]] = {
     
-    val linksMap = linker.getBestEntity(entity, splitRegex.split(context)).map(l => (l.entity.name, l)).toMap
+    val linksMap = linker.getBestEntities(entity, splitRegex.split(context)).map(l => (l.entity.name, l)).toMap
     linksMap.get(expected) match {
       case Some(link) => Some(Labelled(label == "1", link))
       case None => {

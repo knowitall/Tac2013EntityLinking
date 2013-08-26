@@ -68,7 +68,6 @@ object SportsClassifier{
     else{
       allData = scala.util.Marshal.load[List[Labelled[SportsSenseInstance]]](FileUtils.readFileToByteArray(trainingDataFile))
     }
-    KBPQuery.activate(baseDir,"2012")
     val allDataSize = allData.size
     val testDataSize = math.ceil(allDataSize * .2).toInt
     val trainingData = allData.drop(testDataSize).toIterable
