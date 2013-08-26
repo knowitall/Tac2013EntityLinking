@@ -5,7 +5,7 @@ import edu.knowitall.tac2013.entitylinking.coref.SerializeNamedEntities
 
 object ResourceHelper {
   
-  def initialize(year: String){
+  def initialize(baseDir: String, year: String){
     //check that corefMentions file exists, if not create it...
     try{
       	  val corefMentionsFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt").getPath()
@@ -13,7 +13,7 @@ object ResourceHelper {
     catch{
       //file is not in location, so create it
       case e: Exception =>{
-    	  SerializeCorefOffsetsData.serializeCorefOffsetsData(year)
+    	  SerializeCorefOffsetsData.get(baseDir, year).serializeCorefOffsetsData
       }
     }
     
@@ -25,7 +25,7 @@ object ResourceHelper {
     catch{
       //file is not in location, so create it
       case e: Exception =>{
-    	  SerializeNamedEntities.serializeNamedEntities(year)
+    	  new SerializeNamedEntities(baseDir, year).serializeNamedEntities
       }
     }
   }

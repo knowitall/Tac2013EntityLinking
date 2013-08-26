@@ -1,6 +1,7 @@
 package edu.knowitall.tac2013.entitylinking.classifier
 
 import edu.knowitall.tac2013.entitylinking.KBPQuery
+import edu.knowitall.tac2013.entitylinking.KBPQueryHelper
 import edu.knowitall.common.Resource.using
 import scala.io.Source
 import edu.knowitall.tac2013.entitylinking.FormattedOutput
@@ -14,7 +15,6 @@ import edu.knowitall.tac2013.entitylinking.SolrHelper
 
 object SportsSenseTrainingData {
   
-  
   private val stopWords = {
     val url = getClass.getResource("stopwords.txt")
     require(url != null, "Could not find stopwords.txt")
@@ -22,10 +22,10 @@ object SportsSenseTrainingData {
   }
   
   private def getData(baseDir: String, year: String, training: Boolean) : List[SportsSenseInstance] = {
-    val queries = KBPQuery.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val queries = KBPQuery.getHelper(baseDir, year).parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     var dataList = List[SportsSenseInstance]()
     
-    val answerUrl = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
+    val answerUrl = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_2012_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
     val queryAnswerList = queries zip answers
     for(queryAnswer <- queryAnswerList){
@@ -38,10 +38,10 @@ object SportsSenseTrainingData {
           TipsterData.stateOrProvinces.contains(queryName.toLowerCase()) ||
           TipsterData.countries.contains(queryName.toLowerCase())) &&
           (!answer.kbLink.startsWith("NIL") &&
-           (KBPQuery.kbIdToWikiTypeMap.get.contains(answer.kbLink))&&
+           (KBPQuery.getHelper(baseDir, year).kbIdToWikiTypeMap.contains(answer.kbLink))&&
            (query.stanfordNERType != "PERSON"))){
     	  	if(training){
-	    	  	if(kbEntryIsTeam(answer.kbLink)){
+	    	  	if(kbEntryIsTeam(baseDir, year, answer.kbLink)){
 	    	  		dataList = new SportsSenseInstance(query,Some(true)) :: dataList
 	    	  	}
 	    	  	else{
@@ -57,10 +57,7 @@ object SportsSenseTrainingData {
   }
   
   def getTrainingData(baseDir : String, year: String) : Iterable[Labelled[SportsSenseInstance]] = {
-    KBPQuery.deactivate()
-    KBPQuery.activate(baseDir, year)
 
-    
     val trainingList = getData(baseDir,year,true)
     
     var exList = List[Example[Boolean,Counter[String,Double]]]()
@@ -86,7 +83,7 @@ object SportsSenseTrainingData {
       val id = trainingInstance.kbpQuery.id
       val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc)
       val counter = getContextCounter(context)
-      val ex = Example(label,counter)
+      val ex = Example(label    ,counter)
       exList = ex :: exList
     }
     val nbClassifier = new NaiveBayes(exList.toIterable,.05,.01)
@@ -141,9 +138,8 @@ object SportsSenseTrainingData {
     var naiveBayesScore : Option[Double] = None
   }
   
-  
-  def kbEntryIsTeam(kbId: String): Boolean = {
-    val wikiTypeMap = KBPQuery.kbIdToWikiTypeMap.get
+  def kbEntryIsTeam(baseDir: String, year: String, kbId: String): Boolean = {
+    val wikiTypeMap = KBPQuery.getHelper(baseDir, year).kbIdToWikiTypeMap
     if(wikiTypeMap.get(kbId).get.contains("team")||
         wikiTypeMap.get(kbId).get.contains("club")){
       true
