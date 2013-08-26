@@ -53,7 +53,7 @@ object RunKBPEntityLinkerSystem {
         //than the one given in KBP check KB for
         var answer: Option[FormattedOutput] = None
         if (q.entityString != q.name) {
-          val kbIdOption = KBPQuery.getHelper(baseDir, year).kbTitleToIdMap.get.get(q.entityString)
+          val kbIdOption = KBPQuery.getHelper(baseDir, year).kbTitleToIdMap.get(q.entityString)
           if (kbIdOption.isDefined) {
             answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
           }
@@ -65,7 +65,7 @@ object RunKBPEntityLinkerSystem {
         }
       }
       case Some(link) => {
-        val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.getOrElse(throw new Exception("Did not activate KBP Query")).get(link.entity.name)
+        val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
         //new FormattedOutput(q.id, nodeId.getOrElse(fbidCluster(link.entity.fbid)), link.combinedScore)
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }

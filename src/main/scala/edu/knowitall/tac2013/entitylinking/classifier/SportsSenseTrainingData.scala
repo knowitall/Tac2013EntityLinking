@@ -34,7 +34,7 @@ object SportsSenseTrainingData {
           TipsterData.stateOrProvinces.contains(queryName.toLowerCase()) ||
           TipsterData.countries.contains(queryName.toLowerCase())) &&
           (!answer.kbLink.startsWith("NIL") &&
-           (helper2012.kbIdToWikiTypeMap.get.contains(answer.kbLink)) &&
+           (helper2012.kbIdToWikiTypeMap.contains(answer.kbLink)) &&
            (query.stanfordNERType != "PERSON"))){
         if(kbEntryIsTeam(helper2012, answer.kbLink)){
           trainingList = new SportsSenseInstance(query,true) :: trainingList
@@ -60,7 +60,7 @@ object SportsSenseTrainingData {
           TipsterData.stateOrProvinces.contains(queryName.toLowerCase()) ||
           TipsterData.countries.contains(queryName.toLowerCase())) &&
           (!answer.kbLink.startsWith("NIL") &&
-           (helper2011.kbIdToWikiTypeMap.get.contains(answer.kbLink))&&
+           (helper2011.kbIdToWikiTypeMap.contains(answer.kbLink))&&
            (query.stanfordNERType != "PERSON"))){
         if(kbEntryIsTeam(helper2011, answer.kbLink)){
           trainingList = new SportsSenseInstance(query,true) :: trainingList
@@ -118,7 +118,7 @@ object SportsSenseTrainingData {
   
   def kbEntryIsTeam(helper: KBPQueryHelper, kbId: String): Boolean = {
     
-    val wikiTypeMap = helper.kbIdToWikiTypeMap.get
+    val wikiTypeMap = helper.kbIdToWikiTypeMap
     if(wikiTypeMap.get(kbId).get.contains("team")||
         wikiTypeMap.get(kbId).get.contains("club")){
       true

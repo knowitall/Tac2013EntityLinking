@@ -16,9 +16,9 @@ class FormattedOutputToHumanReadableOutputConverter(val formattedOutput: Formatt
   val entityString = kbpQuery.name
   val entityStringUsed = kbpQuery.entityString
   val sourceContext = kbpQuery.corefSourceContext.mkString(" ")
-  val kbSentence = kbpQuery.helper.kbIdTextMap.getOrElse({throw new Exception("Did not active KBP Query")}).get(linkId).getOrElse({"None"})
+  val kbSentence = kbpQuery.helper.kbIdTextMap.get(linkId).getOrElse({"None"})
   val docId = kbpQuery.doc
-  val kbTitle = kbpQuery.helper.kbIdToTitleMap.getOrElse({throw new Exception("Did not activate KBP Query")}).get(linkId).getOrElse({"None"})
+  val kbTitle = kbpQuery.helper.kbIdToTitleMap.get(linkId).getOrElse({"None"})
   
   override def toString(): String = {
     Iterator(queryId,entityString,entityStringUsed,docId,sourceContext,linkId,kbTitle,kbSentence).mkString("\t")

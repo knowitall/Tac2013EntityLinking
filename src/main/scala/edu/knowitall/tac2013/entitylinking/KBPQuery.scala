@@ -26,7 +26,7 @@ class KBPQuery (val id: String, val name: String, val doc: String,
   
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
-    val corefMentions = KBPQuery.getHelper(baseDir, year).queryToCorefMentionsMap.get(id)
+    val corefMentions = KBPQuery.getHelper(baseDir, year).queryToCorefMentionsMap(id)
     for(cmi <- corefMentions){
       val contextSentence = SolrHelper.getContextFromDocument(doc,cmi.start,name)
       contextualSentences = contextualSentences :+ contextSentence
@@ -64,14 +64,12 @@ object KBPQuery {
 
 case class KBPQueryHelper(val baseDir: String, val year: String) {
   
-  activate(baseDir, year)
-  
-  var wikiMap :Option[Map[String,String]] = None
-  var kbIdToTitleMap :Option[Map[String,String]] = None
-  var kbIdTextMap :Option[Map[String,String]] = None
-  var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
-  var kbTitleToIdMap :Option[Map[String,String]] = None
-  var kbIdToWikiTypeMap :Option[Map[String,String]] = None
+//  var wikiMap :Option[Map[String,String]] = None
+//  var kbIdToTitleMap :Option[Map[String,String]] = None
+//  var kbIdTextMap :Option[Map[String,String]] = None
+//  var queryToCorefMentionsMap : Option[Map[String,Seq[Interval]]] = None
+//  var kbTitleToIdMap :Option[Map[String,String]] = None
+//  var kbIdToWikiTypeMap :Option[Map[String,String]] = None
   
   val corefHelper = new StanfordAnnotatorHelperMethods(false)
   
@@ -131,37 +129,36 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
     
      kbpQueryList.toList.flatten
   }
-  
-  def activate (baseDir: String, year:String) {
-    
-	  val mapFile = baseDir + "/wikimap.txt"
-	  wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
-	      Some(WikiMappingHelper.loadNameToNodeIdMap(source.getLines))
-	    }
-	  val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
-	  kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
-	      Some(WikiMappingHelper.loadIdToIntroTextMap(source.getLines))
-	    }
-	  val kbToTitleMapFile = baseDir + "/wikimap.txt"
-	  kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadIdToTitleMap(source.getLines))
-	    }
-	  var corefMentionsFile = ""
-	  try{
-	   corefMentionsFile = getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/"+year+"corefmentions.txt").getPath()
-	  }
-	  catch{
-	    case e: Exception => {
-	      corefMentionsFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref"+year+"corefmentions.txt").getPath()
-	    }
-	  }
-	  queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines))}
-	  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
-	  kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadKbTitleToIdMap(source.getLines))}
-	  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
-	  kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile,"UTF8")) { source =>
-	    Some(WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines))}
+
+  val mapFile = baseDir + "/wikimap.txt"
+  val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
+    WikiMappingHelper.loadNameToNodeIdMap(source.getLines)
+  }
+  val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
+  val kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
+    WikiMappingHelper.loadIdToIntroTextMap(source.getLines)
+  }
+  val kbToTitleMapFile = baseDir + "/wikimap.txt"
+  val kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile, "UTF8")) { source =>
+    WikiMappingHelper.loadIdToTitleMap(source.getLines)
+  }
+  val corefMentionsFile =
+    try {
+      getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
+    } catch {
+      case e: Exception => {
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
+      }
+    }
+  val queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
+    WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines)
+  }
+  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
+  val kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile, "UTF8")) { source =>
+    WikiMappingHelper.loadKbTitleToIdMap(source.getLines)
+  }
+  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
+  val kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile, "UTF8")) { source =>
+    WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines)
   }
 }
