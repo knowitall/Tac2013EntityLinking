@@ -22,9 +22,10 @@ class MentionPairTrainingData(val basePath: String, val year: String) extends It
   val answerUrl = getClass.getResource("/edu/knowitall/tac2013/entitylinking/benchmark/tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
   val answers = using(io.Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
   val answersMap = answers.map(a => (a.queryId, a)).toMap
-  
+
   private val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
   private val queryAnswers = queries.map(q => (q, answersMap(q.id)))
+
   private val mentions = queryAnswers.map { case (query, answer) =>
     val humanReadable = new FormattedOutputToHumanReadableOutputConverter(answer, query)
     Mention.from(query, humanReadable)

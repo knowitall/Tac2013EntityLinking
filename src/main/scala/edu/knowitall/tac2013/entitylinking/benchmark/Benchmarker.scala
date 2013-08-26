@@ -142,11 +142,20 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
   }
   
   def kbLinkReport(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
-    val expString = if (msg.contains("KBID")) {
+    val expString = if (msg.contains("KB ID")) {
       val pretty = makePretty(expected)
       "\tEXPECTED:\t" + pretty.kbTitle + "\t" + pretty.kbSentence
     } else { "" }
-    msg + "\t" + system.kbLink + "\t" + expected.kbLink + "\t" + makePretty(system) + expString
+    val query = queryMap.get(system.queryId).get
+    val sportsClassificationString = query.sportsSense match{
+      case None => "Did not run classifier"
+      case Some(x) => x match{
+        case true => {"Has Sports Sense"}
+        case false => {"Does not Have Sports Sense"}
+      }
+    }
+    (msg + "\t" + system.kbLink + "\t" + expected.kbLink + "\t" + makePretty(system) + expString
+    + "\t" + "Highest Link Classifier Score:" + "\t" + query.highestLinkClassifierScore + "\t" + "Sports Classification: " + "\t" + sportsClassificationString)
   }
   
   def kbLinkIncorrect(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
@@ -169,6 +178,7 @@ object Benchmarker {
     var querySort = false
     var outputFile = ""
     var year = ""
+    var sportsClassifyOn = false
       
     val parser = new OptionParser("Benchmarker") {
       arg("year", "Year of queries to run on", {s => year =s })
@@ -177,6 +187,8 @@ object Benchmarker {
       opt("benchmarkSort", "Sort queries by benchmark set cluster id.", { benchmarkSort = true})
       opt("querySort", "Sort queries by id.", { querySort = true})
       opt("outputFile", "output to file", {s => outputFile =s})
+      opt("sportsClassify","Turn on sports classification", {sportsClassifyOn = true})
+
     }
     
     if (!parser.parse(args)) return
@@ -194,7 +206,7 @@ object Benchmarker {
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries),queries)
+    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year,sportsClassifyOn),queries)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     
