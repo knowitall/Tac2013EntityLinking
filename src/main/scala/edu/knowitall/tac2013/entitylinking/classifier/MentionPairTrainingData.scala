@@ -50,7 +50,7 @@ class MentionPairTrainingData(val basePath: String, val year: String) extends It
   private lazy val negativePairs = rand.shuffle(allMentionPairs.filterNot(_.label))
   
   
-  def iterator = rand.shuffle(positivePairs ++ negativePairs.take(positivePairs.size * 10)).iterator
+  def iterator = rand.shuffle(positivePairs ++ negativePairs.take(positivePairs.size * 10)).iterator.take(3000)
 }
 
 object MentionPairTrainingData {
@@ -67,5 +67,14 @@ object MentionPairTrainingData {
     def m2ContainsM1 = m2Context.exists(c => c.contains(m1String) || c.contains(m1Alt))
 
     m1ContainsM2 || m2ContainsM1
+  }
+  
+  def main(args: Array[String]): Unit = {
+    
+    val out = new java.io.PrintStream("traindebug2012.txt")
+    
+    new MentionPairTrainingData("/scratch/", "2012") foreach { case Labelled(item, label) => 
+      out.println(label + "\t" + item)
+    }
   }
 }
