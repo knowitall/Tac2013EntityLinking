@@ -121,24 +121,24 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
   }
 
   val mapFile = baseDir + "/wikimap.txt"
-  val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
+  lazy val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
     WikiMappingHelper.loadNameToNodeIdMap(source.getLines)
   }
 
-  val kbIdToWikiStructuredTypeFile = getClass.getResource("kbIdToWikiStructuredTypeMap.txt").getPath()
-  val kbIdToWikiStructuredTypeMap = using(io.Source.fromFile(kbIdToWikiStructuredTypeFile, "UTF8")) { source =>
+  lazy val kbIdToWikiStructuredTypeFile = getClass.getResource("kbIdToWikiStructuredTypeMap.txt").getPath()
+  lazy val kbIdToWikiStructuredTypeMap = using(io.Source.fromFile(kbIdToWikiStructuredTypeFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbIdTowikiStructuredTypeMap(source.getLines)
   }
 
-  val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
-  val kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
+  lazy val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
+  lazy val kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadIdToIntroTextMap(source.getLines)
   }
-  val kbToTitleMapFile = baseDir + "/wikimap.txt"
-  val kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile, "UTF8")) { source =>
+  lazy val kbToTitleMapFile = baseDir + "/wikimap.txt"
+  lazy val kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadIdToTitleMap(source.getLines)
   }
-  val corefMentionsFile =
+  lazy val corefMentionsFile =
     try {
       getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
     } catch {
@@ -146,15 +146,15 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
         new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
       }
     }
-  val queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
+  lazy val queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
     WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines)
   }
-  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
-  val kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile, "UTF8")) { source =>
+  lazy val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
+  lazy val kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbTitleToIdMap(source.getLines)
   }
-  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
-  val kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile, "UTF8")) { source =>
+  lazy val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
+  lazy val kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines)
   }
 }
