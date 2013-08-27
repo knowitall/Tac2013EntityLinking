@@ -21,7 +21,8 @@ import scala.collection.mutable.HashMap
 
 object Clusterer {
   
-  private val cutoff= 0.9998516902911898
+  private val cutoff= 0.9999821007
+
   
   private var mentionPairCache = new HashMap[(String, String), Option[MentionPair]]
   val mpClassifier = MentionPairClassifier.default
@@ -76,7 +77,7 @@ object Clusterer {
     val mentionPairs = queryPairs.flatMap({ qp => 
       def update = {
         val mp = new MentionPair(c1Queries(qp._1), c2Queries(qp._2))
-        if (mentionPairFilter(mp)) Some(mp) else None
+        Some(mp)
       }
       mentionPairCache.getOrElseUpdate(qp, update)
     }).toSeq

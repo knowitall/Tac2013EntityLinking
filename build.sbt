@@ -21,7 +21,8 @@ libraryDependencies ++= Seq(
   "jp.sf.amateras.solr.scala" %% "solr-scala-client" % "0.0.8",
   "edu.washington.cs.knowitall.nlptools" %% "nlptools-conf-breeze" % "2.4.2",
   "edu.washington.cs.knowitall.nlptools" %% "nlptools-postag-clear" % "2.4.2",
-  "com.rockymadden.stringmetric" % "stringmetric-core" % "0.25.3"
+  "com.rockymadden.stringmetric" % "stringmetric-core" % "0.25.3",
+  "edu.knowitall" %% "slotfiller" % "0.0.1"
 )
 
 resolvers ++= Seq(
