@@ -137,7 +137,7 @@ object SportsSenseFeatures {
       }
       
       try{
-        val locations = namedEntityCollectionMap.get.get(queryId).get.locations
+        val locations = namedEntityCollectionMap.get(queryId).get.locations
         val numLocations = locations.size
         val numUnique = locations.groupBy(f => {f}).size
         if(numLocations == 0){
@@ -167,7 +167,7 @@ object SportsSenseFeatures {
         CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
       }
       try{
-        val organizations = namedEntityCollectionMap.get.get(queryId).get.organizations
+        val organizations = namedEntityCollectionMap.get(queryId).get.organizations
         val numOrganizations= organizations.size
         val organizationCopy= organizations
         var numOrganizationsWithLocations = 0.0
@@ -225,7 +225,7 @@ object SportsSenseFeatures {
       }
       val queryName = kbpQuery.name
       val context = kbpQuery.sourceContext
-      val fullySpecifiedLocations = namedEntityCollectionMap.get.get(queryId).get.locations.filter(p => p.contains(",")).
+      val fullySpecifiedLocations = namedEntityCollectionMap.get(queryId).get.locations.filter(p => p.contains(",")).
       								filter(p => p.split(",")(0).trim().toLowerCase().contains(queryName.toLowerCase())).
       								filter(p => {context.toLowerCase().contains(p.split(",")(1).trim().toLowerCase())})
 //      for(loc <- fullySpecifiedLocations){
