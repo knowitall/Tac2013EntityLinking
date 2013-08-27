@@ -38,9 +38,14 @@ case class ExtrSolrHelper private (val year: String) {
     }
   }
   
-  def extrNearbyArgs(kbpQuery: KBPQuery): Seq[(String, Int)] = {
-    val qString = s"+docId:${kbpQuery.doc}"
+  def getExtrs(docId: String): Seq[KbpExtraction] = {
+    val qString = s"+docId:$docId"
     val extrs = execQuery(qString).flatMap(KbpExtraction.fromFieldMap)
+    extrs
+  }
+  
+  def extrNearbyArgs(kbpQuery: KBPQuery): Seq[(String, Int)] = {
+    val extrs = getExtrs(kbpQuery.doc)
     val mentionOffset = kbpQuery.begOffset
     val stringOffsets = extrs.flatMap { e =>
       val a1Start = e.sentence.startOffset + e.arg1.tokens.head.offsets.start  
@@ -53,6 +58,7 @@ case class ExtrSolrHelper private (val year: String) {
     val notSameAsMention = toStrings.filterNot(_._1.toLowerCase == kbpQuery.entityString.toLowerCase)
     notSameAsMention.sortBy(_._2)
   }
+  
 }
 
 object ExtrSolrHelper {
