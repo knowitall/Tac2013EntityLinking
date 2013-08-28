@@ -4,7 +4,7 @@ import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.browser.entity._
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 
-class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labelled[KBPQueryLink]] {
+class LinkTrainingData(val baseDir: String = "/scratch", val year: String = "2012") extends Iterable[Labelled[KBPQueryLink]] {
   
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
@@ -13,7 +13,7 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
     new EntityTyper(linkerSupportPath))
   
   val trainingResource = {
-    val name = "linker-classifier-training.csv"
+    val name = s"linker-classifier-training-$year.csv"
     val url = getClass.getResource(name)
     require(url != null, s"Could not find $url")
     url
@@ -51,9 +51,9 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
     }
   }
   
-  val kbpQueryHelper = KBPQuery.getHelper(baseDir,"2012")
+  val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
 
-  val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_2012_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+  val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
   val qMap = queries.map(q => (q.id, q)).toMap
   
   val kbpQueryLinks = io.Source.fromURL(trainingResource, "UTF8").getLines.flatMap(lineToLink).toSeq

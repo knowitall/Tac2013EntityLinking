@@ -27,18 +27,20 @@ object LinkClassifierTest {
 
   def main(args: Array[String]): Unit = {
 
-    val allTrainingDataSet = new LinkTrainingData().toSet
+    val allTrainingDataSet = new LinkTrainingData("/scratch/", "2012").toSet
     
     require(allTrainingDataSet.exists(_.label == true))
     require(allTrainingDataSet.exists(_.label == false))
+
+    val allTestDataSet = new LinkTrainingData("/scratch/", "2011").toSet
 
     val splits = 10
 
     val testSize = math.ceil(allTrainingDataSet.size.toDouble / splits.toDouble).toInt
 
-    val testSets = allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
+    val testSets = Seq(allTestDataSet) // allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
 
-    val trainTestSets = testSets.map(tset => (allTrainingDataSet &~ tset, tset))
+    val trainTestSets = Seq((allTrainingDataSet, allTestDataSet)) // testSets.map(tset => (allTrainingDataSet &~ tset, tset))
 
     def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
 
@@ -73,7 +75,7 @@ object LinkClassifierTest {
 
     val precsItems = precRecall(sortedBooleans).zip(sortedTest)
 
-    val output = new java.io.PrintStream("classifier-out.txt")
+    val output = new java.io.PrintStream("classifier-out-2012vs2011.txt")
 
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble
