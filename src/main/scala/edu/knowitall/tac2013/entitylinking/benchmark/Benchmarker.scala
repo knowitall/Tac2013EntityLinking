@@ -27,6 +27,11 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
   
   val goldQueryMap    = goldSet.map(f => (f.queryId, f)).toMap
   
+  def numOverClustered = resultsClusterMap.count { case (id, outs) =>
+    val queries = outs.map(_.queryId).distinct
+    val goldIds = queries.map(goldQueryMap.apply).map(_.kbLink).distinct
+    goldIds.size > 1
+  }
   
   def makePretty(f: FormattedOutput) = new FormattedOutputToHumanReadableOutputConverter(f, queryMap(f.queryId))
   
@@ -138,8 +143,12 @@ class Benchmarker(val sortType: SortType, val queries: Seq[KBPQuery], val system
         s"Number of KB-NIL mismatches:      \t$numNilExp",
         s"B^3 Prec:                         \t$precStr",
         s"B^3 Recall:                       \t$recStr",
-        s"B^3 F1:                           \t$f1Str")
+        s"B^3 F1:                           \t$f1Str",
+        "",
+        s"Num Overclustered:                \t$numOverClustered")
   }
+  
+  
   
   def kbLinkReport(msg: String, system: FormattedOutput, expected: FormattedOutput): String = {
     val expString = if (msg.contains("KB ID")) {

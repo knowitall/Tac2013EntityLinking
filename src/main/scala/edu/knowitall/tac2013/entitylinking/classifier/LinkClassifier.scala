@@ -6,8 +6,9 @@ import edu.knowitall.tool.conf.ConfidenceFunction
 import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
+import edu.knowitall.tac2013.entitylinking.KBPQuery
 
-class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]]) {
+class LinkClassifier(val trainingData: Iterable[Labelled[KBPQueryLink]]) {
   
   def this(baseDir: String){
     this(new LinkTrainingData(baseDir))
@@ -17,22 +18,29 @@ class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]]) {
   
   val classifier = trainer.train(trainingData)
   
-  def score(link: EntityLink): Double = classifier(link) 
+  def score(link: KBPQueryLink): Double = classifier(link) 
+  
+  def score(query: KBPQuery, link: EntityLink) = classifier(new KBPQueryLink(query, link))
 }
 
 object LinkClassifierTest {
 
   def main(args: Array[String]): Unit = {
 
-    val allTrainingDataSet = new LinkTrainingData().toSet
+    val allTrainingDataSet = new LinkTrainingData("/scratch/", "2012").toSet
+    
+    require(allTrainingDataSet.exists(_.label == true))
+    require(allTrainingDataSet.exists(_.label == false))
+
+    val allTestDataSet = new LinkTrainingData("/scratch/", "2011").toSet
 
     val splits = 10
 
     val testSize = math.ceil(allTrainingDataSet.size.toDouble / splits.toDouble).toInt
 
-    val testSets = allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
+    val testSets = Seq(allTestDataSet) // allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
 
-    val trainTestSets = testSets.map(tset => (allTrainingDataSet &~ tset, tset))
+    val trainTestSets = Seq((allTrainingDataSet, allTestDataSet)) // testSets.map(tset => (allTrainingDataSet &~ tset, tset))
 
     def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
 
@@ -67,11 +75,13 @@ object LinkClassifierTest {
 
     val precsItems = precRecall(sortedBooleans).zip(sortedTest)
 
+    val output = new java.io.PrintStream("classifier-out-2012vs2011.txt")
+
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble
       val recString = "%.02f".format(recall)
       val precString = "%.02f".format(prec)
-      println(precString + "\t" + recString + "\t" + conf)
+      output.println(precString + "\t" + recString + "\t" + conf)
     }
   }
 }
