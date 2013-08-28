@@ -43,7 +43,7 @@ object WikiMappingHelper {
     else {
       val inputs = FileUtils.getFilesRecursive(new File(inputFile))
       val nsTime = Timing.time {
-        getStructuredTypes(inputs, output) 
+        getFirstParagraphs(inputs, output) 
       }
       System.err.println(s"Processed ${entityCounter.get} entities in ${Timing.Seconds.format(nsTime)}.")
     }
@@ -55,6 +55,16 @@ object WikiMappingHelper {
     for(file <- files){
       val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
       val idTextTuples = for( entityTextRegex(id,text) <- entityTextRegex.findAllIn(lines)) yield  (id, getKBIntro(text) )
+      for(t <- idTextTuples) output.println(t._1 + "\t" + t._2)
+    }
+    output.close()
+  }
+  
+  def getFirstParagraphs(files: Iterator[File], output: PrintStream){
+    
+    for(file <- files){
+      val lines = scala.io.Source.fromFile(file)(scala.io.Codec.UTF8).getLines.toList.mkString("\n")
+      val idTextTuples = for( entityTextRegex(id,text) <- entityTextRegex.findAllIn(lines)) yield  (id, getKBFirstParagraph(text) )
       for(t <- idTextTuples) output.println(t._1 + "\t" + t._2)
     }
     output.close()
@@ -181,6 +191,18 @@ object WikiMappingHelper {
     } toMap
   }
   
+  def loadKbIdToContextMap(lines: Iterator[String]): Map[String,String] = {
+    System.err.println("Loading KB ID to context map ...")
+    val tabSplit = "\t".r
+    lines.map { line =>
+      tabSplit.split(line) match {
+        case Array(id, context) => (id, context)
+        case Array(id) => (id, "")
+        case _ => throw new RuntimeException(s"Error parsing entity info: $line")
+      }  
+    } toMap
+  }
+  
   
   def getKBIntro(text: String) :String = {
     try{
@@ -191,5 +213,28 @@ object WikiMappingHelper {
         text.take(100).replaceAll("\\s+", " ")
       }
     }
-  }  
+  }
+  
+  def getKBFirstParagraph(text: String) :String = {
+    val paragraphs = text.split("\n\n").tail
+    var context = ""
+    try{
+      var contextSize = context.split(" ").length
+      var paragraphIndex = 0
+      while(contextSize < 1500 && paragraphIndex < paragraphs.length){
+        val paragraph = paragraphs(paragraphIndex)
+        if(paragraph.split(" ").length > 7){
+          context += paragraph +"\n"
+        }
+        paragraphIndex +=1
+        contextSize = context.split(" ").length
+      }
+      return context.replaceAll("\\s+", " ")
+    }
+    catch{
+      case e: Exception => {
+        text.take(10000).replaceAll("\\s+", " ")
+      }
+    }
+  }
 }
