@@ -8,6 +8,10 @@ import edu.knowitall.tac2013.entitylinking.utils.TipsterData
 import java.io.File
 import scala.util.matching.Regex
 import scala.collection.mutable
+import edu.knowitall.collection.immutable.Interval
+import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
+import edu.knowitall.browser.entity.EntityLink
+import scala.util.control.Breaks._
 
 object CorefHelperMethods {
   
@@ -44,16 +48,26 @@ class CorefHelperMethods(val year: String) {
       }
     }
   }
+  val corefMentionsFile =
+    try {
+      getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
+    } catch {
+      case e: Exception => {
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
+      }
+    }
+  val queryToCorefMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
+    WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines)
+  }
+  val queryNamedEntityCollectionMap2011 = loadQueryNamedEntityCollectionMap("2011")
+  val queryNamedEntityCollectionMap2012 = loadQueryNamedEntityCollectionMap("2012")
+  private val queryNamedEntityCollectionMap = loadQueryNamedEntityCollectionMap(year)
   
-  lazy val queryNamedEntityCollectionMap2011 = loadQueryNamedEntityCollectionMap("2011")
-  lazy val queryNamedEntityCollectionMap2012 = loadQueryNamedEntityCollectionMap("2012")
-  lazy private val queryNamedEntityCollectionMap = loadQueryNamedEntityCollectionMap(year)
-
-  private def loadQueryNamedEntityCollectionMap(year: String): Map[String, NamedEntityCollection] = {
+  private def loadQueryNamedEntityCollectionMap(year: String): Option[Map[String,NamedEntityCollection]] = {
     System.err.println("Loading query to Named Entities map...")
     var namedEntityFile = getClass.getResource(year + "namedEntities.txt").getPath()
 
-    using { scala.io.Source.fromFile(namedEntityFile) } {
+    Some(using { scala.io.Source.fromFile(namedEntityFile) } {
       source =>
         {
           val lines = source.getLines.toList
@@ -77,7 +91,7 @@ class CorefHelperMethods(val year: String) {
             }
           } toMap
         }
-    }
+    })
   }
   
   class NamedEntityCollection(val qId:String, val qType:String,
@@ -89,8 +103,8 @@ class CorefHelperMethods(val year: String) {
   
   def getStanfordNERType(queryId: String, year: String) = {
     val queryNamedEntityCollectionMap = year match{
-      case "2011" => { Some(queryNamedEntityCollectionMap2011)}
-      case "2012" => { Some(queryNamedEntityCollectionMap2012)}
+      case "2011" => { queryNamedEntityCollectionMap2011}
+      case "2012" => { queryNamedEntityCollectionMap2012}
       case _ => None
     }
 
@@ -102,6 +116,45 @@ class CorefHelperMethods(val year: String) {
     }
   }
   
+  
+  private def getIndices(searchString: String, targetString: String): List[Interval] = {
+    var intervalList = List[Interval]()
+    var nextIndex = searchString.indexOf(targetString)
+    while(nextIndex != -1){
+      val thisInterval = Interval.closed(nextIndex,nextIndex+targetString.length()-1)
+      intervalList = thisInterval :: intervalList
+      nextIndex = searchString.indexOf(targetString,nextIndex+1)
+    }
+    intervalList.toList
+  }
+  
+  private def searchCoreferences(kbpQuery: KBPQuery, entityType: String, namedEntityCollection: NamedEntityCollection): String = {
+    val originalName = kbpQuery.name
+    if(entityType == "ORGANIZATION" || entityType == "LOCATION"){
+      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+      val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations
+      val corefOffsets = queryToCorefMap.get(kbpQuery.id).getOrElse(List[Interval]())
+      var candidateNamedEntities = List[String]()
+      for (namedEntity <- namedEntities){
+        val intervals = getIndices(rawDoc.toLowerCase(),namedEntity.toLowerCase())
+        for(interval <- intervals){
+          for(offsets <- corefOffsets){
+            if(offsets.size < 50){
+	            if(offsets.contains(interval.start) && offsets.contains(interval.end)){
+	              candidateNamedEntities = namedEntity.replace(" in ", ", ") :: candidateNamedEntities
+	            }
+            }
+          }
+        }
+      }
+      val candidate = (candidateNamedEntities.filter(p => {p.length() > originalName.length()}).
+    		  			filter(p => {!p.contains(",")}).sortBy(f => f.length()).headOption)
+      if(candidate.isDefined){
+          return candidate.get
+      }
+    }
+    originalName
+  }
   
   def identifyBestEntityStringByLinkerScore(q: KBPQuery, linker: EntityLinker): String = {
      var bestCandidate = q.name
@@ -141,7 +194,7 @@ class CorefHelperMethods(val year: String) {
     }
     println(q.name + "could be location:" + couldBeLocation)
     var alternateName = q.name
-    val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id).get
+    val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id)
     val entityType = namedEntityCollection.qType
     if(entityType != "None"){
       alternateName =
@@ -171,6 +224,12 @@ class CorefHelperMethods(val year: String) {
         }
       }
       case _ => {}
+    }
+    if(alternateName == q.name){
+      val corefString = searchCoreferences(q,entityType,namedEntityCollection)
+      if(corefString.toLowerCase().contains(q.name.toLowerCase())){
+        alternateName = corefString
+      }
     }
     alternateName
   }
@@ -244,7 +303,7 @@ class CorefHelperMethods(val year: String) {
     else{
       var probablyOrganization = true  
       var originalStringIsLocation = false
-      val namedEntityCollection = queryNamedEntityCollectionMap.get(kbpQuery.id).get
+      val namedEntityCollection = queryNamedEntityCollectionMap.get(kbpQuery.id)
       val locations = namedEntityCollection.locations
       
       for(loc <- locations){
@@ -391,7 +450,7 @@ class CorefHelperMethods(val year: String) {
         //try  regular string searching instead of relying on Stanford NER
         val containedPlace = originalString
         val origQuote = originalString.replaceAll("\\(|\\)", "")
-        val locationRegex = new Regex("("+origQuote+"|"+origQuote.toLowerCase()+"|"+origQuote.toUpperCase()+"), ([A-Z][\\S]+)[\\s\\.\\?!,]")
+        val locationRegex = new Regex("("+origQuote+"|"+origQuote.toLowerCase()+"|"+origQuote.toUpperCase()+"),\\s?([A-Z][\\S]+)[\\s\\.\\?!,]")
         val sourceText = SolrHelper.getRawDoc(kbpQuery.doc)
         val candidates = scala.collection.mutable.Map[String,Int]()
         for( locationRegex(containedLoc,containerLoc) <- locationRegex.findAllMatchIn(sourceText); fullLocation = expandAbbreviation(locationCasing(containedLoc+", " +containerLoc)).split(",");
@@ -515,6 +574,59 @@ class CorefHelperMethods(val year: String) {
       }
     }
     return false
+  }
+  
+  def haveNamedEntityInCommon(baseDir: String, linkName: String, queryId: String, queryName: String): Boolean = {
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir, year)
+    val wikiMap = kbpQueryHelper.wikiMap
+    val kbContextMapFile = kbpQueryHelper.kbContextMapFile
+    val kbId = wikiMap.get(linkName).getOrElse("")
+    var kbContext = ""
+    breakable{
+	    using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
+	      val lines = source.getLines
+	      val tabSplit = """\t""".r
+	      lines.foreach(f => {
+	        if(tabSplit.split(f)(0).trim() == kbId){
+	          try{
+	            kbContext = tabSplit.split(f)(1).trim()
+	          }
+	          catch{
+	            case e: Exception => {
+	              kbContext = " "
+	            }
+	          }
+	          break
+	        }
+	      })
+	     }
+    }
+    val context = kbContext
+    if(context == ""){
+      true
+    }
+    else{
+      val namedEntityCollection = queryNamedEntityCollectionMap.get.get(queryId).get
+      val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations ::: namedEntityCollection.people
+      val sourceAssociatedNamedEntities = namedEntities.filter(p => queryName.split(" ").forall(x => !p.contains(x)))
+      val targetAssociatedNamedEntities = (
+        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("PERSON", context)).toList :::
+        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", context)).toList :::
+        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("LOCATION", context)).toList)
+      println("Query " + queryId)
+      println("KB" + kbId)
+      println("Sourced Named Entities: ")
+      println("context: " + context)
+      for(ne <- sourceAssociatedNamedEntities){
+        println(ne)
+      }
+      println("KB Named Entities: ")
+      for(ne <- targetAssociatedNamedEntities){
+        println(ne)
+      }
+      //sourceAssociatedNamedEntities.exists(p => targetAssociatedNamedEntities.exists(q => (p.split(" ")exists(x => q.contains(x))))) //lenient
+      sourceAssociatedNamedEntities.exists(p => targetAssociatedNamedEntities.exists(q => q== p))//strict
+    }
   }
 
 

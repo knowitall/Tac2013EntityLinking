@@ -17,6 +17,7 @@ class KBPQuery(val id: String, val name: String, val doc: String,
   var highestLinkClassifierScore = 0.0
 
   val helper = KBPQuery.getHelper(baseDir, year)
+  val corefHelper = CorefHelperMethods.get(year)
 
   private def getSourceContext(): String = {
     SolrHelper.getContextFromDocument(doc, begOffset, name)
@@ -28,7 +29,7 @@ class KBPQuery(val id: String, val name: String, val doc: String,
 
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
-    val corefMentions = KBPQuery.getHelper(baseDir, year).queryToCorefMentionsMap(id)
+    val corefMentions = corefHelper.queryToCorefMap(id)
     for (cmi <- corefMentions) {
       val contextSentence = SolrHelper.getContextFromDocument(doc, cmi.start, name)
       contextualSentences = contextualSentences :+ contextSentence
@@ -121,40 +122,35 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
   }
 
   val mapFile = baseDir + "/wikimap.txt"
-  lazy val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
+  val wikiMap = using(io.Source.fromFile(mapFile, "UTF8")) { source =>
     WikiMappingHelper.loadNameToNodeIdMap(source.getLines)
   }
+  
+  val kbContextMapFile = baseDir + "/kbIdToFirstParagraph.txt"
+  //val kbContextMap = using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
+   // WikiMappingHelper.loadKbIdToContextMap(source.getLines)
+ // }
 
-  lazy val kbIdToWikiStructuredTypeFile = getClass.getResource("kbIdToWikiStructuredTypeMap.txt").getPath()
-  lazy val kbIdToWikiStructuredTypeMap = using(io.Source.fromFile(kbIdToWikiStructuredTypeFile, "UTF8")) { source =>
+  val kbIdToWikiStructuredTypeFile = getClass.getResource("kbIdToWikiStructuredTypeMap.txt").getPath()
+  val kbIdToWikiStructuredTypeMap = using(io.Source.fromFile(kbIdToWikiStructuredTypeFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbIdTowikiStructuredTypeMap(source.getLines)
   }
 
-  lazy val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
-  lazy val kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
+  val kbIdTextToMapFile = baseDir + "/kbIdToTextMap.txt"
+  val kbIdTextMap = using(io.Source.fromFile(kbIdTextToMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadIdToIntroTextMap(source.getLines)
   }
-  lazy val kbToTitleMapFile = baseDir + "/wikimap.txt"
-  lazy val kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile, "UTF8")) { source =>
+  val kbToTitleMapFile = baseDir + "/wikimap.txt"
+  val kbIdToTitleMap = using(io.Source.fromFile(kbToTitleMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadIdToTitleMap(source.getLines)
   }
-  lazy val corefMentionsFile =
-    try {
-      getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
-    } catch {
-      case e: Exception => {
-        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
-      }
-    }
-  lazy val queryToCorefMentionsMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
-    WikiMappingHelper.loadQueryToCorefMentionsMap(source.getLines)
-  }
-  lazy val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
-  lazy val kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile, "UTF8")) { source =>
+
+  val kbTitleToIdMapFile = getClass.getResource("kbIdToTitleMap.txt").getPath()
+  val kbTitleToIdMap = using(io.Source.fromFile(kbTitleToIdMapFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbTitleToIdMap(source.getLines)
   }
-  lazy val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
-  lazy val kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile, "UTF8")) { source =>
+  val kbIdToWikiTypeFile = getClass.getResource("kbIdToWikiTypeMap.txt").getPath()
+  val kbIdToWikiTypeMap = using(io.Source.fromFile(kbIdToWikiTypeFile, "UTF8")) { source =>
     WikiMappingHelper.loadKbIdToWikiTypeMap(source.getLines)
   }
 }

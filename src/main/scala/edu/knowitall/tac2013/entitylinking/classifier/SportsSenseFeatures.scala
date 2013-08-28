@@ -130,10 +130,10 @@ object SportsSenseFeatures {
       val queryId = si.kbpQuery.id
       var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012.get
       }
       else{
-        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011.get
       }
       
       try{
@@ -161,10 +161,10 @@ object SportsSenseFeatures {
       val queryId = si.kbpQuery.id
       var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012.get
       }
       else{
-        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011.get
       }
       try{
         val organizations = namedEntityCollectionMap.get(queryId).get.organizations
@@ -218,10 +218,10 @@ object SportsSenseFeatures {
       val queryId = kbpQuery.id
       var namedEntityCollectionMap =
       if(queryId.contains("ENG")){
-        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012
+        CorefHelperMethods.get("2012").queryNamedEntityCollectionMap2012.get
       }
       else{
-        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011
+        CorefHelperMethods.get("2011").queryNamedEntityCollectionMap2011.get
       }
       val queryName = kbpQuery.name
       val context = kbpQuery.sourceContext
