@@ -79,7 +79,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
           for(backOffString <- backOffStrings){
             val link = linker.getBestEntity(backOffString, q.corefSourceContext)
             if(link.isDefined){
-              val score = linkClassifier.score(link.get)
+              val score = linkClassifier.score(q,link.get)
               println("original name = " + q.name + " backOffstring = " + backOffString + " score = " + score)
               if(score > maxScore){
             	 maxScore = score
@@ -120,7 +120,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         val wikiMap = queryHelper.wikiMap
         if(sportsHelperMethods.isLocation(answer.kbLink)){
           val links = linker.getBestEntities(q.entityString, q.corefSourceContext)
-          for(candidateLink <- links.filter(l => linkClassifier.score(l) > .84 )){
+          for(candidateLink <- links.filter(l => linkClassifier.score(q,l) > .84 )){
             val kbID = wikiMap.get(candidateLink.entity.name).getOrElse("")
             if(sportsHelperMethods.isSportsTeam(kbID)){
               return new  FormattedOutput(q.id,kbID,.6)
