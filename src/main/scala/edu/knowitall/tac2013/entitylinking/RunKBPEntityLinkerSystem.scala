@@ -73,7 +73,7 @@ object RunKBPEntityLinkerSystem {
         // if no answer has been found and the entity String is longer than the 
         // original name by two words, try trimming the entity string and running the linker
         // again
-        if(answer.isEmpty && ((q.entityString.split(" ").length > (q.name.split(" ").length +1)) && (!q.entityString.contains(",")))){
+        if(answer.isEmpty && ((q.entityString.split(" ").length > (q.name.split(" ").length +1)) && (!q.entityString.contains(",")) && (!q.entityString.contains(".")))){
           val backOffStrings = GeneralHelperMethods.findBackOffStrings(q.name,q.entityString)
           var maxScore = .84
           var maxLink :Option[EntityLink] = None
@@ -82,7 +82,7 @@ object RunKBPEntityLinkerSystem {
             val link = linker.getBestEntity(backOffString, q.corefSourceContext)
             if(link.isDefined){
               val score = linkClassifier.score(link.get)
-              println("string = " + backOffString + " score = " + score)
+              println("original name = " + q.name + " backOffstring = " + backOffString + " score = " + score)
               if(score > maxScore){
             	 maxScore = score
             	 maxLink = Some(link.get)

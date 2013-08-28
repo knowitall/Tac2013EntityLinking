@@ -2,6 +2,13 @@ package edu.knowitall.tac2013.entitylinking.utils
 
 object GeneralHelperMethods {
 
+  def main(args: Array[String]) {
+    
+    val backOffs = findBackOffStrings("Ford", "UTC Graham Ford")
+    for (bo <- backOffs){
+      println(bo)
+    }
+  }
   
   def findBackOffStrings(queryName: String, fullString: String): List[String] = {
     val originalLength = queryName.split(" ").length
@@ -18,10 +25,6 @@ object GeneralHelperMethods {
       startIndex += 1
     }
     val backOffStringList = backOffStrings.filter(p => p.contains(queryName)).toList
-    println(fullString)
-    for(backOffString <- backOffStringList){
-      println(backOffString)
-    }
     backOffStringList
   }
 }

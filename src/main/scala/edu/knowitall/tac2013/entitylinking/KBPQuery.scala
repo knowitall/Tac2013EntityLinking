@@ -66,7 +66,7 @@ object KBPQuery {
 
 case class KBPQueryHelper(val baseDir: String, val year: String) {
 
-  val corefHelper = new StanfordAnnotatorHelperMethods(true)
+  val corefHelper = new StanfordAnnotatorHelperMethods(false)
 
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
 

@@ -23,7 +23,7 @@ object ExpNilStatistics {
 	      val queryName = lineValues(4).trim()
 	      val fullName  = lineValues(5).trim()
 	      val queryId = lineValues(3).trim()
-	      if(fullName != linkName){
+	      if(fullName != linkName && queryName != linkName){
 		      if(lineValues(0).startsWith("EXP NIL")){
 		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId, queryName)){
 		          shareNamedEntity += 1

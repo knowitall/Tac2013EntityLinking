@@ -11,6 +11,7 @@ import scala.collection.mutable
 import edu.knowitall.collection.immutable.Interval
 import edu.knowitall.tac2013.entitylinking.utils.WikiMappingHelper
 import edu.knowitall.browser.entity.EntityLink
+import scala.util.control.Breaks._
 
 object CorefHelperMethods {
   
@@ -598,24 +599,27 @@ class CorefHelperMethods(val year: String) {
     val kbpQueryHelper = KBPQuery.getHelper(baseDir, year)
     val wikiMap = kbpQueryHelper.wikiMap
     val kbContextMapFile = kbpQueryHelper.kbContextMapFile
-    val kbId = wikiMap.get(linkName)
+    val kbId = wikiMap.get(linkName).getOrElse("")
     var kbContext = ""
-    using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
-      val lines = source.getLines
-      val tabSplit = """\t""".r
-      lines.foreach(f => {
-        if(tabSplit.split(f)(0) == kbId){
-          try{
-            kbContext = tabSplit.split(f)(1)
-          }
-          catch{
-            case e: Exception => {
-              kbContext = " "
-            }
-          }
-        }
-      })
-     }
+    breakable{
+	    using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
+	      val lines = source.getLines
+	      val tabSplit = """\t""".r
+	      lines.foreach(f => {
+	        if(tabSplit.split(f)(0).trim() == kbId){
+	          try{
+	            kbContext = tabSplit.split(f)(1).trim()
+	          }
+	          catch{
+	            case e: Exception => {
+	              kbContext = " "
+	            }
+	          }
+	          break
+	        }
+	      })
+	     }
+    }
     val context = kbContext
     if(context == ""){
       true
@@ -629,7 +633,7 @@ class CorefHelperMethods(val year: String) {
         scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", context)).toList :::
         scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("LOCATION", context)).toList)
       println("Query " + queryId)
-      println("KB" + kbId.get)
+      println("KB" + kbId)
       println("Sourced Named Entities: ")
       println("context: " + context)
       for(ne <- sourceAssociatedNamedEntities){
