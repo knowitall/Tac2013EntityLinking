@@ -26,13 +26,13 @@ class LinkClassifier(val trainingData: Iterable[Labelled[KBPQueryLink]]) {
 object LinkClassifierTest {
 
   def main(args: Array[String]): Unit = {
-
-    val allTrainingDataSet = new LinkTrainingData("/scratch/", "2012").toSet
+    
+    val allTrainingDataSet = new LinkTrainingData("/scratch/resources/entitylinkingResources", "2012").toSet
     
     require(allTrainingDataSet.exists(_.label == true))
     require(allTrainingDataSet.exists(_.label == false))
 
-    val allTestDataSet = new LinkTrainingData("/scratch/", "2011").toSet
+    val allTestDataSet = new LinkTrainingData("/scratch/resources/entitylinkingResources", "2011").toSet
 
     val splits = 10
 
@@ -75,7 +75,7 @@ object LinkClassifierTest {
 
     val precsItems = precRecall(sortedBooleans).zip(sortedTest)
 
-    val output = new java.io.PrintStream("classifier-out-2012vs2011.txt")
+    val output = new java.io.PrintStream("classifier-out-2012vs2011DocTypeNameMatchNameAmbiguity.txt")
 
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble

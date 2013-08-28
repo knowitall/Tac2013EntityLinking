@@ -576,7 +576,7 @@ class CorefHelperMethods(val year: String) {
     return false
   }
   
-  def haveNamedEntityInCommon(baseDir: String, linkName: String, queryId: String, queryName: String): Boolean = {
+  def haveNamedEntityInCommon(baseDir: String, linkName: String, queryId: String): Boolean = {
     val kbpQueryHelper = KBPQuery.getHelper(baseDir, year)
     val wikiMap = kbpQueryHelper.wikiMap
     val kbContextMapFile = kbpQueryHelper.kbContextMapFile
@@ -608,7 +608,7 @@ class CorefHelperMethods(val year: String) {
     else{
       val namedEntityCollection = queryNamedEntityCollectionMap.get.get(queryId).get
       val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations ::: namedEntityCollection.people
-      val sourceAssociatedNamedEntities = namedEntities.filter(p => queryName.split(" ").forall(x => !p.contains(x)))
+      val sourceAssociatedNamedEntities = namedEntities.filter(p => !p.toLowerCase().contains(linkName.toLowerCase()))
       val targetAssociatedNamedEntities = (
         scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("PERSON", context)).toList :::
         scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", context)).toList :::

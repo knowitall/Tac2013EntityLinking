@@ -25,19 +25,19 @@ object ExpNilStatistics {
 	      val queryId = lineValues(3).trim()
 	      if(fullName != linkName && queryName != linkName){
 		      if(lineValues(0).startsWith("EXP NIL")){
-		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId, queryName)){
+		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId)){
 		          shareNamedEntity += 1
 		        }
 		        totalExpNil += 1
 		      }
 		      if(lineValues(0).startsWith("CORRECT")){
-		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId, queryName)){
+		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId)){
 		          correctShareNamedEntity += 1
 		        }
 		        totalCorrect +=1 
 		      }
 		      if(lineValues(0).startsWith("WRONG KB")){
-		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId, queryName)){
+		        if(CorefHelperMethods.get("2012").haveNamedEntityInCommon("/scratch/resources/entitylinkingResources", linkName, queryId)){
 		          numberShareNamedEntityWrongKB += 1
 		        }
 		        totalWRONGKB +=1 		        
