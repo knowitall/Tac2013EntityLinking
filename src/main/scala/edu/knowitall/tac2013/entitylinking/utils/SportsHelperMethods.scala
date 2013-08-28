@@ -45,4 +45,13 @@ case class SportsHelperMethods(val baseDir: String, val year: String) {
      }
      false
   }
+  
+  def isSportsTeam(kbLink: String) : Boolean = {
+    val wikiTypeMap = KBPQuery.getHelper(baseDir,year).kbIdToWikiTypeMap
+    val wikiType = wikiTypeMap.get(kbLink).getOrElse("").toLowerCase()
+    if(wikiType.contains("team") || wikiType.contains("club")){
+      return true
+    }
+    false
+  }
 }

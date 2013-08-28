@@ -17,12 +17,14 @@ import edu.knowitall.tac2013.entitylinking.classifier.MentionPair
 import edu.knowitall.tac2013.entitylinking.utils.ResourceHelper
 import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseLabeller
 import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
+import edu.knowitall.tac2013.entitylinking.utils.GeneralHelperMethods
+import edu.knowitall.browser.entity.EntityLink
 
 case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = 0.0 // 0.84  
+  val linkThreshold = .0 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -66,6 +68,33 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
             answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
           }
         }
+        // if no answer has been found and the entity String is longer than the 
+        // original name by two words, try trimming the entity string and running the linker
+        // again
+        if(answer.isEmpty && ((q.entityString.split(" ").length > (q.name.split(" ").length +1)) && (!q.entityString.contains(",")) && (!q.entityString.contains(".")))){
+          val backOffStrings = GeneralHelperMethods.findBackOffStrings(q.name,q.entityString)
+          var maxScore = linkThreshold
+          var maxLink :Option[EntityLink] = None
+          var maxString = q.entityString
+          for(backOffString <- backOffStrings){
+            val link = linker.getBestEntity(backOffString, q.corefSourceContext)
+            if(link.isDefined){
+              val score = linkClassifier.score(q,link.get)
+              println("original name = " + q.name + " backOffstring = " + backOffString + " score = " + score)
+              if(score > maxScore){
+            	 maxScore = score
+            	 maxLink = Some(link.get)
+            	 maxString = q.entityString
+              }
+            }
+          }
+          if(maxLink.isDefined){
+            q.entityString = maxString
+            q.highestLinkClassifierScore = maxScore
+        	val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(maxLink.get.entity.name)
+            answer = Some(new FormattedOutput(q.id,nodeId.getOrElse(nextCluster), maxLink.get.combinedScore))
+          }
+        }
         if (answer.isDefined) {
           answer.get
         } else {
@@ -75,7 +104,10 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
       case Some(link) => {
 
         var nodeId :Option[String] = None
-        nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
+        //make sure they share some Named Entity
+        //if(CorefHelperMethods.get(year).haveNamedEntityInCommon(baseDir,link,q)){
+          nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
+        //}
 
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
@@ -83,7 +115,17 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
     
     if(q.sportsSense.isDefined){
       if(q.sportsSense.get == true){
-        if(SportsHelperMethods(baseDir, year).isLocation(answer.kbLink)){
+        val sportsHelperMethods = SportsHelperMethods(baseDir, year)
+        val queryHelper = KBPQuery.getHelper(baseDir,year)
+        val wikiMap = queryHelper.wikiMap
+        if(sportsHelperMethods.isLocation(answer.kbLink)){
+          val links = linker.getBestEntities(q.entityString, q.corefSourceContext)
+          for(candidateLink <- links.filter(l => linkClassifier.score(q,l) > .84 )){
+            val kbID = wikiMap.get(candidateLink.entity.name).getOrElse("")
+            if(sportsHelperMethods.isSportsTeam(kbID)){
+              return new  FormattedOutput(q.id,kbID,.6)
+            }
+          }
           return new FormattedOutput(q.id,nextCluster,.5)
         }
       }
