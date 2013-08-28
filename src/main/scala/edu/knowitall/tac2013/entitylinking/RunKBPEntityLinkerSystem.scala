@@ -24,7 +24,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = 0.0 // 0.84  
+  val linkThreshold = .0 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -73,7 +73,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         // again
         if(answer.isEmpty && ((q.entityString.split(" ").length > (q.name.split(" ").length +1)) && (!q.entityString.contains(",")) && (!q.entityString.contains(".")))){
           val backOffStrings = GeneralHelperMethods.findBackOffStrings(q.name,q.entityString)
-          var maxScore = .84
+          var maxScore = linkThreshold
           var maxLink :Option[EntityLink] = None
           var maxString = q.entityString
           for(backOffString <- backOffStrings){

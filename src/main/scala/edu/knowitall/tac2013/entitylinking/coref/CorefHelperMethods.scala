@@ -450,7 +450,7 @@ class CorefHelperMethods(val year: String) {
         //try  regular string searching instead of relying on Stanford NER
         val containedPlace = originalString
         val origQuote = originalString.replaceAll("\\(|\\)", "")
-        val locationRegex = new Regex("("+origQuote+"|"+origQuote.toLowerCase()+"|"+origQuote.toUpperCase()+"), ([A-Z][\\S]+)[\\s\\.\\?!,]")
+        val locationRegex = new Regex("("+origQuote+"|"+origQuote.toLowerCase()+"|"+origQuote.toUpperCase()+"),\\s?([A-Z][\\S]+)[\\s\\.\\?!,]")
         val sourceText = SolrHelper.getRawDoc(kbpQuery.doc)
         val candidates = scala.collection.mutable.Map[String,Int]()
         for( locationRegex(containedLoc,containerLoc) <- locationRegex.findAllMatchIn(sourceText); fullLocation = expandAbbreviation(locationCasing(containedLoc+", " +containerLoc)).split(",");
