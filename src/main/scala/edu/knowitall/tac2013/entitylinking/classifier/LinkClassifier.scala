@@ -6,8 +6,9 @@ import edu.knowitall.tool.conf.ConfidenceFunction
 import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
+import edu.knowitall.tac2013.entitylinking.KBPQuery
 
-class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]]) {
+class LinkClassifier(val trainingData: Iterable[Labelled[KBPQueryLink]]) {
   
   def this(baseDir: String){
     this(new LinkTrainingData(baseDir))
@@ -17,7 +18,9 @@ class LinkClassifier(val trainingData: Iterable[Labelled[EntityLink]]) {
   
   val classifier = trainer.train(trainingData)
   
-  def score(link: EntityLink): Double = classifier(link) 
+  def score(link: KBPQueryLink): Double = classifier(link) 
+  
+  def score(query: KBPQuery, link: EntityLink) = classifier(new KBPQueryLink(query, link))
 }
 
 object LinkClassifierTest {
@@ -25,6 +28,9 @@ object LinkClassifierTest {
   def main(args: Array[String]): Unit = {
 
     val allTrainingDataSet = new LinkTrainingData().toSet
+    
+    require(allTrainingDataSet.exists(_.label == true))
+    require(allTrainingDataSet.exists(_.label == false))
 
     val splits = 10
 
@@ -67,11 +73,13 @@ object LinkClassifierTest {
 
     val precsItems = precRecall(sortedBooleans).zip(sortedTest)
 
+    val output = new java.io.PrintStream("classifier-out.txt")
+
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble
       val recString = "%.02f".format(recall)
       val precString = "%.02f".format(prec)
-      println(precString + "\t" + recString + "\t" + conf)
+      output.println(precString + "\t" + recString + "\t" + conf)
     }
   }
 }
