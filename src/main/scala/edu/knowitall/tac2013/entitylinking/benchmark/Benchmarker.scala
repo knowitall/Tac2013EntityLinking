@@ -199,6 +199,7 @@ object Benchmarker {
         year != "2013"){
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
+    val system = RunKBPEntityLinkerSystem(baseDir, year)
     
     ResourceHelper.initialize(baseDir, year)
     val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
@@ -206,7 +207,8 @@ object Benchmarker {
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
     val answers = using(Source.fromURL(answerUrl, "UTF8")) { answerSrc => answerSrc.getLines.map(FormattedOutput.readFormattedOutput).toList }
-    val results = RunKBPEntityLinkerSystem.clusterNils(RunKBPEntityLinkerSystem.linkQueries(queries,year,sportsClassifyOn),queries)
+    //val results = system.clusterNils(system.linkQueries(queries,year,sportsClassifyOn),queries)
+    val results = system.clusterNils(system.linkQueries(queries,year,sportsClassifyOn),queries)
     
     val sortType = if (querySort) QueryIdSort else if (benchmarkSort) BenchmarkClusterSort else SystemClusterSort
     

@@ -27,6 +27,7 @@ object WikiMappingHelper {
   
   val entityStructuredTypeRegex =   """type="([^"]+)" id="([^"]+)" """.r
 
+  val tabSplit = "\t".r
   
   val sentencer = new OpenNlpSentencer()
   
@@ -100,7 +101,6 @@ object WikiMappingHelper {
   
   def loadIdToIntroTextMap(lines: Iterator[String]): Map[String,String] = {
     System.err.println("Loading freebase id to text map...")
-    val tabSplit = "\t".r
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, text) => (id, text)
@@ -124,7 +124,7 @@ object WikiMappingHelper {
   
   def loadNameToNodeIdMap(lines: Iterator[String]): Map[String, String] = {
     System.err.println("Loading wikipedia name to node id map...")
-    val tabSplit = "\t".r
+   
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, name, typ, _*) => (name, id)
@@ -136,7 +136,7 @@ object WikiMappingHelper {
   
   def loadIdToTitleMap(lines: Iterator[String]): Map[String, String] = {
     System.err.println("Loading wikipedia name to node id map...")
-    val tabSplit = "\t".r
+   
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, name, typ, _*) => (id, name)
@@ -147,7 +147,7 @@ object WikiMappingHelper {
   
   def loadQueryToCorefMentionsMap(lines: Iterator[String]): Map[String,Seq[Interval]] = {
     System.err.println("Loading query to Coref Mentions map...")
-    val tabSplit = "\t".r
+   
     lines.map {line =>
       tabSplit.split(line) match{
         case Array(qId, e  @ _*) => {(qId,for(i <- e) yield{
@@ -160,7 +160,7 @@ object WikiMappingHelper {
   
   def loadKbTitleToIdMap(lines: Iterator[String]): Map[String,String]= {
     System.err.println("Loading kb title to id map..")
-    val tabSplit = "\t".r
+   
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, title) => (title, id)
@@ -171,7 +171,7 @@ object WikiMappingHelper {
   
   def loadKbIdToWikiTypeMap(lines: Iterator[String]): Map[String, String] = {
     System.err.println("Loading KB ID to wikiTypeMap map...")
-    val tabSplit = "\t".r
+    
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(id, wikiType) => (id, wikiType)
@@ -182,7 +182,7 @@ object WikiMappingHelper {
   
   def loadKbIdTowikiStructuredTypeMap(lines: Iterator[String]): Map[String,String] = {
     System.err.println("Loading KB ID to wikiStructuredTypeMap map...")
-    val tabSplit = "\t".r
+   
     lines.map { line =>
       tabSplit.split(line) match {
         case Array(wikiStructuredType, id) => (id, wikiStructuredType)

@@ -65,53 +65,33 @@ class CorefHelperMethods(val year: String) {
   
   private def loadQueryNamedEntityCollectionMap(year: String): Option[Map[String,NamedEntityCollection]] = {
     System.err.println("Loading query to Named Entities map...")
-    var namedEntityFile = ""
-    try{
-      namedEntityFile = getClass.getResource(year+"namedEntities.txt").getPath()
-    }
-    catch{
-      case e: Exception => {
-        System.err.println("Error loading "+year+"namedEntities.txt")
-        try{
-          namedEntityFile = new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/"+year+"namedEntities.txt").getPath()
+    var namedEntityFile = getClass.getResource(year + "namedEntities.txt").getPath()
+
+    Some(using { scala.io.Source.fromFile(namedEntityFile) } {
+      source =>
+        {
+          val lines = source.getLines.toList
+
+          val queryNamedEntityCollections = lines.grouped(4)
+
+          queryNamedEntityCollections.map { necLines =>
+            {
+              val firstLine = necLines(0)
+              val firstLineValues = firstLine.split("\t")
+              val qId = firstLineValues(0)
+              var qType = "None"
+              if (firstLineValues.length > 1) {
+                qType = firstLineValues(1)
+              }
+              val matchingNamedEntities = firstLineValues.drop(2)
+              val organizations = necLines(1).split("\t").drop(2)
+              val locations = necLines(2).split("\t").drop(2)
+              val people = necLines(3).split("\t").drop(2)
+              (qId, new NamedEntityCollection(qId, qType, matchingNamedEntities.toList, organizations.toList, locations.toList, people.toList))
+            }
+          } toMap
         }
-        catch{
-          case e: Exception => {
-            None
-          }
-        }
-      }
-    }
-    try{
-	    Some(using{scala.io.Source.fromFile(namedEntityFile)}{ 
-	      source => {
-	        val lines = source.getLines.toList
-	        
-	        val queryNamedEntityCollections = lines.sliding(4)
-	        
-	        queryNamedEntityCollections.map{ necLines => {
-	          val firstLine = necLines(0)
-	          val firstLineValues = firstLine.split("\t")
-	          val qId = firstLineValues(0)
-	          var qType = "None"
-	          if(firstLineValues.length > 1){
-	            qType = firstLineValues(1)
-	          }
-	          val matchingNamedEntities = firstLineValues.drop(2)
-	          val organizations = necLines(1).split("\t").drop(2)
-	          val locations = necLines(2).split("\t").drop(2)
-	          val people = necLines(3).split("\t").drop(2)
-	          (qId,new NamedEntityCollection(qId,qType,matchingNamedEntities.toList,organizations.toList,locations.toList,people.toList))
-	        }
-	      } toMap
-	    } 
-	    })
-    }
-    catch{
-      case e: Exception => {
-        None
-      }
-    }
+    })
   }
   
   class NamedEntityCollection(val qId:String, val qType:String,
@@ -123,13 +103,13 @@ class CorefHelperMethods(val year: String) {
   
   def getStanfordNERType(queryId: String, year: String) = {
     val queryNamedEntityCollectionMap = year match{
-      case "2011" => { Some(queryNamedEntityCollectionMap2011)}
-      case "2012" => { Some(queryNamedEntityCollectionMap2012)}
+      case "2011" => { queryNamedEntityCollectionMap2011}
+      case "2012" => { queryNamedEntityCollectionMap2012}
       case _ => None
     }
 
-    if(queryNamedEntityCollectionMap.get.get.get(queryId).isDefined){
-      queryNamedEntityCollectionMap.get.get.get(queryId).get.qType
+    if(queryNamedEntityCollectionMap.get.get(queryId).isDefined){
+      queryNamedEntityCollectionMap.get.get(queryId).get.qType
     }
     else{
       "None"
@@ -214,7 +194,7 @@ class CorefHelperMethods(val year: String) {
     }
     println(q.name + "could be location:" + couldBeLocation)
     var alternateName = q.name
-    val namedEntityCollection = queryNamedEntityCollectionMap.get.get(q.id).get
+    val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id)
     val entityType = namedEntityCollection.qType
     if(entityType != "None"){
       alternateName =
@@ -323,7 +303,7 @@ class CorefHelperMethods(val year: String) {
     else{
       var probablyOrganization = true  
       var originalStringIsLocation = false
-      val namedEntityCollection = queryNamedEntityCollectionMap.get.get(kbpQuery.id).get
+      val namedEntityCollection = queryNamedEntityCollectionMap.get(kbpQuery.id)
       val locations = namedEntityCollection.locations
       
       for(loc <- locations){

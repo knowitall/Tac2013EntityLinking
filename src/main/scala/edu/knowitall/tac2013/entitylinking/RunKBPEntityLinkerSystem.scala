@@ -20,10 +20,7 @@ import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
 import edu.knowitall.tac2013.entitylinking.utils.GeneralHelperMethods
 import edu.knowitall.browser.entity.EntityLink
 
-object RunKBPEntityLinkerSystem {
-  
-  var baseDir = "/scratch/resources/entitylinkingResources"
-  val year = "2012"
+case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
@@ -168,6 +165,9 @@ object RunKBPEntityLinkerSystem {
     
     newAnswerSeq.toList
   }
+}
+
+object RunKBPEntityLinkerSystem {
   
 
   def main(args: Array[String]) {
@@ -176,6 +176,7 @@ object RunKBPEntityLinkerSystem {
     var humanReadable = false
     var year = ""
     var sportsClassifyOn = false
+    var baseDir = "/scratch/"
       
     val argParser = new OptionParser() {
       arg("baseDir", "Path to base directory with entitylinking files.", { s => baseDir = s })
@@ -194,12 +195,13 @@ object RunKBPEntityLinkerSystem {
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
     
+    val system = RunKBPEntityLinkerSystem(baseDir, year)
     
     ResourceHelper.initialize(baseDir, year)
     val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
 
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
-    val answers = clusterNils(linkQueries(queries,year,sportsClassifyOn),queries)
+    val answers = system.clusterNils(system.linkQueries(queries,year,sportsClassifyOn),queries)
 
     val answerStrings = if (humanReadable) {
       val queryAnswerList = queries zip answers
