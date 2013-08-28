@@ -2,8 +2,9 @@ package edu.knowitall.tac2013.entitylinking.classifier
 
 import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.browser.entity._
+import edu.knowitall.tac2013.entitylinking.KBPQuery
 
-class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labelled[EntityLink]] {
+class LinkTrainingData(val baseDir: String = "/scratch", val year: String = "2012") extends Iterable[Labelled[KBPQueryLink]] {
   
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
@@ -12,28 +13,37 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
     new EntityTyper(linkerSupportPath))
   
   val trainingResource = {
-    val name = "linker-classifier-training.csv"
+    val name = s"linker-classifier-training-$year.csv"
     val url = getClass.getResource(name)
     require(url != null, s"Could not find $url")
     url
   }
   
-  def lineToLink(line: String): Option[Labelled[EntityLink]] = {
+  def lineToLink(line: String): Option[Labelled[KBPQueryLink]] = {
     
     val split = line.split("\t")
     split match {
-      case Array(label, entity, expected, context, _*) => fieldsToLink(label, entity, expected, context)
-      case _ => throw new RuntimeException(s"Malformed training line $line")
+      case Array(label, qid, used, expected, _*) => {
+        val query = qMap(qid)
+        val context = query.corefSourceContext.mkString(" ")
+        fieldsToLink(query, label.trim, used, expected, context)
+      }
+      case _ => {
+        System.err.println(s"Malformed training line $line")
+        None
+      }
     }
   }
   
   val splitRegex = "\\.\\s[A-Z]".r
   
-  def fieldsToLink(label: String, entity: String, expected: String, context: String): Option[Labelled[EntityLink]] = {
+  def fieldsToLink(query: KBPQuery, label: String, entity: String, expected: String, context: String): Option[Labelled[KBPQueryLink]] = {
     
     val linksMap = linker.getBestEntities(entity, splitRegex.split(context)).map(l => (l.entity.name, l)).toMap
     linksMap.get(expected) match {
-      case Some(link) => Some(Labelled(label == "1", link))
+      case Some(link) => {
+        Some(Labelled(label == "CORRECT", new KBPQueryLink(query, link)))
+      }
       case None => {
         System.err.println(s"Warning, didn't find link $expected for string $entity")
         None
@@ -41,22 +51,12 @@ class LinkTrainingData(val baseDir: String = "/scratch") extends Iterable[Labell
     }
   }
   
-  def iterator = new Iterator[Labelled[EntityLink]]() {
-    val source = io.Source.fromURL(trainingResource, "UTF8")
-    val links = source.getLines.flatMap(lineToLink)
-    var closed = false
-    def hasNext() = {
-      if (closed) false
-      else if (!links.hasNext) {
-        closed = true
-        source.close()
-        false
-      } else {
-        true
-      }
-    }
-    def next = {
-      links.next
-    }
-  }
+  val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
+
+  val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+  val qMap = queries.map(q => (q.id, q)).toMap
+  
+  val kbpQueryLinks = io.Source.fromURL(trainingResource, "UTF8").getLines.flatMap(lineToLink).toSeq
+  
+  def iterator = kbpQueryLinks.iterator
 }
