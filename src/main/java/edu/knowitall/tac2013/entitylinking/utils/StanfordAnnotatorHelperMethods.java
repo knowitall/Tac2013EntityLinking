@@ -250,6 +250,18 @@ public class StanfordAnnotatorHelperMethods {
     	return matchingNamedEntities;
 	}
 	
+	public List<String> getNamedEntities(String str){
+		Annotation document = new Annotation(str);
+		List<List<CoreLabel>> namedEntityTokens = getNamedEntityTokens(document);
+		if(namedEntityTokens == null){
+			return new ArrayList<String>();
+		}
+    	List<String> matchingNamedEntities = getNamedEntityStringsByType("PERSON",namedEntityTokens);
+    	matchingNamedEntities.addAll(getNamedEntityStringsByType("ORGANIZATION",namedEntityTokens));
+    	matchingNamedEntities.addAll(getNamedEntityStringsByType("LOCATION",namedEntityTokens));
+    	return matchingNamedEntities;
+	}
+	
 	/**
 	 * Given the information from a CorefMention determine the byte offsets
 	 * of the whole mention and return as a knowitall Interval.

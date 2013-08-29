@@ -26,6 +26,10 @@ class KBPQuery(val id: String, val name: String, val doc: String,
   private def getWideContext(): String = {
     SolrHelper.getWideContextFromDocument(doc, begOffset, name)
   }
+  
+  private def getHeadLineContext(): List[String] = {
+    SolrHelper.getHeadLineContextFromDocument(doc)
+  }
 
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
@@ -34,7 +38,22 @@ class KBPQuery(val id: String, val name: String, val doc: String,
       val contextSentence = SolrHelper.getContextFromDocument(doc, cmi.start, name)
       contextualSentences = contextualSentences :+ contextSentence
     }
-    ((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
+    var totalContext = List[String]()
+    val corefContext = ((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
+    totalContext = corefContext
+    val headLineContext = getHeadLineContext()
+    for(hlc <- headLineContext){
+      var addToContext = true
+      for(cc <- corefContext){
+        if(cc.contains(hlc)){
+          addToContext = false
+        }
+      }
+      if(addToContext){
+          totalContext = hlc :: totalContext        
+      }
+    }
+    totalContext.toList
   }
 
   val sourceContext = getSourceContext()
@@ -87,6 +106,7 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
       Some(x)
     } catch {
       case e: Exception => {
+        println(e.getStackTrace().mkString("\n"))
         parseSingle2011KBPQueryFromXML(queryXML)
       }
     }
