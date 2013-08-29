@@ -24,7 +24,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = .0 // 0.84  
+  val linkThreshold = .84 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -51,7 +51,6 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
     }
     val entityString = CorefHelperMethods.get(year).identifyBestEntityStringByRules(q)
     q.entityString = entityString
-    println(q.id + "\t" + q.name + "\t" + entityString)
     val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
     q.highestLinkClassifierScore = linkOpt match{
       case None => 0.0
@@ -130,6 +129,8 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         }
       }
     }
+    
+    println(q.id + "\t" + q.name + "\t" + q.entityString)
     answer
   }
 
