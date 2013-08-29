@@ -75,7 +75,9 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
           var maxScore = linkThreshold
           var maxLink :Option[EntityLink] = None
           var maxString = q.entityString
+          println("BACKOFF STRINGS FOR: " + q.name)
           for(backOffString <- backOffStrings){
+            println(backOffString)
             val link = linker.getBestEntity(backOffString, q.corefSourceContext)
             if(link.isDefined){
               val score = linkClassifier.score(q,link.get)
