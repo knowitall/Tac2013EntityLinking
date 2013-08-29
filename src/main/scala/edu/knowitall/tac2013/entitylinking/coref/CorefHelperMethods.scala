@@ -147,8 +147,7 @@ class CorefHelperMethods(val year: String) {
           }
         }
       }
-      val candidate = (candidateNamedEntities.filter(p => {p.length() > originalName.length()}).
-    		  			filter(p => {!p.contains(",")}).sortBy(f => f.length()).headOption)
+      val candidate = (candidateNamedEntities.filter(p => {p.length() > originalName.length()}).filter(p => !p.contains(",")).sortBy(f => f.length()).headOption)
       if(candidate.isDefined){
           return candidate.get
       }
@@ -255,8 +254,11 @@ class CorefHelperMethods(val year: String) {
   private def findBestOrganizationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
     val originalString = kbpQuery.name.trim()
     val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
+    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+
+    val accronymRegex = new Regex("\\([^\\)\\(]{0,15}"+originalString+"[^\\)\\(]{0,15}\\)")
     //if the organization is an acronym
-    if(originalString.forall(p => p.isUpper)){
+    if(originalString.forall(p => p.isUpper) || accronymRegex.findFirstIn(rawDoc).isDefined ){
             
       for(cs <- sortedCandidateStrings){
         val words = cs.split(" ").filter(p => {p(0).isUpper}).takeRight(originalString.length())
@@ -283,9 +285,9 @@ class CorefHelperMethods(val year: String) {
       }
       
       // if in parentheses and nothing was found...
-      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
-      val parenthesisRegexPattern = new Regex("([A-Z]\\w+ (\\w+ )*[A-Z]\\w+)[\\.\\s]*\\([^\\)\\(]{0,5}"+originalString+"[^\\)\\(]{0,5}\\)")
-      val accronymMatch = parenthesisRegexPattern.findFirstMatchIn(rawDoc)
+      //val parenthesisRegexPattern = new Regex("([A-Z]\\w+ (\\w+ )*[A-Z]\\w+)[\\.\\s]*\\([^\\)\\(]{0,5}"+originalString+"[^\\)\\(]{0,5}\\)")
+      val accRegexPattern = new Regex("(["+originalString(0).toUpper+originalString(originalString.length()-1).toUpper+"][\\S]+ ([\\S]+ ){0,2}[A-Z][\\S]+).{0,15}"+originalString)
+      val accronymMatch = accRegexPattern.findFirstMatchIn(rawDoc)
       if(accronymMatch.isDefined){
         var expandedString = accronymMatch.get.group(1)
         if(stopWords.contains(expandedString.split(" ")(0).toLowerCase())){
@@ -298,39 +300,37 @@ class CorefHelperMethods(val year: String) {
     
     //non caps organization, check if there is a longer string than the original
     //name with the original name as the rightmost word
-    else{
-      var probablyOrganization = true  
-      var originalStringIsLocation = false
-      val namedEntityCollection = queryNamedEntityCollectionMap.get(kbpQuery.id)
-      val locations = namedEntityCollection.locations
-      
-      for(loc <- locations){
-        if(loc.contains(originalString)){
-          originalStringIsLocation = true
+	var probablyOrganization = true  
+    var originalStringIsLocation = false
+    val namedEntityCollection = queryNamedEntityCollectionMap.get(kbpQuery.id)
+    val locations = namedEntityCollection.locations
+	  
+    for(loc <- locations){
+      if(loc.contains(originalString)){
+        originalStringIsLocation = true
+      }
+    }
+	  
+    if(originalStringIsLocation){
+      probablyOrganization = false
+      if(kbpQuery.sportsSense.getOrElse(false)){
+        probablyOrganization = true
+      }
+    }
+	
+	  
+	  
+    if(probablyOrganization){
+        //do this if original String is not refferring to a location
+        for(cs <- candidateStrings){
+          val words = cs.split(" ")
+          val originalWords = originalString.split(" ")
+          if( (words.length > originalWords.length) &&
+              ( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
+                (words.take(originalWords.length).mkString(" ") == originalString)  )){
+            return words mkString " "
+          }
         }
-      }
-      
-      if(originalStringIsLocation){
-        probablyOrganization = false
-        if(kbpQuery.sportsSense.getOrElse(false)){
-          probablyOrganization = true
-        }
-      }
-
-      
-      
-      if(probablyOrganization){
-	      //do this if original String is not refferring to a location
-	      for(cs <- candidateStrings){
-	        val words = cs.split(" ")
-	        val originalWords = originalString.split(" ")
-	        if( (words.length > originalWords.length) &&
-	            ( (words.takeRight(originalWords.length).mkString(" ") == originalString) ||
-	              (words.take(originalWords.length).mkString(" ") == originalString)  )){
-	          return words mkString " "
-	        }
-	      }
-      }
     }
     
     //finally check if the original string if prefix of an organization
