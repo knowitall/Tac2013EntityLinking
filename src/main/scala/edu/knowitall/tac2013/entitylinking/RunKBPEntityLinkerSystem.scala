@@ -103,10 +103,13 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
       case Some(link) => {
 
         var nodeId :Option[String] = None
-        //make sure they share some Named Entity
-        //if(CorefHelperMethods.get(year).haveNamedEntityInCommon(baseDir,link,q)){
-          nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
-        //}
+        nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
+        
+        //if the KBNode doesn't exist, then make sure to change the alternative entity string
+        //to the name of the Freebase link for better nil clustering.
+        if(nodeId.isEmpty){
+          q.entityString = link.entity.name.replaceAll("\\([^\\(]+\\)", "").trim()
+        }
 
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
