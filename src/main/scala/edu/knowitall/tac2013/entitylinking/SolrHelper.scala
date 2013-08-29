@@ -188,13 +188,13 @@ object SolrHelper {
     val headLineRegex = """<HEADLINE>([^<]+)</HEADLINE>""".r
     val headlineMatch = headLineRegex.findFirstMatchIn(rawDoc)
     if(headlineMatch.isDefined){
-       contextList = headlineMatch.get.group(1).replaceAll("\\s+", " ") :: contextList
+       contextList = headlineMatch.get.group(1).replaceAll("\\s+", " ").replaceAll("-", " ").trim() :: contextList
     }
     
     val paragraphRegex = """<P>([^<]+)</P>""".r
     val firstParagraphMatch = paragraphRegex.findFirstMatchIn(rawDoc)
     if(firstParagraphMatch.isDefined){
-       contextList = firstParagraphMatch.get.group(1).replaceAll("\\s+", " ") :: contextList
+       contextList = firstParagraphMatch.get.group(1).replaceAll("\\s+", " ").replaceAll("-"," ").trim() :: contextList
     }
     contextList.toList
   }

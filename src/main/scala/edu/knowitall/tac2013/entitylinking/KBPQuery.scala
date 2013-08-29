@@ -38,8 +38,22 @@ class KBPQuery(val id: String, val name: String, val doc: String,
       val contextSentence = SolrHelper.getContextFromDocument(doc, cmi.start, name)
       contextualSentences = contextualSentences :+ contextSentence
     }
-    //((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
-    ((contextualSentences.toList ::: List(getSourceContext()) ::: getHeadLineContext()).toSet).toList
+    var totalContext = List[String]()
+    val corefContext = ((contextualSentences.toList ::: List(getSourceContext())).toSet).toList
+    totalContext = corefContext
+    val headLineContext = getHeadLineContext()
+    for(hlc <- headLineContext){
+      var addToContext = true
+      for(cc <- corefContext){
+        if(cc.contains(hlc)){
+          addToContext = false
+        }
+      }
+      if(addToContext){
+          totalContext = hlc :: totalContext        
+      }
+    }
+    totalContext.toList
   }
 
   val sourceContext = getSourceContext()
