@@ -192,7 +192,6 @@ class CorefHelperMethods(val year: String) {
       case Some(false) => {true}
       case None => {true}
     }
-    println(q.name + "could be location:" + couldBeLocation)
     var alternateName = q.name
     val namedEntityCollection = queryNamedEntityCollectionMap.get(q.id)
     val entityType = namedEntityCollection.qType
@@ -250,7 +249,6 @@ class CorefHelperMethods(val year: String) {
       }
       (uniqueCandidate,minDistance)
     }
-    println("sorted candidate strings..")
     candidateDistanceTuples.toList.sortBy(f => f._2).map(x => x._1)
   }
   
@@ -347,7 +345,6 @@ class CorefHelperMethods(val year: String) {
   }
   
   def locationCasing(str: String) :String ={
-    println("Doing Location Casing On :" + str)
     var words = List[String]()
     for(s <- str.split(" ")){
       var newS = s
