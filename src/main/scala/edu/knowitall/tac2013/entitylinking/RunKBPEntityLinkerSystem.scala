@@ -24,7 +24,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = .0 // 0.84  
+  val linkThreshold = .84 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -51,7 +51,6 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
     }
     val entityString = CorefHelperMethods.get(year).identifyBestEntityStringByRules(q)
     q.entityString = entityString
-    println(q.id + "\t" + q.name + "\t" + entityString)
     val linkOpt = linker.getBestEntity(entityString, q.corefSourceContext)
     q.highestLinkClassifierScore = linkOpt match{
       case None => 0.0
@@ -104,10 +103,13 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
       case Some(link) => {
 
         var nodeId :Option[String] = None
-        //make sure they share some Named Entity
-        //if(CorefHelperMethods.get(year).haveNamedEntityInCommon(baseDir,link,q)){
-          nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
-        //}
+        nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
+        
+        //if the KBNode doesn't exist, then make sure to change the alternative entity string
+        //to the name of the Freebase link for better nil clustering.
+        if(nodeId.isEmpty){
+          q.entityString = link.entity.name.replaceAll("\\([^\\(]+\\)", "").trim()
+        }
 
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
@@ -130,6 +132,8 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         }
       }
     }
+    
+    println(q.id + "\t" + q.name + "\t" + q.entityString)
     answer
   }
 

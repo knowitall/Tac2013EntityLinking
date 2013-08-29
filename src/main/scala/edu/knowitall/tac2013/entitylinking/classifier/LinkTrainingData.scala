@@ -42,6 +42,7 @@ class LinkTrainingData(val baseDir: String = "/scratch", val year: String = "201
     val linksMap = linker.getBestEntities(entity, splitRegex.split(context)).map(l => (l.entity.name, l)).toMap
     linksMap.get(expected) match {
       case Some(link) => {
+        query.entityString = entity
         Some(Labelled(label == "CORRECT", new KBPQueryLink(query, link)))
       }
       case None => {
