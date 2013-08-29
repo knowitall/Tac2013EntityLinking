@@ -72,12 +72,10 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         // again
         if(answer.isEmpty && ((q.entityString.split(" ").length > (q.name.split(" ").length +1)) && (!q.entityString.contains(",")) && (!q.entityString.contains(".")))){
           val backOffStrings = GeneralHelperMethods.findBackOffStrings(q.name,q.entityString)
-          var maxScore = linkThreshold
+          var maxScore = 0.0
           var maxLink :Option[EntityLink] = None
           var maxString = q.entityString
-          println("BACKOFF STRINGS FOR: " + q.name)
           for(backOffString <- backOffStrings){
-            println(backOffString)
             val link = linker.getBestEntity(backOffString, q.corefSourceContext)
             if(link.isDefined){
               val score = linkClassifier.score(q,link.get)
@@ -85,15 +83,17 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
               if(score > maxScore){
             	 maxScore = score
             	 maxLink = Some(link.get)
-            	 maxString = q.entityString
+            	 maxString = backOffString
               }
             }
           }
           if(maxLink.isDefined){
             q.entityString = maxString
             q.highestLinkClassifierScore = maxScore
-        	val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(maxLink.get.entity.name)
-            answer = Some(new FormattedOutput(q.id,nodeId.getOrElse(nextCluster), maxLink.get.combinedScore))
+            if(maxScore > linkThreshold || q.entityString == maxLink.get.entity.name){
+        	  val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(maxLink.get.entity.name)
+              answer = Some(new FormattedOutput(q.id,nodeId.getOrElse(nextCluster), maxLink.get.combinedScore))
+            }
           }
         }
         if (answer.isDefined) {
