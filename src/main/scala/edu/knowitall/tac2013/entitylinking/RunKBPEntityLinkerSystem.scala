@@ -24,7 +24,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = .84 // 0.84  
+  val linkThreshold = .88 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
