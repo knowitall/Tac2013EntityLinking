@@ -576,58 +576,60 @@ class CorefHelperMethods(val year: String) {
     return false
   }
   
-  def haveNamedEntityInCommon(baseDir: String, linkName: String, queryId: String): Boolean = {
+  def haveNamedEntityInCommon(baseDir: String, linkName: String, queryId: String, targetNamedEntities: Option[List[String]] = None): Boolean = {
+    val namedEntityCollection = queryNamedEntityCollectionMap.get.get(queryId).get
+    val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations ::: namedEntityCollection.people
+    val sourceAssociatedNamedEntities = namedEntities.filter(p => !p.toLowerCase().contains(linkName.toLowerCase()))
     val kbpQueryHelper = KBPQuery.getHelper(baseDir, year)
     val wikiMap = kbpQueryHelper.wikiMap
     val kbContextMapFile = kbpQueryHelper.kbContextMapFile
     val kbId = wikiMap.get(linkName).getOrElse("")
-    var kbContext = ""
-    breakable{
-	    using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
-	      val lines = source.getLines
-	      val tabSplit = """\t""".r
-	      lines.foreach(f => {
-	        if(tabSplit.split(f)(0).trim() == kbId){
-	          try{
-	            kbContext = tabSplit.split(f)(1).trim()
-	          }
-	          catch{
-	            case e: Exception => {
-	              kbContext = " "
-	            }
-	          }
-	          break
-	        }
-	      })
-	     }
-    }
-    val context = kbContext
-    if(context == ""){
-      true
+      
+
+    var targetAssociatedNamedEntitiesOption :Option[List[String]] = None
+    if(targetNamedEntities.isDefined){
+      targetAssociatedNamedEntitiesOption = targetNamedEntities
     }
     else{
-      val namedEntityCollection = queryNamedEntityCollectionMap.get.get(queryId).get
-      val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations ::: namedEntityCollection.people
-      val sourceAssociatedNamedEntities = namedEntities.filter(p => !p.toLowerCase().contains(linkName.toLowerCase()))
-      val targetAssociatedNamedEntities = (
-        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("PERSON", context)).toList :::
-        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", context)).toList :::
-        scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("LOCATION", context)).toList)
+	    var kbContext = ""
+	    breakable{
+		    using(io.Source.fromFile(kbContextMapFile, "UTF8")) { source =>
+		      val lines = source.getLines
+		      val tabSplit = """\t""".r
+		      lines.foreach(f => {
+		        if(tabSplit.split(f)(0).trim() == kbId){
+		          try{
+		            kbContext = tabSplit.split(f)(1).trim()
+		          }
+		          catch{
+		            case e: Exception => {
+		              kbContext = " "
+		            }
+		          }
+		          break
+		        }
+		      })
+		     }
+	    }
+	    val context = kbContext
+	    if(context == ""){
+	      true
+	    }
+	    else{
+          targetAssociatedNamedEntitiesOption = Some(scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntities(context)).toList)	      
+	    }
+      }
       println("Query " + queryId)
-      println("KB" + kbId)
+      println("KB " + kbId)
       println("Sourced Named Entities: ")
-      println("context: " + context)
       for(ne <- sourceAssociatedNamedEntities){
         println(ne)
       }
       println("KB Named Entities: ")
-      for(ne <- targetAssociatedNamedEntities){
+      for(ne <- targetAssociatedNamedEntitiesOption.get){
         println(ne)
       }
       //sourceAssociatedNamedEntities.exists(p => targetAssociatedNamedEntities.exists(q => (p.split(" ")exists(x => q.contains(x))))) //lenient
-      sourceAssociatedNamedEntities.exists(p => targetAssociatedNamedEntities.exists(q => q== p))//strict
+      sourceAssociatedNamedEntities.exists(p => targetAssociatedNamedEntitiesOption.get.exists(q => q== p))//strict
     }
-  }
-
-
 }

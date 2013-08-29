@@ -75,7 +75,7 @@ object LinkClassifierTest {
 
     val precsItems = precRecall(sortedBooleans).zip(sortedTest)
 
-    val output = new java.io.PrintStream("classifier-out-2012vs2011DocTypeNameMatchNameAmbiguity.txt")
+    val output = new java.io.PrintStream("classifier-out-2012vs20115.txt")
 
     precsItems.zipWithIndex foreach { case ((prec, (litem, conf)), index) => 
       val recall = index.toDouble / precsItems.size.toDouble

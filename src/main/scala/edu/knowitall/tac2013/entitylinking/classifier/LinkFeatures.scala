@@ -9,6 +9,15 @@ import edu.knowitall.tac2013.entitylinking.KBPQuery
 class KBPQueryLink(val query: KBPQuery, val link: EntityLink)
 
 object LinkFeatures {
+  
+  val kbIdToNamedEntitiesMap = {for(line <- scala.io.Source.fromFile("KbNamedEntitiesMap.txt")(scala.io.Codec.UTF8).getLines().toSeq) yield{
+    val values = line.split("\t")
+    val kbId = values(0)
+    val namedEntities = values.slice(1,values.length).toList
+    (kbId,namedEntities)
+  }
+  }.toMap
+  
 
   type LinkFeature = Feature[KBPQueryLink, Double]
 
@@ -95,12 +104,22 @@ object LinkFeatures {
   
   object namedEntityOverlap extends LinkFeature("Named Entity Overlap Score"){
     def apply(link: KBPQueryLink)= {
-      if(link.query.corefHelper.haveNamedEntityInCommon(link.query.baseDir, link.link.entity.name, link.query.id)){
-        1.0
+      val linkName = link.link.entity.name
+      val kbId = link.query.helper.wikiMap.get(linkName).getOrElse("")
+      var result = 0.0
+      if(kbIdToNamedEntitiesMap.contains(kbId)){
+        val namedEntities = kbIdToNamedEntitiesMap.get(kbId).get
+        if(link.query.corefHelper.haveNamedEntityInCommon(link.query.baseDir, link.link.entity.name, link.query.id, targetNamedEntities = Some(namedEntities))){
+          result = 1.0
+        }
       }
       else{
-        0.0
+	      if(link.query.corefHelper.haveNamedEntityInCommon(link.query.baseDir, link.link.entity.name, link.query.id)){
+	        1.0
+	      }
       }
+      println("Returning value: " + result)
+      result
     }
   }
   
@@ -113,7 +132,8 @@ object LinkFeatures {
     }
   }
 
-  private val features = Seq(candidateScore, inlinkScore, docSimScore, docType, originalNameMatch, fullNameMatch,nameAmbiguity)
+  private val features = Seq(candidateScore, inlinkScore, docSimScore)
+
   
   def featureSet = new FeatureSet(SortedMap.empty[String, Feature[KBPQueryLink, Double]] ++ features.map(f => (f.name, f)).toMap) 
 }

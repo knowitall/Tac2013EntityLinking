@@ -24,7 +24,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = .0 // 0.84  
+  val linkThreshold = .84 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
@@ -108,6 +108,9 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         //if(CorefHelperMethods.get(year).haveNamedEntityInCommon(baseDir,link,q)){
           nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(link.entity.name)
         //}
+        if(nodeId.isEmpty){
+          println (link.entity.name +"with score of " + link.combinedScore +" cannot be found in wikimap")
+        }
 
         new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
       }
