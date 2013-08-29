@@ -49,6 +49,7 @@ object LinkFeatureWriter {
      val lines = lines2011.toList ::: lines2012.toList
      val pw = new PrintWriter(new File("KbNamedEntitiesMap.txt"))
      
+     var writtenKbIds = List[String]()
      for(line <- lines){
        val kbName = line.split("\t") match {
           case Array(label, qid, used, expected, _*) => {
@@ -79,13 +80,14 @@ object LinkFeatureWriter {
 			      })
 			     }
 		    }
-       if(kbContext != " "){
+       if(kbContext != " " && !writtenKbIds.contains(kbId)){
          val namedEntities = scala.collection.JavaConversions.asScalaIterable(KBPQuery.getHelper(baseDir, "2012").corefHelper.getNamedEntities(kbContext)).toList
          var neString = ""
          for(namedEntity <- namedEntities){
            neString += "\t" +namedEntity
          }
          pw.write(kbId + neString +"\n")
+         writtenKbIds = kbId :: writtenKbIds
        }
      }
      pw.close()
