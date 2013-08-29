@@ -67,6 +67,19 @@ object LinkFeatures {
       }
   }
   
+  object fullNameFound extends LinkFeature("full name Found"){
+    def apply(link: KBPQueryLink) = {
+      val queryName = link.query.name
+      val altName = link.query.entityString
+      if( queryName != altName){
+        1.0
+      }
+      else{
+        0.0
+      }
+    }
+  }
+  
   object docType extends LinkFeature("document Type"){
     def apply(link: KBPQueryLink) = {
       val docType = link.query.doc
@@ -152,8 +165,14 @@ object LinkFeatures {
       length.toDouble
     }
   }
+  
+  object nameLength extends LinkFeature("Length of name used in linker"){
+    def apply(link: KBPQueryLink) = {
+      link.query.entityString.split(" ").length
+    }
+  }
 
-  private val features = Seq(candidateScore, inlinkScore, docSimScore)
+  private val features = Seq(candidateScore, docSimScore)
 
   
   def featureSet = new FeatureSet(SortedMap.empty[String, Feature[KBPQueryLink, Double]] ++ features.map(f => (f.name, f)).toMap) 

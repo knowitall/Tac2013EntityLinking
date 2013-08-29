@@ -106,7 +106,6 @@ case class KBPQueryHelper(val baseDir: String, val year: String) {
       Some(x)
     } catch {
       case e: Exception => {
-        println(e.getStackTrace().mkString("\n"))
         parseSingle2011KBPQueryFromXML(queryXML)
       }
     }
