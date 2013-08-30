@@ -204,9 +204,6 @@ object RunKBPEntityLinkerSystem {
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
     
-    if(year == "2013"){
-      SolrHelper.client = SolrHelper.clientNew
-    }
     val system = RunKBPEntityLinkerSystem(baseDir, year)
     
     ResourceHelper.initialize(baseDir, year)

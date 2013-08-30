@@ -20,22 +20,22 @@ class KBPQuery(val id: String, val name: String, val doc: String,
   val corefHelper = CorefHelperMethods.get(year)
 
   private def getSourceContext(): String = {
-    SolrHelper.getContextFromDocument(doc, begOffset, name)
+    SolrHelper.getContextFromDocument(doc, begOffset, name,year)
   }
 
   private def getWideContext(): String = {
-    SolrHelper.getWideContextFromDocument(doc, begOffset, name)
+    SolrHelper.getWideContextFromDocument(doc, begOffset, name, year)
   }
   
   private def getHeadLineContext(): List[String] = {
-    SolrHelper.getHeadLineContextFromDocument(doc)
+    SolrHelper.getHeadLineContextFromDocument(doc, year)
   }
 
   private def getContextOfAllMentions(): List[String] = {
     var contextualSentences = List[String]()
     val corefMentions = corefHelper.queryToCorefMap(id)
     for (cmi <- corefMentions) {
-      val contextSentence = SolrHelper.getContextFromDocument(doc, cmi.start, name)
+      val contextSentence = SolrHelper.getContextFromDocument(doc, cmi.start, name, year)
       contextualSentences = contextualSentences :+ contextSentence
     }
     var totalContext = List[String]()
