@@ -65,7 +65,15 @@ class CorefHelperMethods(val year: String) {
   
   private def loadQueryNamedEntityCollectionMap(year: String): Option[Map[String,NamedEntityCollection]] = {
     System.err.println("Loading query to Named Entities map...")
-    var namedEntityFile = getClass.getResource(year + "namedEntities.txt").getPath()
+    var namedEntityFile = 
+    try{
+       getClass.getResource(year + "namedEntities.txt").getPath()
+    }
+    catch{
+      case e: Exception => {
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "namedEntities.txt").getPath()
+      }
+    }
 
     Some(using { scala.io.Source.fromFile(namedEntityFile) } {
       source =>
@@ -256,6 +264,8 @@ class CorefHelperMethods(val year: String) {
     val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
     val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
 
+
+    try{
     val accronymRegex = new Regex("\\([^\\)\\(]{0,15}"+originalString+"[^\\)\\(]{0,15}\\)")
     //if the organization is an acronym
     if(originalString.forall(p => p.isUpper) || accronymRegex.findFirstIn(rawDoc).isDefined ){
@@ -296,6 +306,12 @@ class CorefHelperMethods(val year: String) {
         return expandedString
       }
       
+    }
+    }
+    catch{
+      case e: Exception => {
+        
+      }
     }
     
     //non caps organization, check if there is a longer string than the original

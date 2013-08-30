@@ -184,6 +184,7 @@ object RunKBPEntityLinkerSystem {
     var year = ""
     var sportsClassifyOn = false
     var baseDir = "/scratch/"
+    var fromScratch = false
       
     val argParser = new OptionParser() {
       arg("baseDir", "Path to base directory with entitylinking files.", { s => baseDir = s })
@@ -191,6 +192,7 @@ object RunKBPEntityLinkerSystem {
       opt("outputFile", "Path to output file, default stdout", { s => outputStream = new java.io.PrintStream(s, "UTF8") })
       opt("humanReadable", "Produce detailed human readable output (instead of submission format)", { humanReadable =  true})
       opt("sportsClassify","Turn on sports classification", {sportsClassifyOn = true})
+      opt("fromScratch", "Run system from scratch", {fromScratch = true})
     }
 
     if(!argParser.parse(args)) return
@@ -205,7 +207,7 @@ object RunKBPEntityLinkerSystem {
     val system = RunKBPEntityLinkerSystem(baseDir, year)
     
     ResourceHelper.initialize(baseDir, year)
-    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year,fromScratch)
 
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
     val answers = system.clusterNils(system.linkQueries(queries,year,sportsClassifyOn),queries)

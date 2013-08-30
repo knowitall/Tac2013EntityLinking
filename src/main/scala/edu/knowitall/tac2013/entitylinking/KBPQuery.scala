@@ -80,12 +80,13 @@ object KBPQuery {
 
   private val helperCache = new scala.collection.mutable.HashMap[(String, String), KBPQueryHelper]
 
-  def getHelper(baseDir: String, year: String) = helperCache.getOrElseUpdate((baseDir, year), KBPQueryHelper(baseDir, year))
+  def getHelper(baseDir: String, year: String, fromScratch: Boolean = false) = helperCache.getOrElseUpdate((baseDir, year), KBPQueryHelper(baseDir, year, fromScratch))
 }
 
-case class KBPQueryHelper(val baseDir: String, val year: String) {
+case class KBPQueryHelper(val baseDir: String, val year: String, val fromScratch: Boolean) {
 
-  val corefHelper = new StanfordAnnotatorHelperMethods(false)
+  
+  val corefHelper = new StanfordAnnotatorHelperMethods(fromScratch)
 
   private def parseSingleKBPQueryFromXML(queryXML: scala.xml.Node): Option[KBPQuery] = {
 
