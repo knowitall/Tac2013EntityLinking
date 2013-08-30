@@ -12,7 +12,7 @@ import edu.knowitall.tool.sentence.OpenNlpSentencer
 object SolrHelper {
   
   val clientOld = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/oldCorpus")
-  val clientNew = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/oldCorpus")
+  val clientNew = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/newCorpus")
   var client = clientOld
   val xmlTagPair = new Regex("<[^<]+>[^<]*</[^<]+>")
   val xmlTagPattern = new Regex("</?[^<]+>")
