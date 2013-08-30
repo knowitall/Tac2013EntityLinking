@@ -16,7 +16,7 @@ object SerializeNamedEntities {
     val pw = new PrintWriter(new File("namedEntities.txt"))
     pw.close()
     for (q <- queries) {
-      val rawDoc = SolrHelper.getRawDoc(q.doc)
+      val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
       val fw = new FileWriter("namedEntities.txt", true)
       fw.write(q.id)
       val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, q.begOffset)
@@ -55,7 +55,7 @@ class SerializeNamedEntities(val baseDir: String, val year: String) {
     val pw = new PrintWriter(new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt"))
     pw.close()
     for (q <- queries) {
-      val rawDoc = SolrHelper.getRawDoc(q.doc)
+      val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt", true)
       fw.write(q.id)
       var offset = q.begOffset

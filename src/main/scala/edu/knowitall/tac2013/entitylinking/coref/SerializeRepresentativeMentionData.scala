@@ -16,7 +16,7 @@ object SerializeRepresentativeMentionData {
     for (q <- queries) {
       val fw = new FileWriter("corefRepresentativeMentions.txt", true)
       fw.write(q.id)
-      val representativeMention = KBPQuery.getHelper(baseDir, year).corefHelper.getCorefRepresentativeString(SolrHelper.getRawDoc(q.doc), q.begOffset)
+      val representativeMention = KBPQuery.getHelper(baseDir, year).corefHelper.getCorefRepresentativeString(SolrHelper.getRawDoc(q.doc,q.year), q.begOffset)
       if (representativeMention != null)
         fw.write("\t" + representativeMention)
       fw.write("\n")

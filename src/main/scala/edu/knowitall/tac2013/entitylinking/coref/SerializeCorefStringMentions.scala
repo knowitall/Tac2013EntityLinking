@@ -17,7 +17,7 @@ object SerializeCorefStringMentions {
 	    for(q <- queries){
 	       val fw = new FileWriter("corefStringMentions.txt",true)
 	    	  fw.write(q.id)
-	    	  val mentions  = KBPQuery.getHelper(baseDir, year).corefHelper.getCorefStringMentions(SolrHelper.getRawDoc(q.doc),q.begOffset)
+	    	  val mentions  = KBPQuery.getHelper(baseDir, year).corefHelper.getCorefStringMentions(SolrHelper.getRawDoc(q.doc,q.year),q.begOffset)
 	    	  if(!mentions.isEmpty()){
 	    	    val uniqueMentions = scala.collection.JavaConversions.asScalaIterable(mentions).toSet.toList
 	    	    for(um <- uniqueMentions)
