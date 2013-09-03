@@ -203,10 +203,10 @@ object RunKBPEntityLinkerSystem {
         year != "2013"){
       throw new Exception("Year must be 2010,2011,2012,or 2013")
     }
-    
+
+    ResourceHelper.initialize(baseDir, year)
     val system = RunKBPEntityLinkerSystem(baseDir, year)
     
-    ResourceHelper.initialize(baseDir, year)
     val kbpQueryHelper = KBPQuery.getHelper(baseDir,year,fromScratch)
 
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
