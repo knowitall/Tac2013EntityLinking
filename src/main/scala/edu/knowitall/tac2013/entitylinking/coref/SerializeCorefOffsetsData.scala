@@ -51,7 +51,7 @@ class SerializeCorefOffsetsData(basePath: String, year: String) {
       if (q.begOffSet == -1) {
         offset = rawDoc.indexOf(q.name)
       }
-      val corefIntervals = KBPQuery.getHelper(basePath, year).corefHelper.getCorefIntervals(rawDoc, offset)
+      val corefIntervals = KBPQuery.getHelper(basePath, year, true).corefHelper.getCorefIntervals(rawDoc, offset)
       for (cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)) {
         fw.write("\t" + cmi)
       }
