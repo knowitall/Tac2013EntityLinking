@@ -48,7 +48,7 @@ object SerializeNamedEntities {
 }
 class SerializeNamedEntities(val baseDir: String, val year: String) {
 
-  val kbpQueryHelper = KBPQuery.getHelper(baseDir, year)
+  val kbpQueryHelper = KBPQuery.getHelper(baseDir, year, true)
 
   def serializeNamedEntities {
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
