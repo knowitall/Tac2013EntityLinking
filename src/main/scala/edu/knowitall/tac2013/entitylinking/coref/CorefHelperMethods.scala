@@ -53,7 +53,7 @@ class CorefHelperMethods(val year: String) {
       getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
     } catch {
       case e: Exception => {
-        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
       }
     }
   val queryToCorefMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>

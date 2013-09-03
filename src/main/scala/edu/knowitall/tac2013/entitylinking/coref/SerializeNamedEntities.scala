@@ -6,6 +6,7 @@ import java.io.FileWriter
 import java.io.File
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.tac2013.entitylinking.SolrHelper
+import edu.knowitall.tac2013.entitylinking.utils.XMLHelper
 
 object SerializeNamedEntities {
   def main(args: Array[String]) {
@@ -51,15 +52,17 @@ class SerializeNamedEntities(val baseDir: String, val year: String) {
   val kbpQueryHelper = KBPQuery.getHelper(baseDir, year, true)
 
   def serializeNamedEntities {
-    val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    //val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val queries = XMLHelper.parseKBPQueryXML(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath(), year)
+
     val pw = new PrintWriter(new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt"))
     pw.close()
     for (q <- queries) {
       val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt", true)
       fw.write(q.id)
-      var offset = q.begOffset
-      if (q.begOffset == -1) {
+      var offset = q.begOffSet
+      if (q.begOffSet == -1) {
         offset = rawDoc.indexOf(q.name)
       }
       val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, offset)
