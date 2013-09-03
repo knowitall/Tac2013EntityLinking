@@ -71,7 +71,7 @@ class CorefHelperMethods(val year: String) {
     }
     catch{
       case e: Exception => {
-        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "namedEntities.txt").getPath()
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt").getPath()
       }
     }
 
