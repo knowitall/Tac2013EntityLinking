@@ -19,19 +19,26 @@ import edu.knowitall.tac2013.entitylinking.classifier.SportsSenseLabeller
 import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
 import edu.knowitall.tac2013.entitylinking.utils.GeneralHelperMethods
 import edu.knowitall.browser.entity.EntityLink
+import edu.knowitall.tac2013.entitylinking.classifier.LinkTrainingData
 
 case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
   //var baseDir = "/scratch/resources/entitylinkingResources"
 
-  val linkThreshold = .88 // 0.84  
+  val linkThreshold = .93 // 0.84  
   
   val clusterCounter = new java.util.concurrent.atomic.AtomicInteger(0)
   val fbidClusterMap = new scala.collection.mutable.HashMap[String, String]
   def nextCluster = "NIL%04d" format clusterCounter.getAndIncrement()
   def fbidCluster(fbid: String) = fbidClusterMap.getOrElseUpdate(fbid, nextCluster)
 
-  val linkClassifier = new LinkClassifier(baseDir)
+  
+  val linkClassifier =  year match{
+    case "2013" => {new LinkClassifier(new LinkTrainingData(baseDir,"2011") ++ new LinkTrainingData(baseDir,"2012"))}
+    case "2012" => {new LinkClassifier(new LinkTrainingData(baseDir, "2011"))}
+    case "2011" => {new LinkClassifier(new LinkTrainingData(baseDir, "2012"))}
+    case _ => {throw new Exception("Unsupported year: "+year)}
+  }
 
   val linkerSupportPath = new java.io.File(baseDir)
   val linker = new EntityLinker(
@@ -64,7 +71,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         if (q.entityString != q.name) {
           val kbIdOption = KBPQuery.getHelper(baseDir, year).kbTitleToIdMap.get(q.entityString)
           if (kbIdOption.isDefined) {
-            answer = Some(new FormattedOutput(q.id, kbIdOption.get, .9))
+            answer = Some(new FormattedOutput(q.id, kbIdOption.get, .8))
           }
         }
         // if no answer has been found and the entity String is longer than the 
@@ -124,7 +131,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         val wikiMap = queryHelper.wikiMap
         if(sportsHelperMethods.isLocation(answer.kbLink)){
           val links = linker.getBestEntities(q.entityString, q.corefSourceContext)
-          for(candidateLink <- links.filter(l => linkClassifier.score(q,l) > .84 )){
+          for(candidateLink <- links.filter(l => linkClassifier.score(q,l) > linkThreshold )){
             val kbID = wikiMap.get(candidateLink.entity.name).getOrElse("")
             if(sportsHelperMethods.isSportsTeam(kbID)){
               return new  FormattedOutput(q.id,kbID,.6)

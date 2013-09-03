@@ -188,6 +188,7 @@ object Benchmarker {
     var outputFile = ""
     var year = ""
     var sportsClassifyOn = false
+    var fromScratch = false
       
     val parser = new OptionParser("Benchmarker") {
       arg("year", "Year of queries to run on", {s => year =s })
@@ -197,7 +198,7 @@ object Benchmarker {
       opt("querySort", "Sort queries by id.", { querySort = true})
       opt("outputFile", "output to file", {s => outputFile =s})
       opt("sportsClassify","Turn on sports classification", {sportsClassifyOn = true})
-
+      opt("fromScratch", "Run system from scratch", {fromScratch = true})
     }
     
     if (!parser.parse(args)) return
@@ -212,7 +213,7 @@ object Benchmarker {
 
     val system = RunKBPEntityLinkerSystem(baseDir, year)
     
-    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year)
+    val kbpQueryHelper = KBPQuery.getHelper(baseDir,year,fromScratch)
     
     val queries = kbpQueryHelper.parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_"+year+"_kbp_english_evaluation_entity_linking_queries.xml").getPath())
     val answerUrl = getClass.getResource("tac_"+year+"_kbp_english_evaluation_entity_linking_query_types.tab")
