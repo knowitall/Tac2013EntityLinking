@@ -44,11 +44,7 @@ object SolrHelper {
     
       try{
           var nameOffset = offset
-          val core = year match{
-            case "2013" => {"new"}
-            case _ => {"old"}
-          }
-		  val rawDoc = getRawDoc(docId,core)
+		  val rawDoc = getRawDoc(docId,year)
 		  if(offset == -1){
 		    nameOffset = rawDoc.indexOf(name)
 		  }
