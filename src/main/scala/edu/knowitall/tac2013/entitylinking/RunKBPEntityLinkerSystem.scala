@@ -174,7 +174,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
           println("Changing from " + answer.kbLink + " to " + nilClusterId )
         }
 
-        val newAnswer =  new FormattedOutput(answer.queryId,nilClusterId,.5)
+        val newAnswer =  new FormattedOutput(answer.queryId,nilClusterId,.6)
         newAnswerSeq = newAnswerSeq :+ newAnswer
       }
     }
@@ -227,7 +227,7 @@ object RunKBPEntityLinkerSystem {
         new FormattedOutputToHumanReadableOutputConverter(qa._2, qa._1).toString
       }
     } else { 
-      answers.map(_.toString)
+      answers.map(f => f.queryId +"\t" + f.kbLink + "\t" + "%1.2f".format(f.confidence))
     }
 
     for (a <- answerStrings) {
