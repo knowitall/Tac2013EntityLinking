@@ -113,7 +113,7 @@ class CorefHelperMethods(val year: String) {
     val queryNamedEntityCollectionMap = year match{
       case "2011" => { queryNamedEntityCollectionMap2011}
       case "2012" => { queryNamedEntityCollectionMap2012}
-      case _ => None
+      case _ => this.queryNamedEntityCollectionMap
     }
 
     if(queryNamedEntityCollectionMap.get.get(queryId).isDefined){
