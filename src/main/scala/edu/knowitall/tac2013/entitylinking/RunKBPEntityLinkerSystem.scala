@@ -20,6 +20,7 @@ import edu.knowitall.tac2013.entitylinking.utils.SportsHelperMethods
 import edu.knowitall.tac2013.entitylinking.utils.GeneralHelperMethods
 import edu.knowitall.browser.entity.EntityLink
 import edu.knowitall.tac2013.entitylinking.classifier.LinkTrainingData
+import edu.knowitall.tac2013.entitylinking.utils.ConfidenceHelper
 
 case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
 
@@ -99,14 +100,14 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
             q.highestLinkClassifierScore = maxScore
             if(maxScore > linkThreshold || q.entityString == maxLink.get.entity.name){
         	  val nodeId = KBPQuery.getHelper(baseDir, year).wikiMap.get(maxLink.get.entity.name)
-              answer = Some(new FormattedOutput(q.id,nodeId.getOrElse(nextCluster), maxLink.get.combinedScore))
+              answer = Some(new FormattedOutput(q.id,nodeId.getOrElse(nextCluster), ConfidenceHelper.getConfidence(linkThreshold,maxScore)))
             }
           }
         }
         if (answer.isDefined) {
           answer.get
         } else {
-          new FormattedOutput(q.id, nextCluster, 0.0)
+          new FormattedOutput(q.id, nextCluster, 0.55)
         }
       }
       case Some(link) => {
@@ -118,9 +119,10 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
         //to the name of the Freebase link for better nil clustering.
         if(nodeId.isEmpty){
           q.entityString = link.entity.name.replaceAll("\\([^\\(]+\\)", "").trim()
+          FormattedOutput(q.id, nextCluster, .65)
         }
 
-        new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), link.combinedScore)
+        new FormattedOutput(q.id, nodeId.getOrElse(nextCluster), ConfidenceHelper.getConfidence(linkThreshold,linkClassifier.score(q,link)))
       }
     }
     
@@ -134,7 +136,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
           for(candidateLink <- links.filter(l => linkClassifier.score(q,l) > linkThreshold )){
             val kbID = wikiMap.get(candidateLink.entity.name).getOrElse("")
             if(sportsHelperMethods.isSportsTeam(kbID)){
-              return new  FormattedOutput(q.id,kbID,.6)
+              return new  FormattedOutput(q.id,kbID,.7)
             }
           }
           return new FormattedOutput(q.id,nextCluster,.5)
@@ -142,7 +144,7 @@ case class RunKBPEntityLinkerSystem(val baseDir: String, val year: String) {
       }
     }
     
-    println(q.id + "\t" + q.name + "\t" + q.entityString)
+    println(q.id + "\t" + q.name + "\t" + q.entityString + "\t" + q.highestLinkClassifierScore)
     answer
   }
 
