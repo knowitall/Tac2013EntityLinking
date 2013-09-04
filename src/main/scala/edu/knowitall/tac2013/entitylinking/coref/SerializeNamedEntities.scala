@@ -65,30 +65,37 @@ class SerializeNamedEntities(val baseDir: String, val year: String) {
       if (q.begOffSet == -1) {
         offset = rawDoc.indexOf(q.name)
       }
-      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, offset)
-      for (entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)) {
-        fw.write("\t" + entityType)
+      try{
+	      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, offset)
+	      for (entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)) {
+	        fw.write("\t" + entityType)
+	      }
+	      fw.write("\n")
+	      val organizationList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", rawDoc))
+	      val personList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("PERSON", rawDoc))
+	      val locationList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("LOCATION", rawDoc))
+	      fw.write("\tORGANIZATION")
+	      for (org <- organizationList) {
+	        fw.write("\t" + org)
+	      }
+	      fw.write("\n")
+	      fw.write("\tLOCATION")
+	      for (loc <- locationList) {
+	        fw.write("\t" + loc)
+	      }
+	      fw.write("\n")
+	      fw.write("\tPERSON")
+	      for (per <- personList) {
+	        fw.write("\t" + per)
+	      }
       }
-      fw.write("\n")
-      val organizationList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("ORGANIZATION", rawDoc))
-      val personList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("PERSON", rawDoc))
-      val locationList = scala.collection.JavaConversions.asScalaIterable(kbpQueryHelper.corefHelper.getNamedEntitiesByType("LOCATION", rawDoc))
-      fw.write("\tORGANIZATION")
-      for (org <- organizationList) {
-        fw.write("\t" + org)
+      catch{
+        case e: Exception => {}
       }
-      fw.write("\n")
-      fw.write("\tLOCATION")
-      for (loc <- locationList) {
-        fw.write("\t" + loc)
+      finally{
+	      fw.write("\n")
+	      fw.close()
       }
-      fw.write("\n")
-      fw.write("\tPERSON")
-      for (per <- personList) {
-        fw.write("\t" + per)
-      }
-      fw.write("\n")
-      fw.close()
     }
   }
 }
