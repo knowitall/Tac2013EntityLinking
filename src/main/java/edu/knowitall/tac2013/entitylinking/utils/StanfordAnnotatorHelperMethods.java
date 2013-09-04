@@ -52,7 +52,7 @@ public class StanfordAnnotatorHelperMethods {
 	private List<CorefMention> getCorefMentions(Annotation document, Integer begOffset){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(3, TimeUnit.MINUTES);
+		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(6, TimeUnit.MINUTES);
 		}
 		catch(Exception e){
 			return null;
@@ -127,7 +127,7 @@ public class StanfordAnnotatorHelperMethods {
 	private List<List<CoreLabel>> getNamedEntityTokens(Annotation document){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(3, TimeUnit.MINUTES);
+		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(6, TimeUnit.MINUTES);
 		}
 		catch(Exception e){
 			return null;

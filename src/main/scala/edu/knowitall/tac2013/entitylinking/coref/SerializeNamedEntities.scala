@@ -7,6 +7,7 @@ import java.io.File
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.tac2013.entitylinking.SolrHelper
 import edu.knowitall.tac2013.entitylinking.utils.XMLHelper
+import java.util.concurrent.TimeUnit
 
 object SerializeNamedEntities {
   def main(args: Array[String]) {
@@ -90,7 +91,9 @@ class SerializeNamedEntities(val baseDir: String, val year: String) {
 	      }
       }
       catch{
-        case e: Exception => {}
+        case e: Exception => {
+          TimeUnit.MINUTES.sleep(1);
+        }
       }
       finally{
 	      fw.write("\n")

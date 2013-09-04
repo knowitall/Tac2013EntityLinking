@@ -7,6 +7,8 @@ import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.tac2013.entitylinking.SolrHelper
 import scala.collection.mutable
 import edu.knowitall.tac2013.entitylinking.utils.XMLHelper
+import java.util.Timer
+import java.util.concurrent.TimeUnit
 
 
 object SerializeCorefOffsetsData {
@@ -58,7 +60,9 @@ class SerializeCorefOffsetsData(basePath: String, year: String) {
         }
       }
       catch{
-        case e: Exception => {}
+        case e: Exception => {
+        	TimeUnit.MINUTES.sleep(1);
+        }
       }
       finally{
        fw.write("\n")
