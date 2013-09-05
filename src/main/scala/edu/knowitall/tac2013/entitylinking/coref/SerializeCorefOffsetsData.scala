@@ -6,6 +6,9 @@ import java.io.File
 import edu.knowitall.tac2013.entitylinking.KBPQuery
 import edu.knowitall.tac2013.entitylinking.SolrHelper
 import scala.collection.mutable
+import edu.knowitall.tac2013.entitylinking.utils.XMLHelper
+import java.util.Timer
+import java.util.concurrent.TimeUnit
 
 
 object SerializeCorefOffsetsData {
@@ -23,7 +26,7 @@ object SerializeCorefOffsetsData {
     for (q <- queries) {
       val fw = new FileWriter("corefmentions.txt", true)
       fw.write(q.id)
-      val corefIntervals = KBPQuery.getHelper(basePath, year).corefHelper.getCorefIntervals(SolrHelper.getRawDoc(q.doc), q.begOffset)
+      val corefIntervals = KBPQuery.getHelper(basePath, year).corefHelper.getCorefIntervals(SolrHelper.getRawDoc(q.doc,year), q.begOffset, q.endOffset)
       for (cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)) {
         fw.write("\t" + cmi)
       }
@@ -38,23 +41,37 @@ class SerializeCorefOffsetsData(basePath: String, year: String) {
 
 
   def serializeCorefOffsetsData {
-    val queries = KBPQuery.getHelper(basePath, year).parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    //val queries = KBPQuery.getHelper(basePath, year, true).parseKBPQueries(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath()).toSeq
+    val queries = XMLHelper.parseKBPQueryXML(getClass.getResource("/edu/knowitall/tac2013/entitylinking/tac_" + year + "_kbp_english_evaluation_entity_linking_queries.xml").getPath(), year)
     val pw = new PrintWriter(new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt"))
     pw.close()
     for (q <- queries) {
       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt", true)
       fw.write(q.id)
-      var offset = q.begOffset
-      val rawDoc = SolrHelper.getRawDoc(q.doc)
-      if (q.begOffset == -1) {
-        offset = rawDoc.indexOf(q.name)
+      var begOffset = q.begOffSet
+      var endOffset = q.endOffset
+      val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
+      if (q.begOffSet == -1) {
+        begOffset = rawDoc.indexOf(q.name)
       }
-      val corefIntervals = KBPQuery.getHelper(basePath, year).corefHelper.getCorefIntervals(rawDoc, offset)
-      for (cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)) {
-        fw.write("\t" + cmi)
+      if (q.endOffset == -1) {
+        endOffset = rawDoc.indexOf(q.name)
       }
-      fw.write("\n")
-      fw.close()
+      try{
+        val corefIntervals = KBPQuery.getHelper(basePath, year, true).corefHelper.getCorefIntervals(rawDoc, begOffset, endOffset)
+        for (cmi <- scala.collection.JavaConversions.asScalaIterable(corefIntervals)) {
+          fw.write("\t" + cmi)
+        }
+      }
+      catch{
+        case e: Exception => {
+        	TimeUnit.MINUTES.sleep(1);
+        }
+      }
+      finally{
+       fw.write("\n")
+       fw.close()
+      }
     }
   }
 

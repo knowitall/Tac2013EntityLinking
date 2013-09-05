@@ -53,7 +53,7 @@ class CorefHelperMethods(val year: String) {
       getClass.getResource("/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
     } catch {
       case e: Exception => {
-        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref" + year + "corefmentions.txt").getPath()
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "corefmentions.txt").getPath()
       }
     }
   val queryToCorefMap = using(io.Source.fromFile(corefMentionsFile, "UTF8")) { source =>
@@ -65,7 +65,15 @@ class CorefHelperMethods(val year: String) {
   
   private def loadQueryNamedEntityCollectionMap(year: String): Option[Map[String,NamedEntityCollection]] = {
     System.err.println("Loading query to Named Entities map...")
-    var namedEntityFile = getClass.getResource(year + "namedEntities.txt").getPath()
+    var namedEntityFile = 
+    try{
+       getClass.getResource(year + "namedEntities.txt").getPath()
+    }
+    catch{
+      case e: Exception => {
+        new File("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt").getPath()
+      }
+    }
 
     Some(using { scala.io.Source.fromFile(namedEntityFile) } {
       source =>
@@ -105,7 +113,7 @@ class CorefHelperMethods(val year: String) {
     val queryNamedEntityCollectionMap = year match{
       case "2011" => { queryNamedEntityCollectionMap2011}
       case "2012" => { queryNamedEntityCollectionMap2012}
-      case _ => None
+      case _ => this.queryNamedEntityCollectionMap
     }
 
     if(queryNamedEntityCollectionMap.get.get(queryId).isDefined){
@@ -131,7 +139,7 @@ class CorefHelperMethods(val year: String) {
   private def searchCoreferences(kbpQuery: KBPQuery, entityType: String, namedEntityCollection: NamedEntityCollection): String = {
     val originalName = kbpQuery.name
     if(entityType == "ORGANIZATION" || entityType == "LOCATION"){
-      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)
       val namedEntities = namedEntityCollection.locations ::: namedEntityCollection.organizations
       val corefOffsets = queryToCorefMap.get(kbpQuery.id).getOrElse(List[Interval]())
       var candidateNamedEntities = List[String]()
@@ -233,7 +241,7 @@ class CorefHelperMethods(val year: String) {
   }
   
   private def sortCandidateStringsByProximity(kbpQuery: KBPQuery, candidateStrings: List[String]): List[String] =  {
-    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)
     val entityPosition = kbpQuery.begOffset
     val uniqueCandidateMap = candidateStrings.groupBy[String](f=> f)
     val candidateDistanceTuples = for(uniqueCandidate <- uniqueCandidateMap.keys) yield {
@@ -254,8 +262,10 @@ class CorefHelperMethods(val year: String) {
   private def findBestOrganizationString(kbpQuery: KBPQuery, candidateStrings: List[String]) :String = {
     val originalString = kbpQuery.name.trim()
     val sortedCandidateStrings = sortCandidateStringsByProximity(kbpQuery,candidateStrings)
-    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+    val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)
 
+
+    try{
     val accronymRegex = new Regex("\\([^\\)\\(]{0,15}"+originalString+"[^\\)\\(]{0,15}\\)")
     //if the organization is an acronym
     if(originalString.forall(p => p.isUpper) || accronymRegex.findFirstIn(rawDoc).isDefined ){
@@ -296,6 +306,12 @@ class CorefHelperMethods(val year: String) {
         return expandedString
       }
       
+    }
+    }
+    catch{
+      case e: Exception => {
+        
+      }
     }
     
     //non caps organization, check if there is a longer string than the original
@@ -448,7 +464,7 @@ class CorefHelperMethods(val year: String) {
         val containedPlace = originalString
         val origQuote = originalString.replaceAll("\\(|\\)", "")
         val locationRegex = new Regex("("+origQuote+"|"+origQuote.toLowerCase()+"|"+origQuote.toUpperCase()+"),\\s?([A-Z][\\S]+)[\\s\\.\\?!,]")
-        val sourceText = SolrHelper.getRawDoc(kbpQuery.doc)
+        val sourceText = SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)
         val candidates = scala.collection.mutable.Map[String,Int]()
         for( locationRegex(containedLoc,containerLoc) <- locationRegex.findAllMatchIn(sourceText); fullLocation = expandAbbreviation(locationCasing(containedLoc+", " +containerLoc)).split(",");
              if locationContainsLocation(fullLocation(1).trim(),fullLocation(0).trim())) {
@@ -507,7 +523,7 @@ class CorefHelperMethods(val year: String) {
       if(probablyPerson){
       //try a conservative name regex if nothing from Stanford NER was found
 	      val nameRegex = """(\.|(\s[a-z]+\s))([A-Z]\w+\s[A-Z]\w+)(\.|(\s[a-z]+\s))""".r
-	      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc)
+	      val rawDoc = SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)
 	      val nameList = for(nameMatch <- nameRegex.findAllMatchIn(rawDoc); name = nameMatch.group(3); if name.contains(originalString)) yield name
 	      val sortedNameList = sortCandidateStringsByProximity(kbpQuery,nameList.toList)
 	      if(sortedNameList.headOption.isDefined){

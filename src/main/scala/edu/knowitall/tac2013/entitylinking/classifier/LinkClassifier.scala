@@ -7,12 +7,14 @@ import edu.knowitall.tool.conf.Labelled
 import edu.knowitall.tool.conf.FeatureSet
 import edu.knowitall.browser.entity.EntityLink
 import edu.knowitall.tac2013.entitylinking.KBPQuery
+import scala.util.Random
 
 class LinkClassifier(val trainingData: Iterable[Labelled[KBPQueryLink]]) {
   
   def this(baseDir: String){
     this(new LinkTrainingData(baseDir))
   }
+  
    
   val trainer = new BreezeLogisticRegressionTrainer(LinkFeatures.featureSet)
   
@@ -27,6 +29,80 @@ object LinkClassifierTest {
 
   def main(args: Array[String]): Unit = {
     
+    //test()
+    findThreshold()
+  }
+  
+  private def findThreshold() {
+    val data2012 =  new LinkTrainingData("/scratch/resources/entitylinkingResources", "2012").toSet
+    val data2011 =  new LinkTrainingData("/scratch/resources/entitylinkingResources", "2011").toSet
+    val allData = data2012 ++ data2011
+    
+    var thresholds = List[Double]()
+    var iter = 0
+    while(iter < 10){
+      val randomizedData = Random.shuffle(allData)
+      val split = math.ceil(randomizedData.size.toDouble / 10).toInt
+      val trainingData = randomizedData.drop(split)
+      val testData = randomizedData.take(split)
+      
+      val classifier = new LinkClassifier(trainingData)
+      val scores = testData.map(f => (f.label,classifier.score(f.item)))
+      val rankedAnswers = scores.toList.sortBy(f => f._2).reverse
+      
+      //sort by score and find f-scores at different thresholds..
+      var total = 0
+      var correct = 0 
+      var totalCorrect = rankedAnswers.filter(p => p._1 == true).length.toDouble
+      var thresholdList = List[(Double,Double)]()
+      for(ra <- rankedAnswers){
+        total +=1
+        if(ra._1 == true){
+          correct +=1
+        }
+        
+        val recall = correct.toDouble/totalCorrect
+        val precision = correct.toDouble/total.toDouble
+        val denom = if((recall + precision) == 0){
+          0
+        }
+        else{
+          recall + precision
+        }
+        val fscore = (2 * recall * precision) / (denom)
+        thresholdList = (ra._2,fscore) :: thresholdList
+      }
+      thresholds = thresholdList.sortBy(f => f._2).last._1 :: thresholds
+      iter +=1
+    }
+    
+    var sum = 0.0
+    for(t <- thresholds){
+      sum += t
+      println(t)
+    }
+    println("Average threshold = "+ (sum/thresholds.length.toDouble))
+    
+  }
+  
+  private def precRecall(sorted: Seq[Boolean]): Seq[Double]  = {
+      var result: List[Double] = Nil
+
+      var total = 0
+      var correct = 0
+
+      for (label <- sorted) {
+        total += 1
+        if (label) {
+          correct += 1
+        }
+        result ::= (correct.toDouble / total.toDouble)
+      }
+      result.reverse.tails.filter(_.nonEmpty).toSeq.map { tail => tail.max }
+    
+  }
+  
+  private def test() {
     val allTrainingDataSet = new LinkTrainingData("/scratch/resources/entitylinkingResources", "2012").toSet
     
     require(allTrainingDataSet.exists(_.label == true))
@@ -41,23 +117,6 @@ object LinkClassifierTest {
     val testSets = Seq(allTestDataSet) // allTrainingDataSet.toSeq.grouped(testSize).map(_.toSet)
 
     val trainTestSets = Seq((allTrainingDataSet, allTestDataSet)) // testSets.map(tset => (allTrainingDataSet &~ tset, tset))
-
-    def precRecall(sorted: Seq[Boolean]): Seq[Double] = {
-
-      var result: List[Double] = Nil
-
-      var total = 0
-      var correct = 0
-
-      for (label <- sorted) {
-        total += 1
-        if (label) {
-          correct += 1
-        }
-        result ::= (correct.toDouble / total.toDouble)
-      }
-      result.reverse.tails.filter(_.nonEmpty).toSeq.map { tail => tail.max }
-    }
 
     println(allTrainingDataSet.size)
 

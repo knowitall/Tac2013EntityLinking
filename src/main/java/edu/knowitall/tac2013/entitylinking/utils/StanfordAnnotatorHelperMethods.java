@@ -49,10 +49,10 @@ public class StanfordAnnotatorHelperMethods {
 		}
 	}
 	
-	private List<CorefMention> getCorefMentions(Annotation document, Integer begOffset){
+	private List<CorefMention> getCorefMentions(Annotation document, Integer begOffset, Integer endOffset){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(3, TimeUnit.MINUTES);
+		  executor.submit(new AnnotationRunnable(document,corefPipeline)).get(6, TimeUnit.MINUTES);
 		}
 		catch(Exception e){
 			return null;
@@ -67,8 +67,10 @@ public class StanfordAnnotatorHelperMethods {
 		
 	    for(CoreMap sentence: sentences){
 	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == begOffset){
-	    			corefClusterID = token.get(CorefClusterIdAnnotation.class);
+	    		if(token.beginPosition() >= begOffset && token.beginPosition() < endOffset){
+	    			if(corefClusterID == null){
+	    				corefClusterID = token.get(CorefClusterIdAnnotation.class);
+	    			}
 	    		}
 	    	}
 	    }
@@ -80,10 +82,10 @@ public class StanfordAnnotatorHelperMethods {
 	    }
 	}
 
-	public List<Interval> getCorefIntervals(String xmlString, Integer begOffset) {
+	public List<Interval> getCorefIntervals(String xmlString, Integer begOffset, Integer endOffset) {
 		    
 		    Annotation document = new Annotation(xmlString);
-			List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+			List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset,endOffset);
 			if(listOfCorefMentions == null){
 			  return new ArrayList<Interval>();	
 			}
@@ -96,9 +98,9 @@ public class StanfordAnnotatorHelperMethods {
 			}
 	}
 	
-	public String getCorefRepresentativeString(String xmlString, Integer begOffset) {
+	public String getCorefRepresentativeString(String xmlString, Integer begOffset, Integer endOffset) {
 	    Annotation document = new Annotation(xmlString);
-		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset,endOffset);
 		if(listOfCorefMentions == null){
 		  return null;
 		}
@@ -109,9 +111,9 @@ public class StanfordAnnotatorHelperMethods {
 		}
 	}
 	
-	public List<String> getCorefStringMentions(String xmlString, Integer begOffset) {
+	public List<String> getCorefStringMentions(String xmlString, Integer begOffset, Integer endOffset) {
 	    Annotation document = new Annotation(xmlString);
-		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset);
+		List<CorefMention> listOfCorefMentions = getCorefMentions(document,begOffset,endOffset);
 		if(listOfCorefMentions == null){
 		  return new ArrayList<String>();	
 		}
@@ -127,7 +129,7 @@ public class StanfordAnnotatorHelperMethods {
 	private List<List<CoreLabel>> getNamedEntityTokens(Annotation document){
 		scala.actors.threadpool.ExecutorService executor = Executors.newSingleThreadExecutor();
 		try{
-		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(3, TimeUnit.MINUTES);
+		  executor.submit(new AnnotationRunnable(document,regularPipeline)).get(6, TimeUnit.MINUTES);
 		}
 		catch(Exception e){
 			return null;
@@ -212,7 +214,7 @@ public class StanfordAnnotatorHelperMethods {
     	return namedEntityList;
 	}
 	
-	public List<String> getMatchingNamedEntities(String xmlString, Integer begOffset) {
+	public List<String> getMatchingNamedEntities(String xmlString, Integer begOffset, Integer endOffset) {
 		Annotation document = new Annotation(xmlString);
 		List<List<CoreLabel>> namedEntityTokens = getNamedEntityTokens(document);
 		if(namedEntityTokens == null){
@@ -223,8 +225,10 @@ public class StanfordAnnotatorHelperMethods {
 		String ne = "";
 	    for(CoreMap sentence: sentences){
 	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == begOffset){
-	    			ne = token.get(NamedEntityTagAnnotation.class);
+	    		if(token.beginPosition() >= begOffset && token.beginPosition() < endOffset){
+	    			if(ne == ""){
+	    				ne = token.get(NamedEntityTagAnnotation.class);
+	    			}
 	    		}
 	    	}
 	    }

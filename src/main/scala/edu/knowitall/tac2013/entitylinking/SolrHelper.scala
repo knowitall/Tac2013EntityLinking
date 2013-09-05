@@ -11,7 +11,8 @@ import edu.knowitall.tool.sentence.OpenNlpSentencer
 
 object SolrHelper {
   
-  val client = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/oldCorpus")
+  val clientOld = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/oldCorpus")
+  val clientNew = new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9325/solr/newCorpus")
   val xmlTagPair = new Regex("<[^<]+>[^<]*</[^<]+>")
   val xmlTagPattern = new Regex("</?[^<]+>")
   val sentencer = new OpenNlpSentencer()
@@ -20,7 +21,11 @@ object SolrHelper {
   /**
    * Return a raw doc from the old corpus
    */
-  def getRawDoc(docId: String): String = {
+  def getRawDoc(docId: String, year: String): String = {
+    val client = year match{
+      case "2013" => clientNew
+      case _ => clientOld
+    }
     val query = client.query("docid:\""+ docId + "\"")
     val result = query.getResultAsMap()
     if(result.documents.length != 1){
@@ -35,11 +40,11 @@ object SolrHelper {
   /***
    * Find a sentence from the Document if it can be found by using the XML <P> </P> format
    */
-  def getSentenceFromDocWithParagraphFormat(docId:String, offset:Integer, name:String) :Option[String] = {
+  def getSentenceFromDocWithParagraphFormat(docId:String, offset:Integer, name:String, year: String) :Option[String] = {
     
       try{
           var nameOffset = offset
-		  val rawDoc = getRawDoc(docId)
+		  val rawDoc = getRawDoc(docId,year)
 		  if(offset == -1){
 		    nameOffset = rawDoc.indexOf(name)
 		  }
@@ -100,12 +105,12 @@ object SolrHelper {
    * Take up to 100 characters, take off first and last char sequences and 
    * turn the chars into a single line string
    */
-  def getCharacterContext(docId:String, offset:Integer, name: String): String = {
+  def getCharacterContext(docId:String, offset:Integer, name: String, year: String): String = {
     var nameOffset = offset
     if(offset == -1){
-      nameOffset = getRawDoc(docId).indexOf(name)
+      nameOffset = getRawDoc(docId,year).indexOf(name)
     }
-    val charContext = getRawDoc(docId).slice(nameOffset-50, nameOffset+50)
+    val charContext = getRawDoc(docId,year).slice(nameOffset-50, nameOffset+50)
     
     val charContextArray = charContext.split("\\s")
     val tokenizedContext = charContextArray.slice(1, charContextArray.length-1).mkString(" ")
@@ -117,8 +122,8 @@ object SolrHelper {
    * Try finding a sentence with the OpenNlpSentence without the helpful
    * <P> and </P> XML tags
    */
-  def getUnformattedSentenceFromDoc(docId:String, offset:Integer, name:String) : Option[String] = {
-    val rawDoc = getRawDoc(docId)
+  def getUnformattedSentenceFromDoc(docId:String, offset:Integer, name:String, year: String) : Option[String] = {
+    val rawDoc = getRawDoc(docId, year)
     var nameOffset = offset
     if(offset == -1){
       nameOffset = rawDoc.indexOf(name)
@@ -143,21 +148,21 @@ object SolrHelper {
    * Query offsets. If a sentence can reasonably be found return it, else return
    * a section of characters
    */
-  def getContextFromDocument(docId: String, offset: Integer, name: String): String = {
+  def getContextFromDocument(docId: String, offset: Integer, name: String, year: String): String = {
 
     //initlaize context variable
     var context = ""
       
-    val sentence = getSentenceFromDocWithParagraphFormat(docId:String, offset:Integer, name: String)
+    val sentence = getSentenceFromDocWithParagraphFormat(docId:String, offset:Integer, name: String, year:String)
     
     //if sentence was not found from <P> </P> format fall back onto less robust
     //sentence finders and character context finder
     if(sentence.isEmpty){
       //try using the sentence on docs without <P> format
-      val unformattedSentence = getUnformattedSentenceFromDoc(docId,offset,name)
+      val unformattedSentence = getUnformattedSentenceFromDoc(docId,offset,name,year)
       if(unformattedSentence.isEmpty)
         //if no sentence was found just get the character context
-        context = getCharacterContext(docId, offset, name)
+        context = getCharacterContext(docId, offset, name, year)
       else
         context = unformattedSentence.get
     }
@@ -168,8 +173,8 @@ object SolrHelper {
     context.replaceAll("\\s+", " ")
   }
   
-  def getWideContextFromDocument(docId: String, offset: Integer, name:String): String = {
-    val rawDoc = getRawDoc(docId)
+  def getWideContextFromDocument(docId: String, offset: Integer, name:String, year: String): String = {
+    val rawDoc = getRawDoc(docId, year)
     var nameOffset = offset
     if(offset == -1){
       nameOffset = rawDoc.indexOf(name)
@@ -182,9 +187,9 @@ object SolrHelper {
     text
   }
   
-  def getHeadLineContextFromDocument(docId: String): List[String] = {
+  def getHeadLineContextFromDocument(docId: String, year: String): List[String] = {
     var contextList = List[String]()
-    val rawDoc = getRawDoc(docId)
+    val rawDoc = getRawDoc(docId, year)
     val headLineRegex = """<HEADLINE>([^<]+)</HEADLINE>""".r
     val headlineMatch = headLineRegex.findFirstMatchIn(rawDoc)
     if(headlineMatch.isDefined){

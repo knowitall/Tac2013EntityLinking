@@ -65,7 +65,7 @@ object SportsSenseTrainingData {
     for(trainingInstance <- trainingList){
       val label = trainingInstance.hasSportsSense.get
       val id = trainingInstance.kbpQuery.id
-      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc)
+      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc,trainingInstance.kbpQuery.year)
       val counter = getContextCounter(context)
       val ex = Example(label,counter)
       exList = ex :: exList
@@ -81,7 +81,7 @@ object SportsSenseTrainingData {
     for(trainingInstance <- trainingList){
       val label = trainingInstance.hasSportsSense.get
       val id = trainingInstance.kbpQuery.id
-      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc)
+      val context = SolrHelper.getRawDoc(trainingInstance.kbpQuery.doc,trainingInstance.kbpQuery.year)
       val counter = getContextCounter(context)
       val ex = Example(label    ,counter)
       exList = ex :: exList

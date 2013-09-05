@@ -82,12 +82,12 @@ object SportsClassifier{
     
     for(trainingInstance <- trainingData ){
       trainingInstance.item.naiveBayesScore = Some(nbModel.scores(
-          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc)))
+          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc,trainingInstance.item.kbpQuery.year)))
           (true))
     }
     for(testInstance <- testData ){
       testInstance.item.naiveBayesScore = Some(nbModel.scores(
-          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(testInstance.item.kbpQuery.doc)))
+          SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(testInstance.item.kbpQuery.doc,testInstance.item.kbpQuery.year)))
           (true))
     }
     
@@ -170,7 +170,7 @@ object SportsClassifier{
         //add naiveBayes scores as a feature to training set
 	  for(trainingInstance <- trainingData2012 ){
 	    trainingInstance.item.naiveBayesScore = Some(nbModel.scores(
-	        SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc)))
+	        SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(trainingInstance.item.kbpQuery.doc,trainingInstance.item.kbpQuery.year)))
 	        (true))
 	  }
       val classifier2012 = new SportsClassifier(trainingData2012)

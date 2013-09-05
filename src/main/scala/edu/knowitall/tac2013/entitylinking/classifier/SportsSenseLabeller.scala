@@ -19,7 +19,7 @@ object SportsSenseLabeller {
   def labelSportsSense(kbpQuery: KBPQuery): Option[Boolean] = {
     if(isCandidateForSportsClassifier(kbpQuery)){
       val sportsSenseInstance = new SportsSenseTrainingData.SportsSenseInstance(kbpQuery,None)
-      val nbScore = Some(sportsNaiveBayesModel2012.scores(SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(kbpQuery.doc)))(true))
+      val nbScore = Some(sportsNaiveBayesModel2012.scores(SportsSenseTrainingData.getContextCounter(SolrHelper.getRawDoc(kbpQuery.doc,kbpQuery.year)))(true))
       sportsSenseInstance.naiveBayesScore = nbScore
       val sportsScore = sportsLogisticRegressionClassifier2012.apply(sportsSenseInstance)
       println(kbpQuery.name + "score: " + sportsScore)
