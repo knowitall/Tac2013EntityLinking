@@ -10,7 +10,7 @@ case class ExtrSolrHelper private (val year: String) {
 
   private val extractionClient = year match {
     case "2011" | "2012" => new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9321/solr")
-    case "2013" => new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:9321/solr")
+    case "2013" => new SolrClient("http://knowitall:knowit!@rv-n16.cs.washington.edu:8123/solr")
     case _ => throw new RuntimeException("No extraction database for year "+ year)
   }
   
