@@ -21,7 +21,7 @@ object SerializeNamedEntities {
       val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
       val fw = new FileWriter("namedEntities.txt", true)
       fw.write(q.id)
-      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, q.begOffset)
+      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, q.begOffset, q.endOffset)
       for (entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)) {
         fw.write("\t" + entityType)
       }
@@ -62,12 +62,16 @@ class SerializeNamedEntities(val baseDir: String, val year: String) {
       val rawDoc = SolrHelper.getRawDoc(q.doc,q.year)
       val fw = new FileWriter("./src/main/resources/edu/knowitall/tac2013/entitylinking/coref/" + year + "namedEntities.txt", true)
       fw.write(q.id)
-      var offset = q.begOffSet
+      var begOffset = q.begOffSet
       if (q.begOffSet == -1) {
-        offset = rawDoc.indexOf(q.name)
+        begOffset = rawDoc.indexOf(q.name)
+      }
+      var endOffset = q.endOffset
+      if (q.endOffset == -1) {
+        endOffset = rawDoc.indexOf(q.name)
       }
       try{
-	      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, offset)
+	      val entityTypeList = kbpQueryHelper.corefHelper.getMatchingNamedEntities(rawDoc, begOffset, endOffset)
 	      for (entityType <- scala.collection.JavaConversions.asScalaIterable(entityTypeList)) {
 	        fw.write("\t" + entityType)
 	      }

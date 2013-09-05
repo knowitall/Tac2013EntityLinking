@@ -214,7 +214,7 @@ public class StanfordAnnotatorHelperMethods {
     	return namedEntityList;
 	}
 	
-	public List<String> getMatchingNamedEntities(String xmlString, Integer begOffset) {
+	public List<String> getMatchingNamedEntities(String xmlString, Integer begOffset, Integer endOffset) {
 		Annotation document = new Annotation(xmlString);
 		List<List<CoreLabel>> namedEntityTokens = getNamedEntityTokens(document);
 		if(namedEntityTokens == null){
@@ -225,8 +225,10 @@ public class StanfordAnnotatorHelperMethods {
 		String ne = "";
 	    for(CoreMap sentence: sentences){
 	    	for(CoreLabel token: sentence.get(TokensAnnotation.class)){
-	    		if(token.beginPosition() == begOffset){
-	    			ne = token.get(NamedEntityTagAnnotation.class);
+	    		if(token.beginPosition() >= begOffset && token.beginPosition() < endOffset){
+	    			if(ne == ""){
+	    				ne = token.get(NamedEntityTagAnnotation.class);
+	    			}
 	    		}
 	    	}
 	    }
